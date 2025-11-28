@@ -2,6 +2,7 @@ import telebot
 import ollama
 import pandas as pd
 import io
+import os
 import pandasai as pai
 from pandasai_litellm.litellm import LiteLLM
 import matplotlib
@@ -15,12 +16,20 @@ matplotlib.use('Agg')
 
 TELEGRAM_API_TOKEN = "8264826455:AAFc_XinYgj_EUn9Z6I51E2TKCDMUKNVRRw"
 # Initialize LiteLLM with your OpenAI model
+CHARTS_DIR = "exports/charts"
+os.makedirs(CHARTS_DIR, exist_ok=True)
+
 llm = LiteLLM(model="ollama/llama3", api_key="http://localhost:11434/api")
-pai.config.set({
-    "llm": llm
-})
+config = {
+    "llm": llm,
+    "save_charts": True,
+    "save_charts_path": CHARTS_DIR,
+    "open_charts": False,
+    "enable_cache": False,
+}
+pai.config.set(config)
 MODEL = "llama3:latest"
-df=pd.DataFrame()
+
 
 
 PERSONAL_ID = None
@@ -76,14 +85,22 @@ def handle_document(message):
         downloaded_file = bot.download_file(file_info.file_path)
 
         df = pd.read_csv(io.BytesIO(downloaded_file))
+        
+      
         pai_df = pai.DataFrame(df)
-        pai_df.chat("Summarize the dataset")
-     
+       
         user_question = message.caption if message.caption else "Please summarize this dataset."
         bot.send_chat_action(message.chat.id, 'typing')
-        response = pai_df.chat(user_question)
-        bot.reply_to(message, response)
 
+        response = pai_df.chat(user_question)
+        
+        if isinstance(response, str) and response.endswith('.png') and os.path.exists(response):
+            print(f"Chart generated at: {response}")
+            with open(response, 'rb') as photo:
+                bot.send_photo(message.chat.id, photo, caption="Here is the chart you requested.")
+        else:
+            # Otherwise, it's just text
+            bot.reply_to(message, str(response))
 
 
     except Exception as e:
@@ -91,3 +108,4 @@ def handle_document(message):
 
 print("Bot is running...")
 bot.polling()
+#how plot output into telegram
