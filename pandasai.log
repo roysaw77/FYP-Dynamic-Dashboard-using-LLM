@@ -1,0 +1,1165 @@
+2025-11-27 12:27:09 [INFO] Question: Plot the histogram of clinic showing for each one the revenue. Use different colors for each bar
+2025-11-27 12:27:10 [INFO] Running PandasAI with litellm LLM...
+2025-11-27 12:27:10 [INFO] Prompt ID: 2d7c0b82-7f61-47fd-b218-c7cd85377437
+2025-11-27 12:27:10 [INFO] Generating new code...
+2025-11-27 12:27:11 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_cc_clinic_level" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot the histogram of clinic showing for each one the revenue. Use different colors for each bar
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-11-27 12:27:33 [INFO] Code Generated:
+import pandas as pd
+
+# Execute SQL query to select total revenue for each clinic
+query = """
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_cc_clinic_level
+"""
+
+result_df = execute_sql_query(query)
+
+# Plot histogram of clinic showing for each one the revenue
+import matplotlib.pyplot as plt
+
+plt.hist(result_df['TotalRevenue'], bins=50, edgecolor='black')
+plt.xlabel('Total Revenue')
+plt.ylabel('Frequency')
+plt.title('Histogram of Clinic Total Revenue')
+
+# Save plot to a file
+plot_file = 'revenue_histogram.png'
+plt.savefig(plot_file)
+
+# Declare result variable as dictionary
+result = {
+    "type": "plot",
+    "value": plot_file
+}
+
+print(result)
+2025-11-27 12:27:33 [INFO] Validating code requirements...
+2025-11-27 12:27:33 [INFO] Code validation successful.
+2025-11-27 12:27:33 [INFO] Cleaning the generated code...
+2025-11-27 12:27:33 [INFO] Executing code: import pandas as pd
+query = """
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_cc_clinic_level
+"""
+result_df = execute_sql_query(query)
+import matplotlib.pyplot as plt
+plt.hist(result_df['TotalRevenue'], bins=50, edgecolor='black')
+plt.xlabel('Total Revenue')
+plt.ylabel('Frequency')
+plt.title('Histogram of Clinic Total Revenue')
+plot_file = 'exports\\charts\\temp_chart_59379223-5215-4a83-8bf8-a322f9460a4e.png'
+plt.savefig(plot_file)
+result = {'type': 'plot', 'value': plot_file}
+print(result)
+2025-11-27 12:27:34 [INFO] Response generated successfully.
+2025-11-27 12:33:38 [INFO] Question: Summarize the dataset
+2025-11-27 12:33:40 [INFO] Running PandasAI with litellm LLM...
+2025-11-27 12:33:40 [INFO] Prompt ID: 43ceae13-2302-45f0-8c0f-205e95e71cb7
+2025-11-27 12:33:40 [INFO] Generating new code...
+2025-11-27 12:33:40 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Summarize the dataset
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-11-27 12:34:19 [INFO] Code Generated:
+import pandas as pd
+from duckdb import DuckDBConn
+
+# Connect to the database
+conn = DuckDBConn()
+
+# Define the SQL query to summarize the data
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+
+# Execute the SQL query and store the result in a Pandas DataFrame
+result_df = execute_sql_query(query)
+
+# Convert the result to a dictionary with the desired format
+result = {
+    "type": "dataframe",
+    "value": result_df
+}
+
+print(result)
+2025-11-27 12:34:19 [INFO] Validating code requirements...
+2025-11-27 12:34:19 [INFO] Code validation successful.
+2025-11-27 12:34:19 [INFO] Cleaning the generated code...
+2025-11-27 12:34:19 [INFO] Executing code: import pandas as pd
+from duckdb import DuckDBConn
+conn = DuckDBConn()
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+result = {'type': 'dataframe', 'value': result_df}
+print(result)
+2025-11-27 12:34:20 [INFO] Retrying execution (1/3)...
+2025-11-27 12:34:20 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 2, in <module>
+ImportError: cannot import name 'DuckDBConn' from 'duckdb' (C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\duckdb\__init__.py)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-11-27 12:34:20 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Summarize the dataset
+
+You generated the following Python code:
+import pandas as pd
+from duckdb import DuckDBConn
+conn = DuckDBConn()
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+result = {'type': 'dataframe', 'value': result_df}
+print(result)
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 2, in <module>
+ImportError: cannot import name 'DuckDBConn' from 'duckdb' (C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\duckdb\__init__.py)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-11-27 12:34:46 [INFO] Code Generated:
+Python
+import pandas as pd
+
+def execute_sql_query(sql_query: str) -> pd.DataFrame:
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+    # Assuming you're using a DuckDB database (or any other DB library)
+    from duckdb import DuckDBConn
+    conn = DuckDBConn()
+    df = conn.execute(sql_query).df
+    return df
+
+# Your original query
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+
+result_df = execute_sql_query(query)
+print(result_df)
+2025-11-27 12:34:46 [INFO] Validating code requirements...
+2025-11-27 12:34:46 [INFO] Code validation successful.
+2025-11-27 12:34:46 [INFO] Cleaning the generated code...
+2025-11-27 12:34:46 [INFO] Executing code: Python
+import pandas as pd
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+print(result_df)
+2025-11-27 12:34:46 [INFO] Retrying execution (2/3)...
+2025-11-27 12:34:46 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 1, in <module>
+NameError: name 'Python' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-11-27 12:34:46 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Summarize the dataset
+
+You generated the following Python code:
+Python
+import pandas as pd
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+print(result_df)
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 1, in <module>
+NameError: name 'Python' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-11-27 12:35:01 [INFO] Code Generated:
+import pandas as pd
+
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+print(result_df)
+2025-11-27 12:35:01 [INFO] Validating code requirements...
+2025-11-27 12:35:01 [INFO] Code validation successful.
+2025-11-27 12:35:01 [INFO] Cleaning the generated code...
+2025-11-27 12:35:01 [INFO] Executing code: import pandas as pd
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+print(result_df)
+2025-11-27 12:35:01 [INFO] Retrying execution (3/3)...
+2025-11-27 12:35:01 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 42, in execute_and_return_result
+    raise NoResultFoundError(
+pandasai.exceptions.NoResultFoundError: No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}
+
+2025-11-27 12:35:01 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Summarize the dataset
+
+You generated the following Python code:
+import pandas as pd
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+print(result_df)
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 42, in execute_and_return_result
+    raise NoResultFoundError(
+pandasai.exceptions.NoResultFoundError: No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-11-27 12:35:18 [INFO] Code Generated:
+Python
+import pandas as pd
+
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+print(result_df)
+2025-11-27 12:35:18 [INFO] Validating code requirements...
+2025-11-27 12:35:18 [INFO] Code validation successful.
+2025-11-27 12:35:18 [INFO] Cleaning the generated code...
+2025-11-27 12:35:18 [INFO] Executing code: Python
+import pandas as pd
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+print(result_df)
+2025-11-27 12:35:18 [INFO] Max retries reached. Error: Code execution failed
+2025-11-27 12:35:18 [INFO] Processing failed with error: Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 1, in <module>
+NameError: name 'Python' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 287, in _process_query
+    result = self.execute_with_retries(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-11-27 12:35:18 [INFO] Question: just calculate for me the mean of total revenue
+2025-11-27 12:35:18 [INFO] Running PandasAI with litellm LLM...
+2025-11-27 12:35:18 [INFO] Prompt ID: d47df338-983a-4ebe-a3e4-9a4285133021
+2025-11-27 12:35:18 [INFO] Generating new code...
+2025-11-27 12:35:18 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+Python
+import pandas as pd
+query = """
+SELECT 
+    COUNT(DISTINCT IDOrganisation) AS OrganisationCount,
+    SUM(TotalRevenue) AS TotalRevenue,
+    AVG(TotalPaidPatientCount) AS AveragePatientsPerDay,
+    MAX(TotalCash) AS HighestDailyRevenue,
+    MIN(TotalPanel) AS LowestPanelPatients
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+print(result_df)
+
+
+
+### QUERY
+ just calculate for me the mean of total revenue
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-11-27 12:37:53 [INFO] Code Generated:
+import pandas as pd
+
+# Define the SQL query to calculate the mean of total revenue
+query = """
+SELECT AVG(TotalRevenue) AS MeanTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+
+# Execute the SQL query using the provided function
+result_df = execute_sql_query(query)
+
+# Create a dictionary to store the result
+result = {"type": "number", "value": result_df['MeanTotalRevenue'].values[0]}
+
+print(result)
+2025-11-27 12:37:53 [INFO] Validating code requirements...
+2025-11-27 12:37:53 [INFO] Code validation successful.
+2025-11-27 12:37:53 [INFO] Cleaning the generated code...
+2025-11-27 12:37:53 [INFO] Executing code: import pandas as pd
+query = """
+SELECT AVG(TotalRevenue) AS MeanTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+"""
+result_df = execute_sql_query(query)
+result = {'type': 'number', 'value': result_df['MeanTotalRevenue'].values[0]}
+print(result)
+2025-11-27 12:37:53 [INFO] Response generated successfully.
+2025-11-27 16:21:30 [INFO] Question: Summarize the dataset
+2025-11-27 16:21:31 [INFO] Running PandasAI with litellm LLM...
+2025-11-27 16:21:31 [INFO] Prompt ID: 8d804f5d-1105-4ff6-beea-5fc562439530
+2025-11-27 16:21:31 [INFO] Generating new code...
+2025-11-27 16:21:31 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Summarize the dataset
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-11-27 16:22:12 [INFO] Code Generated:
+# Import required dependencies
+import pandas as pd
+
+def execute_sql_query(sql_query: str) -> pd.DataFrame:
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+    # TO DO: implement this function
+    pass
+
+result = {}
+
+# Summarize the dataset using a SQL query
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        SUM(TotalRevenue) AS TotalRevenue,
+        AVG(TotalPaid) AS AverageTotalPaid,
+        COUNT(*) AS PatientCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+"""
+
+df = execute_sql_query(sql_query)
+
+# Format the result as a dictionary of type and value
+result = {"type": "dataframe", "value": df}
+
+print(result)
+2025-11-27 16:22:12 [INFO] Validating code requirements...
+2025-11-27 16:22:12 [INFO] Code validation successful.
+2025-11-27 16:22:12 [INFO] Cleaning the generated code...
+2025-11-27 16:22:12 [INFO] Executing code: import pandas as pd
+result = {}
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        SUM(TotalRevenue) AS TotalRevenue,
+        AVG(TotalPaid) AS AverageTotalPaid,
+        COUNT(*) AS PatientCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+"""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+print(result)
+2025-11-27 16:22:13 [INFO] Response generated successfully.
+2025-11-27 16:22:14 [INFO] Question: Plot the histogram of clinic showing for each one the revenue. Use different colors for each bar
+2025-11-27 16:22:14 [INFO] Running PandasAI with litellm LLM...
+2025-11-27 16:22:14 [INFO] Prompt ID: d211c656-c0c1-4c16-af1b-07b758555cf5
+2025-11-27 16:22:14 [INFO] Generating new code...
+2025-11-27 16:22:14 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Last code generated:
+import pandas as pd
+result = {}
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        SUM(TotalRevenue) AS TotalRevenue,
+        AVG(TotalPaid) AS AverageTotalPaid,
+        COUNT(*) AS PatientCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+"""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+print(result)
+
+
+
+### QUERY
+ Plot the histogram of clinic showing for each one the revenue. Use different colors for each bar
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-11-27 16:25:00 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Define the SQL query to get the clinic revenue
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+
+# Execute the SQL query and store the result in a Pandas dataframe
+df = execute_sql_query(sql_query)
+
+# Group the data by clinic and calculate the sum of revenue for each clinic
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+
+# Create a figure and axis object
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Plot the histogram with different colors for each bar
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'], color=plt.cm.rainbow(np.linspace(0, 1, len(clinic_revenue))))
+
+# Set the title and labels
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+
+# Show the plot
+plt.show()
+
+# Declare the result variable as a dictionary of type and value in the desired format
+result = {'type': 'plot', 'value': None}
+2025-11-27 16:25:00 [INFO] Validating code requirements...
+2025-11-27 16:25:00 [INFO] Code validation successful.
+2025-11-27 16:25:00 [INFO] Cleaning the generated code...
+2025-11-27 16:25:00 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+df = execute_sql_query(sql_query)
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'], color=plt.cm.rainbow(np.linspace(0, 1, len(clinic_revenue))))
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+result = {'type': 'plot', 'value': None}
+2025-11-27 16:25:01 [INFO] Retrying execution (1/3)...
+2025-11-27 16:25:01 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 205, in execute_with_retries
+    return self._response_parser.parse(result, code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\response\parser.py", line 17, in parse
+    self._validate_response(result)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\response\parser.py", line 59, in _validate_response
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Invalid output: Expected a plot save path str but received an incompatible type.
+
+2025-11-27 16:25:01 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Plot the histogram of clinic showing for each one the revenue. Use different colors for each bar
+
+You generated the following Python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+df = execute_sql_query(sql_query)
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'], color=plt.cm.rainbow(np.linspace(0, 1, len(clinic_revenue))))
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+result = {'type': 'plot', 'value': None}
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 205, in execute_with_retries
+    return self._response_parser.parse(result, code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\response\parser.py", line 17, in parse
+    self._validate_response(result)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\response\parser.py", line 59, in _validate_response
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Invalid output: Expected a plot save path str but received an incompatible type.
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-11-27 16:25:24 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+df = execute_sql_query(sql_query)
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'], color=plt.cm.rainbow(np.linspace(0, 1, len(clinic_revenue))))
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+plt.show()
+2025-11-27 16:25:24 [INFO] Validating code requirements...
+2025-11-27 16:25:24 [INFO] Code validation successful.
+2025-11-27 16:25:24 [INFO] Cleaning the generated code...
+2025-11-27 16:25:24 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+df = execute_sql_query(sql_query)
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'], color=plt.cm.rainbow(np.linspace(0, 1, len(clinic_revenue))))
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+2025-11-27 16:25:24 [INFO] Retrying execution (2/3)...
+2025-11-27 16:25:24 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 42, in execute_and_return_result
+    raise NoResultFoundError(
+pandasai.exceptions.NoResultFoundError: No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}
+
+2025-11-27 16:25:24 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Plot the histogram of clinic showing for each one the revenue. Use different colors for each bar
+
+You generated the following Python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+df = execute_sql_query(sql_query)
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'], color=plt.cm.rainbow(np.linspace(0, 1, len(clinic_revenue))))
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 42, in execute_and_return_result
+    raise NoResultFoundError(
+pandasai.exceptions.NoResultFoundError: No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-11-27 16:25:42 [INFO] Code Generated:
+Python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+df = execute_sql_query(sql_query)
+
+# Group by 'IDOrganisation' and sum 'TotalRevenue'
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'])
+
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+2025-11-27 16:25:42 [INFO] Validating code requirements...
+2025-11-27 16:25:42 [INFO] Code validation successful.
+2025-11-27 16:25:42 [INFO] Cleaning the generated code...
+2025-11-27 16:25:42 [INFO] Executing code: Python
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+df = execute_sql_query(sql_query)
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'])
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+2025-11-27 16:25:42 [INFO] Retrying execution (3/3)...
+2025-11-27 16:25:42 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 1, in <module>
+NameError: name 'Python' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-11-27 16:25:42 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Plot the histogram of clinic showing for each one the revenue. Use different colors for each bar
+
+You generated the following Python code:
+Python
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
+df = execute_sql_query(sql_query)
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.bar(clinic_revenue['IDOrganisation'], clinic_revenue['TotalRevenue'])
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 1, in <module>
+NameError: name 'Python' is not defined
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 204, in execute_with_retries
+    result = self.execute_code(code)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 135, in execute_code
+    return code_executor.execute_and_return_result(code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "C:\Users\User\OneDrive\Desktop\FYP-Dynamic Dashboard using LLM\venv\Lib\site-packages\pandasai\core\code_execution\code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-11-27 16:26:01 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = execute_sql_query("""
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""")
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.bar(df['IDOrganisation'], df['TotalRevenue'])
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+2025-11-27 16:26:01 [INFO] Validating code requirements...
+2025-11-27 16:26:01 [INFO] Code validation successful.
+2025-11-27 16:26:01 [INFO] Cleaning the generated code...
+2025-11-27 16:26:01 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+df = execute_sql_query("""
+    SELECT 
+        IDOrganisation, 
+        TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""")
+clinic_revenue = df.groupby('IDOrganisation')['TotalRevenue'].sum().reset_index()
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.bar(df['IDOrganisation'], df['TotalRevenue'])
+ax.set_title('Clinic Revenue Histogram')
+ax.set_xlabel('Clinic ID')
+ax.set_ylabel('Revenue')
+2025-11-27 16:26:02 [INFO] Max retries reached. Error: No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}
