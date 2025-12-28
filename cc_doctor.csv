@@ -1,0 +1,282 @@
+IDOrganisation,Address,State,District,lat,lng,StaffName,Locum/Residence,TotalVisitTime(hrs),TotalPatientCount,TotalPaidPatientCount,TotalPanelPatientCount,TotalRevenue,TotalPaid,TotalPanel,%TotalVisitTime(hrs),%TotalPatient
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor A,Residence,251.1377778,2244,984,1260,308717.8,75014.6,233703.2,47.14618563,54.67836257
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor B,Residence,234.81,1664,832,832,169398.0,72480.0,96918.0,44.08096602,40.54580897
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor C,Residence,10.40111111,68,32,36,5500.0,1480.0,4020.0,1.952604342,1.656920078
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor D,Residence,6.364444444,24,8,16,2676.0,440.0,2236.0,1.194799452,0.584795322
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor E,Residence,18.29666667,72,48,24,4752.0,3180.0,1572.0,3.434839835,1.754385965
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor F,Residence,11.66888889,32,8,24,2287.2,800.0,1487.2,2.190604721,0.779727096
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor G,Residence,1.827777778,44,20,24,3128.0,1060.0,2068.0,0.184342435,0.736278447
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor H,Residence,6.021111111,44,12,32,3232.2,1092.0,2140.2,0.607265445,0.736278447
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor I,Residence,47.13222222,528,252,276,34055.6,13418.0,20637.6,4.753569463,8.835341365
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor J,Residence,43.00555556,340,152,188,22335.2,8900.0,13435.2,4.33737019,5.689424364
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor K,Residence,1.968888889,28,8,20,1839.6,500.0,1339.6,0.198574344,0.46854083
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor L,Residence,2.806666667,60,28,32,3786.0,1240.0,2546.0,0.283069296,1.004016064
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor M,Residence,12.85333333,112,52,60,7541.4,3700.0,3841.4,1.296336348,1.87416332
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor N,Residence,30.09444444,212,64,148,16727.6,4588.0,12139.6,3.035206604,3.547523427
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor O,Residence,3.197777778,44,28,16,3656.0,2160.0,1496.0,0.322515215,0.736278447
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor P,Residence,371.1755556,2052,864,1188,182588.64,66108.4,116480.24,37.43529805,34.3373494
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor Q,Residence,454.1344444,2408,984,1424,210007.4,73594.4,136413.0,45.80220337,40.29451138
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor R,Residence,10.36888889,60,20,40,4996.0,1300.0,3696.0,1.045765111,1.004016064
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,Doctor S,Residence,6.925555556,44,20,24,4444.0,1520.0,2924.0,0.698484134,0.736278447
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor T,Residence,390.2322222,2700,1200,1500,209107.6,77852.0,131255.6,32.55268822,32.15817056
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor U,Residence,417.87,2412,1072,1340,223754.8,79674.0,144080.8,34.85819738,28.7279657
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor V,Residence,4.477777778,56,16,40,4080.0,960.0,3120.0,0.373530671,0.666984278
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor W,Residence,11.82111111,84,52,32,6940.0,4952.0,1988.0,0.986102435,1.000476417
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor X,Residence,7.031111111,64,20,44,5004.0,1448.0,3556.0,0.586526573,0.762267747
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor Y,Residence,288.4333333,2428,1092,1336,178056.4,72304.0,105752.4,24.0607511,28.91853263
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor Z,Residence,11.29666667,52,28,24,4112.0,2124.0,1988.0,0.942353929,0.619342544
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor AA,Residence,27.81555556,240,124,116,17790.0,9684.0,8106.0,2.320339162,2.85850405
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor AB,Residence,6.025555556,36,20,16,2488.0,1280.0,1208.0,0.502644375,0.428775607
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor AC,Residence,13.50555556,144,64,80,13660.0,6836.0,6824.0,1.126616702,1.71510243
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor AD,Residence,2.072222222,32,16,16,2184.0,1016.0,1168.0,0.172862209,0.381133873
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor AE,Residence,2.36,24,12,12,2144.0,948.0,1196.0,0.196868274,0.285850405
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor AF,Residence,4.676666667,36,20,16,4348.0,1116.0,3232.0,0.390121736,0.428775607
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor AG,Residence,3.754444444,24,20,4,1488.0,1052.0,436.0,0.313191101,0.285850405
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,Doctor AH,Residence,7.398888889,64,32,32,4124.0,1856.0,2268.0,0.617206139,0.762267747
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AI,Residence,81.78222222,864,228,636,82372.4,24568.0,57804.4,6.901958137,8.667736758
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AJ,Residence,135.8633333,996,412,584,92184.4,42888.0,49296.4,11.46609879,9.991974318
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AK,Residence,281.6866667,2524,940,1584,243320.8,98495.2,144825.6,23.77276538,25.32102729
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AL,Residence,4.08,44,24,20,4540.0,2324.0,2216.0,0.34432898,0.44141252
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AM,Residence,19.66555556,164,88,76,10728.4,6504.0,4224.4,1.659661935,1.645264848
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AN,Residence,313.97,2696,840,1856,239229.6,94709.2,144520.4,26.49729657,27.04654896
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AO,Residence,83.15333333,484,224,260,37081.4,14648.0,22433.4,7.017672179,4.855537721
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AP,Residence,212.0777778,1764,628,1136,166126.8,71154.8,94972.0,17.89816789,17.69662921
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AQ,Residence,7.048888889,72,28,44,7412.0,2476.0,4936.0,0.594886452,0.722311396
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AR,Residence,15.11444444,92,40,52,10195.2,5060.0,5135.2,1.275573835,0.922953451
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AS,Residence,12.88111111,164,52,112,16893.6,4972.0,11921.6,1.087093102,1.645264848
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AT,Residence,7.952222222,52,40,12,4654.0,3852.0,802.0,0.671122689,0.521669342
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,Doctor AU,Residence,9.637777778,52,20,32,4552.0,1736.0,2816.0,0.813374068,0.521669342
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,Doctor AV,Residence,225.3644444,1972,860,1112,191924.0,76056.0,115868.0,48.39343105,51.0880829
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,Doctor AW,Locum,5.205555556,36,16,20,3396.0,1504.0,1892.0,1.117810285,0.932642487
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,Doctor AX,Residence,210.8388889,1716,648,1068,158012.8,60298.4,97714.4,45.27429895,44.45595855
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,Doctor AY,Residence,10.63555556,68,32,36,7544.0,3580.0,3964.0,2.283816445,1.761658031
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,Doctor AZ,Residence,13.64777778,68,32,36,5768.0,2104.0,3664.0,2.930643272,1.761658031
+Clinic F,"73-G, Jalan Ara 2, Pusat Perdagangan Ara Seksyen 5,
+Bandar Utama,
+44300 Batang Kali, Selangor, Malaysia",Selangor,Batang Kali,3.4550167,101.6623905,Doctor BA,Residence,293.2288889,1644,928,716,170955.6,96092.0,74863.6,33.51872573,34.88964346
+Clinic F,"73-G, Jalan Ara 2, Pusat Perdagangan Ara Seksyen 5,
+Bandar Utama,
+44300 Batang Kali, Selangor, Malaysia",Selangor,Batang Kali,3.4550167,101.6623905,Doctor BB,Residence,9.258888889,92,28,64,6484.0,1780.0,4704.0,1.058375109,1.9524618
+Clinic F,"73-G, Jalan Ara 2, Pusat Perdagangan Ara Seksyen 5,
+Bandar Utama,
+44300 Batang Kali, Selangor, Malaysia",Selangor,Batang Kali,3.4550167,101.6623905,Doctor BC,Residence,288.0055556,1296,728,568,135298.8,74566.0,60352.8,32.92165128,27.50424448
+Clinic F,"73-G, Jalan Ara 2, Pusat Perdagangan Ara Seksyen 5,
+Bandar Utama,
+44300 Batang Kali, Selangor, Malaysia",Selangor,Batang Kali,3.4550167,101.6623905,Doctor BD,Residence,123.9033333,864,492,372,82682.8,44516.0,38166.8,14.16327656,18.33616299
+Clinic F,"73-G, Jalan Ara 2, Pusat Perdagangan Ara Seksyen 5,
+Bandar Utama,
+44300 Batang Kali, Selangor, Malaysia",Selangor,Batang Kali,3.4550167,101.6623905,Doctor BE,Residence,130.0111111,596,388,208,52652.8,35316.0,17336.8,14.86145104,12.64855688
+Clinic F,"73-G, Jalan Ara 2, Pusat Perdagangan Ara Seksyen 5,
+Bandar Utama,
+44300 Batang Kali, Selangor, Malaysia",Selangor,Batang Kali,3.4550167,101.6623905,Doctor BF,Residence,8.187777778,72,44,28,5340.0,2904.0,2436.0,0.935937379,1.528013582
+Clinic F,"73-G, Jalan Ara 2, Pusat Perdagangan Ara Seksyen 5,
+Bandar Utama,
+44300 Batang Kali, Selangor, Malaysia",Selangor,Batang Kali,3.4550167,101.6623905,Doctor BG,Residence,16.22555556,120,60,60,16588.0,7656.0,8932.0,1.854728395,2.546689304
+Clinic F,"73-G, Jalan Ara 2, Pusat Perdagangan Ara Seksyen 5,
+Bandar Utama,
+44300 Batang Kali, Selangor, Malaysia",Selangor,Batang Kali,3.4550167,101.6623905,Doctor BH,Residence,6.0,28,28,0,1772.0,1772.0,0.0,0.685854505,0.594227504
+Clinic G,"No 2373, Jalan 1A/1, Bandar Baru Sungai Buloh, Seksyen U20, 40160 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.2098925,101.5649178,Doctor BI,Residence,264.3222222,1940,1256,684,177388.0,122676.0,54712.0,53.71565858,47.59568204
+Clinic G,"No 2373, Jalan 1A/1, Bandar Baru Sungai Buloh, Seksyen U20, 40160 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.2098925,101.5649178,Doctor BJ,Residence,212.9488889,1992,1164,828,175772.0,105328.0,70444.0,43.27555101,48.87144259
+Clinic G,"No 2373, Jalan 1A/1, Bandar Baru Sungai Buloh, Seksyen U20, 40160 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.2098925,101.5649178,Doctor BK,Residence,14.80555556,144,80,64,9580.0,6116.0,3464.0,3.00879041,3.532875368
+Clinic H,"2, A-1, Jalan PJU 5/9, Dataran Sunway, 47810 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.1509928,101.5925999,Doctor AW,Locum,197.2144444,1620,860,760,163090.2,86608.8,76481.4,39.49431927,33.30592105
+Clinic H,"2, A-1, Jalan PJU 5/9, Dataran Sunway, 47810 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.1509928,101.5925999,Doctor BL,Residence,197.6522222,1828,888,940,200896.8,96682.8,104214.0,39.58198899,37.58223684
+Clinic H,"2, A-1, Jalan PJU 5/9, Dataran Sunway, 47810 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.1509928,101.5925999,Doctor BM,Residence,104.4822222,1416,772,644,164774.2,93706.0,71068.2,20.92369174,29.11184211
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BN,Residence,3.82,48,36,12,6150.4,4636.0,1514.4,0.316766804,0.555555556
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BO,Residence,35.87111111,200,124,76,16476.0,9904.0,6572.0,2.974549013,2.314814815
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BP,Residence,271.6944444,1840,940,900,165907.4,83147.6,82759.8,22.52978557,21.2962963
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BQ,Residence,439.87,2856,1120,1736,294283.8,118484.4,175799.4,36.47544873,33.05555556
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BR,Residence,267.0788889,2184,948,1236,205247.8,85417.6,118803.0,22.14704872,25.27777778
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BS,Residence,10.65222222,136,80,56,12812.8,8056.0,4756.8,0.883316856,1.574074074
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BT,Residence,21.69333333,144,60,84,9817.4,4392.0,5425.4,1.798881642,1.666666667
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BU,Residence,21.42555556,132,72,60,13358.4,5814.0,7006.8,1.776676639,1.527777778
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BV,Residence,29.63333333,260,188,72,20683.6,15200.0,5483.6,2.457292224,3.009259259
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BW,Residence,17.89222222,244,140,104,27404.0,17252.0,10152.0,1.483681166,2.824074074
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BX,Residence,13.15555556,84,48,36,7953.6,4832.0,3121.6,1.090901385,0.972222222
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BY,Residence,13.44666667,88,36,52,7526.0,2616.0,4910.0,1.115041264,1.018518519
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor BZ,Residence,51.32111111,336,128,208,26213.4,9836.0,16377.4,4.255713181,3.888888889
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor CA,Residence,4.891111111,48,24,24,3933.6,2268.0,1665.6,0.405586816,0.555555556
+Clinic I,"45, Jalan 34/154, Taman Delima Cheras
+56100 WP Kuala Lumpur, Malaysia",Kuala Lumpur,Cheras,3.0575258,101.7470395,Doctor CB,Residence,3.488888889,40,28,12,4386.0,3228.0,1158.0,0.289309996,0.462962963
+Clinic J,"LOT UG.21 & UG.22 MENARA EXCHANGE 106, LINGKARAN TRX, 55188, TUN RAZAK EXCHANGE KUALA LUMPUR, Malaysia",Kuala Lumpur,Central KL,3.1418746,101.7190174,Doctor CC,Residence,211.9211111,1968,352,1616,193310.4,47529.2,145781.2,31.14603916,49.15084915
+Clinic J,"LOT UG.21 & UG.22 MENARA EXCHANGE 106, LINGKARAN TRX, 55188, TUN RAZAK EXCHANGE KUALA LUMPUR, Malaysia",Kuala Lumpur,Central KL,3.1418746,101.7190174,Doctor CD,Residence,424.5955556,1704,332,1372,207279.6,45230.4,162049.2,62.4027957,42.55744256
+Clinic J,"LOT UG.21 & UG.22 MENARA EXCHANGE 106, LINGKARAN TRX, 55188, TUN RAZAK EXCHANGE KUALA LUMPUR, Malaysia",Kuala Lumpur,Central KL,3.1418746,101.7190174,Doctor BZ,Residence,25.08333333,140,32,108,15790.0,4716.4,11073.6,3.686496726,3.496503497
+Clinic J,"LOT UG.21 & UG.22 MENARA EXCHANGE 106, LINGKARAN TRX, 55188, TUN RAZAK EXCHANGE KUALA LUMPUR, Malaysia",Kuala Lumpur,Central KL,3.1418746,101.7190174,Doctor CE,Residence,18.81111111,192,40,152,18454.4,5288.8,13165.6,2.764668419,4.795204795
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CF,Residence,73.29555556,540,216,324,61938.0,25832.0,36106.0,5.120148778,3.850541928
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CG,Residence,0.418888889,24,12,12,2290.0,752.0,1538.0,0.029261985,0.171135197
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CH,Residence,94.78222222,3472,1312,2160,300607.6,114892.4,185715.2,6.621125601,24.75755847
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CI,Residence,461.8677778,2556,912,1644,264366.8,91222.4,173144.4,32.26432654,18.22589846
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CJ,Residence,8.528888889,136,56,80,11170.8,5008.4,6162.4,0.595795744,0.969766115
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CK,Residence,70.51,560,284,276,62320.0,31056.0,31264.0,4.92556046,3.993154592
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CL,Residence,6.895555556,32,20,12,4056.0,2452.0,1604.0,0.481697288,0.228180262
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CM,Residence,220.1411111,3000,1232,1768,289252.8,121215.2,167737.6,15.37822086,21.3918996
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CN,Residence,274.1144444,1628,396,1232,143535.2,39300.4,104234.8,19.14859267,11.60867085
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CO,Residence,10.32111111,268,136,132,34583.2,18861.4,15721.8,0.720993572,1.911009698
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CP,Residence,6.834444444,76,28,48,7249.2,3040.0,4209.2,0.477428298,0.541928123
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CQ,Residence,28.85111111,172,72,100,14106.8,6024.0,8082.8,2.015428905,1.22646891
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CR,Residence,92.3,1032,500,532,88157.6,44937.6,43220.0,6.447726996,7.358813463
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CS,Residence,27.57,176,48,128,15506.0,4354.0,11152.0,1.925935355,1.254991443
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CT,Residence,17.81444444,96,44,52,9884.0,5084.0,4800.0,1.244449343,0.684540787
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CU,Residence,13.90333333,76,32,44,6706.0,2636.0,4070.0,0.971233994,0.541928123
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CV,Residence,12.85888889,92,36,56,8588.0,4240.0,4348.0,0.898273077,0.656018254
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CW,Residence,3.655555556,28,16,12,2678.0,1448.0,1230.0,0.25536321,0.19965773
+Clinic K,"No. 9 dan No. 11, Jalan P8G1 Presint 8,
+62250 Putrajaya, Malaysia",Putrajaya,Presint 8,2.9257165,101.6789536,Doctor CX,Residence,6.848888889,60,36,24,7550.4,5406.4,2144.0,0.478437332,0.427837992
+Clinic L,"Lot 1-5, Jalan Teknologi 5, Techpark@Enstek, Phase 2A, Bandar Enstek, 71760 Bandar Enstek, Negeri Sembilan, Malaysia",Negeri Sembilan,Bandar Enstek,2.7084712,101.789208,Doctor CY,Residence,1.784444444,8,0,8,976.8,0.0,976.8,45.54736245,25.0
+Clinic L,"Lot 1-5, Jalan Teknologi 5, Techpark@Enstek, Phase 2A, Bandar Enstek, 71760 Bandar Enstek, Negeri Sembilan, Malaysia",Negeri Sembilan,Bandar Enstek,2.7084712,101.789208,Doctor CZ,Residence,2.133333333,24,0,24,1346.4,0.0,1346.4,54.45263755,75.0
+Clinic M,"Lot 17, Jalan Puchong, Taman Perindustrian Subang Utama, Section 22, Shah Alam Industrial Site, 40300 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0591034,101.5465177,Doctor AW,Locum,14.22555556,76,0,76,7436.8,0.0,7436.8,11.02927241,8.016877637
+Clinic M,"Lot 17, Jalan Puchong, Taman Perindustrian Subang Utama, Section 22, Shah Alam Industrial Site, 40300 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0591034,101.5465177,Doctor DA,Residence,68.25444444,472,0,472,42522.4,0.0,42522.4,52.91862649,49.78902954
+Clinic M,"Lot 17, Jalan Puchong, Taman Perindustrian Subang Utama, Section 22, Shah Alam Industrial Site, 40300 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0591034,101.5465177,Doctor DB,Residence,46.5,400,0,400,28098.4,0.0,28098.4,36.0521011,42.19409283
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DC,Residence,5.171111111,28,28,0,1986.0,1986.0,0.0,0.719918572,0.828402367
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DD,Residence,377.1955556,1540,1196,344,147154.4,102924.0,44230.4,52.51290872,45.56213018
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DE,Residence,201.8311111,772,572,200,104285.2,58053.6,46231.6,28.09879003,22.84023669
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DF,Residence,4.538888889,32,28,4,2886.0,2510.0,376.0,0.631901024,0.946745562
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DG,Residence,71.35111111,340,264,76,33168.0,23784.0,9384.0,9.933453165,10.0591716
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DH,Residence,27.48666667,128,92,36,12310.0,7776.0,4534.0,3.82667504,3.786982249
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DI,Residence,4.757777778,28,20,8,2826.0,1370.0,1456.0,0.662374587,0.828402367
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DJ,Residence,0.003333333,300,300,0,15140.0,15140.0,0.0,0.000464064,8.875739645
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DK,Residence,5.863333333,88,52,36,7268.0,3404.0,3864.0,0.816289279,2.603550296
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DL,Residence,5.773333333,36,28,8,2488.0,1840.0,648.0,0.80375954,1.065088757
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DM,Residence,4.874444444,28,12,16,2450.0,592.0,1858.0,0.678616841,0.828402367
+Clinic N,"NO 5, 6 & 7, LOT 1667, SIMPANG EMPAT, TENDONG, 17030 Pasir Mas, Kelantan, Malaysia",Kelantan,Pasir Mas,6.0659446,102.2053512,Doctor DN,Residence,9.444444444,60,48,12,4406.0,3216.0,1190.0,1.314849133,1.775147929
+Clinic O,"PT 1585, Persiaran Teknologi 6 Taman Teknologi 2 @ Enstek Bandar Enstek, 71760 Nilai, Negeri Sembilan, Malaysia",Negeri Sembilan,Seremban,2.7137605,101.782795,Doctor DO,Residence,0.205555556,4,0,4,264.0,0.0,264.0,100.0,100.0
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor AW,Locum,22.73666667,116,88,28,12900.0,10552.0,2348.0,4.204558997,3.562653563
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DP,Residence,16.02777778,140,108,32,11552.0,8256.0,3296.0,2.963923351,4.2997543
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DQ,Residence,5.381111111,28,28,0,1796.0,1796.0,0.0,0.995097455,0.85995086
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DR,Residence,11.68666667,56,32,24,5520.0,3360.0,2160.0,2.161147023,1.71990172
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DS,Residence,21.58666667,88,64,24,8432.0,5572.0,2860.0,3.991896212,2.702702703
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DT,Residence,194.3277778,1024,784,240,100809.4,77534.0,23275.4,35.93590118,31.44963145
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DU,Residence,4.622222222,20,8,12,1580.0,864.0,716.0,0.854760564,0.614250614
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DV,Residence,5.734444444,8,8,0,1332.0,1332.0,0.0,1.060437325,0.245700246
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DW,Residence,22.88333333,80,76,4,5896.0,5672.0,224.0,4.231681207,2.457002457
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DX,Residence,224.0755556,1648,1352,296,157266.0,116096.0,41170.0,41.43698401,50.61425061
+Clinic U,"2890, Jalan Kuala Krai, Wakaf Che Yeh, 15100 Kota Bharu, Kelantan, Malaysia",Kelantan,Kota Bharu,6.090916,102.2386316,Doctor DY,Residence,11.7,48,40,8,4452.0,3688.0,764.0,2.163612678,1.474201474
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor DZ,Residence,191.6088889,624,372,252,60288.0,32120.0,28168.0,35.01659983,26.35135135
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EA,Residence,68.36,400,276,124,36008.0,23676.0,12332.0,12.49281689,16.89189189
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EB,Residence,229.78,1012,620,392,107140.0,64684.0,42456.0,41.9923854,42.73648649
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EC,Residence,6.805555556,40,20,20,2324.0,1308.0,1016.0,1.243717955,1.689189189
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor ED,Residence,9.166666667,40,24,16,4176.0,2716.0,1460.0,1.67521194,1.689189189
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EE,Residence,3.368888889,24,24,0,2020.0,2020.0,0.0,0.61566577,1.013513514
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EF,Residence,4.997777778,36,24,12,3744.0,2080.0,1664.0,0.913345855,1.52027027
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EG,Residence,9.26,40,36,4,2336.0,2156.0,180.0,1.692268643,1.689189189
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EH,Residence,3.577777778,20,12,8,2372.0,1596.0,776.0,0.653840296,0.844594595
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EI,Residence,14.38777778,88,72,16,8144.0,6616.0,1528.0,2.629372049,3.716216216
+Clinic V,"No. B100 & B102 (GF), Jalan Wong Ah Jang, Seri Teruntum 25100 Kuantan Pahang, Malaysia",Pahang,Kuantan,3.7996588,103.3163607,Doctor EJ,Residence,5.881111111,44,28,16,4760.0,2940.0,1820.0,1.074775369,1.858108108
+Clinic X,"Jalan PJU 1A/46, Ara Damansara, Pju 1a, 47301 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.1139316,101.5906486,Doctor EK,Residence,48.75444444,304,24,280,19620.8,1184.0,18436.8,100.0,100.0
+Clinic Y,"Gf & 1st Floor, PT 3301 Taman Sri Kota, SBJ, Kampung Pasir Pekan, 16250 Wakaf Bharu, Kelantan, Malaysia",Kelantan,Wakaf Bharu,6.1197323,102.222463,Doctor EL,Residence,31.23555556,280,220,60,20517.6,14957.6,5560.0,6.081281326,6.26118068
+Clinic Y,"Gf & 1st Floor, PT 3301 Taman Sri Kota, SBJ, Kampung Pasir Pekan, 16250 Wakaf Bharu, Kelantan, Malaysia",Kelantan,Wakaf Bharu,6.1197323,102.222463,Doctor EM,Residence,48.38444444,592,516,76,42800.0,33357.2,9442.8,9.420015532,13.23792487
+Clinic Y,"Gf & 1st Floor, PT 3301 Taman Sri Kota, SBJ, Kampung Pasir Pekan, 16250 Wakaf Bharu, Kelantan, Malaysia",Kelantan,Wakaf Bharu,6.1197323,102.222463,Doctor EN,Residence,38.02,480,384,96,35123.2,26978.0,8145.2,7.402151552,10.73345259
+Clinic Y,"Gf & 1st Floor, PT 3301 Taman Sri Kota, SBJ, Kampung Pasir Pekan, 16250 Wakaf Bharu, Kelantan, Malaysia",Kelantan,Wakaf Bharu,6.1197323,102.222463,Doctor EO,Residence,94.05,688,524,164,57860.6,40306.8,17553.8,18.31068789,15.38461538
+Clinic Y,"Gf & 1st Floor, PT 3301 Taman Sri Kota, SBJ, Kampung Pasir Pekan, 16250 Wakaf Bharu, Kelantan, Malaysia",Kelantan,Wakaf Bharu,6.1197323,102.222463,Doctor EP,Residence,124.9344444,872,628,244,167940.8,79532.0,88408.8,24.32361104,19.49910555
+Clinic Y,"Gf & 1st Floor, PT 3301 Taman Sri Kota, SBJ, Kampung Pasir Pekan, 16250 Wakaf Bharu, Kelantan, Malaysia",Kelantan,Wakaf Bharu,6.1197323,102.222463,Doctor DI,Residence,119.8188889,1164,828,336,101523.0,61601.8,39601.2,23.32765845,26.02862254
+Clinic Y,"Gf & 1st Floor, PT 3301 Taman Sri Kota, SBJ, Kampung Pasir Pekan, 16250 Wakaf Bharu, Kelantan, Malaysia",Kelantan,Wakaf Bharu,6.1197323,102.222463,Doctor EQ,Residence,22.45666667,180,160,20,16802.0,13684.0,3118.0,4.372110732,4.025044723
+Clinic Y,"Gf & 1st Floor, PT 3301 Taman Sri Kota, SBJ, Kampung Pasir Pekan, 16250 Wakaf Bharu, Kelantan, Malaysia",Kelantan,Wakaf Bharu,6.1197323,102.222463,Doctor ER,Residence,34.73444444,216,152,64,14463.2,9648.0,4495.2,6.762483478,4.830053667
+Clinic AA,"12G, Jln Puteri 2A/2, Bandar Bukit Mahkota, 43000 Bangi, Selangor, Malaysia",Selangor ,Bangi,2.8823673,101.7933664,Doctor AW,Locum,206.7877778,1036,352,684,152283.6,50121.6,102162.0,84.1026174,79.20489297
+Clinic AA,"12G, Jln Puteri 2A/2, Bandar Bukit Mahkota, 43000 Bangi, Selangor, Malaysia",Selangor ,Bangi,2.8823673,101.7933664,Doctor ES,Residence,5.116666667,44,24,20,3244.0,1628.0,1616.0,2.080998518,3.363914373
+Clinic AA,"12G, Jln Puteri 2A/2, Bandar Bukit Mahkota, 43000 Bangi, Selangor, Malaysia",Selangor ,Bangi,2.8823673,101.7933664,Doctor ET,Residence,3.161111111,20,8,12,1900.0,580.0,1320.0,1.285654893,1.529051988
+Clinic AA,"12G, Jln Puteri 2A/2, Bandar Bukit Mahkota, 43000 Bangi, Selangor, Malaysia",Selangor ,Bangi,2.8823673,101.7933664,Doctor EU,Residence,5.636666667,48,20,28,6456.0,2124.0,4332.0,2.292487618,3.669724771
+Clinic AA,"12G, Jln Puteri 2A/2, Bandar Bukit Mahkota, 43000 Bangi, Selangor, Malaysia",Selangor ,Bangi,2.8823673,101.7933664,Doctor EV,Residence,11.98444444,56,8,48,7248.0,1104.0,5936.0,4.874191099,4.281345566
+Clinic AA,"12G, Jln Puteri 2A/2, Bandar Bukit Mahkota, 43000 Bangi, Selangor, Malaysia",Selangor ,Bangi,2.8823673,101.7933664,Doctor EW,Residence,11.15,80,28,52,9300.0,3036.0,6264.0,4.53481436,6.116207951
+Clinic AA,"12G, Jln Puteri 2A/2, Bandar Bukit Mahkota, 43000 Bangi, Selangor, Malaysia",Selangor ,Bangi,2.8823673,101.7933664,Doctor EX,Residence,1.572222222,16,8,8,1700.0,760.0,940.0,0.639438198,1.22324159
+Clinic AA,"12G, Jln Puteri 2A/2, Bandar Bukit Mahkota, 43000 Bangi, Selangor, Malaysia",Selangor ,Bangi,2.8823673,101.7933664,Doctor EY,Residence,0.466666667,8,4,4,696.0,272.0,424.0,0.18979791,0.611620795
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor EZ,Residence,6.548888889,52,44,8,5000.0,4440.0,560.0,2.225931689,2.736842105
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor FA,Residence,169.0066667,1300,1008,292,186893.6,147603.6,39290.0,57.44444612,68.42105263
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor FB,Residence,55.13,196,152,44,25145.4,18948.0,6197.4,18.73838694,10.31578947
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor FC,Residence,18.91,84,60,24,10120.0,6400.0,3720.0,6.427406076,4.421052632
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor FD,Residence,22.69444444,120,116,4,13840.0,13160.0,680.0,7.713718144,6.315789474
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor FE,Residence,5.656666667,52,36,16,6336.0,4172.0,2164.0,1.922670212,2.736842105
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor FF,Residence,7.824444444,36,32,4,4100.0,3660.0,440.0,2.659486079,1.894736842
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor FG,Residence,2.897777778,20,20,0,1860.0,1860.0,0.0,0.984938895,1.052631579
+Clinic AC,"No 11 & 13, Ground Floor, Jalan Bandar Rawang 16, Pekan Rawang, 48000 Rawang, Selangor, Malaysia",Selangor,Rawang,3.3218709,101.5801049,Doctor FH,Residence,5.54,40,40,0,3400.0,3400.0,0.0,1.883015847,2.105263158
+Clinic AD,"No. 15, Jalan 2/76C, Desa Pandan, 55100, WP Kuala Lumpur, Malaysia",Kuala Lumpur,Desa Pandan,3.147576,101.7362136,Doctor B,Residence,27.82111111,148,148,0,8320.0,8320.0,0.0,14.23276965,9.919571046
+Clinic AD,"No. 15, Jalan 2/76C, Desa Pandan, 55100, WP Kuala Lumpur, Malaysia",Kuala Lumpur,Desa Pandan,3.147576,101.7362136,Doctor FI,Residence,1.53,12,12,0,568.0,568.0,0.0,0.782719909,0.804289544
+Clinic AD,"No. 15, Jalan 2/76C, Desa Pandan, 55100, WP Kuala Lumpur, Malaysia",Kuala Lumpur,Desa Pandan,3.147576,101.7362136,Doctor FJ,Residence,143.5355556,1076,1044,32,65242.4,62420.0,2822.4,73.4301549,72.11796247
+Clinic AD,"No. 15, Jalan 2/76C, Desa Pandan, 55100, WP Kuala Lumpur, Malaysia",Kuala Lumpur,Desa Pandan,3.147576,101.7362136,Doctor FK,Residence,22.58555556,256,252,4,13768.0,13628.0,140.0,11.55435555,17.15817694
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor AW,Locum,2.187777778,12,4,8,704.0,200.0,504.0,0.881520746,0.763358779
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FL,Residence,1.211111111,24,24,0,2672.0,2672.0,0.0,0.487992694,1.526717557
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FM,Residence,1.756666667,16,16,0,1072.0,1072.0,0.0,0.707813255,1.017811705
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FN,Residence,13.36444444,236,208,28,26323.2,21532.0,4791.2,5.384932218,15.01272265
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FO,Residence,158.3033333,716,660,56,140668.0,123564.0,17104.0,63.78512204,45.54707379
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FP,Residence,60.18222222,440,372,68,52608.8,44800.0,7808.8,24.24920757,27.98982188
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FQ,Residence,0.327777778,32,32,0,3868.0,3868.0,0.0,0.132071417,2.03562341
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FR,Residence,4.91,44,44,0,4252.0,4252.0,0.0,1.978385058,2.798982188
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FS,Residence,1.542222222,12,12,0,1736.0,1736.0,0.0,0.62140721,0.763358779
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FT,Residence,2.272222222,28,28,0,4660.0,4660.0,0.0,0.915545925,1.781170483
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FU,Residence,1.536666667,8,0,8,656.0,0.0,656.0,0.619168711,0.508905852
+Clinic AE,"No 5-13, Jalan Ibrahim, 84000 Muar, Johor, Malaysia",Johor,Muar,2.0415392,102.5618691,Doctor FV,Residence,0.587777778,4,4,0,520.0,520.0,0.0,0.236833151,0.254452926
+Clinic AF,"No 7, Jalan Satria 1, Taman Serom Utama, Serom, 84400 Muar, Johor, Malaysia",Johor,Muar,2.1549015,102.5715582,Doctor FW,Residence,115.5677778,1228,1164,64,96598.0,90572.0,6026.0,22.01966741,32.93991416
+Clinic AF,"No 7, Jalan Satria 1, Taman Serom Utama, Serom, 84400 Muar, Johor, Malaysia",Johor,Muar,2.1549015,102.5715582,Doctor FX,Residence,29.76555556,332,320,12,27596.8,27036.8,560.0,5.67137005,8.905579399
+Clinic AF,"No 7, Jalan Satria 1, Taman Serom Utama, Serom, 84400 Muar, Johor, Malaysia",Johor,Muar,2.1549015,102.5715582,Doctor FO,Residence,151.8522222,892,796,96,113626.4,102523.2,11103.2,28.93311175,23.92703863
+Clinic AF,"No 7, Jalan Satria 1, Taman Serom Utama, Serom, 84400 Muar, Johor, Malaysia",Johor,Muar,2.1549015,102.5715582,Doctor FP,Residence,227.6533333,1276,1152,124,160486.4,147764.0,12722.4,43.37585079,34.22746781
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor FY,Residence,16.79222222,164,148,16,10276.0,9096.0,1180.0,2.568560668,3.034789045
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor FZ,Residence,37.41444444,380,352,28,27508.0,26208.0,1300.0,5.722963235,7.031828275
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor GA,Locum,14.60555556,76,76,0,6492.0,6492.0,0.0,2.234085223,1.406365655
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor GB,Locum,15.16444444,112,108,4,10488.0,10168.0,320.0,2.319573612,2.07253886
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor GC,Locum,12.66,88,80,8,8400.0,7524.0,876.0,1.936490455,1.62842339
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor GD,Residence,303.6222222,2180,1836,344,182908.0,156872.0,25656.0,46.44245935,40.34048853
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor GE,Residence,223.2,2252,1804,448,172528.0,138612.0,33916.0,34.14096916,41.67283494
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor GF,Locum,16.37,100,92,8,7080.0,6364.0,716.0,2.503976995,1.850481125
+Clinic AG,"297, Jalan Gunung Rapat, Taman Ipoh Jaya, 31350 Ipoh, Perak, Malaysia",Perak,Ipoh,4.5759633,101.1243158,Doctor GG,Locum,13.93111111,52,52,0,5108.0,5108.0,0.0,2.130921303,0.962250185
+Clinic AH,"Jln Damai Perdana 6/1A, Bandar Damai Perdana, 56000 Cheras, Wilayah Persekutuan Kuala Lumpur, Malaysia",Wilayah Persekutuan Kuala Lumpur,Kuala Lumpur,3.0528753,101.7370653,Doctor AW,Locum,22.57222222,184,92,92,15176.0,7916.0,7260.0,5.24989663,7.076923077
+Clinic AH,"Jln Damai Perdana 6/1A, Bandar Damai Perdana, 56000 Cheras, Wilayah Persekutuan Kuala Lumpur, Malaysia",Wilayah Persekutuan Kuala Lumpur,Kuala Lumpur,3.0528753,101.7370653,Doctor GH,Residence,113.1255556,976,608,368,94002.4,52615.2,41387.2,26.31098822,37.53846154
+Clinic AH,"Jln Damai Perdana 6/1A, Bandar Damai Perdana, 56000 Cheras, Wilayah Persekutuan Kuala Lumpur, Malaysia",Wilayah Persekutuan Kuala Lumpur,Kuala Lumpur,3.0528753,101.7370653,Doctor GI,Residence,10.24111111,80,56,24,7484.0,4644.0,2300.0,2.381899938,3.076923077
+Clinic AH,"Jln Damai Perdana 6/1A, Bandar Damai Perdana, 56000 Cheras, Wilayah Persekutuan Kuala Lumpur, Malaysia",Wilayah Persekutuan Kuala Lumpur,Kuala Lumpur,3.0528753,101.7370653,Doctor GJ,Residence,14.31666667,84,44,40,6230.4,2754.4,3476.0,3.32980153,3.230769231
+Clinic AH,"Jln Damai Perdana 6/1A, Bandar Damai Perdana, 56000 Cheras, Wilayah Persekutuan Kuala Lumpur, Malaysia",Wilayah Persekutuan Kuala Lumpur,Kuala Lumpur,3.0528753,101.7370653,Doctor GK,Residence,5.686666667,48,32,16,6732.0,4096.0,2636.0,1.322617325,1.846153846
+Clinic AH,"Jln Damai Perdana 6/1A, Bandar Damai Perdana, 56000 Cheras, Wilayah Persekutuan Kuala Lumpur, Malaysia",Wilayah Persekutuan Kuala Lumpur,Kuala Lumpur,3.0528753,101.7370653,Doctor GL,Residence,264.0133333,1228,752,476,133454.0,73550.4,59903.6,61.40479636,47.23076923
+Clinic AI,"8, Jalan Boling Padang F 13/F, Seksyen 13, 40100 Shah Alam, Selangor, Malaysia",Selangor,Petaling,3.0764155,101.5512683,Doctor GM,Residence,30.63444444,228,128,100,24260.0,15092.0,9168.0,2.933506408,6.162162162
+Clinic AI,"8, Jalan Boling Padang F 13/F, Seksyen 13, 40100 Shah Alam, Selangor, Malaysia",Selangor,Petaling,3.0764155,101.5512683,Doctor GN,Residence,16.61777778,84,48,36,9134.4,5824.0,3310.4,1.591292366,2.27027027
+Clinic AI,"8, Jalan Boling Padang F 13/F, Seksyen 13, 40100 Shah Alam, Selangor, Malaysia",Selangor,Petaling,3.0764155,101.5512683,Doctor GO,Residence,14.16888889,96,64,32,10047.6,6207.6,3840.0,1.356790603,2.594594595
+Clinic AI,"8, Jalan Boling Padang F 13/F, Seksyen 13, 40100 Shah Alam, Selangor, Malaysia",Selangor,Petaling,3.0764155,101.5512683,Doctor GP,Residence,489.34,1672,1004,668,220068.6,112472.2,106468.4,46.8584318,45.18918919
+Clinic AI,"8, Jalan Boling Padang F 13/F, Seksyen 13, 40100 Shah Alam, Selangor, Malaysia",Selangor,Petaling,3.0764155,101.5512683,Doctor GQ,Residence,45.87111111,140,76,64,16082.2,8609.2,7473.0,4.392545738,3.783783784
+Clinic AI,"8, Jalan Boling Padang F 13/F, Seksyen 13, 40100 Shah Alam, Selangor, Malaysia",Selangor,Petaling,3.0764155,101.5512683,Doctor GR,Residence,427.7777778,1388,892,496,207797.0,123920.2,82044.8,40.96332984,37.51351351
+Clinic AI,"8, Jalan Boling Padang F 13/F, Seksyen 13, 40100 Shah Alam, Selangor, Malaysia",Selangor,Petaling,3.0764155,101.5512683,Doctor GS,Residence,19.88444444,92,48,44,7240.8,3758.4,3482.4,1.904103249,2.486486486
+Clinic Z,"51, Jln Kebudayaan 4, Taman Universiti, 81300 Skudai, Johor Darul Ta'zim, Malaysia",Johor,Skudai,1.541378,103.629437,Doctor AW,Locum,498.7511111,260,160,100,22340.0,12376.0,9964.0,17.06111276,2.165223185
+Clinic Z,"51, Jln Kebudayaan 4, Taman Universiti, 81300 Skudai, Johor Darul Ta'zim, Malaysia",Johor,Skudai,1.541378,103.629437,Doctor GT,Residence,134.5422222,1144,816,328,107317.2,75616.0,30641.2,4.602375761,9.526982012
+Clinic Z,"51, Jln Kebudayaan 4, Taman Universiti, 81300 Skudai, Johor Darul Ta'zim, Malaysia",Johor,Skudai,1.541378,103.629437,Doctor GU,Residence,229.4322222,3748,1656,2092,303589.6,134088.0,168845.6,7.848341441,31.21252498
+Clinic Z,"51, Jln Kebudayaan 4, Taman Universiti, 81300 Skudai, Johor Darul Ta'zim, Malaysia",Johor,Skudai,1.541378,103.629437,Doctor GV,Residence,1880.33,5076,3668,1408,444266.0,333060.0,111206.0,64.32170564,42.27181879
+Clinic Z,"51, Jln Kebudayaan 4, Taman Universiti, 81300 Skudai, Johor Darul Ta'zim, Malaysia",Johor,Skudai,1.541378,103.629437,Doctor GW,Residence,171.3188889,1684,944,740,136192.0,80564.0,55628.0,5.860419789,14.02398401
+Clinic Z,"51, Jln Kebudayaan 4, Taman Universiti, 81300 Skudai, Johor Darul Ta'zim, Malaysia",Johor,Skudai,1.541378,103.629437,Doctor GX,Residence,8.946666667,96,48,48,7804.0,4024.0,3780.0,0.306044609,0.799467022
+Clinic S,"63, Jalan Besar, Kampung Atap, 71700 Mantin, Negeri Sembilan, Malaysia",Negeri Sembilan,Mantin,2.8227123,101.8959202,Doctor GY,Residence,366.7077778,4912,4904,8,387656.0,387160.0,496.0,100.0,100.0
+Clinic T,"99, King Street, George Town, 10200 George Town, Pulau Pinang, Malaysia",Pulau Pinang,Georgetown,5.4166369,100.3391039,Doctor AW,Locum,0.0,36,28,8,3073.2,2752.0,321.2,0.0,0.700389105
+Clinic T,"99, King Street, George Town, 10200 George Town, Pulau Pinang, Malaysia",Pulau Pinang,Georgetown,5.4166369,100.3391039,Doctor GZ,Residence,0.0,32,32,0,3580.0,3580.0,0.0,0.0,0.622568093
+Clinic T,"99, King Street, George Town, 10200 George Town, Pulau Pinang, Malaysia",Pulau Pinang,Georgetown,5.4166369,100.3391039,Doctor HA,Residence,0.177777778,1996,0,1996,64984.4,200.0,64784.4,0.043404426,38.83268482
+Clinic T,"99, King Street, George Town, 10200 George Town, Pulau Pinang, Malaysia",Pulau Pinang,Georgetown,5.4166369,100.3391039,Doctor HB,Residence,79.06222222,688,544,144,77880.2,65896.8,11983.4,19.30303343,13.38521401
+Clinic T,"99, King Street, George Town, 10200 George Town, Pulau Pinang, Malaysia",Pulau Pinang,Georgetown,5.4166369,100.3391039,Doctor HC,Residence,70.87444444,208,184,24,28588.0,27228.0,1360.0,17.30398832,4.046692607
+Clinic T,"99, King Street, George Town, 10200 George Town, Pulau Pinang, Malaysia",Pulau Pinang,Georgetown,5.4166369,100.3391039,Doctor HD,Residence,104.9766667,1380,1064,316,177217.4,143981.4,33236.0,25.63004237,26.84824903
+Clinic T,"99, King Street, George Town, 10200 George Town, Pulau Pinang, Malaysia",Pulau Pinang,Georgetown,5.4166369,100.3391039,Doctor HE,Residence,154.4933333,800,596,204,78939.2,64596.0,14343.2,37.71953145,15.56420233
+Clinic AB,"No 95G, Jalan Setia Gemilang BG U13/BG, Seksyen U13, Shah Alam, Selangor, Malaysia, Seksyen U13 Setia Taipan, 40170 Setia Alam, Selangor, Malaysia",Selangor ,Setia Alam,3.1266945,101.4710257,Doctor AW,Locum,4.647777778,72,64,8,11700.0,10308.0,1392.0,1.983253997,3.056027165
+Clinic AB,"No 95G, Jalan Setia Gemilang BG U13/BG, Seksyen U13, Shah Alam, Selangor, Malaysia, Seksyen U13 Setia Taipan, 40170 Setia Alam, Selangor, Malaysia",Selangor ,Setia Alam,3.1266945,101.4710257,Doctor HF,Residence,89.95,540,472,68,138249.2,116251.0,21998.2,38.38257885,22.92020374
+Clinic AB,"No 95G, Jalan Setia Gemilang BG U13/BG, Seksyen U13, Shah Alam, Selangor, Malaysia, Seksyen U13 Setia Taipan, 40170 Setia Alam, Selangor, Malaysia",Selangor ,Setia Alam,3.1266945,101.4710257,Doctor HG,Residence,78.79777778,596,532,64,160142.0,150880.0,9262.0,33.62381232,25.29711375
+Clinic AB,"No 95G, Jalan Setia Gemilang BG U13/BG, Seksyen U13, Shah Alam, Selangor, Malaysia, Seksyen U13 Setia Taipan, 40170 Setia Alam, Selangor, Malaysia",Selangor ,Setia Alam,3.1266945,101.4710257,Doctor HH,Residence,28.23888889,408,344,64,49734.0,42974.0,6760.0,12.04982078,17.31748727
+Clinic AB,"No 95G, Jalan Setia Gemilang BG U13/BG, Seksyen U13, Shah Alam, Selangor, Malaysia, Seksyen U13 Setia Taipan, 40170 Setia Alam, Selangor, Malaysia",Selangor ,Setia Alam,3.1266945,101.4710257,Doctor HI,Residence,32.71666667,740,612,128,118295.8,105379.6,12916.2,13.96053405,31.40916808
