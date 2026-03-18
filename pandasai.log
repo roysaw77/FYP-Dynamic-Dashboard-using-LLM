@@ -1,8 +1,8 @@
-2026-03-18 22:45:16 [INFO] Question: Plot the the top 5 high patient count doctors working  where working in highest revenue Clinic?
-2026-03-18 22:45:17 [INFO] Running PandasAI with litellm LLM...
-2026-03-18 22:45:17 [INFO] Prompt ID: 0edf80d2-45d9-49e1-8ac0-c5c22dd56b26
-2026-03-18 22:45:17 [INFO] Generating new code...
-2026-03-18 22:45:17 [INFO] Using Prompt: <tables>
+2026-03-18 23:06:07 [INFO] Question: Which clinic has the highest TotalRevenue?
+2026-03-18 23:06:08 [INFO] Running PandasAI with litellm LLM...
+2026-03-18 23:06:08 [INFO] Prompt ID: 129dda44-86e8-4e6d-8ccc-1d9f4f5669b0
+2026-03-18 23:06:08 [INFO] Generating new code...
+2026-03-18 23:06:08 [INFO] Using Prompt: <tables>
 
 <table dialect="duckdb" table_name="table_c83679f393c19ab82f71054c6c3facb6" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "StaffName", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Locum/Residence", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalPatient", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="231x17">
 IDOrganisation,Address,State,District,lat,lng,StaffName,Locum/Residence,TotalVisitTime(hrs),TotalPatientCount,TotalPaidPatientCount,TotalPanelPatientCount,TotalRevenue,TotalPaid,TotalPanel,%TotalVisitTime(hrs),%TotalPatient
@@ -69,7 +69,7 @@ type (possible values "string", "number", "dataframe", "plot"). Examples: { "typ
 
 
 ### QUERY
- Plot the the top 5 high patient count doctors working  where working in highest revenue Clinic?
+ Which clinic has the highest TotalRevenue?
 
 At the end, declare "result" variable as a dictionary of type and value in the following format:
 
@@ -80,82 +80,50 @@ type (possible values "string", "number", "dataframe", "plot"). Examples: { "typ
 Generate python code and return full updated code:
 
 ### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
-2026-03-18 22:45:24 [INFO] Code Generated:
-# TODO: import the required dependencies
+2026-03-18 23:06:13 [INFO] Code Generated:
+# import the required dependencies
 import pandas as pd
-import matplotlib.pyplot as plt
 
-# Write code here
-# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+# SQL query to find the clinic with highest TotalRevenue
 sql_query = """
 SELECT
-  t1.StaffName,
-  SUM(t1.TotalPatientCount) AS TotalPatients
-FROM table_c83679f393c19ab82f71054c6c3facb6 AS t1
-JOIN (
-  SELECT
-    IDOrganisation
-  FROM table_c83679f393c19ab82f71054c6c3facb6
-  GROUP BY
-    IDOrganisation
-  ORDER BY
-    SUM(TotalRevenue) DESC
-  LIMIT 1
-) AS t2
-  ON t1.IDOrganisation = t2.IDOrganisation
-GROUP BY
-  t1.StaffName
+    IDOrganisation as Clinic,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY
-  TotalPatients DESC
-LIMIT 5;
+    TotalRevenue DESC
+LIMIT 1
 """
+
+# Execute the query
 df = execute_sql_query(sql_query)
 
-plt.figure(figsize=(10, 6))
-plt.bar(df['StaffName'], df['TotalPatients'])
-plt.xlabel("Doctor Name")
-plt.ylabel("Total Patient Count")
-plt.title("Top 5 Doctors with Highest Patient Count in Highest Revenue Clinic")
-plt.xticks(rotation=45, ha="right")
-plt.tight_layout()
-plt.savefig("temp_chart.png")
+# Get the clinic with highest revenue
+highest_revenue_clinic = df.iloc[0]['Clinic']
+highest_revenue_amount = df.iloc[0]['TotalRevenue']
 
-result = {"type": "plot", "value": "temp_chart.png"}
-2026-03-18 22:45:25 [INFO] Validating code requirements...
-2026-03-18 22:45:25 [INFO] Code validation successful.
-2026-03-18 22:45:25 [INFO] Cleaning the generated code...
-2026-03-18 22:45:25 [INFO] Executing code: import pandas as pd
-import matplotlib.pyplot as plt
+# Declare result variable
+result = {
+    "type": "string",
+    "value": f"The clinic with the highest TotalRevenue is {highest_revenue_clinic} with a TotalRevenue of {highest_revenue_amount:,.2f}."
+}
+2026-03-18 23:06:13 [INFO] Validating code requirements...
+2026-03-18 23:06:13 [INFO] Code validation successful.
+2026-03-18 23:06:13 [INFO] Cleaning the generated code...
+2026-03-18 23:06:13 [INFO] Executing code: import pandas as pd
 sql_query = """
 SELECT
-  t1.StaffName,
-  SUM(t1.TotalPatientCount) AS TotalPatients
-FROM table_c83679f393c19ab82f71054c6c3facb6 AS t1
-JOIN (
-  SELECT
-    IDOrganisation
-  FROM table_c83679f393c19ab82f71054c6c3facb6
-  GROUP BY
-    IDOrganisation
-  ORDER BY
-    SUM(TotalRevenue) DESC
-  LIMIT 1
-) AS t2
-  ON t1.IDOrganisation = t2.IDOrganisation
-GROUP BY
-  t1.StaffName
+    IDOrganisation as Clinic,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY
-  TotalPatients DESC
-LIMIT 5;
+    TotalRevenue DESC
+LIMIT 1
 """
 df = execute_sql_query(sql_query)
-plt.figure(figsize=(10, 6))
-plt.bar(df['StaffName'], df['TotalPatients'])
-plt.xlabel('Doctor Name')
-plt.ylabel('Total Patient Count')
-plt.title('Top 5 Doctors with Highest Patient Count in Highest Revenue Clinic')
-plt.xticks(rotation=45, ha='right')
-plt.tight_layout()
-plt.savefig('exports\\charts\\temp_chart_f8e31945-e1bc-47f6-90a9-ac74381f99ac.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_f8e31945-e1bc-47f6-90a9-ac74381f99ac.png'}
-2026-03-18 22:45:25 [INFO] Response generated successfully.
+highest_revenue_clinic = df.iloc[0]['Clinic']
+highest_revenue_amount = df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {highest_revenue_clinic} with a TotalRevenue of {highest_revenue_amount:,.2f}.'}
+2026-03-18 23:06:15 [INFO] Response generated successfully.
