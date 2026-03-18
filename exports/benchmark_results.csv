@@ -39,12 +39,7 @@ Llama-3.1-8B,Easy,Show the first 5 rows of the clinic level data.,1,"  IDOrganis
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",,,4.161496401,TRUE,,1
-Llama-3.1-8B,Easy,Which clinic has the highest TotalRevenue?,1,The highest TotalRevenue clinic is Clinic I with a total revenue of 3487368.95.,"SELECT IDOrganisation, Address, State, District, TotalRevenue
-        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-        ORDER BY TotalRevenue DESC
-        LIMIT 1;",TRUE,4.707076788,TRUE,,1
-Llama-3.1-8B,Easy,What is the average TotalRevenue across all clinics?,1,1220906.652,,,2.225676298,TRUE,,1
+4                       5024.0  ",,,4.161496401,True,,1
 Llama-3.1-8B,Easy,List all unique Districts present in the dataset.,1,"         District
 0          Kajang
 1          Rawang
@@ -78,9 +73,9 @@ Llama-3.1-8B,Easy,List all unique Districts present in the dataset.,1,"         
 29     Setia Alam
 30  Bandar Enstek
 31    Desa Pandan","SELECT DISTINCT District 
-    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,2.264390707,TRUE,,1
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,2.264390707,True,,1
 Llama-3.1-8B,Easy,How many doctors are listed in the doctor dataset?,1,46,"SELECT COUNT(IDOrganisation) as TotalDoctors
-        FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,2.07711339,TRUE,,1
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,2.07711339,True,,1
 Llama-3.1-8B,Medium,Group the patient records by Religion and count how many patients are in each group.,1,"   IDOrganisation  patient_count
 0        Clinic F              1
 1        Clinic Z              1
@@ -127,7 +122,7 @@ Llama-3.1-8B,Medium,Group the patient records by Religion and count how many pat
 42      Clinic AD              1
 43       Clinic O              1
 44       Clinic P              1
-45       Clinic Y              1",,TRUE,9.967619181,TRUE,,1
+45       Clinic Y              1",,True,9.967619181,True,,1
 Llama-3.1-8B,Medium,Calculate the total revenue per District.,1,"         District  TotalRevenue
 0      Batu Caves    4768499.45
 1    Kuala Langat    4252648.35
@@ -168,8 +163,8 @@ Llama-3.1-8B,Medium,Calculate the total revenue per District.,1,"         Distri
     GROUP BY 
         District
     ORDER BY 
-        TotalRevenue DESC",TRUE,2.134977341,TRUE,,1
-Llama-3.1-8B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,1,"Unfortunately, I was not able to get your answer. Please try again.",,,11.4394908,TRUE,,1
+        TotalRevenue DESC",True,2.134977341,True,,1
+Llama-3.1-8B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,1,"Unfortunately, I was not able to get your answer. Please try again.",,,11.4394908,True,,1
 Llama-3.1-8B,Medium,Which hour of the day has the highest average TotalRevenue?,1,"                  Hour  avg_total_revenue
 0  2024-03-13 09:00:00             4772.5","SELECT 
         Hour, 
@@ -180,13 +175,13 @@ Llama-3.1-8B,Medium,Which hour of the day has the highest average TotalRevenue?,
         Hour
     ORDER BY 
         avg_total_revenue DESC
-    LIMIT 1;",TRUE,2.370868206,TRUE,,1
+    LIMIT 1;",True,2.370868206,True,,1
 Llama-3.1-8B,Medium,Compare the total number of Cash payments vs Electronic payments.,1,"   TotalCashPayments  TotalElectronicPayments
 0           136758.0                 174799.0","SELECT 
         SUM(TotalCashPatientCount) AS TotalCashPayments,
         SUM(TotalElectronicPatientCount) AS TotalElectronicPayments
     FROM 
-        table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,2.165006399,TRUE,,1
+        table_bd4f8d5ffa8239c09831e5b997bc2753",False,2.165006399,True,,1
 Llama-3.1-8B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,1,"  IDOrganisation  avg_revenue_per_patient
 0      Clinic AB               193.793583
 1      Clinic AE               117.097894
@@ -199,8 +194,8 @@ Llama-3.1-8B,Hard,Calculate the average revenue per patient (TotalRevenue / Tota
         IDOrganisation
     ORDER BY 
         avg_revenue_per_patient DESC
-    LIMIT 3;",TRUE,2.227072716,TRUE,,1
-Llama-3.1-8B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,1,The District with the highest proportion of 'NewPatientCount' compared to 'PatientCount' is Kajang with a proportion of 0.71.,,,2.486736536,TRUE,,1
+    LIMIT 3;",True,2.227072716,True,,1
+Llama-3.1-8B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,1,The District with the highest proportion of 'NewPatientCount' compared to 'PatientCount' is Kajang with a proportion of 0.71.,,,2.486736536,True,,1
 Llama-3.1-8B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
         IDOrganisation, 
         StaffName, 
@@ -213,9 +208,9 @@ Llama-3.1-8B,Hard,"Filter for doctors who have worked more than 100 hours but ge
     HAVING 
         SUM(CAST(TotalVisitTime(hrs) AS FLOAT)) > 100 AND SUM(TotalRevenue) < 50000
     ORDER BY 
-        total_hours DESC",TRUE,13.56588697,TRUE,,1
-Llama-3.1-8B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,1,exports\charts\temp_chart_fb3c07fa-0ba4-436e-bbc0-3c566dfcadaf.png,,,5.747894526,TRUE,,1
-Llama-3.1-8B,Hard,Which clinic has the highest number of Muslims?,1,The clinic with the highest number of Muslims is Clinic AB with 0 Muslims.,,,3.141540289,TRUE,,1
+        total_hours DESC",True,13.56588697,True,,1
+Llama-3.1-8B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,1,exports\charts\temp_chart_fb3c07fa-0ba4-436e-bbc0-3c566dfcadaf.png,,,5.747894526,True,,1
+Llama-3.1-8B,Hard,Which clinic has the highest number of Muslims?,1,The clinic with the highest number of Muslims is Clinic AB with 0 Muslims.,,,3.141540289,True,,1
 qwen2.5-7b-instruct,Easy,Show the first 5 rows of the clinic level data.,1,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -258,7 +253,7 @@ qwen2.5-7b-instruct,Easy,Show the first 5 rows of the clinic level data.,1,"  ID
 3                      10464.0  
 4                       5024.0  ","SELECT *
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-LIMIT 5;",TRUE,30.69829941,TRUE,,1
+LIMIT 5;",True,30.69829941,True,,1
 qwen2.5-7b-instruct,Easy,Which clinic has the highest TotalRevenue?,1,"  IDOrganisation                                            Address  \
 0       Clinic I  45, Jalan 34/154, Taman Delima Cheras 56100 WP...   
 
@@ -266,8 +261,8 @@ qwen2.5-7b-instruct,Easy,Which clinic has the highest TotalRevenue?,1,"  IDOrgan
 0  Kuala Lumpur   Cheras  3.057526  101.747039    3487368.95  ","SELECT IDOrganisation, Address, State, District, lat, lng, TotalRevenue
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY TotalRevenue DESC
-LIMIT 1;",TRUE,10.9197247,TRUE,,1
-qwen2.5-7b-instruct,Easy,What is the average TotalRevenue across all clinics?,1,1220906.652,,,3.521993637,TRUE,,1
+LIMIT 1;",True,10.9197247,True,,1
+qwen2.5-7b-instruct,Easy,What is the average TotalRevenue across all clinics?,1,1220906.652,,,3.521993637,True,,1
 qwen2.5-7b-instruct,Easy,List all unique Districts present in the dataset.,1,"         District
 0      Batu Caves
 1        Seremban
@@ -301,9 +296,9 @@ qwen2.5-7b-instruct,Easy,List all unique Districts present in the dataset.,1,"  
 29         Sepang
 30         Dungun
 31     Georgetown","SELECT DISTINCT District
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,9.276501417,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,9.276501417,True,,1
 qwen2.5-7b-instruct,Easy,How many doctors are listed in the doctor dataset?,1,46,"SELECT COUNT(*) AS DoctorCount
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",TRUE,4.281873465,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",True,4.281873465,True,,1
 qwen2.5-7b-instruct,Medium,Group the patient records by Religion and count how many patients are in each group.,1,"   IDOrganisation                             State  PatientCount
 0        Clinic M                          Selangor             1
 1        Clinic L                   Negeri Sembilan             1
@@ -360,7 +355,7 @@ GROUP BY
     IDOrganisation, 
     State
 ORDER BY 
-    PatientCount DESC;",FALSE,12.75151849,TRUE,,1
+    PatientCount DESC;",False,12.75151849,True,,1
 qwen2.5-7b-instruct,Medium,Calculate the total revenue per District.,1,"         District  TotalRevenue_district
 0      Batu Caves             4768499.45
 1    Kuala Langat             4252648.35
@@ -401,7 +396,7 @@ qwen2.5-7b-instruct,Medium,Calculate the total revenue per District.,1,"        
     GROUP BY 
         District
     ORDER BY 
-        TotalRevenue DESC;",TRUE,10.25626945,TRUE,,2
+        TotalRevenue DESC;",True,10.25626945,True,,2
 qwen2.5-7b-instruct,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
     Locum/Residence AS LocumStatus,
     AVG(TotalRevenue) AS AverageTotalRevenue
@@ -410,7 +405,7 @@ FROM
 GROUP BY 
     LocumStatus
 ORDER BY 
-    AverageTotalRevenue;",TRUE,22.80736351,TRUE,,1
+    AverageTotalRevenue;",True,22.80736351,True,,1
 qwen2.5-7b-instruct,Medium,Which hour of the day has the highest average TotalRevenue?,1,"                  Hour  AvgTotalRevenue
 0  2024-03-13 09:00:00           4772.5","WITH hourly_revenue AS (
     SELECT 
@@ -428,7 +423,7 @@ FROM
     hourly_revenue
 ORDER BY 
     AvgTotalRevenue DESC
-LIMIT 1;",TRUE,9.785461426,TRUE,,1
+LIMIT 1;",True,9.785461426,True,,1
 qwen2.5-7b-instruct,Medium,Compare the total number of Cash payments vs Electronic payments.,1,"   IDOrganisation  TotalCashPayments  TotalElectronicPayments
 0        Clinic S         1013354.85                394611.50
 1        Clinic Z          950772.15                706220.90
@@ -475,7 +470,7 @@ qwen2.5-7b-instruct,Medium,Compare the total number of Cash payments vs Electron
 42       Clinic X             599.00                  4864.45
 43       Clinic L             417.60                  1449.00
 44       Clinic W              40.00                   110.00
-45       Clinic O               0.00                     0.00",,,5.158849955,TRUE,,1
+45       Clinic O               0.00                     0.00",,,5.158849955,True,,1
 qwen2.5-7b-instruct,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,1,"  IDOrganisation  AverageRevenuePerPatient
 0      Clinic AB                172.326564
 1      Clinic AA                132.678719
@@ -488,7 +483,7 @@ GROUP BY
     IDOrganisation
 ORDER BY 
     AverageRevenuePerPatient DESC
-LIMIT 3;",FALSE,10.41597772,TRUE,,1
+LIMIT 3;",False,10.41597772,True,,1
 qwen2.5-7b-instruct,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,1,The district with the highest proportion of NewPatientCount compared to PatientCount is Kajang. The proportion is 0.7107418397626113.,"SELECT 
     District,
     SUM(NewPatientCount) / SUM(PatientCount) AS NewPatientProportion
@@ -498,7 +493,7 @@ GROUP BY
     District
 ORDER BY 
     NewPatientProportion DESC
-LIMIT 1;",TRUE,7.012706757,TRUE,,1
+LIMIT 1;",True,7.012706757,True,,1
 qwen2.5-7b-instruct,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
     IDOrganisation, 
     StaffName, 
@@ -507,7 +502,7 @@ qwen2.5-7b-instruct,Hard,"Filter for doctors who have worked more than 100 hours
 FROM 
     table_c83679f393c19ab82f71054c6c3facb6
 WHERE 
-    TotalVisitTime(hrs) > 100 AND TotalRevenue < 50000;",TRUE,29.04144907,TRUE,,1
+    TotalVisitTime(hrs) > 100 AND TotalRevenue < 50000;",True,29.04144907,True,,1
 qwen2.5-7b-instruct,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,1,0.816722369,"SELECT 
     TotalPanelPatientCount, 
     TotalRevenue, 
@@ -519,7 +514,7 @@ GROUP BY
     TotalRevenue
 ORDER BY 
     TotalPanelPatientCount, 
-    TotalRevenue;",FALSE,6.36025095,TRUE,,1
+    TotalRevenue;",False,6.36025095,True,,1
 qwen2.5-7b-instruct,Hard,Which clinic has the highest number of Muslims?,1,"The clinic with the highest number of Muslims is 564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia, located in Batu Caves, Selangor.","SELECT 
     State, 
     District,
@@ -533,7 +528,7 @@ GROUP BY
     State, District, Address
 ORDER BY 
     Muslim_Patient_Count DESC
-LIMIT 1;",FALSE,6.478637218,TRUE,,1
+LIMIT 1;",False,6.478637218,True,,1
 Gemma-2-27B,Easy,Show the first 5 rows of the clinic level data.,1,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -576,13 +571,13 @@ Gemma-2-27B,Easy,Show the first 5 rows of the clinic level data.,1,"  IDOrganisa
 3                      10464.0  
 4                       5024.0  ","SELECT *
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-LIMIT 5",TRUE,3.823359489,TRUE,,1
+LIMIT 5",True,3.823359489,True,,1
 Gemma-2-27B,Easy,Which clinic has the highest TotalRevenue?,1,The clinic with the highest TotalRevenue is Clinic I.,"SELECT IDOrganisation, TotalRevenue 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY TotalRevenue DESC
-LIMIT 1",TRUE,4.654750824,TRUE,,1
+LIMIT 1",True,4.654750824,True,,1
 Gemma-2-27B,Easy,What is the average TotalRevenue across all clinics?,1,1220906.652,"SELECT AVG(TotalRevenue)
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,4.129313946,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,4.129313946,True,,1
 Gemma-2-27B,Easy,List all unique Districts present in the dataset.,1,"         District
 0      Central KL
 1            Ipoh
@@ -615,11 +610,11 @@ Gemma-2-27B,Easy,List all unique Districts present in the dataset.,1,"         D
 28        Kuantan
 29    Wakaf Bharu
 30    Batang Kali
-31      Pasir Mas",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,TRUE,3.193505764,TRUE,,1
-Gemma-2-27B,Easy,How many doctors are listed in the doctor dataset?,1,46,SELECT COUNT(*) FROM table_bd4f8d5ffa8239c09831e5b997bc2753,FALSE,3.733545065,TRUE,,1
+31      Pasir Mas",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,True,3.193505764,True,,1
+Gemma-2-27B,Easy,How many doctors are listed in the doctor dataset?,1,46,SELECT COUNT(*) FROM table_bd4f8d5ffa8239c09831e5b997bc2753,False,3.733545065,True,,1
 Gemma-2-27B,Medium,Group the patient records by Religion and count how many patients are in each group.,1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT ""Religion"", COUNT(*) as PatientCount
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-GROUP BY ""Religion"";",TRUE,81.63525319,TRUE,,1
+GROUP BY ""Religion"";",True,81.63525319,True,,1
 Gemma-2-27B,Medium,Calculate the total revenue per District.,1,"         District  TotalRevenuePerDistrict
 0      Batu Caves               4768499.45
 1    Kuala Langat               4252648.35
@@ -655,7 +650,7 @@ Gemma-2-27B,Medium,Calculate the total revenue per District.,1,"         Distric
 31    Bayan Lepas                 23580.00","SELECT District, SUM(TotalRevenue) as TotalRevenuePerDistrict
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY District
-ORDER BY TotalRevenuePerDistrict DESC;",TRUE,4.252043962,TRUE,,2
+ORDER BY TotalRevenuePerDistrict DESC;",True,4.252043962,True,,2
 Gemma-2-27B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,1,"  Locum/Residence  AverageRevenue
 0       Residence    58315.057593
 1           Locum    28644.520000","SELECT 
@@ -664,24 +659,24 @@ Gemma-2-27B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 
 FROM 
     table_c83679f393c19ab82f71054c6c3facb6
 GROUP BY 
-    ""Locum/Residence"";",TRUE,4.411216497,TRUE,,2
+    ""Locum/Residence"";",True,4.411216497,True,,2
 Gemma-2-27B,Medium,Which hour of the day has the highest average TotalRevenue?,1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
     strftime('%H', Hour) AS Hour, 
     AVG(TotalRevenue) as AverageRevenue
   FROM table_6c16364831b68d93e7cf9d423cf8f3da
   GROUP BY Hour
   ORDER BY AverageRevenue DESC
-  LIMIT 1;",TRUE,48.48267531,TRUE,,1
+  LIMIT 1;",True,48.48267531,True,,1
 Gemma-2-27B,Medium,Compare the total number of Cash payments vs Electronic payments.,1,"   TotalCashPayments  TotalElectronicPayments
 0        10503788.64              17512170.03","SELECT 
     SUM(TotalCash) as TotalCashPayments, 
     SUM(TotalElectronic) as TotalElectronicPayments
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,4.201682568,TRUE,,2
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,4.201682568,True,,2
 Gemma-2-27B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT IDOrganisation, AVG(TotalRevenue/TotalPatientCount) AS AverageRevenuePerPatient
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY IDOrganisation
 ORDER BY AverageRevenuePerPatient DESC
-LIMIT 3",TRUE,34.32623959,TRUE,,1
+LIMIT 3",True,34.32623959,True,,1
 Gemma-2-27B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,1,The district with the highest proportion of new patients is Kajang.,"WITH DistrictPatientCount AS (
     SELECT
         District,
@@ -695,7 +690,7 @@ SELECT
     (TotalNewPatients / TotalPatients) * 100 as NewPatientPercentage
 FROM DistrictPatientCount
 ORDER BY NewPatientPercentage DESC
-LIMIT 1;",TRUE,6.743246078,TRUE,,1
+LIMIT 1;",True,6.743246078,True,,1
 Gemma-2-27B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",1,"  IDOrganisation  StaffName  TotalHoursWorked  TotalRevenueGenerated
 0       Clinic Z  Doctor AW        498.751111                22340.0","SELECT IDOrganisation, 
        StaffName, 
@@ -703,16 +698,16 @@ Gemma-2-27B,Hard,"Filter for doctors who have worked more than 100 hours but gen
        SUM(TotalRevenue) as TotalRevenueGenerated
 FROM table_c83679f393c19ab82f71054c6c3facb6
 GROUP BY IDOrganisation, StaffName
-HAVING SUM(""TotalVisitTime(hrs)"") > 100 AND SUM(TotalRevenue) < 50000;",TRUE,5.536147833,TRUE,,1
+HAVING SUM(""TotalVisitTime(hrs)"") > 100 AND SUM(TotalRevenue) < 50000;",True,5.536147833,True,,1
 Gemma-2-27B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,1,0.96552617,"SELECT 
     corr(TotalPanelPatientCount, TotalRevenue) as correlation
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,5.249729633,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,5.249729633,True,,1
 Gemma-2-27B,Hard,Which clinic has the highest number of Muslims?,1,The clinic with the highest number of Muslims is Clinic D.,"SELECT IDOrganisation, COUNT(*) as MuslimCount
 FROM table_3586b23a0be349f88985d8c0d783b36d
 WHERE Religions = 'Islam'
 GROUP BY IDOrganisation
 ORDER BY MuslimCount DESC
-LIMIT 1;",TRUE,5.233614445,TRUE,,2
+LIMIT 1;",True,5.233614445,True,,2
 Llama3-70B,Easy,Show the first 5 rows of the clinic level data.,1,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -753,9 +748,9 @@ Llama3-70B,Easy,Show the first 5 rows of the clinic level data.,1,"  IDOrganisat
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,FALSE,5.977803707,TRUE,,1
-Llama3-70B,Easy,Which clinic has the highest TotalRevenue?,1,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1",TRUE,7.952659845,TRUE,,1
-Llama3-70B,Easy,What is the average TotalRevenue across all clinics?,1,1220906.652,SELECT AVG(TotalRevenue) AS avg_total_revenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,FALSE,6.314840794,TRUE,,1
+4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,False,5.977803707,True,,1
+Llama3-70B,Easy,Which clinic has the highest TotalRevenue?,1,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1",True,7.952659845,True,,1
+Llama3-70B,Easy,What is the average TotalRevenue across all clinics?,1,1220906.652,SELECT AVG(TotalRevenue) AS avg_total_revenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,False,6.314840794,True,,1
 Llama3-70B,Easy,List all unique Districts present in the dataset.,1,"         District
 0      Kota Bharu
 1      Central KL
@@ -788,8 +783,8 @@ Llama3-70B,Easy,List all unique Districts present in the dataset.,1,"         Di
 28          Bangi
 29    Batang Kali
 30      Pasir Mas
-31    Wakaf Bharu",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,TRUE,5.951824665,TRUE,,1
-Llama3-70B,Easy,How many doctors are listed in the doctor dataset?,1,46,SELECT COUNT(DISTINCT IDOrganisation) AS DoctorCount FROM table_bd4f8d5ffa8239c09831e5b997bc2753,TRUE,6.799034595,TRUE,,1
+31    Wakaf Bharu",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,True,5.951824665,True,,1
+Llama3-70B,Easy,How many doctors are listed in the doctor dataset?,1,46,SELECT COUNT(DISTINCT IDOrganisation) AS DoctorCount FROM table_bd4f8d5ffa8239c09831e5b997bc2753,True,6.799034595,True,,1
 Llama3-70B,Medium,Group the patient records by Religion and count how many patients are in each group.,1,"                               State  PatientCount
 0                           Selangor            86
 1                           Kelantan            31
@@ -809,7 +804,7 @@ Llama3-70B,Medium,Group the patient records by Religion and count how many patie
     GROUP BY 
         State
     ORDER BY 
-        PatientCount DESC",TRUE,16.39440417,TRUE,,1
+        PatientCount DESC",True,16.39440417,True,,1
 Llama3-70B,Medium,Calculate the total revenue per District.,1,"         District  TotalRevenue
 0      Batu Caves    4768499.45
 1    Kuala Langat    4252648.35
@@ -845,25 +840,25 @@ Llama3-70B,Medium,Calculate the total revenue per District.,1,"         District
 31    Bayan Lepas      23580.00","SELECT District, SUM(TotalRevenue) AS TotalRevenue
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     GROUP BY District
-    ORDER BY TotalRevenue DESC;",TRUE,7.069077969,TRUE,,1
+    ORDER BY TotalRevenue DESC;",True,7.069077969,True,,1
 Llama3-70B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,1,"  LocumResidence  avg_total_revenue
 0      Residence       58315.057593
 1          Locum       28644.520000","SELECT ""Locum/Residence"" AS LocumResidence, AVG(TotalRevenue) AS avg_total_revenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     GROUP BY ""Locum/Residence""
-    ORDER BY avg_total_revenue DESC;",TRUE,12.83767056,TRUE,,1
+    ORDER BY avg_total_revenue DESC;",True,12.83767056,True,,1
 Llama3-70B,Medium,Which hour of the day has the highest average TotalRevenue?,1,The hour with the highest average TotalRevenue is 2024-03-13 09:00:00 with an average of 4772.5.,"SELECT Hour, AVG(TotalRevenue) AS AvgTotalRevenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
     ORDER BY AvgTotalRevenue DESC
-    LIMIT 1",TRUE,7.673554182,TRUE,,1
+    LIMIT 1",True,7.673554182,True,,1
 Llama3-70B,Medium,Compare the total number of Cash payments vs Electronic payments.,1,"   Payment_Method  Cash_Payments  Electronic_Payments
 0  Payment Method        66643.0              92066.0","SELECT 
         'Payment Method' AS Payment_Method, 
         SUM(CASE WHEN TotalCash > 0 THEN 1 ELSE 0 END) AS Cash_Payments, 
         SUM(CASE WHEN TotalElectronic > 0 THEN 1 ELSE 0 END) AS Electronic_Payments
     FROM 
-        table_6c16364831b68d93e7cf9d423cf8f3da",FALSE,8.949353218,TRUE,,1
+        table_6c16364831b68d93e7cf9d423cf8f3da",False,8.949353218,True,,1
 Llama3-70B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,1,"  IDOrganisation  avg_revenue_per_patient
 0      Clinic AB               216.729727
 1      Clinic AA               157.882359
@@ -876,33 +871,33 @@ Llama3-70B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalP
         IDOrganisation
     ORDER BY 
         avg_revenue_per_patient DESC
-    LIMIT 3;",FALSE,17.36055017,TRUE,,1
+    LIMIT 3;",False,17.36055017,True,,1
 Llama3-70B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,1,The district with the highest proportion of new patients is Kajang with a proportion of 0.71.,"SELECT District, 
            SUM(NewPatientCount) / SUM(PatientCount) AS new_patient_proportion
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     GROUP BY District
     ORDER BY new_patient_proportion DESC
-    LIMIT 1;",TRUE,8.788012028,TRUE,,1
+    LIMIT 1;",True,8.788012028,True,,1
 Llama3-70B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",1,"Empty DataFrame
 Columns: [StaffName, TotalHours, TotalRevenue]
 Index: []","SELECT StaffName, SUM(""TotalVisitTime(hrs)"") AS TotalHours, SUM(TotalRevenue) AS TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     GROUP BY StaffName
     HAVING SUM(""TotalVisitTime(hrs)"") > 100 AND SUM(TotalRevenue) < 50000
-    ORDER BY TotalRevenue DESC;",TRUE,17.82052326,TRUE,,1
+    ORDER BY TotalRevenue DESC;",True,17.82052326,True,,1
 Llama3-70B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,1,exports\charts\temp_chart_b07fc4ee-064c-477b-8f51-ca457e960891.png,"SELECT 
         TotalPanelPatientCount, 
         TotalRevenue
     FROM 
         table_bd4f8d5ffa8239c09831e5b997bc2753
     ORDER BY 
-        TotalPanelPatientCount DESC",FALSE,12.5231595,TRUE,,1
+        TotalPanelPatientCount DESC",False,12.5231595,True,,1
 Llama3-70B,Hard,Which clinic has the highest number of Muslims?,1,The clinic with the highest number of Muslims is Clinic D with 11258 Muslims.,"SELECT IDOrganisation, COUNT(*) as MuslimCount
     FROM table_3586b23a0be349f88985d8c0d783b36d
     WHERE Religions = 'Islam'
     GROUP BY IDOrganisation
     ORDER BY MuslimCount DESC
-    LIMIT 1;",TRUE,11.08958697,TRUE,,1
+    LIMIT 1;",True,11.08958697,True,,1
 deepseek-r1,Easy,Show the first 5 rows of the clinic level data.,1,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -943,13 +938,13 @@ deepseek-r1,Easy,Show the first 5 rows of the clinic level data.,1,"  IDOrganisa
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,TRUE,11.43123937,TRUE,,1
+4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,True,11.43123937,True,,1
 deepseek-r1,Easy,Which clinic has the highest TotalRevenue?,1,Clinic I has the highest TotalRevenue.,"SELECT IDOrganisation, TotalRevenue 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
 ORDER BY TotalRevenue DESC 
-LIMIT 1",TRUE,5.696992397,TRUE,,1
+LIMIT 1",True,5.696992397,True,,1
 deepseek-r1,Easy,What is the average TotalRevenue across all clinics?,1,1220906.652,"SELECT AVG(TotalRevenue) AS AverageTotalRevenue 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,7.168935299,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,7.168935299,True,,1
 deepseek-r1,Easy,List all unique Districts present in the dataset.,1,"         District
 0     Wakaf Bharu
 1      Georgetown
@@ -983,13 +978,13 @@ deepseek-r1,Easy,List all unique Districts present in the dataset.,1,"         D
 29      Pasir Mas
 30  Bandar Enstek
 31    Desa Pandan","SELECT DISTINCT District 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,4.203511238,TRUE,,1
-deepseek-r1,Easy,How many doctors are listed in the doctor dataset?,1,0,SELECT 0 AS num_doctors,FALSE,45.29774189,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,4.203511238,True,,1
+deepseek-r1,Easy,How many doctors are listed in the doctor dataset?,1,0,SELECT 0 AS num_doctors,False,45.29774189,True,,1
 deepseek-r1,Medium,Group the patient records by Religion and count how many patients are in each group.,1,Religion column not found in any provided tables. Patient records grouping by Religion is not possible with current data.,"SELECT 
     'Religion data not available' AS Religion,
     SUM(PatientCount) AS TotalPatients 
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
-GROUP BY 'Religion data not available'",TRUE,20.86190724,TRUE,,1
+GROUP BY 'Religion data not available'",True,20.86190724,True,,1
 deepseek-r1,Medium,Calculate the total revenue per District.,1,"         District  TotalRevenue
 0      Batu Caves    4768499.45
 1    Kuala Langat    4252648.35
@@ -1025,25 +1020,25 @@ deepseek-r1,Medium,Calculate the total revenue per District.,1,"         Distric
 31    Bayan Lepas      23580.00","SELECT District, SUM(TotalRevenue) AS TotalRevenue 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
 GROUP BY District 
-ORDER BY TotalRevenue DESC;",TRUE,5.616109371,TRUE,,1
+ORDER BY TotalRevenue DESC;",True,5.616109371,True,,1
 deepseek-r1,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,1,"  DoctorType  AverageTotalRevenue
 0  Residence         58315.057593
 1      Locum         28644.520000","SELECT 
     ""Locum/Residence"" AS DoctorType,
     AVG(TotalRevenue) AS AverageTotalRevenue
 FROM table_c83679f393c19ab82f71054c6c3facb6
-GROUP BY ""Locum/Residence\""",TRUE,6.29806304,TRUE,,1
+GROUP BY ""Locum/Residence\""",True,6.29806304,True,,1
 deepseek-r1,Medium,Which hour of the day has the highest average TotalRevenue?,1,11,"SELECT 
     EXTRACT(HOUR FROM STRPTIME(Hour, '%Y-%m-%d %H:%M:%S')) AS hour_of_day,
     AVG(TotalRevenue) AS avg_revenue
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
 GROUP BY hour_of_day
 ORDER BY avg_revenue DESC
-LIMIT 1;",TRUE,20.10091639,TRUE,,1
+LIMIT 1;",True,20.10091639,True,,1
 deepseek-r1,Medium,Compare the total number of Cash payments vs Electronic payments.,1,The total number of Cash payments is 136758 and Electronic payments is 174799.,"SELECT 
     SUM(""TotalCashPatientCount"") AS TotalCash,
     SUM(""TotalElectronicPatientCount"") AS TotalElectronic
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",TRUE,8.926896811,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",True,8.926896811,True,,1
 deepseek-r1,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,1,"      Clinic  AvgRevenuePerPatient
 0  Clinic AB            172.326564
 1  Clinic AA            132.678719
@@ -1052,7 +1047,7 @@ deepseek-r1,Hard,Calculate the average revenue per patient (TotalRevenue / Total
     TotalRevenue / PatientCount AS AvgRevenuePerPatient
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY AvgRevenuePerPatient DESC
-LIMIT 3;",TRUE,12.97239351,TRUE,,1
+LIMIT 3;",True,12.97239351,True,,1
 deepseek-r1,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,1,The district with the highest new patient proportion is Kajang at 71.07%.,"SELECT 
     District,
     SUM(NewPatientCount) AS TotalNewPatients,
@@ -1061,19 +1056,19 @@ deepseek-r1,Hard,Identify which District has the highest proportion of 'NewPatie
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY District
 ORDER BY Proportion DESC
-LIMIT 1",TRUE,8.064760208,TRUE,,1
+LIMIT 1",True,8.064760208,True,,1
 deepseek-r1,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",1,"  IDOrganisation  StaffName  TotalVisitTime(hrs)  TotalRevenue
 0       Clinic Z  Doctor AW           498.751111       22340.0","SELECT IDOrganisation, StaffName, ""TotalVisitTime(hrs)"", TotalRevenue
 FROM table_c83679f393c19ab82f71054c6c3facb6
-WHERE ""TotalVisitTime(hrs)"" > 100 AND TotalRevenue < 50000",TRUE,7.129621029,TRUE,,1
+WHERE ""TotalVisitTime(hrs)"" > 100 AND TotalRevenue < 50000",True,7.129621029,True,,1
 deepseek-r1,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,1,The correlation between TotalPanelPatientCount and TotalRevenue is 0.97.,"SELECT TotalPanelPatientCount, TotalRevenue 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,5.431388378,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,5.431388378,True,,1
 deepseek-r1,Hard,Which clinic has the highest number of Muslims?,1,The clinic with the highest number of Muslims is Clinic D with 11258 patients.,"SELECT IDOrganisation, COUNT(*) AS MuslimCount 
 FROM table_3586b23a0be349f88985d8c0d783b36d
 WHERE Religions = 'Islam'
 GROUP BY IDOrganisation
 ORDER BY MuslimCount DESC
-LIMIT 1;",TRUE,11.11469126,TRUE,,1
+LIMIT 1;",True,11.11469126,True,,1
 Llama-3.1-8B,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -1114,10 +1109,10 @@ Llama-3.1-8B,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganis
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",,,3.768758535,TRUE,,1
-Llama-3.1-8B,Easy,Which clinic has the highest TotalRevenue?,2,The clinic with the highest TotalRevenue is Clinic I with a TotalRevenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1",TRUE,22.54707694,TRUE,,1
+4                       5024.0  ",,,3.768758535,True,,1
+Llama-3.1-8B,Easy,Which clinic has the highest TotalRevenue?,2,The clinic with the highest TotalRevenue is Clinic I with a TotalRevenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1",True,22.54707694,True,,1
 Llama-3.1-8B,Easy,What is the average TotalRevenue across all clinics?,2,1220906.652,"SELECT AVG(TotalRevenue) as average_total_revenue
-        FROM table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,2.521333218,TRUE,,2
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,2.521333218,True,,2
 Llama-3.1-8B,Easy,List all unique Districts present in the dataset.,2,"         District
 0      Kota Bharu
 1        Semenyih
@@ -1151,10 +1146,10 @@ Llama-3.1-8B,Easy,List all unique Districts present in the dataset.,2,"         
 29          Kulim
 30  Bandar Enstek
 31    Desa Pandan","SELECT DISTINCT District
-    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,2.39996314,TRUE,,2
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,2.39996314,True,,2
 Llama-3.1-8B,Easy,How many doctors are listed in the doctor dataset?,2,The number of doctors is 12.,"SELECT COUNT(IDOrganisation) as doctor_count
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-    WHERE District IN ('Shah Alam', 'Petaling Jaya', 'Kuala Langat', 'Batu Caves')",FALSE,2.617059469,TRUE,,1
+    WHERE District IN ('Shah Alam', 'Petaling Jaya', 'Kuala Langat', 'Batu Caves')",False,2.617059469,True,,1
 Llama-3.1-8B,Medium,Group the patient records by Religion and count how many patients are in each group.,2,"         District  PatientCount
 0       Shah Alam             4
 1    Kuala Langat             3
@@ -1195,7 +1190,7 @@ Llama-3.1-8B,Medium,Group the patient records by Religion and count how many pat
     GROUP BY 
         District
     ORDER BY 
-        PatientCount DESC",TRUE,5.515375614,TRUE,,1
+        PatientCount DESC",True,5.515375614,True,,1
 Llama-3.1-8B,Medium,Calculate the total revenue per District.,2,"         District  TotalRevenue
 0      Batu Caves    4768499.45
 1    Kuala Langat    4252648.35
@@ -1228,8 +1223,8 @@ Llama-3.1-8B,Medium,Calculate the total revenue per District.,2,"         Distri
 28  Bandar Enstek     206697.60
 29       Seremban      40165.70
 30         Sepang      39091.55
-31    Bayan Lepas      23580.00",,,2.718039751,TRUE,,1
-Llama-3.1-8B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,2,"Unfortunately, I was not able to get your answer. Please try again.",,,15.49174857,TRUE,,2
+31    Bayan Lepas      23580.00",,,2.718039751,True,,1
+Llama-3.1-8B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,2,"Unfortunately, I was not able to get your answer. Please try again.",,,15.49174857,True,,2
 Llama-3.1-8B,Medium,Which hour of the day has the highest average TotalRevenue?,2,The hour with the highest average TotalRevenue is 2024-03-13 09:00:00.,"SELECT 
         Hour,
         AVG(TotalRevenue) as average_total_revenue
@@ -1239,12 +1234,12 @@ Llama-3.1-8B,Medium,Which hour of the day has the highest average TotalRevenue?,
         Hour
     ORDER BY 
         average_total_revenue DESC
-    LIMIT 1;",TRUE,3.503242254,TRUE,,1
+    LIMIT 1;",True,3.503242254,True,,1
 Llama-3.1-8B,Medium,Compare the total number of Cash payments vs Electronic payments.,2,Electronic payments are higher by 38041.0.,"SELECT 
         SUM(TotalCashPatientCount) as TotalCashPayments,
         SUM(TotalElectronicPatientCount) as TotalElectronicPayments
     FROM 
-        table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,2.429632664,TRUE,,1
+        table_bd4f8d5ffa8239c09831e5b997bc2753",True,2.429632664,True,,1
 Llama-3.1-8B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,2,"   IDOrganisation                                            Address  \
 8        Clinic O  PT 1585, Persiaran Teknologi 6 Taman Teknologi...   
 27       Clinic M  Lot 17, Jalan Puchong, Taman Perindustrian Sub...   
@@ -1258,8 +1253,8 @@ Llama-3.1-8B,Hard,Calculate the average revenue per patient (TotalRevenue / Tota
     AverageRevenuePerPatient  
 8                        inf  
 27                       inf  
-18                       inf  ",,,5.672961473,TRUE,,1
-Llama-3.1-8B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,2,The District with the highest proportion of 'NewPatientCount' compared to 'PatientCount' is Kajang.,,,4.12337923,TRUE,,1
+18                       inf  ",,,5.672961473,True,,1
+Llama-3.1-8B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,2,The District with the highest proportion of 'NewPatientCount' compared to 'PatientCount' is Kajang.,,,4.12337923,True,,1
 Llama-3.1-8B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",2,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
             IDOrganisation,
             StaffName,
@@ -1272,7 +1267,7 @@ Llama-3.1-8B,Hard,"Filter for doctors who have worked more than 100 hours but ge
         HAVING 
             SUM(CASE WHEN TotalVisitTime(hrs) > 100 THEN TotalVisitTime(hrs) ELSE 0 END) > 100 AND SUM(TotalRevenue) < 50000
         ORDER BY 
-            TotalVisitTime DESC",TRUE,318.7126298,TRUE,,1
+            TotalVisitTime DESC",True,318.7126298,True,,1
 Llama-3.1-8B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,2,exports\charts\temp_chart_ca20d416-24db-4129-a1cf-e796b343738d.png,"SELECT 
         IDOrganisation,
         Address,
@@ -1283,13 +1278,13 @@ Llama-3.1-8B,Hard,Is there any correlation between the number of 'TotalPanelPati
         TotalPanelPatientCount,
         TotalRevenue
     FROM 
-        table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,4.331098557,TRUE,,1
+        table_bd4f8d5ffa8239c09831e5b997bc2753",False,4.331098557,True,,1
 Llama-3.1-8B,Hard,Which clinic has the highest number of Muslims?,2,"The clinic with the highest number of Muslims is No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia.","SELECT IDOrganisation, COUNT(*) as MuslimCount
     FROM table_3586b23a0be349f88985d8c0d783b36d
     WHERE Ethnicities = 'Malay' AND Religions = 'Islam'
     GROUP BY IDOrganisation
     ORDER BY MuslimCount DESC
-    LIMIT 1",TRUE,3.222654819,TRUE,,1
+    LIMIT 1",True,3.222654819,True,,1
 qwen2.5-7b-instruct,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -1331,7 +1326,7 @@ qwen2.5-7b-instruct,Easy,Show the first 5 rows of the clinic level data.,2,"  ID
 2                       8680.0  
 3                      10464.0  
 4                       5024.0  ","SELECT * 
-    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,120.9334826,TRUE,,1
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,120.9334826,True,,1
 qwen2.5-7b-instruct,Easy,Which clinic has the highest TotalRevenue?,2,"  IDOrganisation                                            Address  \
 0       Clinic I  45, Jalan 34/154, Taman Delima Cheras 56100 WP...   
 
@@ -1339,8 +1334,8 @@ qwen2.5-7b-instruct,Easy,Which clinic has the highest TotalRevenue?,2,"  IDOrgan
 0  Kuala Lumpur   Cheras  3.057526  101.747039    3487368.95  ","SELECT IDOrganisation, Address, State, District, lat, lng, TotalRevenue
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY TotalRevenue DESC
-LIMIT 1;",TRUE,12.87363935,TRUE,,1
-qwen2.5-7b-instruct,Easy,What is the average TotalRevenue across all clinics?,2,1220906.652,,,3.796917915,TRUE,,1
+LIMIT 1;",True,12.87363935,True,,1
+qwen2.5-7b-instruct,Easy,What is the average TotalRevenue across all clinics?,2,1220906.652,,,3.796917915,True,,1
 qwen2.5-7b-instruct,Easy,List all unique Districts present in the dataset.,2,"         District
 0          Kajang
 1          Rawang
@@ -1374,12 +1369,12 @@ qwen2.5-7b-instruct,Easy,List all unique Districts present in the dataset.,2,"  
 29  Bandar Enstek
 30    Desa Pandan
 31     Kota Bharu","SELECT DISTINCT District
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,9.417044163,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,9.417044163,True,,1
 qwen2.5-7b-instruct,Easy,How many doctors are listed in the doctor dataset?,2,46,"SELECT COUNT(*) AS DoctorCount
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",TRUE,11.29862189,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",True,11.29862189,True,,1
 qwen2.5-7b-instruct,Medium,Group the patient records by Religion and count how many patients are in each group.,2,"Unfortunately, I was not able to get your answer. Please try again.","SELECT Religion, COUNT(*) AS PatientCount
 FROM table_c83679f393c19ab82f71054c6c3facb6
-GROUP BY Religion;",TRUE,109.4706542,TRUE,,1
+GROUP BY Religion;",True,109.4706542,True,,1
 qwen2.5-7b-instruct,Medium,Calculate the total revenue per District.,2,"         District  TotalRevenue_district
 0      Batu Caves             4768499.45
 1    Kuala Langat             4252648.35
@@ -1412,14 +1407,14 @@ qwen2.5-7b-instruct,Medium,Calculate the total revenue per District.,2,"        
 28  Bandar Enstek              206697.60
 29       Seremban               40165.70
 30         Sepang               39091.55
-31    Bayan Lepas               23580.00",,,10.31985736,TRUE,,1
+31    Bayan Lepas               23580.00",,,10.31985736,True,,1
 qwen2.5-7b-instruct,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,2,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
     Locum/Residence AS DoctorType,
     AVG(TotalRevenue) AS AverageTotalRevenue
 FROM 
     table_c83679f393c19ab82f71054c6c3facb6
 GROUP BY 
-    Locum/Residence;",TRUE,66.73023963,TRUE,,1
+    Locum/Residence;",True,66.73023963,True,,1
 qwen2.5-7b-instruct,Medium,Which hour of the day has the highest average TotalRevenue?,2,The hour of the day with the highest average TotalRevenue is 2024-03-13 09:00:00.,"SELECT 
     Hour, 
     AVG(TotalRevenue) as AvgTotalRevenue
@@ -1429,7 +1424,7 @@ GROUP BY
     Hour
 ORDER BY 
     AvgTotalRevenue DESC
-LIMIT 1;",TRUE,8.437010527,TRUE,,1
+LIMIT 1;",True,8.437010527,True,,1
 qwen2.5-7b-instruct,Medium,Compare the total number of Cash payments vs Electronic payments.,2,"   IDOrganisation  TotalCashPayments  TotalElectronicPayments
 0        Clinic S         1013354.85                394611.50
 1        Clinic Z          950772.15                706220.90
@@ -1476,7 +1471,7 @@ qwen2.5-7b-instruct,Medium,Compare the total number of Cash payments vs Electron
 42       Clinic X             599.00                  4864.45
 43       Clinic L             417.60                  1449.00
 44       Clinic W              40.00                   110.00
-45       Clinic O               0.00                     0.00",,,5.568466425,TRUE,,1
+45       Clinic O               0.00                     0.00",,,5.568466425,True,,1
 qwen2.5-7b-instruct,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,2,"  IDOrganisation  AvgRevenuePerPatient
 0      Clinic AB            221.131249
 1       Clinic R            186.235294
@@ -1489,7 +1484,7 @@ GROUP BY
     IDOrganisation
 ORDER BY 
     AvgRevenuePerPatient DESC
-LIMIT 3;",TRUE,13.10992432,TRUE,,1
+LIMIT 3;",True,13.10992432,True,,1
 qwen2.5-7b-instruct,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,2,The district with the highest proportion of NewPatientCount to PatientCount is: Kajang.,"WITH District_Proportion AS (
     SELECT 
         District,
@@ -1502,7 +1497,7 @@ SELECT
     NewPatientCount_Proportion
 FROM District_Proportion
 ORDER BY NewPatientCount_Proportion DESC
-LIMIT 1;",TRUE,8.926320314,TRUE,,1
+LIMIT 1;",True,8.926320314,True,,1
 qwen2.5-7b-instruct,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",2,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
     IDOrganisation, 
     StaffName, 
@@ -1512,7 +1507,7 @@ qwen2.5-7b-instruct,Hard,"Filter for doctors who have worked more than 100 hours
 FROM 
     table_c83679f393c19ab82f71054c6c3facb6
 WHERE 
-    TotalVisitTime > 100 AND TotalRevenue < 50000;",TRUE,31.47224998,TRUE,,1
+    TotalVisitTime > 100 AND TotalRevenue < 50000;",True,31.47224998,True,,1
 qwen2.5-7b-instruct,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,2,0.816722369,"SELECT 
     TotalPanelPatientCount, 
     TotalRevenue, 
@@ -1524,7 +1519,7 @@ GROUP BY
     TotalRevenue
 ORDER BY 
     TotalPanelPatientCount, 
-    TotalRevenue;",FALSE,8.32667017,TRUE,,1
+    TotalRevenue;",False,8.32667017,True,,1
 qwen2.5-7b-instruct,Hard,Which clinic has the highest number of Muslims?,2,"The clinic with the highest number of Muslims is 564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia, located in Batu Caves, Selangor.","SELECT 
     State, 
     District,
@@ -1538,7 +1533,7 @@ GROUP BY
     State, District, Address
 ORDER BY 
     Muslim_Patient_Count DESC
-LIMIT 1;",FALSE,6.952165365,TRUE,,1
+LIMIT 1;",False,6.952165365,True,,1
 Gemma-2-27B,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -1581,13 +1576,13 @@ Gemma-2-27B,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganisa
 3                      10464.0  
 4                       5024.0  ","SELECT * 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-LIMIT 5",TRUE,3.322910786,TRUE,,1
+LIMIT 5",True,3.322910786,True,,1
 Gemma-2-27B,Easy,Which clinic has the highest TotalRevenue?,2,The clinic with the highest TotalRevenue is Clinic I.,"SELECT IDOrganisation, TotalRevenue
  FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
  ORDER BY TotalRevenue DESC
- LIMIT 1;",TRUE,10.19949985,TRUE,,1
+ LIMIT 1;",True,10.19949985,True,,1
 Gemma-2-27B,Easy,What is the average TotalRevenue across all clinics?,2,1220906.652,"SELECT AVG(TotalRevenue) as AverageTotalRevenue
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,4.037951946,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,4.037951946,True,,1
 Gemma-2-27B,Easy,List all unique Districts present in the dataset.,2,"         District
 0          Kajang
 1          Rawang
@@ -1621,12 +1616,12 @@ Gemma-2-27B,Easy,List all unique Districts present in the dataset.,2,"         D
 29         Mantin
 30         Sepang
 31         Dungun","SELECT DISTINCT District
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,3.532465935,TRUE,,1
-Gemma-2-27B,Easy,How many doctors are listed in the doctor dataset?,2,46,SELECT COUNT(*) FROM table_bd4f8d5ffa8239c09831e5b997bc2753,FALSE,3.370078564,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,3.532465935,True,,1
+Gemma-2-27B,Easy,How many doctors are listed in the doctor dataset?,2,46,SELECT COUNT(*) FROM table_bd4f8d5ffa8239c09831e5b997bc2753,False,3.370078564,True,,1
 Gemma-2-27B,Medium,Group the patient records by Religion and count how many patients are in each group.,2,"Unfortunately, I was not able to get your answer. Please try again.","SELECT Religion, COUNT(*) AS PatientCount
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY Religion
-ORDER BY PatientCount DESC;",TRUE,27.81136727,TRUE,,1
+ORDER BY PatientCount DESC;",True,27.81136727,True,,1
 Gemma-2-27B,Medium,Calculate the total revenue per District.,2,"         District  TotalRevenuePerDistrict
 0      Batu Caves               4768499.45
 1    Kuala Langat               4252648.35
@@ -1662,27 +1657,27 @@ Gemma-2-27B,Medium,Calculate the total revenue per District.,2,"         Distric
 31    Bayan Lepas                 23580.00","SELECT District, SUM(TotalRevenue) as TotalRevenuePerDistrict
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY District
-ORDER BY TotalRevenuePerDistrict DESC;",TRUE,4.743124962,TRUE,,2
+ORDER BY TotalRevenuePerDistrict DESC;",True,4.743124962,True,,2
 Gemma-2-27B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,2,"  Locum/Residence  average_revenue
 0           Locum     28644.520000
 1       Residence     58315.057593","SELECT ""Locum/Residence"", AVG(""TotalRevenue"") AS average_revenue
 FROM table_c83679f393c19ab82f71054c6c3facb6
-GROUP BY ""Locum/Residence"";",TRUE,4.091114998,TRUE,,1
+GROUP BY ""Locum/Residence"";",True,4.091114998,True,,1
 Gemma-2-27B,Medium,Which hour of the day has the highest average TotalRevenue?,2,The hour with the highest average TotalRevenue is 2024-03-13 09:00:00.,"SELECT Hour, AVG(TotalRevenue) as AvgTotalRevenue
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
 GROUP BY Hour
 ORDER BY AvgTotalRevenue DESC
-LIMIT 1",TRUE,5.008793831,TRUE,,1
+LIMIT 1",True,5.008793831,True,,1
 Gemma-2-27B,Medium,Compare the total number of Cash payments vs Electronic payments.,2,"   TotalCashPayments  TotalElectronicPayments
 0        10503788.64              17512170.03","SELECT 
   SUM(TotalCash) as TotalCashPayments,
   SUM(TotalElectronic) as TotalElectronicPayments
 
-FROM table_6c16364831b68d93e7cf9d423cf8f3da",FALSE,36.20635295,TRUE,,1
+FROM table_6c16364831b68d93e7cf9d423cf8f3da",False,36.20635295,True,,1
 Gemma-2-27B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,2,"  IDOrganisation  AverageRevenuePerPatient
 0      Clinic AB                172.326564
 1      Clinic AA                132.678719
-2       Clinic R                122.713178",,,41.83084726,TRUE,,1
+2       Clinic R                122.713178",,,41.83084726,True,,1
 Gemma-2-27B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,2,The District with the highest proportion of NewPatientCount compared to PatientCount is Kajang with 71.07%.,"WITH DistrictPatientCounts AS (
     SELECT 
         District,
@@ -1696,20 +1691,20 @@ SELECT
     (TotalNewPatients * 100.0 / TotalPatients) as NewPatientProportion
 FROM DistrictPatientCounts
 ORDER BY NewPatientProportion DESC
-LIMIT 1;",TRUE,6.66109705,TRUE,,2
+LIMIT 1;",True,6.66109705,True,,2
 Gemma-2-27B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",2,"Empty DataFrame
 Columns: [IDOrganisation, Address, State, District, TotalHoursWorked, TotalRevenue]
 Index: []","SELECT IDOrganisation, Address, State, District, SUM(""TotalVisitTime(hrs)"") AS TotalHoursWorked, SUM(TotalRevenue) AS TotalRevenue
 FROM table_c83679f393c19ab82f71054c6c3facb6
 GROUP BY IDOrganisation, Address, State, District
-HAVING SUM(""TotalVisitTime(hrs)"") > 100 AND SUM(TotalRevenue) < 50000;",FALSE,13.42558265,TRUE,,1
+HAVING SUM(""TotalVisitTime(hrs)"") > 100 AND SUM(TotalRevenue) < 50000;",False,13.42558265,True,,1
 Gemma-2-27B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,2,exports\charts\temp_chart_c26bd038-284d-4255-96af-f9cb45469fb6.png,"SELECT 
     SUM(TotalPanelPatientCount) as TotalPanelPatientCount, 
     SUM(TotalRevenue) as TotalRevenue
 FROM ""table_bd4f8d5ffa8239c09831e5b997bc2753""
 GROUP BY TotalPanelPatientCount
-ORDER BY TotalPanelPatientCount ASC;",FALSE,12.19438195,TRUE,,2
-Gemma-2-27B,Hard,Which clinic has the highest number of Muslims?,2,The clinic with the highest number of Muslim patients is Clinic D.,,,5.315922976,TRUE,,1
+ORDER BY TotalPanelPatientCount ASC;",False,12.19438195,True,,2
+Gemma-2-27B,Hard,Which clinic has the highest number of Muslims?,2,The clinic with the highest number of Muslim patients is Clinic D.,,,5.315922976,True,,1
 Llama3-70B,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -1750,11 +1745,11 @@ Llama3-70B,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganisat
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,TRUE,6.505569458,TRUE,,1
-Llama3-70B,Easy,Which clinic has the highest TotalRevenue?,2,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1",TRUE,7.291419983,TRUE,,1
-Llama3-70B,Easy,What is the average TotalRevenue across all clinics?,2,1220906.652,SELECT AVG(TotalRevenue) AS avg_total_revenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,TRUE,6.270666838,TRUE,,1
-Llama3-70B,Easy,List all unique Districts present in the dataset.,2,"Unique Districts: Central KL, Ipoh, Setia Alam, Sepang, Dungun, Kajang, Rawang, Petaling, Petaling Jaya, Bangi, Georgetown, Batang Kali, Pasir Mas, Kota Bharu, Kuala Langat, Presint 8, Bayan Lepas, Kuantan, Batu Caves, Seremban, Kuala Lumpur, Hulu Langat, Kulim, Shah Alam, Cheras, Muar, Skudai, Mantin, Bandar Enstek, Desa Pandan, Wakaf Bharu, Semenyih",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,TRUE,6.201084375,TRUE,,1
-Llama3-70B,Easy,How many doctors are listed in the doctor dataset?,2,46,,TRUE,6.935250998,TRUE,,1
+4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,True,6.505569458,True,,1
+Llama3-70B,Easy,Which clinic has the highest TotalRevenue?,2,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1",True,7.291419983,True,,1
+Llama3-70B,Easy,What is the average TotalRevenue across all clinics?,2,1220906.652,SELECT AVG(TotalRevenue) AS avg_total_revenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,True,6.270666838,True,,1
+Llama3-70B,Easy,List all unique Districts present in the dataset.,2,"Unique Districts: Central KL, Ipoh, Setia Alam, Sepang, Dungun, Kajang, Rawang, Petaling, Petaling Jaya, Bangi, Georgetown, Batang Kali, Pasir Mas, Kota Bharu, Kuala Langat, Presint 8, Bayan Lepas, Kuantan, Batu Caves, Seremban, Kuala Lumpur, Hulu Langat, Kulim, Shah Alam, Cheras, Muar, Skudai, Mantin, Bandar Enstek, Desa Pandan, Wakaf Bharu, Semenyih",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,True,6.201084375,True,,1
+Llama3-70B,Easy,How many doctors are listed in the doctor dataset?,2,46,,True,6.935250998,True,,1
 Llama3-70B,Medium,Group the patient records by Religion and count how many patients are in each group.,2,"                               State  PatientCount
 0                           Selangor            19
 1                          Selangor              4
@@ -1776,7 +1771,7 @@ Llama3-70B,Medium,Group the patient records by Religion and count how many patie
     GROUP BY 
         State
     ORDER BY 
-        PatientCount DESC",TRUE,15.57560444,TRUE,,1
+        PatientCount DESC",True,15.57560444,True,,1
 Llama3-70B,Medium,Calculate the total revenue per District.,2,"         District  TotalRevenue
 0      Batu Caves    4768499.45
 1    Kuala Langat    4252648.35
@@ -1812,21 +1807,21 @@ Llama3-70B,Medium,Calculate the total revenue per District.,2,"         District
 31    Bayan Lepas      23580.00","SELECT District, SUM(TotalRevenue) AS TotalRevenue
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     GROUP BY District
-    ORDER BY TotalRevenue DESC;",TRUE,7.668909311,TRUE,,1
+    ORDER BY TotalRevenue DESC;",True,7.668909311,True,,1
 Llama3-70B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,2,"  Locum/Residence  avg_total_revenue
 0       Residence       58315.057593
 1           Locum       28644.520000","SELECT ""Locum/Residence"", AVG(TotalRevenue) as avg_total_revenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     GROUP BY ""Locum/Residence""
-    ORDER BY avg_total_revenue DESC;",TRUE,14.64964509,TRUE,,1
+    ORDER BY avg_total_revenue DESC;",True,14.64964509,True,,1
 Llama3-70B,Medium,Which hour of the day has the highest average TotalRevenue?,2,The hour with the highest average TotalRevenue is 2024-03-13 09:00:00 with an average revenue of 4772.5.,"SELECT Hour, AVG(TotalRevenue) as avg_revenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
     ORDER BY avg_revenue DESC
-    LIMIT 1",TRUE,9.890217543,TRUE,,1
+    LIMIT 1",True,9.890217543,True,,1
 Llama3-70B,Medium,Compare the total number of Cash payments vs Electronic payments.,2,"  PaymentType  TotalPayments
 0  Electronic    17512170.03
-1        Cash    10503788.64",,,13.22715759,TRUE,,1
+1        Cash    10503788.64",,,13.22715759,True,,1
 Llama3-70B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,2,"  IDOrganisation  avg_revenue_per_patient
 0      Clinic AB               172.326564
 1      Clinic AA               132.678719
@@ -1839,7 +1834,7 @@ Llama3-70B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalP
         IDOrganisation
     ORDER BY 
         avg_revenue_per_patient DESC
-    LIMIT 3;",TRUE,20.00352836,TRUE,,1
+    LIMIT 3;",True,20.00352836,True,,1
 Llama3-70B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,2,The district with the highest proportion of new patients is Kajang with a proportion of 0.71.,"WITH district_proportions AS (
         SELECT 
             District, 
@@ -1858,22 +1853,22 @@ Llama3-70B,Hard,Identify which District has the highest proportion of 'NewPatien
         new_patient_proportion
     FROM 
         district_proportions
-    LIMIT 1;",TRUE,13.64813352,TRUE,,1
+    LIMIT 1;",True,13.64813352,True,,1
 Llama3-70B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",2,"Empty DataFrame
 Columns: [StaffName, TotalHours, TotalRevenue]
 Index: []","SELECT StaffName, SUM(""TotalVisitTime(hrs)"") AS TotalHours, SUM(TotalRevenue) AS TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     GROUP BY StaffName
     HAVING SUM(""TotalVisitTime(hrs)"") > 100 AND SUM(TotalRevenue) < 50000
-    ORDER BY TotalRevenue DESC;",TRUE,15.49835253,TRUE,,1
+    ORDER BY TotalRevenue DESC;",True,15.49835253,True,,1
 Llama3-70B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,2,The correlation between TotalPanelPatientCount and TotalRevenue is 0.97.,"SELECT TotalPanelPatientCount, TotalRevenue
-    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,10.79902768,TRUE,,1
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,10.79902768,True,,1
 Llama3-70B,Hard,Which clinic has the highest number of Muslims?,2,The clinic with the highest number of Muslims is Clinic D with 11258 Muslims.,"SELECT IDOrganisation, COUNT(*) AS MuslimCount
     FROM table_3586b23a0be349f88985d8c0d783b36d
     WHERE Religions = 'Islam'
     GROUP BY IDOrganisation
     ORDER BY MuslimCount DESC
-    LIMIT 1;",TRUE,9.574801445,TRUE,,1
+    LIMIT 1;",True,9.574801445,True,,1
 deepseek-r1,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -1914,13 +1909,13 @@ deepseek-r1,Easy,Show the first 5 rows of the clinic level data.,2,"  IDOrganisa
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,TRUE,5.907326221,TRUE,,1
+4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,True,5.907326221,True,,1
 deepseek-r1,Easy,Which clinic has the highest TotalRevenue?,2,Clinic I has the highest TotalRevenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
 ORDER BY TotalRevenue DESC 
-LIMIT 1;",TRUE,8.851980925,TRUE,,1
+LIMIT 1;",True,8.851980925,True,,1
 deepseek-r1,Easy,What is the average TotalRevenue across all clinics?,2,1220906.652,"SELECT AVG(TotalRevenue) AS AverageTotalRevenue 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,8.173595905,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,8.173595905,True,,1
 deepseek-r1,Easy,List all unique Districts present in the dataset.,2,"         District
 0          Kajang
 1          Rawang
@@ -1954,13 +1949,13 @@ deepseek-r1,Easy,List all unique Districts present in the dataset.,2,"         D
 29    Batang Kali
 30      Pasir Mas
 31       Semenyih","SELECT DISTINCT District 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,4.913598061,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,4.913598061,True,,1
 deepseek-r1,Easy,How many doctors are listed in the doctor dataset?,2,46,"SELECT COUNT(DISTINCT IDOrganisation) AS doctor_count 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,21.64328098,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,21.64328098,True,,1
 deepseek-r1,Medium,Group the patient records by Religion and count how many patients are in each group.,2,Religion column not found in any of the provided tables - grouping cannot be performed,"SELECT Religion, SUM(PatientCount) AS TotalPatients
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
 GROUP BY Religion
-ORDER BY TotalPatients DESC;",TRUE,34.20924902,TRUE,,2
+ORDER BY TotalPatients DESC;",True,34.20924902,True,,2
 deepseek-r1,Medium,Calculate the total revenue per District.,2,"         District  TotalRevenue
 0    Kuala Langat    4252648.35
 1       Presint 8    2439719.35
@@ -1995,25 +1990,25 @@ deepseek-r1,Medium,Calculate the total revenue per District.,2,"         Distric
 30  Bandar Enstek     206697.60
 31    Desa Pandan     319794.20","SELECT District, SUM(TotalRevenue) AS TotalRevenue 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
-GROUP BY District",TRUE,4.535450459,TRUE,,1
+GROUP BY District",True,4.535450459,True,,1
 deepseek-r1,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,2,"        Type  AverageRevenue
 0      Locum    28644.520000
 1  Residence    58315.057593","SELECT 
     ""Locum/Residence"" AS Type, 
     AVG(TotalRevenue) AS AverageRevenue 
 FROM table_c83679f393c19ab82f71054c6c3facb6
-GROUP BY ""Locum/Residence\""",TRUE,7.254654408,TRUE,,1
+GROUP BY ""Locum/Residence\""",True,7.254654408,True,,1
 deepseek-r1,Medium,Which hour of the day has the highest average TotalRevenue?,2,11,"SELECT 
     EXTRACT(HOUR FROM Hour::TIMESTAMP) AS hour_of_day,
     AVG(TotalRevenue) AS avg_total_revenue
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
 GROUP BY hour_of_day
 ORDER BY avg_total_revenue DESC
-LIMIT 1;",TRUE,8.621102095,TRUE,,1
+LIMIT 1;",True,8.621102095,True,,1
 deepseek-r1,Medium,Compare the total number of Cash payments vs Electronic payments.,2,"Cash payments: 136758, Electronic payments: 174799","SELECT 
     SUM(""TotalCashPatientCount"") AS TotalCash,
     SUM(""TotalElectronicPatientCount"") AS TotalElectronic 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,8.243663073,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,8.243663073,True,,1
 deepseek-r1,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,2,"      Clinic  AverageRevenuePerPatient
 0  Clinic AB                172.326564
 1  Clinic AA                132.678719
@@ -2022,7 +2017,7 @@ deepseek-r1,Hard,Calculate the average revenue per patient (TotalRevenue / Total
     TotalRevenue / PatientCount AS AverageRevenuePerPatient
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY AverageRevenuePerPatient DESC
-LIMIT 3;",TRUE,8.380466461,TRUE,,1
+LIMIT 3;",True,8.380466461,True,,1
 deepseek-r1,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,2,The district with the highest proportion of new patients is Kajang at 71.07%.,"SELECT 
     District,
     SUM(NewPatientCount) AS TotalNewPatients,
@@ -2031,7 +2026,7 @@ deepseek-r1,Hard,Identify which District has the highest proportion of 'NewPatie
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY District
 ORDER BY Proportion DESC
-LIMIT 1",TRUE,11.92739487,TRUE,,1
+LIMIT 1",True,11.92739487,True,,1
 deepseek-r1,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",2,"  IDOrganisation                                            Address  State  \
 0       Clinic Z  51, Jln Kebudayaan 4, Taman Universiti, 81300 ...  Johor   
 
@@ -2048,15 +2043,15 @@ deepseek-r1,Hard,"Filter for doctors who have worked more than 100 hours but gen
 0             17.061113       2.165223  ","SELECT * 
 FROM table_c83679f393c19ab82f71054c6c3facb6 
 WHERE ""TotalVisitTime(hrs)"" > 100 
-  AND TotalRevenue < 50000",FALSE,9.092057943,TRUE,,1
+  AND TotalRevenue < 50000",False,9.092057943,True,,1
 deepseek-r1,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,2,0.96552617,"SELECT TotalPanelPatientCount, TotalRevenue 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,6.636737347,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,6.636737347,True,,1
 deepseek-r1,Hard,Which clinic has the highest number of Muslims?,2,The clinic with the highest number of Muslims is Clinic D with 11258 patients.,"SELECT IDOrganisation, COUNT(*) AS MuslimCount 
 FROM table_3586b23a0be349f88985d8c0d783b36d 
 WHERE Religions = 'Islam' 
 GROUP BY IDOrganisation 
 ORDER BY MuslimCount DESC 
-LIMIT 1",TRUE,11.03324699,TRUE,,1
+LIMIT 1",True,11.03324699,True,,1
 Llama-3.1-8B,Easy,Show the first 5 rows of the clinic level data.,3,"  IDOrganisation                                            Address  \
 0       Clinic I  45, Jalan 34/154, Taman Delima Cheras 56100 WP...   
 1       Clinic D  564 & 565, Ground Floor, Jalan Samudra Utara 1...   
@@ -2100,12 +2095,12 @@ Llama-3.1-8B,Easy,Show the first 5 rows of the clinic level data.,3,"  IDOrganis
 4                       7347.0  ","SELECT *
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     ORDER BY TotalRevenue DESC
-    LIMIT 5;",FALSE,2.213638306,TRUE,,1
+    LIMIT 5;",False,2.213638306,True,,1
 Llama-3.1-8B,Easy,Which clinic has the highest TotalRevenue?,3,The highest TotalRevenue clinic is Clinic I with a TotalRevenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue
         FROM table_bd4f8d5ffa8239c09831e5b997bc2753
         ORDER BY TotalRevenue DESC
-        LIMIT 1",TRUE,2.829774141,TRUE,,1
-Llama-3.1-8B,Easy,What is the average TotalRevenue across all clinics?,3,1220906.65,,,2.548466682,TRUE,,1
+        LIMIT 1",True,2.829774141,True,,1
+Llama-3.1-8B,Easy,What is the average TotalRevenue across all clinics?,3,1220906.65,,,2.548466682,True,,1
 Llama-3.1-8B,Easy,List all unique Districts present in the dataset.,3,"         District
 0      Georgetown
 1   Bandar Enstek
@@ -2139,8 +2134,8 @@ Llama-3.1-8B,Easy,List all unique Districts present in the dataset.,3,"         
 29     Setia Alam
 30  Petaling Jaya
 31          Bangi","SELECT DISTINCT District
-        FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,2.230491161,TRUE,,1
-Llama-3.1-8B,Easy,How many doctors are listed in the doctor dataset?,3,46,,TRUE,2.049854517,TRUE,,1
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,2.230491161,True,,1
+Llama-3.1-8B,Easy,How many doctors are listed in the doctor dataset?,3,46,,True,2.049854517,True,,1
 Llama-3.1-8B,Medium,Group the patient records by Religion and count how many patients are in each group.,3,"   IDOrganisation  PatientCount
 0        Clinic N             1
 1        Clinic R             1
@@ -2190,7 +2185,7 @@ Llama-3.1-8B,Medium,Group the patient records by Religion and count how many pat
 45       Clinic U             1","SELECT IDOrganisation, COUNT(*) as PatientCount
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     GROUP BY IDOrganisation
-    ORDER BY PatientCount DESC",TRUE,7.379192352,TRUE,,2
+    ORDER BY PatientCount DESC",True,7.379192352,True,,2
 Llama-3.1-8B,Medium,Calculate the total revenue per District.,3,"         District  TotalRevenue
 0      Batu Caves    4768499.45
 1    Kuala Langat    4252648.35
@@ -2226,8 +2221,8 @@ Llama-3.1-8B,Medium,Calculate the total revenue per District.,3,"         Distri
 31    Bayan Lepas      23580.00","SELECT District, SUM(TotalRevenue) as TotalRevenue
         FROM table_bd4f8d5ffa8239c09831e5b997bc2753
         GROUP BY District
-        ORDER BY TotalRevenue DESC",TRUE,3.832380772,TRUE,,1
-Llama-3.1-8B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,3,"Unfortunately, I was not able to get your answer. Please try again.",,,31.20650625,TRUE,,2
+        ORDER BY TotalRevenue DESC",True,3.832380772,True,,1
+Llama-3.1-8B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,3,"Unfortunately, I was not able to get your answer. Please try again.",,,31.20650625,True,,2
 Llama-3.1-8B,Medium,Which hour of the day has the highest average TotalRevenue?,3,The hour with the highest average TotalRevenue is 2024-03-13 09:00:00.,"SELECT 
         Hour,
         AVG(TotalRevenue) AS avg_total_revenue
@@ -2237,7 +2232,7 @@ Llama-3.1-8B,Medium,Which hour of the day has the highest average TotalRevenue?,
         Hour
     ORDER BY 
         avg_total_revenue DESC
-    LIMIT 1;",TRUE,3.994198799,TRUE,,1
+    LIMIT 1;",True,3.994198799,True,,1
 Llama-3.1-8B,Medium,Compare the total number of Cash payments vs Electronic payments.,3,"   IDOrganisation   TotalCash  TotalElectronic
 0        Clinic S  1013354.85        394611.50
 1        Clinic Z   950772.15        706220.90
@@ -2284,8 +2279,8 @@ Llama-3.1-8B,Medium,Compare the total number of Cash payments vs Electronic paym
 42       Clinic X      599.00          4864.45
 43       Clinic L      417.60          1449.00
 44       Clinic W       40.00           110.00
-45       Clinic O        0.00             0.00",,,4.481835127,TRUE,,1
-Llama-3.1-8B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,3,"Unfortunately, I was not able to get your answer. Please try again.",,,28.64278865,TRUE,,1
+45       Clinic O        0.00             0.00",,,4.481835127,True,,1
+Llama-3.1-8B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,3,"Unfortunately, I was not able to get your answer. Please try again.",,,28.64278865,True,,1
 Llama-3.1-8B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,3,The District with the highest proportion of 'NewPatientCount' compared to 'PatientCount' is Kajang.,"SELECT 
         District, 
         SUM(NewPatientCount) AS NewPatientCount, 
@@ -2293,13 +2288,13 @@ Llama-3.1-8B,Hard,Identify which District has the highest proportion of 'NewPati
     FROM 
         table_bd4f8d5ffa8239c09831e5b997bc2753
     GROUP BY 
-        District",FALSE,4.858118057,TRUE,,1
-Llama-3.1-8B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",3,"Unfortunately, I was not able to get your answer. Please try again.",,,27.26607513,TRUE,,2
-Llama-3.1-8B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,3,The correlation coefficient between TotalRevenue and TotalPanelPatientCount is 0.9655261701438348.,,,5.881187916,TRUE,,1
+        District",False,4.858118057,True,,1
+Llama-3.1-8B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",3,"Unfortunately, I was not able to get your answer. Please try again.",,,27.26607513,True,,2
+Llama-3.1-8B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,3,The correlation coefficient between TotalRevenue and TotalPanelPatientCount is 0.9655261701438348.,,,5.881187916,True,,1
 Llama-3.1-8B,Hard,Which clinic has the highest number of Muslims?,3,The clinic with the highest number of Muslims is Clinic D with 11258 Muslims.,"SELECT IDOrganisation, COUNT(CASE WHEN Religions = 'Islam' THEN 1 END) as MuslimCount
     FROM table_3586b23a0be349f88985d8c0d783b36d
     GROUP BY IDOrganisation
-    ORDER BY MuslimCount DESC",TRUE,4.489099741,TRUE,,1
+    ORDER BY MuslimCount DESC",True,4.489099741,True,,1
 Gemma-2-27B,Easy,Show the first 5 rows of the clinic level data.,3,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -2340,10 +2335,10 @@ Gemma-2-27B,Easy,Show the first 5 rows of the clinic level data.,3,"  IDOrganisa
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5;,TRUE,5.213269472,TRUE,,1
-Gemma-2-27B,Easy,Which clinic has the highest TotalRevenue?,3,The clinic with the highest TotalRevenue is Clinic I.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1;",TRUE,10.16797829,TRUE,,1
+4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5;,True,5.213269472,True,,1
+Gemma-2-27B,Easy,Which clinic has the highest TotalRevenue?,3,The clinic with the highest TotalRevenue is Clinic I.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1;",True,10.16797829,True,,1
 Gemma-2-27B,Easy,What is the average TotalRevenue across all clinics?,3,1220906.652,"SELECT AVG(TotalRevenue) AS AverageTotalRevenue
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",FALSE,3.906033754,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",False,3.906033754,True,,1
 Gemma-2-27B,Easy,List all unique Districts present in the dataset.,3,"         District
 0   Bandar Enstek
 1     Desa Pandan
@@ -2377,9 +2372,9 @@ Gemma-2-27B,Easy,List all unique Districts present in the dataset.,3,"         D
 29      Presint 8
 30    Bayan Lepas
 31        Kuantan","SELECT DISTINCT District
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,7.162648678,TRUE,,1
-Gemma-2-27B,Easy,How many doctors are listed in the doctor dataset?,3,46,SELECT COUNT(*) FROM table_bd4f8d5ffa8239c09831e5b997bc2753,FALSE,3.26012969,TRUE,,1
-Gemma-2-27B,Medium,Group the patient records by Religion and count how many patients are in each group.,3,"Unfortunately, I was not able to get your answer. Please try again.",,,31.99810791,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,7.162648678,True,,1
+Gemma-2-27B,Easy,How many doctors are listed in the doctor dataset?,3,46,SELECT COUNT(*) FROM table_bd4f8d5ffa8239c09831e5b997bc2753,False,3.26012969,True,,1
+Gemma-2-27B,Medium,Group the patient records by Religion and count how many patients are in each group.,3,"Unfortunately, I was not able to get your answer. Please try again.",,,31.99810791,True,,1
 Gemma-2-27B,Medium,Calculate the total revenue per District.,3,"         District  TotalRevenuePerDistrict
 0      Batu Caves               4768499.45
 1    Kuala Langat               4252648.35
@@ -2415,7 +2410,7 @@ Gemma-2-27B,Medium,Calculate the total revenue per District.,3,"         Distric
 31    Bayan Lepas                 23580.00","SELECT District, SUM(TotalRevenue) as TotalRevenuePerDistrict 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY District
-ORDER BY TotalRevenuePerDistrict DESC;",TRUE,4.078211784,TRUE,,1
+ORDER BY TotalRevenuePerDistrict DESC;",True,4.078211784,True,,1
 Gemma-2-27B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,3,"  Locum/Residence   avg_revenue
 0           Locum  28644.520000
 1       Residence  58315.057593","SELECT 
@@ -2424,16 +2419,16 @@ Gemma-2-27B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 
 FROM 
     table_c83679f393c19ab82f71054c6c3facb6
 GROUP BY 
-    ""Locum/Residence"";",TRUE,11.7844367,TRUE,,2
+    ""Locum/Residence"";",True,11.7844367,True,,2
 Gemma-2-27B,Medium,Which hour of the day has the highest average TotalRevenue?,3,The hour with the highest average TotalRevenue is 2024-03-13 09:00:00.,"SELECT Hour, AVG(TotalRevenue) as average_revenue
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
 GROUP BY Hour
 ORDER BY average_revenue DESC
-LIMIT 1;",TRUE,4.809860468,TRUE,,1
+LIMIT 1;",True,4.809860468,True,,1
 Gemma-2-27B,Medium,Compare the total number of Cash payments vs Electronic payments.,3,"   TotalCashPayment  TotalElectronicPayment
 0       10503788.64             17512170.03","SELECT SUM(TotalCash) as TotalCashPayment, 
        SUM(TotalElectronic) as TotalElectronicPayment  
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",FALSE,11.75002623,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,11.75002623,True,,1
 Gemma-2-27B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,3,"  IDOrganisation  AverageRevenuePerPatient
 0      Clinic AB                172.326564
 1      Clinic AA                132.678719
@@ -2441,8 +2436,8 @@ Gemma-2-27B,Hard,Calculate the average revenue per patient (TotalRevenue / Total
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY IDOrganisation
 ORDER BY AverageRevenuePerPatient DESC
-LIMIT 3",TRUE,12.69777846,TRUE,,1
-Gemma-2-27B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,3,,,FALSE,,FALSE,"Result must be in the format of dictionary of type and value like `result = {""type"": ..., ""value"": ... }`",3
+LIMIT 3",True,12.69777846,True,,1
+Gemma-2-27B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,3,,,False,,False,"Result must be in the format of dictionary of type and value like `result = {""type"": ..., ""value"": ... }`",3
 Gemma-2-27B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",3,"  IDOrganisation                                            Address  State  \
 0       Clinic Z  51, Jln Kebudayaan 4, Taman Universiti, 81300 ...  Johor   
 
@@ -2457,16 +2452,16 @@ FROM table_c83679f393c19ab82f71054c6c3facb6
 WHERE 
     StaffName IS NOT NULL
     AND ""TotalVisitTime(hrs)"" > 100
-    AND TotalRevenue < 50000;",FALSE,7.258055449,TRUE,,1
+    AND TotalRevenue < 50000;",False,7.258055449,True,,1
 Gemma-2-27B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,3,0.96552617,"SELECT 
     corr(TotalPanelPatientCount, TotalRevenue) as correlation
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,10.68532705,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,10.68532705,True,,1
 Gemma-2-27B,Hard,Which clinic has the highest number of Muslims?,3,Clinic Clinic D has the highest number of Muslims.,"SELECT IDOrganisation, COUNT(*) AS TotalMuslims
 FROM  table_3586b23a0be349f88985d8c0d783b36d
 WHERE Religions = 'Islam'
 GROUP BY IDOrganisation
 ORDER BY TotalMuslims DESC
-LIMIT 1;",TRUE,5.137407303,TRUE,,1
+LIMIT 1;",True,5.137407303,True,,1
 Llama3-70B,Easy,Show the first 5 rows of the clinic level data.,3,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -2507,11 +2502,11 @@ Llama3-70B,Easy,Show the first 5 rows of the clinic level data.,3,"  IDOrganisat
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,TRUE,10.89449358,TRUE,,1
-Llama3-70B,Easy,Which clinic has the highest TotalRevenue?,3,The clinic with the highest TotalRevenue is Clinic I with a total revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1",TRUE,14.81283092,TRUE,,1
-Llama3-70B,Easy,What is the average TotalRevenue across all clinics?,3,1220906.652,SELECT AVG(TotalRevenue) AS avg_total_revenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,TRUE,11.70001793,TRUE,,1
-Llama3-70B,Easy,List all unique Districts present in the dataset.,3,"Central KL, Ipoh, Setia Alam, Kuala Langat, Presint 8, Bayan Lepas, Kuantan, Sepang, Dungun, Batu Caves, Seremban, Kuala Lumpur, Hulu Langat, Kulim, Semenyih, Skudai, Mantin, Shah Alam, Cheras, Muar, Petaling Jaya, Bangi, Georgetown, Batang Kali, Pasir Mas, Wakaf Bharu, Kota Bharu, Bandar Enstek, Desa Pandan, Kajang, Rawang, Petaling",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,TRUE,9.807989597,TRUE,,1
-Llama3-70B,Easy,How many doctors are listed in the doctor dataset?,3,46,,TRUE,9.802280664,TRUE,,1
+4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,True,10.89449358,True,,1
+Llama3-70B,Easy,Which clinic has the highest TotalRevenue?,3,The clinic with the highest TotalRevenue is Clinic I with a total revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1",True,14.81283092,True,,1
+Llama3-70B,Easy,What is the average TotalRevenue across all clinics?,3,1220906.652,SELECT AVG(TotalRevenue) AS avg_total_revenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,True,11.70001793,True,,1
+Llama3-70B,Easy,List all unique Districts present in the dataset.,3,"Central KL, Ipoh, Setia Alam, Kuala Langat, Presint 8, Bayan Lepas, Kuantan, Sepang, Dungun, Batu Caves, Seremban, Kuala Lumpur, Hulu Langat, Kulim, Semenyih, Skudai, Mantin, Shah Alam, Cheras, Muar, Petaling Jaya, Bangi, Georgetown, Batang Kali, Pasir Mas, Wakaf Bharu, Kota Bharu, Bandar Enstek, Desa Pandan, Kajang, Rawang, Petaling",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,True,9.807989597,True,,1
+Llama3-70B,Easy,How many doctors are listed in the doctor dataset?,3,46,,True,9.802280664,True,,1
 Llama3-70B,Medium,Group the patient records by Religion and count how many patients are in each group.,3,"                               State  PatientCount
 0                           Selangor            19
 1                          Selangor              4
@@ -2533,7 +2528,7 @@ Llama3-70B,Medium,Group the patient records by Religion and count how many patie
     GROUP BY 
         State
     ORDER BY 
-        PatientCount DESC;",TRUE,30.0534277,TRUE,,1
+        PatientCount DESC;",True,30.0534277,True,,1
 Llama3-70B,Medium,Calculate the total revenue per District.,3,"         District  TotalRevenue
 0      Batu Caves    4768499.45
 1    Kuala Langat    4252648.35
@@ -2569,18 +2564,18 @@ Llama3-70B,Medium,Calculate the total revenue per District.,3,"         District
 31    Bayan Lepas      23580.00","SELECT District, SUM(TotalRevenue) as TotalRevenue
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     GROUP BY District
-    ORDER BY TotalRevenue DESC;",TRUE,17.61304331,TRUE,,1
+    ORDER BY TotalRevenue DESC;",True,17.61304331,True,,1
 Llama3-70B,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,3,"  LocumResidence  avg_total_revenue
 0          Locum       28644.520000
 1      Residence       58315.057593","SELECT ""Locum/Residence"" AS LocumResidence, AVG(TotalRevenue) as avg_total_revenue
 FROM table_c83679f393c19ab82f71054c6c3facb6
 WHERE ""Locum/Residence"" IN ('Locum', 'Residence')
-GROUP BY ""Locum/Residence\""",TRUE,37.15751719,TRUE,,1
+GROUP BY ""Locum/Residence\""",True,37.15751719,True,,1
 Llama3-70B,Medium,Which hour of the day has the highest average TotalRevenue?,3,The hour with the highest average TotalRevenue is 2024-03-13 09:00:00 with an average revenue of 4772.5.,"SELECT Hour, AVG(TotalRevenue) as avg_revenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
     ORDER BY avg_revenue DESC
-    LIMIT 1;",TRUE,15.18314767,TRUE,,1
+    LIMIT 1;",True,15.18314767,True,,1
 Llama3-70B,Medium,Compare the total number of Cash payments vs Electronic payments.,3,"  Payment_Type  Total_Payments
 0   Electronic     17512170.03
 1         Cash     10503788.64","SELECT 
@@ -2593,7 +2588,7 @@ Llama3-70B,Medium,Compare the total number of Cash payments vs Electronic paymen
     FROM 
         table_6c16364831b68d93e7cf9d423cf8f3da
     ORDER BY 
-        Total_Payments DESC",TRUE,18.97696257,TRUE,,1
+        Total_Payments DESC",True,18.97696257,True,,1
 Llama3-70B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,3,"  IDOrganisation  avg_revenue_per_patient
 0      Clinic AB               182.809631
 1      Clinic AA               148.010351
@@ -2601,7 +2596,7 @@ Llama3-70B,Hard,Calculate the average revenue per patient (TotalRevenue / TotalP
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     GROUP BY IDOrganisation
     ORDER BY avg_revenue_per_patient DESC
-    LIMIT 3;",TRUE,34.34065485,TRUE,,1
+    LIMIT 3;",True,34.34065485,True,,1
 Llama3-70B,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,3,The district with the highest proportion of new patients is Kajang with a proportion of 0.71.,"SELECT 
         District, 
         SUM(NewPatientCount) / SUM(PatientCount) AS NewPatientProportion
@@ -2611,27 +2606,27 @@ Llama3-70B,Hard,Identify which District has the highest proportion of 'NewPatien
         District
     ORDER BY 
         NewPatientProportion DESC
-    LIMIT 1",TRUE,16.8228507,TRUE,,1
+    LIMIT 1",True,16.8228507,True,,1
 Llama3-70B,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",3,"Empty DataFrame
 Columns: [StaffName, TotalVisitTime, TotalRevenue]
 Index: []","SELECT StaffName, SUM(""TotalVisitTime(hrs)"") AS TotalVisitTime, SUM(TotalRevenue) AS TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     GROUP BY StaffName
     HAVING SUM(""TotalVisitTime(hrs)"") > 100 AND SUM(TotalRevenue) < 50000
-    ORDER BY SUM(TotalRevenue) DESC;",TRUE,62.56569195,TRUE,,1
+    ORDER BY SUM(TotalRevenue) DESC;",True,62.56569195,True,,1
 Llama3-70B,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,3,exports\charts\temp_chart_f9b182d9-9d44-4c9c-8453-b5fb1db31eec.png,"SELECT 
         TotalPanelPatientCount, 
         TotalRevenue
     FROM 
         table_bd4f8d5ffa8239c09831e5b997bc2753
     ORDER BY 
-        TotalPanelPatientCount",FALSE,21.6916306,TRUE,,1
+        TotalPanelPatientCount",False,21.6916306,True,,1
 Llama3-70B,Hard,Which clinic has the highest number of Muslims?,3,The clinic with the highest number of Muslims is Clinic D.,"SELECT IDOrganisation, COUNT(*) as MuslimCount
     FROM table_3586b23a0be349f88985d8c0d783b36d
     WHERE Religions = 'Islam'
     GROUP BY IDOrganisation
     ORDER BY MuslimCount DESC
-    LIMIT 1;",TRUE,17.65502286,TRUE,,1
+    LIMIT 1;",True,17.65502286,True,,1
 deepseek-r1,Easy,Show the first 5 rows of the clinic level data.,3,"  IDOrganisation                                            Address     State  \
 0       Clinic A  No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seks...  Selangor   
 1       Clinic B  No 19 GF, Jalan PJS 3/48, Sri Manja Square One...  Selangor   
@@ -2672,13 +2667,13 @@ deepseek-r1,Easy,Show the first 5 rows of the clinic level data.,3,"  IDOrganisa
 1                       5221.0  
 2                       8680.0  
 3                      10464.0  
-4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,TRUE,5.812536001,TRUE,,1
+4                       5024.0  ",SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 5,True,5.812536001,True,,1
 deepseek-r1,Easy,Which clinic has the highest TotalRevenue?,3,Clinic I has the highest TotalRevenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
 ORDER BY TotalRevenue DESC 
-LIMIT 1;",TRUE,108.4127138,TRUE,,1
+LIMIT 1;",True,108.4127138,True,,1
 deepseek-r1,Easy,What is the average TotalRevenue across all clinics?,3,1220906.652,"SELECT AVG(TotalRevenue) AS AverageTotalRevenue 
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,9.144730806,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,9.144730806,True,,1
 deepseek-r1,Easy,List all unique Districts present in the dataset.,3,"         District
 0   Bandar Enstek
 1           Bangi
@@ -2713,10 +2708,10 @@ deepseek-r1,Easy,List all unique Districts present in the dataset.,3,"         D
 30         Skudai
 31    Wakaf Bharu","SELECT DISTINCT District 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-ORDER BY District",TRUE,10.2088089,TRUE,,1
-deepseek-r1,Easy,How many doctors are listed in the doctor dataset?,3,0,SELECT 0 AS doctor_count FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 1,FALSE,267.3214595,TRUE,,1
+ORDER BY District",True,10.2088089,True,,1
+deepseek-r1,Easy,How many doctors are listed in the doctor dataset?,3,0,SELECT 0 AS doctor_count FROM table_bd4f8d5ffa8239c09831e5b997bc2753 LIMIT 1,False,267.3214595,True,,1
 deepseek-r1,Medium,Group the patient records by Religion and count how many patients are in each group.,3,"                                     Result
-0  Religion column not found in any tables.",SELECT 'Religion column not found in any tables.' AS Result;,TRUE,185.9787483,TRUE,,2
+0  Religion column not found in any tables.",SELECT 'Religion column not found in any tables.' AS Result;,True,185.9787483,True,,2
 deepseek-r1,Medium,Calculate the total revenue per District.,3,"         District  TotalRevenue
 0      Kota Bharu    1503225.55
 1     Batang Kali    1991179.05
@@ -2751,25 +2746,25 @@ deepseek-r1,Medium,Calculate the total revenue per District.,3,"         Distric
 30          Bangi     669894.85
 31       Semenyih     827087.65","SELECT District, SUM(TotalRevenue) AS TotalRevenue 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
-GROUP BY District",TRUE,26.05986452,TRUE,,1
+GROUP BY District",True,26.05986452,True,,1
 deepseek-r1,Medium,Find the average TotalRevenue for doctors who are 'Locum' vs 'Residence'.,3,"    Category  AverageTotalRevenue
 0      Locum         28644.520000
 1  Residence         58315.057593","SELECT 
     ""Locum/Residence"" AS Category, 
     AVG(TotalRevenue) AS AverageTotalRevenue 
 FROM table_c83679f393c19ab82f71054c6c3facb6 
-GROUP BY ""Locum/Residence\""",TRUE,43.27473116,TRUE,,1
+GROUP BY ""Locum/Residence\""",True,43.27473116,True,,1
 deepseek-r1,Medium,Which hour of the day has the highest average TotalRevenue?,3,11,"SELECT 
     HOUR(STRPTIME(Hour, '%Y-%m-%d %H:%M:%S')) AS hour_of_day,
     AVG(TotalRevenue) AS avg_total_revenue
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
 GROUP BY hour_of_day
 ORDER BY avg_total_revenue DESC
-LIMIT 1;",TRUE,18.58281183,TRUE,,1
+LIMIT 1;",True,18.58281183,True,,1
 deepseek-r1,Medium,Compare the total number of Cash payments vs Electronic payments.,3,"Cash payments: 136758, Electronic payments: 174799","SELECT 
     SUM(TotalCashPatientCount) AS TotalCashPatients,
     SUM(TotalElectronicPatientCount) AS TotalElectronicPatients
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",TRUE,24.68910933,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;",True,24.68910933,True,,1
 deepseek-r1,Hard,Calculate the average revenue per patient (TotalRevenue / TotalPatientCount) for each clinic and show the top 3 clinics.,3,"  IDOrganisation  AverageRevenuePerPatient
 0      Clinic AB                172.326564
 1      Clinic AA                132.678719
@@ -2778,13 +2773,13 @@ deepseek-r1,Hard,Calculate the average revenue per patient (TotalRevenue / Total
     TotalRevenue / PatientCount AS AverageRevenuePerPatient
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY AverageRevenuePerPatient DESC
-LIMIT 3",TRUE,46.18893313,TRUE,,1
+LIMIT 3",True,46.18893313,True,,1
 deepseek-r1,Hard,Identify which District has the highest proportion of 'NewPatientCount' compared to 'PatientCount'.,3,The District with the highest proportion of NewPatientCount compared to PatientCount is Kajang with a proportion of 0.711.,"SELECT District, 
        SUM(NewPatientCount) * 1.0 / SUM(PatientCount) AS NewPatientProportion
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 GROUP BY District
 ORDER BY NewPatientProportion DESC
-LIMIT 1;",TRUE,15.95817542,TRUE,,1
+LIMIT 1;",True,15.95817542,True,,1
 deepseek-r1,Hard,"Filter for doctors who have worked more than 100 hours but generated less than 50,000 in TotalRevenue.",3,"  IDOrganisation  StaffName  TotalHours  TotalRevenue
 0       Clinic Z  Doctor AW  498.751111       22340.0","SELECT 
     IDOrganisation,
@@ -2793,12 +2788,18 @@ deepseek-r1,Hard,"Filter for doctors who have worked more than 100 hours but gen
     TotalRevenue
 FROM table_c83679f393c19ab82f71054c6c3facb6
 WHERE ""TotalVisitTime(hrs)"" > 100 AND TotalRevenue < 50000
-ORDER BY TotalRevenue DESC;",TRUE,49.86986971,TRUE,,1
+ORDER BY TotalRevenue DESC;",True,49.86986971,True,,1
 deepseek-r1,Hard,Is there any correlation between the number of 'TotalPanelPatientCount' and 'TotalRevenue'?,3,The correlation between TotalPanelPatientCount and TotalRevenue is 0.97. This indicates a strong positive relationship.,"SELECT CORR(TotalPanelPatientCount, TotalRevenue) AS correlation_coefficient
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753",TRUE,10.9843049,TRUE,,1
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753",True,10.9843049,True,,1
 deepseek-r1,Hard,Which clinic has the highest number of Muslims?,3,The clinic with the highest number of Muslims is Clinic D with 11258 patients.,"SELECT IDOrganisation AS Clinic, COUNT(*) AS MuslimCount
 FROM table_3586b23a0be349f88985d8c0d783b36d
 WHERE Religions = 'Islam'
 GROUP BY IDOrganisation
 ORDER BY MuslimCount DESC
-LIMIT 1;",TRUE,53.8781755,TRUE,,1
+LIMIT 1;",True,53.8781755,True,,1
+Llama-3.1-8B,Easy,Which clinic has the highest TotalRevenue?,1,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1;",True,2.5237679481506348,True,,2
+Llama-3.1-8B,Easy,What is the average TotalRevenue across all clinics?,1,1220906.6519565217,"SELECT AVG(TotalRevenue) as average_total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753",False,1.6341087818145752,True,,1
