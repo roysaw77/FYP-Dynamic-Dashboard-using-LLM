@@ -1,0 +1,888 @@
+model,difficulty,question,expected_answer,run_num,response,sql_query,full_code,is_correct,time_seconds,success,error
+Llama-3.1-8B,hard,Create a bar chart of patient religions for the top 3 clinics by total revenue. Analyze religious demographics within high performing clinics.,Bar chart showing religious distribution,1,,,,False,,False,"Required keyword: 'this' missing for <class 'sqlglot.expressions.Mod'>. Line 5, Col: 32.
+  349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.IDOrganisation
+    WHERE t1.IDOrganisation IN (%s[4m)[0m"
+Llama-3.1-8B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_1cea3703-99bf-4836-80da-a4fc0683c463.png,,"import pandas as pd
+import matplotlib.pyplot as plt
+data = execute_sql_query(""""""
+    SELECT 
+        t1.IDOrganisation,
+        t1.Address,
+        t1.State,
+        t1.District,
+        t1.TotalRevenue,
+        COUNT(DISTINCT t2.StaffName) AS TotalDoctors
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    LEFT JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, t1.Address, t1.State, t1.District, t1.TotalRevenue
+    ORDER BY 
+        t1.TotalRevenue DESC
+"""""")
+plt.figure(figsize=(10, 6))
+plt.scatter(data['TotalRevenue'], data['TotalDoctors'])
+plt.xlabel('Total Revenue')
+plt.ylabel('Total Doctors')
+plt.title('Relationship between Total Revenue and Total Doctors')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_1cea3703-99bf-4836-80da-a4fc0683c463.png'}",TRUE,4.4,True,
+Llama-3.1-8B,hard,Top 5 doctors with the highest patient counts.,Bar chart of top 5 doctors by patient count,1,"     StaffName  TotalPatientCount
+184  Doctor GV               5076
+187  Doctor GY               4912
+183  Doctor GU               3748
+62   Doctor CH               3472
+23   Doctor AW               3448",,"import pandas as pd
+table = execute_sql_query(""""""
+    SELECT 
+        StaffName,
+        TotalPatientCount
+    FROM 
+        table_c83679f393c19ab82f71054c6c3facb6
+"""""")
+table = pd.DataFrame(table)
+table = table.groupby('StaffName')['TotalPatientCount'].sum().reset_index()
+table = table.sort_values(by='TotalPatientCount', ascending=False)
+table = table.head(5)
+result = {'type': 'dataframe', 'value': table}
+print(result)",TRUE,4.17,True,
+Llama-3.1-8B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_484118f5-63cb-46a1-b1d2-22c59b1543e2.png,"SELECT 
+        t1.State, 
+        t1.Religions, 
+        COUNT(*) as Count
+    FROM 
+        table_3586b23a0be349f88985d8c0d783b36d t1
+    JOIN 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    WHERE 
+        t1.State IS NOT NULL
+    GROUP BY 
+        t1.State, t1.Religions
+    ORDER BY 
+        t1.State, Count DESC","sql_query = """"""
+    SELECT 
+        t1.State, 
+        t1.Religions, 
+        COUNT(*) as Count
+    FROM 
+        table_3586b23a0be349f88985d8c0d783b36d t1
+    JOIN 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    WHERE 
+        t1.State IS NOT NULL
+    GROUP BY 
+        t1.State, t1.Religions
+    ORDER BY 
+        t1.State, Count DESC
+""""""
+result_df = execute_sql_query(sql_query)
+result_df = result_df.sort_values(by=['State', 'Count'], ascending=[True, False])
+top_3_counts = result_df.groupby('State')['Count'].nlargest(3).reset_index()
+plt.figure(figsize=(10, 6))
+for state in top_3_counts['State'].unique():
+    state_df = result_df[result_df['State'] == state]
+    plt.bar(state_df['State'], state_df['Count'], label=state_df['Religions'].iloc[0], alpha=0.5)
+plt.title('Top 3 Patient Religion Counts by State')
+plt.xlabel('State')
+plt.ylabel('Count')
+plt.legend(title='Religions')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_484118f5-63cb-46a1-b1d2-22c59b1543e2.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_484118f5-63cb-46a1-b1d2-22c59b1543e2.png'}",FALSE,25.92,True,
+Llama-3.1-8B,hard,Plot the  the top 5 high patient count doctors working in clinics with the highest revenue.,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_2549d0da-f600-49b4-a8b7-ae8dbcd96b84.png,"SELECT 
+        T1.IDOrganisation,
+        T1.Address,
+        T1.State,
+        T1.District,
+        T2.StaffName,
+        T2.TotalPatientCount,
+        T1.TotalRevenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 AS T1
+    INNER JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 AS T2
+    ON 
+        T1.IDOrganisation = T2.IDOrganisation
+    WHERE 
+        T1.TotalRevenue > 0
+    GROUP BY 
+        T1.IDOrganisation, T1.Address, T1.State, T1.District, T2.StaffName, T2.TotalPatientCount, T1.TotalRevenue
+    ORDER BY 
+        T1.TotalRevenue DESC, T2.TotalPatientCount DESC
+    LIMIT 5","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+    SELECT 
+        T1.IDOrganisation,
+        T1.Address,
+        T1.State,
+        T1.District,
+        T2.StaffName,
+        T2.TotalPatientCount,
+        T1.TotalRevenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 AS T1
+    INNER JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 AS T2
+    ON 
+        T1.IDOrganisation = T2.IDOrganisation
+    WHERE 
+        T1.TotalRevenue > 0
+    GROUP BY 
+        T1.IDOrganisation, T1.Address, T1.State, T1.District, T2.StaffName, T2.TotalPatientCount, T1.TotalRevenue
+    ORDER BY 
+        T1.TotalRevenue DESC, T2.TotalPatientCount DESC
+    LIMIT 5
+""""""
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['StaffName'], df['TotalPatientCount'])
+plt.xlabel('Staff Name')
+plt.ylabel('Total Patient Count')
+plt.title('Top 5 High Patient Count Doctors')
+plt.xticks(rotation=90)
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_2549d0da-f600-49b4-a8b7-ae8dbcd96b84.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_2549d0da-f600-49b4-a8b7-ae8dbcd96b84.png'}
+print(result)",TRUE,6.31,True,
+Gemma-2-27B,hard,Create a bar chart of patient religions for the top 3 clinics by total revenue. Analyze religious demographics within high performing clinics.,Bar chart showing religious distribution,1,exports\charts\temp_chart_c432571a-aef7-4a55-8cb7-95283aa448ed.png,"WITH RankedClinics AS (
+    SELECT 
+        IDOrganisation,
+        TotalRevenue 
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 3
+),
+ReligiousCounts AS (
+    SELECT
+        t1.IDOrganisation,
+        t2.""Religions"",
+        COUNT(*) AS ReligionCount
+    FROM RankedClinics t1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t1.IDOrganisation, t2.""Religions""
+)
+SELECT 
+    IDOrganisation, 
+    ""Religions"", 
+    ReligionCount
+FROM ReligiousCounts
+ORDER BY IDOrganisation, ReligionCount DESC;","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+WITH RankedClinics AS (
+    SELECT 
+        IDOrganisation,
+        TotalRevenue 
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 3
+),
+ReligiousCounts AS (
+    SELECT
+        t1.IDOrganisation,
+        t2.""Religions"",
+        COUNT(*) AS ReligionCount
+    FROM RankedClinics t1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t1.IDOrganisation, t2.""Religions""
+)
+SELECT 
+    IDOrganisation, 
+    ""Religions"", 
+    ReligionCount
+FROM ReligiousCounts
+ORDER BY IDOrganisation, ReligionCount DESC;
+""""""
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+df['Religions'] = df['Religions'].astype(str)
+for clinic, clinic_data in df.groupby('IDOrganisation'):
+    plt.bar(clinic_data['Religions'], clinic_data['ReligionCount'], label=clinic)
+plt.xlabel('Religions')
+plt.ylabel('Patient Count')
+plt.title('Patient Religions in Top 3 Clinics by Revenue')
+plt.xticks(rotation=45)
+plt.legend()
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_c432571a-aef7-4a55-8cb7-95283aa448ed.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_c432571a-aef7-4a55-8cb7-95283aa448ed.png'}",TRUE,35.8,True,
+Gemma-2-27B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_a6e449fa-f2b4-4365-a231-0cff7cd43bb0.png,"SELECT t1.IDOrganisation, SUM(t2.TotalRevenue) as TotalRevenue, COUNT(DISTINCT t2.StaffName) AS DoctorCount
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation=t2.IDOrganisation
+GROUP BY t1.IDOrganisation;","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+SELECT t1.IDOrganisation, SUM(t2.TotalRevenue) as TotalRevenue, COUNT(DISTINCT t2.StaffName) AS DoctorCount
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation=t2.IDOrganisation
+GROUP BY t1.IDOrganisation;
+""""""
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.scatter(df['DoctorCount'], df['TotalRevenue'])
+plt.xlabel('Number of Doctors')
+plt.ylabel('Total Revenue')
+plt.title('Relationship Between Doctor Count and Total Revenue')
+plt.grid(True)
+plt.savefig('exports\\charts\\temp_chart_a6e449fa-f2b4-4365-a231-0cff7cd43bb0.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_a6e449fa-f2b4-4365-a231-0cff7cd43bb0.png'}",FALSE,18.13,True,
+Gemma-2-27B,hard,Top 5 doctors with the highest patient counts.,Bar chart of top 5 doctors by patient count,1,"   StaffName  TotalPatientCount
+0  Doctor GV             5076.0
+1  Doctor GY             4912.0
+2  Doctor GU             3748.0
+3  Doctor CH             3472.0
+4  Doctor AW             3448.0","SELECT StaffName, SUM(TotalPatientCount) as TotalPatientCount
+FROM table_c83679f393c19ab82f71054c6c3facb6
+GROUP BY StaffName
+ORDER BY TotalPatientCount DESC
+LIMIT 5;","import pandas as pd
+sql_query = """"""
+SELECT StaffName, SUM(TotalPatientCount) as TotalPatientCount
+FROM table_c83679f393c19ab82f71054c6c3facb6
+GROUP BY StaffName
+ORDER BY TotalPatientCount DESC
+LIMIT 5;
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE.,4.78,True,
+Gemma-2-27B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_874e64c4-91ef-4650-b9fe-cf8365facb50.png,"WITH PatientReligionCounts AS (
+    SELECT 
+        p.State,
+        r.Religions,
+        COUNT(*) AS PatientCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 p
+    JOIN table_3586b23a0be349f88985d8c0d783b36d r ON p.IDOrganisation = r.IDOrganisation
+    GROUP BY p.State, r.Religions
+)
+SELECT 
+    State,
+    Religions,
+    PatientCount
+ FROM PatientReligionCounts
+ORDER BY State, PatientCount DESC
+LIMIT 15;","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+WITH PatientReligionCounts AS (
+    SELECT 
+        p.State,
+        r.Religions,
+        COUNT(*) AS PatientCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 p
+    JOIN table_3586b23a0be349f88985d8c0d783b36d r ON p.IDOrganisation = r.IDOrganisation
+    GROUP BY p.State, r.Religions
+)
+SELECT 
+    State,
+    Religions,
+    PatientCount
+ FROM PatientReligionCounts
+ORDER BY State, PatientCount DESC
+LIMIT 15;
+""""""
+df = execute_sql_query(sql_query)
+df_pivot = df.pivot(index='State', columns='Religions', values='PatientCount')
+df_pivot.fillna(0, inplace=True)
+ax = df_pivot.plot(kind='bar', stacked=True)
+plt.title('Top 3 Religious Demographics by State')
+plt.xlabel('State')
+plt.ylabel('Patient Count')
+plt.savefig('exports\\charts\\temp_chart_874e64c4-91ef-4650-b9fe-cf8365facb50.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_874e64c4-91ef-4650-b9fe-cf8365facb50.png'}",FALSE,22.47,True,
+Gemma-2-27B,hard,Plot the  the top 5 high patient count doctors working in clinics with the highest revenue.,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_5d1836ef-e55a-4fc5-acbf-584b5b78c997.png,"WITH ClinicRevenue AS (
+    SELECT 
+        IDOrganisation, 
+        SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+),
+DoctorPatientCount AS (
+    SELECT 
+        t1.IDOrganisation,
+        t2.StaffName,
+        SUM(t2.TotalPatientCount) as TotalPatientCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t1.IDOrganisation, t2.StaffName
+)
+SELECT 
+    cr.IDOrganisation,
+    dpc.StaffName,
+    dpc.TotalPatientCount
+FROM ClinicRevenue cr
+JOIN DoctorPatientCount dpc ON cr.IDOrganisation = dpc.IDOrganisation
+ORDER BY cr.TotalRevenue DESC, dpc.TotalPatientCount DESC
+LIMIT 5;","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+WITH ClinicRevenue AS (
+    SELECT 
+        IDOrganisation, 
+        SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+),
+DoctorPatientCount AS (
+    SELECT 
+        t1.IDOrganisation,
+        t2.StaffName,
+        SUM(t2.TotalPatientCount) as TotalPatientCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t1.IDOrganisation, t2.StaffName
+)
+SELECT 
+    cr.IDOrganisation,
+    dpc.StaffName,
+    dpc.TotalPatientCount
+FROM ClinicRevenue cr
+JOIN DoctorPatientCount dpc ON cr.IDOrganisation = dpc.IDOrganisation
+ORDER BY cr.TotalRevenue DESC, dpc.TotalPatientCount DESC
+LIMIT 5;
+""""""
+df = execute_sql_query(sql_query)
+plt.bar(df['StaffName'], df['TotalPatientCount'])
+plt.xlabel('Doctor Name')
+plt.ylabel('Total Patient Count')
+plt.title('Top 5 Doctors by Patient Count in High Revenue Clinics')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_5d1836ef-e55a-4fc5-acbf-584b5b78c997.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_5d1836ef-e55a-4fc5-acbf-584b5b78c997.png'}",FALSE.,39.19,True,
+Llama3-70B,hard,Create a bar chart of patient religions for the top 3 clinics by total revenue. Analyze religious demographics within high performing clinics.,Bar chart showing religious distribution,1,exports\charts\temp_chart_fc7a07c1-4053-495e-9a10-cd89d3ef4782.png,"SELECT IDOrganisation, Religions, COUNT(*) as PatientCount
+    FROM table_3586b23a0be349f88985d8c0d783b36d
+    WHERE IDOrganisation IN ({})
+    GROUP BY IDOrganisation, Religions
+    ORDER BY IDOrganisation, PatientCount DESC;","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 3;
+""""""
+top_3_clinics = execute_sql_query(sql_query)
+clinic_ids = top_3_clinics['IDOrganisation'].tolist()
+sql_query = """"""
+    SELECT IDOrganisation, Religions, COUNT(*) as PatientCount
+    FROM table_3586b23a0be349f88985d8c0d783b36d
+    WHERE IDOrganisation IN ({})
+    GROUP BY IDOrganisation, Religions
+    ORDER BY IDOrganisation, PatientCount DESC;
+"""""".format(','.join([""'{}'"".format(clinic_id) for clinic_id in clinic_ids]))
+patient_religions = execute_sql_query(sql_query)
+fig, ax = plt.subplots(figsize=(10, 6))
+for clinic_id in clinic_ids:
+    clinic_data = patient_religions[patient_religions['IDOrganisation'] == clinic_id]
+    ax.bar(clinic_data['Religions'].fillna('Unknown'), clinic_data['PatientCount'], label=clinic_id)
+ax.set_xlabel('Religions')
+ax.set_ylabel('Patient Count')
+ax.set_title('Patient Religions for Top 3 Clinics by Total Revenue')
+ax.legend()
+plt.savefig('exports\\charts\\temp_chart_fc7a07c1-4053-495e-9a10-cd89d3ef4782.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_fc7a07c1-4053-495e-9a10-cd89d3ef4782.png'}",TRUE,28.08,True,
+Llama3-70B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_1e0f3faa-9f37-4a20-b250-dae9f97fefdb.png,"SELECT 
+        t1.IDOrganisation, 
+        COUNT(DISTINCT t2.StaffName) AS num_doctors, 
+        SUM(t1.TotalRevenue) AS total_revenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2 
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation
+    ORDER BY 
+        total_revenue DESC","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+    SELECT 
+        t1.IDOrganisation, 
+        COUNT(DISTINCT t2.StaffName) AS num_doctors, 
+        SUM(t1.TotalRevenue) AS total_revenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2 
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation
+    ORDER BY 
+        total_revenue DESC
+""""""
+df = execute_sql_query(sql_query)
+plt.scatter(df['num_doctors'], df['total_revenue'])
+plt.xlabel('Number of Doctors')
+plt.ylabel('Total Revenue')
+plt.title('Relationship between Total Revenue and Number of Doctors')
+plt.savefig('exports\\charts\\temp_chart_1e0f3faa-9f37-4a20-b250-dae9f97fefdb.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_1e0f3faa-9f37-4a20-b250-dae9f97fefdb.png'}",TRUE,10.87,True,
+Llama3-70B,hard,Top 5 doctors with the highest patient counts.,Bar chart of top 5 doctors by patient count,1,"   StaffName  TotalPatients
+0  Doctor GV         5076.0
+1  Doctor GY         4912.0
+2  Doctor GU         3748.0
+3  Doctor CH         3472.0
+4  Doctor AW         3448.0","SELECT StaffName, SUM(TotalPatientCount) as TotalPatients
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    GROUP BY StaffName
+    ORDER BY TotalPatients DESC
+    LIMIT 5;","import pandas as pd
+sql_query = """"""
+    SELECT StaffName, SUM(TotalPatientCount) as TotalPatients
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    GROUP BY StaffName
+    ORDER BY TotalPatients DESC
+    LIMIT 5;
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,7.48,True,
+Llama3-70B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_a062c6c5-724d-4e88-9411-97d0ad63901c.png,"SELECT 
+        State, 
+        Religions, 
+        COUNT(*) as PatientCount
+    FROM 
+        table_3586b23a0be349f88985d8c0d783b36d
+    GROUP BY 
+        State, 
+        Religions
+    ORDER BY 
+        PatientCount DESC
+    LIMIT 5;","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+    SELECT 
+        State, 
+        Religions, 
+        COUNT(*) as PatientCount
+    FROM 
+        table_3586b23a0be349f88985d8c0d783b36d
+    GROUP BY 
+        State, 
+        Religions
+    ORDER BY 
+        PatientCount DESC
+    LIMIT 5;
+""""""
+df = execute_sql_query(sql_query)
+df_pivot = df.pivot(index='State', columns='Religions', values='PatientCount')
+plt.figure(figsize=(10, 6))
+df_pivot.plot(kind='bar', stacked=True)
+plt.title('Top 5 Patient Religion Counts by State')
+plt.xlabel('State')
+plt.ylabel('Patient Count')
+plt.legend(title='Religions')
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_a062c6c5-724d-4e88-9411-97d0ad63901c.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_a062c6c5-724d-4e88-9411-97d0ad63901c.png'}",FALSE,11.89,True,
+Llama3-70B,hard,Plot the  the top 5 high patient count doctors working in clinics with the highest revenue.,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_675047fd-09e8-499e-93af-e2615f91d369.png,"WITH clinic_revenue AS (
+        SELECT IDOrganisation, SUM(TotalRevenue) AS TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        GROUP BY IDOrganisation
+        ORDER BY TotalRevenue DESC
+    ),
+    doctor_patient_count AS (
+        SELECT IDOrganisation, StaffName, SUM(TotalPatientCount) AS TotalPatientCount
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        GROUP BY IDOrganisation, StaffName
+        ORDER BY TotalPatientCount DESC
+    )
+    SELECT d.IDOrganisation, d.StaffName, d.TotalPatientCount
+    FROM doctor_patient_count d
+    JOIN clinic_revenue c ON d.IDOrganisation = c.IDOrganisation
+    ORDER BY c.TotalRevenue DESC, d.TotalPatientCount DESC
+    LIMIT 5;","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+    WITH clinic_revenue AS (
+        SELECT IDOrganisation, SUM(TotalRevenue) AS TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        GROUP BY IDOrganisation
+        ORDER BY TotalRevenue DESC
+    ),
+    doctor_patient_count AS (
+        SELECT IDOrganisation, StaffName, SUM(TotalPatientCount) AS TotalPatientCount
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        GROUP BY IDOrganisation, StaffName
+        ORDER BY TotalPatientCount DESC
+    )
+    SELECT d.IDOrganisation, d.StaffName, d.TotalPatientCount
+    FROM doctor_patient_count d
+    JOIN clinic_revenue c ON d.IDOrganisation = c.IDOrganisation
+    ORDER BY c.TotalRevenue DESC, d.TotalPatientCount DESC
+    LIMIT 5;
+""""""
+df = execute_sql_query(sql_query)
+plt.barh(df['StaffName'], df['TotalPatientCount'])
+plt.xlabel('Total Patient Count')
+plt.ylabel('Doctor Name')
+plt.title('Top 5 High Patient Count Doctors in Clinics with Highest Revenue')
+plt.savefig('exports\\charts\\temp_chart_675047fd-09e8-499e-93af-e2615f91d369.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_675047fd-09e8-499e-93af-e2615f91d369.png'}",TRUE.,15.21,True,
+Llama-3.1-405B,hard,Create a bar chart of patient religions for the top 3 clinics by total revenue. Analyze religious demographics within high performing clinics.,Bar chart showing religious distribution,1,exports\charts\temp_chart_e5c5639c-c4a5-4fcf-a241-6fc8835bb1c5.png,"SELECT t1.IDOrganisation, t2.""Religions"", COUNT(t2.""Religions"") as count
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+JOIN table_3586b23a0be349f88985d8c0d783b36d t2
+ON t1.IDOrganisation = t2.IDOrganisation
+WHERE t1.IDOrganisation IN (
+    SELECT IDOrganisation
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 3
+)
+GROUP BY t1.IDOrganisation, t2.""Religions\""","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+SELECT t1.IDOrganisation, t2.""Religions"", COUNT(t2.""Religions"") as count
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+JOIN table_3586b23a0be349f88985d8c0d783b36d t2
+ON t1.IDOrganisation = t2.IDOrganisation
+WHERE t1.IDOrganisation IN (
+    SELECT IDOrganisation
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 3
+)
+GROUP BY t1.IDOrganisation, t2.""Religions\""
+""""""
+df = execute_sql_query(sql_query)
+df_pivot = df.pivot(index='IDOrganisation', columns='Religions', values='count')
+df_pivot.plot(kind='bar', figsize=(10, 6))
+plt.title('Patient Religions for Top 3 Clinics by Total Revenue')
+plt.xlabel('Clinic')
+plt.ylabel('Count')
+plt.legend(title='Religions')
+plt.xticks(rotation=0)
+plt.savefig('exports\\charts\\temp_chart_e5c5639c-c4a5-4fcf-a241-6fc8835bb1c5.png', bbox_inches='tight')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_e5c5639c-c4a5-4fcf-a241-6fc8835bb1c5.png'}",TRUE,39.72,True,
+Llama-3.1-405B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_441f1680-e9a0-42ca-acb4-e264daf56070.png,"SELECT 
+        t1.IDOrganisation, 
+        COUNT(t2.StaffName) AS DoctorCount, 
+        t1.TotalRevenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    LEFT JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, 
+        t1.TotalRevenue","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+    SELECT 
+        t1.IDOrganisation, 
+        COUNT(t2.StaffName) AS DoctorCount, 
+        t1.TotalRevenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    LEFT JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, 
+        t1.TotalRevenue
+""""""
+data = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.scatter(data['TotalRevenue'], data['DoctorCount'])
+plt.xlabel('Total Revenue')
+plt.ylabel('Number of Doctors')
+plt.title('Relationship between Total Revenue and Number of Doctors')
+plt.savefig('exports\\charts\\temp_chart_441f1680-e9a0-42ca-acb4-e264daf56070.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_441f1680-e9a0-42ca-acb4-e264daf56070.png'}",TRUE.,11.8,True,
+Llama-3.1-405B,hard,Top 5 doctors with the highest patient counts.,Bar chart of top 5 doctors by patient count,1,"   StaffName  TotalPatientCount
+0  Doctor GV               5076
+1  Doctor GY               4912
+2  Doctor GU               3748
+3  Doctor CH               3472
+4  Doctor CM               3000","SELECT StaffName, TotalPatientCount
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        ORDER BY TotalPatientCount DESC
+        LIMIT 5","import pandas as pd
+
+
+def get_top_doctors():
+    sql_query = """"""
+        SELECT StaffName, TotalPatientCount
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        ORDER BY TotalPatientCount DESC
+        LIMIT 5
+    """"""
+    df = execute_sql_query(sql_query)
+    return df
+
+
+top_doctors = get_top_doctors()
+result = {'type': 'dataframe', 'value': top_doctors}",TRUE,8.83,True,
+Llama-3.1-405B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_98d8d017-06d1-4fd2-a95e-589bfd14dff6.png,"SELECT State, Religions, COUNT(*) as count
+    FROM table_3586b23a0be349f88985d8c0d783b36d
+    GROUP BY State, Religions
+    ORDER BY count DESC","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+    SELECT State, Religions, COUNT(*) as count
+    FROM table_3586b23a0be349f88985d8c0d783b36d
+    GROUP BY State, Religions
+    ORDER BY count DESC
+""""""
+df = execute_sql_query(sql_query)
+df = df.groupby('State').head(3)
+df = df.pivot(index='State', columns='Religions', values='count')
+plt.figure(figsize=(10, 6))
+df.plot(kind='bar', stacked=True)
+plt.title('Top 3 Patient Religions by State')
+plt.xlabel('State')
+plt.ylabel('Count')
+plt.legend(title='Religions')
+plt.xticks(rotation=90)
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_98d8d017-06d1-4fd2-a95e-589bfd14dff6.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_98d8d017-06d1-4fd2-a95e-589bfd14dff6.png'}",FALSE.,9.09,True,
+Llama-3.1-405B,hard,Plot the  the top 5 high patient count doctors working in clinics with the highest revenue.,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_5fb2e797-efcb-4278-818e-374c99f17abe.png,"SELECT 
+        t2.StaffName, 
+        t2.TotalPatientCount, 
+        t1.TotalRevenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    ORDER BY 
+        t1.TotalRevenue DESC, 
+        t2.TotalPatientCount DESC
+    LIMIT 5","import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """"""
+    SELECT 
+        t2.StaffName, 
+        t2.TotalPatientCount, 
+        t1.TotalRevenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    ORDER BY 
+        t1.TotalRevenue DESC, 
+        t2.TotalPatientCount DESC
+    LIMIT 5
+""""""
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['StaffName'], df['TotalPatientCount'])
+plt.xlabel('Doctor Name')
+plt.ylabel('Patient Count')
+plt.title('Top 5 High Patient Count Doctors Working in Clinics with the Highest Revenue')
+plt.xticks(rotation=90)
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_5fb2e797-efcb-4278-818e-374c99f17abe.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_5fb2e797-efcb-4278-818e-374c99f17abe.png'}",TRUE.,11.21,True,
+Mistral-Large-3-675B,hard,Create a bar chart of patient religions for the top 3 clinics by total revenue. Analyze religious demographics within high performing clinics.,Bar chart showing religious distribution,1,exports\charts\temp_chart_0aac6587-2290-4d54-92a7-45bffd48c6bd.png,,"import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+top_clinics_query = """"""
+SELECT IDOrganisation, TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 3
+""""""
+top_clinics = execute_sql_query(top_clinics_query)
+religion_query = f""""""
+SELECT
+    t1.IDOrganisation,
+    t2.Religions,
+    COUNT(*) as PatientCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d t2
+JOIN
+    (SELECT IDOrganisation FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+     WHERE IDOrganisation IN ({','.join([f""'{x}'"" for x in top_clinics['IDOrganisation']])})
+    ) t1 ON t1.IDOrganisation = t2.IDOrganisation
+WHERE
+    t2.Religions IS NOT NULL
+GROUP BY
+    t1.IDOrganisation, t2.Religions
+ORDER BY
+    t1.IDOrganisation, PatientCount DESC
+""""""
+religion_df = execute_sql_query(religion_query)
+plt.figure(figsize=(12, 6))
+sns.barplot(data=religion_df, x='IDOrganisation', y='PatientCount', hue='Religions')
+plt.title('Religious Demographics for Top 3 Clinics by Revenue')
+plt.xlabel('Clinic')
+plt.ylabel('Number of Patients')
+plt.legend(title='Religion', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+chart_file = 'exports\\charts\\temp_chart_0aac6587-2290-4d54-92a7-45bffd48c6bd.png'
+plt.savefig(chart_file)
+plt.close()
+result = {'type': 'plot', 'value': chart_file}",TRUE.,16.18,True,
+Mistral-Large-3-675B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_f9673d54-e3ea-48da-8cbc-c6d75f8ecef3.png,,"import pandas as pd
+import matplotlib.pyplot as plt
+clinic_data = execute_sql_query(""""""
+    SELECT
+        t1.IDOrganisation,
+        t1.TotalRevenue,
+        COUNT(DISTINCT t2.StaffName) AS DoctorCount
+    FROM
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY
+        t1.IDOrganisation, t1.TotalRevenue
+"""""")
+plt.figure(figsize=(10, 6))
+plt.scatter(clinic_data['DoctorCount'], clinic_data['TotalRevenue'], s=100, alpha=0.7)
+plt.title('Relationship Between Clinic Revenue and Number of Doctors')
+plt.xlabel('Number of Doctors')
+plt.ylabel('Total Revenue (MYR)')
+plt.grid(True)
+for i, row in clinic_data.iterrows():
+    plt.text(row['DoctorCount'], row['TotalRevenue'], row['IDOrganisation'], fontsize=9, ha='right', va='bottom')
+plot_filename = 'exports\\charts\\temp_chart_f9673d54-e3ea-48da-8cbc-c6d75f8ecef3.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}",TRUE,8.16,True,
+Mistral-Large-3-675B,hard,Top 5 doctors with the highest patient counts.,Bar chart of top 5 doctors by patient count,1,"   StaffName  TotalPatients
+0  Doctor GV         5076.0
+1  Doctor GY         4912.0
+2  Doctor GU         3748.0
+3  Doctor CH         3472.0
+4  Doctor AW         3448.0","SELECT
+    StaffName,
+    SUM(""TotalPatientCount"") AS TotalPatients
+FROM
+    table_c83679f393c19ab82f71054c6c3facb6
+GROUP BY
+    StaffName
+ORDER BY
+    TotalPatients DESC
+LIMIT 5","import pandas as pd
+sql_query = """"""
+SELECT
+    StaffName,
+    SUM(""TotalPatientCount"") AS TotalPatients
+FROM
+    table_c83679f393c19ab82f71054c6c3facb6
+GROUP BY
+    StaffName
+ORDER BY
+    TotalPatients DESC
+LIMIT 5
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,4.27,True,
+Mistral-Large-3-675B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_cea9bf48-9e39-4524-bb68-cf1685aafb13.png,,"import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+religion_query = """"""
+SELECT
+    State,
+    Religions,
+    COUNT(*) as ReligionCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d
+GROUP BY
+    State, Religions
+ORDER BY
+    State, ReligionCount DESC
+""""""
+religion_data = execute_sql_query(religion_query)
+top_religions = religion_data.groupby('State').apply(lambda x: x.nlargest(3, 'ReligionCount')).reset_index(drop=True)
+states = top_religions['State'].unique()
+religions = top_religions['Religions'].unique()[:3]
+pivot_df = top_religions.pivot(index='State', columns='Religions', values='ReligionCount').fillna(0)
+pivot_df = pivot_df.reindex(columns=religions)
+pivot_df = pivot_df.reindex(states)
+plt.figure(figsize=(12, 8))
+ax = pivot_df.plot(kind='bar', stacked=True, figsize=(12, 8))
+plt.title('Top 3 Patient Religions by State', fontsize=16)
+plt.xlabel('State', fontsize=12)
+plt.ylabel('Number of Patients', fontsize=12)
+plt.xticks(rotation=45, ha='right')
+plt.legend(title='Religion', bbox_to_anchor=(1.05, 1), loc='upper left')
+plot_filename = 'exports\\charts\\temp_chart_cea9bf48-9e39-4524-bb68-cf1685aafb13.png'
+plt.tight_layout()
+plt.savefig(plot_filename, dpi=300, bbox_inches='tight')
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}",FALSE,12.2,True,
+Mistral-Large-3-675B,hard,Plot the  the top 5 high patient count doctors working in clinics with the highest revenue.,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_94679046-d3ac-4d52-8000-c0654aeea125.png,"WITH clinic_revenue AS (
+    SELECT
+        t1.IDOrganisation,
+        t1.TotalRevenue,
+        t2.StaffName,
+        t2.""TotalPatientCount"",
+        t2.""TotalPaidPatientCount"",
+        t2.""TotalPanelPatientCount""
+    FROM
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    WHERE
+        t2.""Locum/Residence"" = 'Residence'
+)
+SELECT
+    StaffName,
+    ""TotalPatientCount"",
+    TotalRevenue
+FROM
+    clinic_revenue
+ORDER BY
+    TotalRevenue DESC,
+    ""TotalPatientCount"" DESC
+LIMIT 5","import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+sql_query = """"""
+WITH clinic_revenue AS (
+    SELECT
+        t1.IDOrganisation,
+        t1.TotalRevenue,
+        t2.StaffName,
+        t2.""TotalPatientCount"",
+        t2.""TotalPaidPatientCount"",
+        t2.""TotalPanelPatientCount""
+    FROM
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    WHERE
+        t2.""Locum/Residence"" = 'Residence'
+)
+SELECT
+    StaffName,
+    ""TotalPatientCount"",
+    TotalRevenue
+FROM
+    clinic_revenue
+ORDER BY
+    TotalRevenue DESC,
+    ""TotalPatientCount"" DESC
+LIMIT 5
+""""""
+top_doctors_df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+sns.barplot(data=top_doctors_df, x='StaffName', y='TotalPatientCount', palette='viridis')
+plt.title('Top 5 High Patient Count Doctors in Highest Revenue Clinics')
+plt.xlabel('Doctor Name')
+plt.ylabel('Total Patient Count')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'exports\\charts\\temp_chart_94679046-d3ac-4d52-8000-c0654aeea125.png'
+plt.savefig(plot_filename)
+plt.close()
+result = {'type': 'plot', 'value': plot_filename}",TRUE.,50.74,True,
