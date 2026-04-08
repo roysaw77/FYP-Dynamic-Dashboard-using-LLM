@@ -1,0 +1,3390 @@
+model,difficulty,question,expected_answer,run_num,response,sql_query,full_code,is_correct,time_seconds,success,error,calculated_correct,is_correct_bool,judge_was_right
+Llama-3.1-8B,easy,Which clinic has the highest TotalRevenue?,Clinic I,1,The clinic with the highest TotalRevenue is Clinic I.,"SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+highest_revenue_clinic_id = result_df['IDOrganisation'].iloc[0]
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {highest_revenue_clinic_id}.'}
+print(result)",TRUE,5.89,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",1,1220906.6519565217,,"import pandas as pd
+data = execute_sql_query('SELECT TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
+average_total_revenue = data['TotalRevenue'].mean()
+result = {'type': 'number', 'value': average_total_revenue}
+print(result)",TRUE,2.24,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",1,,,,FALSE,,FALSE,"Required keyword: 'this' missing for <class 'sqlglot.expressions.LT'>. Line 2, Col: 15.
+  
+    <table  [4mdialect [0m=""duckdb"" table_name=""table_bd4f8d5ffa8239c09831e5b997bc2753"" columns=""[{""name"": ""I",FALSE,FALSE,TRUE
+Llama-3.1-8B,easy,Which hour has the highest patient count?,13/10/2025 20:00,1,The hour with the highest patient count is 2025-02-13 18:00:00.,"SELECT Hour, PatientCount
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    ORDER BY PatientCount DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT Hour, PatientCount
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    ORDER BY PatientCount DESC
+    LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+hour = df['Hour'].values[0]
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {hour}.'}
+print(result)",TRUE,2.72,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,Which state generates the highest total revenue?,Selangor,1,The state with the highest total revenue is Kuala Lumpur.,,"import pandas as pd
+table = execute_sql_query('SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
+result = {'type': 'string', 'value': f""The state with the highest total revenue is {table['State'].loc[table['TotalRevenue'].idxmax()]}.""}
+print(result)",FALSE,2.31,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,1,The doctor who treats the highest number of patients from Malay ethnicity is Doctor B.,"SELECT 
+        t1.StaffName, 
+        COUNT(*) as TotalPatients
+    FROM 
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    INNER JOIN 
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    WHERE 
+        t2.Ethnicities = 'Malay'
+    GROUP BY 
+        t1.StaffName
+    ORDER BY 
+        TotalPatients DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT 
+        t1.StaffName, 
+        COUNT(*) as TotalPatients
+    FROM 
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    INNER JOIN 
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    WHERE 
+        t2.Ethnicities = 'Malay'
+    GROUP BY 
+        t1.StaffName
+    ORDER BY 
+        TotalPatients DESC
+    LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The doctor who treats the highest number of patients from Malay ethnicity is {df['StaffName'].values[0]}.""}
+print(result)",TRUE,2.92,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,1,The doctor who sees the most patients from Married social status group is Doctor BZ.,"SELECT T1.StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 AS T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d AS T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.SocialStatus = 'Married'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT T1.StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 AS T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d AS T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.SocialStatus = 'Married'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+doctor_name = result_df['StaffName'].iloc[0]
+result = {'type': 'string', 'value': f'The doctor who sees the most patients from Married social status group is {doctor_name}.'}
+print(result)",TRUE,2.86,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
+        t1.IDOrganisation,
+        t1.StaffName,
+        COUNT(DISTINCT t2.Countries/Geography) as unique_countries
+    FROM 
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN 
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, t1.StaffName
+    ORDER BY 
+        unique_countries DESC","import pandas as pd
+
+
+def get_doctors_patient_count():
+    sql_query = """"""
+    SELECT 
+        t1.IDOrganisation,
+        t1.StaffName,
+        COUNT(DISTINCT t2.Countries/Geography) as unique_countries
+    FROM 
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN 
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, t1.StaffName
+    ORDER BY 
+        unique_countries DESC
+    """"""
+    return execute_sql_query(sql_query)
+
+
+doctors_patient_count = get_doctors_patient_count()
+result = {'type': 'dataframe', 'value': doctors_patient_count}",FALSE,11.78,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,1,"The clinic with the highest revenue is Clinic I located at 45, Jalan 34/154, Taman Delima Cheras 56100 WP Kuala Lumpur, Malaysia. It has 15 doctors working there.","SELECT 
+        t1.IDOrganisation,
+        t1.Address,
+        t1.State,
+        t1.District,
+        COUNT(t2.StaffName) as num_doctors,
+        t1.TotalRevenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, t1.Address, t1.State, t1.District, t1.TotalRevenue
+    ORDER BY 
+        t1.TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT 
+        t1.IDOrganisation,
+        t1.Address,
+        t1.State,
+        t1.District,
+        COUNT(t2.StaffName) as num_doctors,
+        t1.TotalRevenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, t1.Address, t1.State, t1.District, t1.TotalRevenue
+    ORDER BY 
+        t1.TotalRevenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+clinic_info = result_df.iloc[0]
+result_str = f""The clinic with the highest revenue is {clinic_info['IDOrganisation']} located at {clinic_info['Address']}. It has {clinic_info['num_doctors']} doctors working there.""
+result = {'type': 'string', 'value': result_str}
+print(result)",TRUE,7.87,TRUE,,FALSE,TRUE,TRUE
+Llama-3.1-8B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,1,"Unfortunately, I was not able to get your answer. Please try again.",,"import pandas as pd
+
+
+def get_highest_revenue_clinic():
+    query = """"""
+        SELECT IDOrganisation, TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        ORDER BY TotalRevenue DESC
+        LIMIT 1
+    """"""
+    highest_revenue_clinic = execute_sql_query(query)
+    return highest_revenue_clinic['IDOrganisation'].values[0]
+
+
+def get_doctor_with_highest_patients_from_malay_ethnicity():
+    highest_revenue_clinic_id = get_highest_revenue_clinic()
+    query = f""""""
+        SELECT StaffName, TotalPatientCount
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        WHERE IDOrganisation = '{highest_revenue_clinic_id}'
+        AND Ethnicities = 'Malay'
+        ORDER BY TotalPatientCount DESC
+        LIMIT 1
+    """"""
+    doctor_with_highest_patients = execute_sql_query(query)
+    return doctor_with_highest_patients['StaffName'].values[0]
+
+
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is {get_doctor_with_highest_patients_from_malay_ethnicity()}.'}",FALSE,16.49,TRUE,,FALSE,FALSE,TRUE
+Gemma-2-27B,easy,Which clinic has the highest TotalRevenue?,Clinic I,1,Clinic Clinic I has the highest TotalRevenue.,"SELECT IDOrganisation, TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT IDOrganisation, TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+highest_revenue_clinic = df['IDOrganisation'].iloc[0]
+result = {'type': 'string', 'value': f'Clinic {highest_revenue_clinic} has the highest TotalRevenue.'}",TRUE,4.58,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",1,1220906.6519565217,"SELECT AVG(TotalRevenue) as average_total_revenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+SELECT AVG(TotalRevenue) as average_total_revenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+df = execute_sql_query(sql_query)
+average_total_revenue = df['average_total_revenue'].iloc[0]
+result = {'type': 'number', 'value': average_total_revenue}",TRUE,4.2,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",1,"         District
+0      Central KL
+1            Ipoh
+2      Setia Alam
+3        Semenyih
+4      Georgetown
+5          Sepang
+6          Dungun
+7     Batang Kali
+8       Pasir Mas
+9          Skudai
+10         Mantin
+11     Kota Bharu
+12  Bandar Enstek
+13    Desa Pandan
+14    Wakaf Bharu
+15  Petaling Jaya
+16          Bangi
+17      Shah Alam
+18         Cheras
+19           Muar
+20     Batu Caves
+21       Seremban
+22   Kuala Lumpur
+23    Hulu Langat
+24          Kulim
+25         Kajang
+26         Rawang
+27       Petaling
+28   Kuala Langat
+29      Presint 8
+30    Bayan Lepas
+31        Kuantan","SELECT DISTINCT District 
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+SELECT DISTINCT District 
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE,3.74,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,Which hour has the highest patient count?,13/10/2025 20:00,1,The hour with the highest patient count is 2025-10-13 20:00:00.,"SELECT Hour, SUM(PatientCount) as TotalPatientCount
+FROM table_6c16364831b68d93e7cf9d423cf8f3da
+GROUP BY Hour
+ORDER BY TotalPatientCount DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT Hour, SUM(PatientCount) as TotalPatientCount
+FROM table_6c16364831b68d93e7cf9d423cf8f3da
+GROUP BY Hour
+ORDER BY TotalPatientCount DESC
+LIMIT 1;
+
+""""""
+df = execute_sql_query(sql_query)
+highest_patient_hour = df['Hour'][0]
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {highest_patient_hour}.'}",TRUE,5.38,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,Which state generates the highest total revenue?,Selangor,1,The state with the highest total revenue is Selangor.,"SELECT State, SUM(TotalRevenue) as TotalRevenueByState
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY State
+ORDER BY TotalRevenueByState DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT State, SUM(TotalRevenue) as TotalRevenueByState
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY State
+ORDER BY TotalRevenueByState DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+highest_revenue_state = df['State'].iloc[0]
+result = {'type': 'string', 'value': f'The state with the highest total revenue is {highest_revenue_state}.'}",TRUE,5.32,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,1,Doctor Doctor B treats the highest number of Malay patients.,"SELECT ""table_c83679f393c19ab82f71054c6c3facb6"".""StaffName"", COUNT(*) as total_patients
+FROM table_3586b23a0be349f88985d8c0d783b36d
+JOIN table_c83679f393c19ab82f71054c6c3facb6 ON table_3586b23a0be349f88985d8c0d783b36d.""IDOrganisation"" = table_c83679f393c19ab82f71054c6c3facb6.""IDOrganisation""
+WHERE ""Ethnicities"" = 'Malay'
+GROUP BY ""table_c83679f393c19ab82f71054c6c3facb6"".""StaffName""
+ORDER BY total_patients DESC LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT ""table_c83679f393c19ab82f71054c6c3facb6"".""StaffName"", COUNT(*) as total_patients
+FROM table_3586b23a0be349f88985d8c0d783b36d
+JOIN table_c83679f393c19ab82f71054c6c3facb6 ON table_3586b23a0be349f88985d8c0d783b36d.""IDOrganisation"" = table_c83679f393c19ab82f71054c6c3facb6.""IDOrganisation""
+WHERE ""Ethnicities"" = 'Malay'
+GROUP BY ""table_c83679f393c19ab82f71054c6c3facb6"".""StaffName""
+ORDER BY total_patients DESC LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+doctor_name = df['StaffName'].iloc[0]
+result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of Malay patients.'}",TRUE,26.8,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT t1.StaffName, SUM(CASE WHEN t2.""SocialStatus"" = 'Married' THEN 1 ELSE 0 END) AS TotalMarriedPatients
+FROM table_c83679f393c19ab82f71054c6c3facb6 t1
+JOIN table_3586b23a0be349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.""IDOrganisation"" AND t1.StaffName = t2.""StaffName""
+GROUP BY t1.StaffName
+ORDER BY TotalMarriedPatients DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT t1.StaffName, SUM(CASE WHEN t2.""SocialStatus"" = 'Married' THEN 1 ELSE 0 END) AS TotalMarriedPatients
+FROM table_c83679f393c19ab82f71054c6c3facb6 t1
+JOIN table_3586b23a0be349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.""IDOrganisation"" AND t1.StaffName = t2.""StaffName""
+GROUP BY t1.StaffName
+ORDER BY TotalMarriedPatients DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+doctor_with_most_married_patients = df['StaffName'].iloc[0]
+result = {'type': 'string', 'value': f'The doctor who sees the most patients from Married social status group is {doctor_with_most_married_patients}.'}",TRUE,37.69,TRUE,,FALSE,TRUE,FALSE
+Gemma-2-27B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",1,The doctor with the highest number of patients from different geographies is Doctor AW,"SELECT
+    s.StaffName,
+    COUNT(DISTINCT a.""Countries/Geography"") AS num_countries 
+FROM table_3586b23a0be349f88985d8c0d783b36d a
+JOIN table_c83679f393c19ab82f71054c6c3facb6 s
+ON a.""IDOrganisation"" = s.""IDOrganisation""
+GROUP BY s.StaffName
+ORDER BY num_countries DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT
+    s.StaffName,
+    COUNT(DISTINCT a.""Countries/Geography"") AS num_countries 
+FROM table_3586b23a0be349f88985d8c0d783b36d a
+JOIN table_c83679f393c19ab82f71054c6c3facb6 s
+ON a.""IDOrganisation"" = s.""IDOrganisation""
+GROUP BY s.StaffName
+ORDER BY num_countries DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+doctor = df.iloc[0]['StaffName']
+result = {'type': 'string', 'value': f'The doctor with the highest number of patients from different geographies is {doctor}'}",TRUE,6.98,TRUE,,FALSE,TRUE,FALSE
+Gemma-2-27B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,1,Clinic Clinic I has the highest revenue with 15 doctors.,"SELECT t1.IDOrganisation, COUNT(DISTINCT t2.StaffName) as DoctorCount, SUM(t1.TotalRevenue) as TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+LEFT JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+GROUP BY t1.IDOrganisation
+ORDER BY TotalRevenue DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT t1.IDOrganisation, COUNT(DISTINCT t2.StaffName) as DoctorCount, SUM(t1.TotalRevenue) as TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+LEFT JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+GROUP BY t1.IDOrganisation
+ORDER BY TotalRevenue DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""Clinic {df['IDOrganisation'].iloc[0]} has the highest revenue with {df['DoctorCount'].iloc[0]} doctors.""}",TRUE,7.21,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,1,"  IDOrganisation  ClinicRank  StaffName
+0       Clinic I           1  Doctor BZ","WITH ClinicRevenue AS (
+    SELECT IDOrganisation, SUM(TotalRevenue) as TotalClinicRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+),
+
+RankedClinics AS (
+    SELECT IDOrganisation, TotalClinicRevenue, RANK() OVER (ORDER BY TotalClinicRevenue DESC) as ClinicRank
+    FROM ClinicRevenue
+),
+
+PatientEthnicity AS (
+    SELECT t1.IDOrganisation, t1.StaffName, t2. ""Ethnicities"", COUNT(*) as PatientCount
+    FROM table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.""IDOrganisation""
+    WHERE t2.""Ethnicities"" = 'Malay'
+    GROUP BY t1.IDOrganisation, t1.StaffName, t2.""Ethnicities""
+)
+
+SELECT rc.IDOrganisation, rc.ClinicRank , pe.StaffName
+FROM RankedClinics rc
+JOIN PatientEthnicity pe ON rc.IDOrganisation = pe.IDOrganisation
+WHERE rc.ClinicRank = 1
+ORDER BY pe.PatientCount DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+WITH ClinicRevenue AS (
+    SELECT IDOrganisation, SUM(TotalRevenue) as TotalClinicRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+),
+
+RankedClinics AS (
+    SELECT IDOrganisation, TotalClinicRevenue, RANK() OVER (ORDER BY TotalClinicRevenue DESC) as ClinicRank
+    FROM ClinicRevenue
+),
+
+PatientEthnicity AS (
+    SELECT t1.IDOrganisation, t1.StaffName, t2. ""Ethnicities"", COUNT(*) as PatientCount
+    FROM table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.""IDOrganisation""
+    WHERE t2.""Ethnicities"" = 'Malay'
+    GROUP BY t1.IDOrganisation, t1.StaffName, t2.""Ethnicities""
+)
+
+SELECT rc.IDOrganisation, rc.ClinicRank , pe.StaffName
+FROM RankedClinics rc
+JOIN PatientEthnicity pe ON rc.IDOrganisation = pe.IDOrganisation
+WHERE rc.ClinicRank = 1
+ORDER BY pe.PatientCount DESC
+LIMIT 1;
+
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE,47.12,TRUE,,FALSE,TRUE,FALSE
+Llama3-70B,easy,Which clinic has the highest TotalRevenue?,Clinic I,1,The clinic with the highest TotalRevenue is Clinic I with a total revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1","import pandas as pd
+sql_query = 'SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1'
+result_df = execute_sql_query(sql_query)
+clinic_name = result_df.iloc[0]['IDOrganisation']
+total_revenue = result_df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {clinic_name} with a total revenue of {total_revenue}.'}",TRUE,7.65,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",1,1220906.6519565217,SELECT AVG(TotalRevenue) AS AverageTotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,"import pandas as pd
+sql_query = 'SELECT AVG(TotalRevenue) AS AverageTotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753'
+df = execute_sql_query(sql_query)
+average_total_revenue = df.iloc[0]['AverageTotalRevenue']
+result = {'type': 'number', 'value': average_total_revenue}",TRUE,6.9,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",1,"Unique Districts: Georgetown, Kuala Langat, Presint 8, Bayan Lepas, Kuantan, Batu Caves, Seremban, Kuala Lumpur, Hulu Langat, Kulim, Batang Kali, Pasir Mas, Kajang, Rawang, Petaling, Bandar Enstek, Desa Pandan, Sepang, Dungun, Semenyih, Kota Bharu, Skudai, Mantin, Wakaf Bharu, Shah Alam, Cheras, Muar, Central KL, Ipoh, Setia Alam, Petaling Jaya, Bangi",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,"import pandas as pd
+sql_query = 'SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753'
+df = execute_sql_query(sql_query)
+unique_districts = df['District'].tolist()
+result = {'type': 'string', 'value': f""Unique Districts: {', '.join(unique_districts)}""}",TRUE,6.17,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,Which hour has the highest patient count?,13/10/2025 20:00,1,The hour with the highest patient count is 2025-10-13 20:00:00 with 605.0 patients.,"SELECT Hour, SUM(PatientCount) as TotalPatientCount
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY TotalPatientCount DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT Hour, SUM(PatientCount) as TotalPatientCount
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY TotalPatientCount DESC
+    LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+hour_with_highest_patient_count = df.iloc[0]['Hour']
+total_patient_count = df.iloc[0]['TotalPatientCount']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {hour_with_highest_patient_count} with {total_patient_count} patients.'}",TRUE,8.18,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,Which state generates the highest total revenue?,Selangor,1,The state that generates the highest total revenue is Selangor with a total revenue of 22938538.19.,"SELECT State, SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT State, SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The state that generates the highest total revenue is {result_df.iloc[0]['State']} with a total revenue of {result_df.iloc[0]['TotalRevenue']}.""}",TRUE,11.6,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,1,The doctor who treats the highest number of patients from Malay ethnicity is Doctor B with 6749 patients.,"SELECT StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE Ethnicities = 'Malay'
+    GROUP BY StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE Ethnicities = 'Malay'
+    GROUP BY StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+doctor_name = df.iloc[0]['StaffName']
+patient_count = df.iloc[0]['patient_count']
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity is {doctor_name} with {patient_count} patients.'}",TRUE,11.04,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,1,The doctor who sees the most patients from Married social status group is Doctor BZ with 4178 patients.,"SELECT StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE SocialStatus = 'Married'
+    GROUP BY StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE SocialStatus = 'Married'
+    GROUP BY StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The doctor who sees the most patients from Married social status group is {df.iloc[0]['StaffName']} with {df.iloc[0]['patient_count']} patients.""}",TRUE,12.83,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",1,,,,FALSE,,FALSE,"Required keyword: 'this' missing for <class 'sqlglot.expressions.Column'>. Line 2, Col: 41.
+  
+    SELECT t2.StaffName, COUNT(DISTINCT t1. [4m[ [0mCountries/Geography]) as num_countries
+    FROM table",FALSE,FALSE,TRUE
+Llama3-70B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,1,The clinic with the highest revenue is Clinic I with a total revenue of 3487368.95 and 15 doctors working there.,"WITH clinic_revenue AS (
+        SELECT IDOrganisation, SUM(TotalRevenue) AS TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        GROUP BY IDOrganisation
+    ), doctor_count AS (
+        SELECT IDOrganisation, COUNT(DISTINCT StaffName) AS DoctorCount
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        GROUP BY IDOrganisation
+    )
+    SELECT cr.IDOrganisation, cr.TotalRevenue, dc.DoctorCount
+    FROM clinic_revenue cr
+    JOIN doctor_count dc ON cr.IDOrganisation = dc.IDOrganisation
+    ORDER BY cr.TotalRevenue DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    WITH clinic_revenue AS (
+        SELECT IDOrganisation, SUM(TotalRevenue) AS TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        GROUP BY IDOrganisation
+    ), doctor_count AS (
+        SELECT IDOrganisation, COUNT(DISTINCT StaffName) AS DoctorCount
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        GROUP BY IDOrganisation
+    )
+    SELECT cr.IDOrganisation, cr.TotalRevenue, dc.DoctorCount
+    FROM clinic_revenue cr
+    JOIN doctor_count dc ON cr.IDOrganisation = dc.IDOrganisation
+    ORDER BY cr.TotalRevenue DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+clinic_name = result_df.iloc[0]['IDOrganisation']
+total_revenue = result_df.iloc[0]['TotalRevenue']
+doctor_count = result_df.iloc[0]['DoctorCount']
+result = {'type': 'string', 'value': f'The clinic with the highest revenue is {clinic_name} with a total revenue of {total_revenue} and {doctor_count} doctors working there.'}",TRUE,13.97,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,1,"   StaffName  patient_count
+0  Doctor BP           4748","WITH highest_revenue_clinic AS (
+  SELECT IDOrganisation, TotalRevenue
+  FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+  ORDER BY TotalRevenue DESC
+  LIMIT 1
+),
+malay_patients AS (
+  SELECT StaffName, COUNT(*) as patient_count
+  FROM table_c83679f393c19ab82f71054c6c3facb6
+  JOIN table_3586b23a0be349f88985d8c0d783b36d ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+  WHERE Ethnicities = 'Malay' AND table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = (SELECT IDOrganisation FROM highest_revenue_clinic)
+  GROUP BY StaffName
+  ORDER BY patient_count DESC
+  LIMIT 1
+)
+SELECT * FROM malay_patients;","import pandas as pd
+sql_query = """"""
+WITH highest_revenue_clinic AS (
+  SELECT IDOrganisation, TotalRevenue
+  FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+  ORDER BY TotalRevenue DESC
+  LIMIT 1
+),
+malay_patients AS (
+  SELECT StaffName, COUNT(*) as patient_count
+  FROM table_c83679f393c19ab82f71054c6c3facb6
+  JOIN table_3586b23a0be349f88985d8c0d783b36d ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+  WHERE Ethnicities = 'Malay' AND table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = (SELECT IDOrganisation FROM highest_revenue_clinic)
+  GROUP BY StaffName
+  ORDER BY patient_count DESC
+  LIMIT 1
+)
+SELECT * FROM malay_patients;
+""""""
+result = {'type': 'dataframe', 'value': execute_sql_query(sql_query)}",FALSE,13.68,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-405B,easy,Which clinic has the highest TotalRevenue?,Clinic I,1,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+clinic_name = result_df['IDOrganisation'].values[0]
+total_revenue = result_df['TotalRevenue'].values[0]
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {clinic_name} with a revenue of {total_revenue}.'}",TRUE,7.03,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",1,1220906.6519565217,"SELECT AVG(TotalRevenue) as average_total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+    SELECT AVG(TotalRevenue) as average_total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+result_df = execute_sql_query(sql_query)
+average_total_revenue = result_df['average_total_revenue'].iloc[0]
+result = {'type': 'number', 'value': average_total_revenue}",TRUE,5.48,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",1,"         District
+0          Sepang
+1          Dungun
+2    Kuala Langat
+3       Presint 8
+4     Bayan Lepas
+5         Kuantan
+6     Batang Kali
+7       Pasir Mas
+8          Skudai
+9          Mantin
+10     Central KL
+11           Ipoh
+12     Setia Alam
+13  Petaling Jaya
+14          Bangi
+15     Kota Bharu
+16     Georgetown
+17  Bandar Enstek
+18    Desa Pandan
+19    Wakaf Bharu
+20     Batu Caves
+21       Seremban
+22   Kuala Lumpur
+23    Hulu Langat
+24          Kulim
+25         Kajang
+26         Rawang
+27       Petaling
+28       Semenyih
+29      Shah Alam
+30         Cheras
+31           Muar","SELECT DISTINCT District
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+    SELECT DISTINCT District
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE,4.55,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,Which hour has the highest patient count?,13/10/2025 20:00,1,The hour with the highest patient count is 2025-02-13 18:00:00.,"SELECT Hour, MAX(PatientCount) as max_patient_count
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY max_patient_count DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT Hour, MAX(PatientCount) as max_patient_count
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY max_patient_count DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+hour_with_highest_patient_count = result_df.iloc[0]['Hour']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {hour_with_highest_patient_count}.'}",TRUE,7.64,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,Which state generates the highest total revenue?,Selangor,1,The state with the highest total revenue is Selangor with a total revenue of 22938538.19.,"SELECT State, SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT State, SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+state = result_df['State'].values[0]
+total_revenue = result_df['TotalRevenue'].values[0]
+result = {'type': 'string', 'value': f'The state with the highest total revenue is {state} with a total revenue of {total_revenue}.'}",TRUE,42.67,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,1,"Doctor Doctor B treats the highest number of patients from Malay ethnicity, with a total of 6749 patients.","SELECT T1.StaffName, COUNT(T2.Ethnicities) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.Ethnicities = 'Malay'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT T1.StaffName, COUNT(T2.Ethnicities) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.Ethnicities = 'Malay'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+doctor_name = result_df.iloc[0]['StaffName']
+patient_count = result_df.iloc[0]['patient_count']
+result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of patients from Malay ethnicity, with a total of {patient_count} patients.'}",TRUE,93.24,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,1,Dr. Doctor BZ sees the most patients (4178) from the Married social status group.,"SELECT T1.StaffName, COUNT(T2.""Countries/Geography"") as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.SocialStatus = 'Married'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT T1.StaffName, COUNT(T2.""Countries/Geography"") as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.SocialStatus = 'Married'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+doctor_name = result_df.iloc[0]['StaffName']
+patient_count = result_df.iloc[0]['patient_count']
+result = {'type': 'string', 'value': f'Dr. {doctor_name} sees the most patients ({patient_count}) from the Married social status group.'}",TRUE,40.76,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",1,"Dr. Doctor AW has the highest number of patients from different countries/geography, with a total of 31 countries.","SELECT T1.StaffName, COUNT(DISTINCT T2.""Countries/Geography"") AS num_countries
+FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+ON T1.IDOrganisation = T2.IDOrganisation
+GROUP BY T1.StaffName
+ORDER BY num_countries DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT T1.StaffName, COUNT(DISTINCT T2.""Countries/Geography"") AS num_countries
+FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+ON T1.IDOrganisation = T2.IDOrganisation
+GROUP BY T1.StaffName
+ORDER BY num_countries DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+doctor_name = result_df.iloc[0]['StaffName']
+num_countries = result_df.iloc[0]['num_countries']
+result = {'type': 'string', 'value': f'Dr. {doctor_name} has the highest number of patients from different countries/geography, with a total of {num_countries} countries.'}",TRUE,31.92,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,1,The clinic with the highest revenue is Clinic I with a revenue of 3487368.95. There are 15 doctors working in this clinic.,"SELECT COUNT(DISTINCT StaffName) as DoctorCount
+FROM table_c83679f393c19ab82f71054c6c3facb6
+WHERE IDOrganisation = '{}'","import pandas as pd
+sql_query = """"""
+SELECT IDOrganisation, TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(sql_query)
+sql_query = """"""
+SELECT COUNT(DISTINCT StaffName) as DoctorCount
+FROM table_c83679f393c19ab82f71054c6c3facb6
+WHERE IDOrganisation = '{}'
+"""""".format(highest_revenue_clinic['IDOrganisation'].values[0])
+doctor_count = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The clinic with the highest revenue is {highest_revenue_clinic['IDOrganisation'].values[0]} with a revenue of {highest_revenue_clinic['TotalRevenue'].values[0]}. There are {doctor_count['DoctorCount'].values[0]} doctors working in this clinic.""}",TRUE,12.55,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT IDOrganisation 
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
+    ORDER BY TotalRevenue DESC 
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT IDOrganisation 
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 
+    ORDER BY TotalRevenue DESC 
+    LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(sql_query)
+highest_revenue_clinic_id = highest_revenue_clinic['IDOrganisation'].values[0]
+sql_query = f""""""
+    SELECT T1.StaffName, COUNT(*) as patient_count 
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1 
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2 
+    ON T1.IDOrganisation = T2.IDOrganisation 
+    WHERE T1.IDOrganisation = '{highest_revenue_clinic_id}' 
+    AND T2.`Countries/Geography` = 'Malaysia' 
+    AND T2.Ethnicities = 'Malay' 
+    GROUP BY T1.StaffName 
+    ORDER BY patient_count DESC 
+    LIMIT 1
+""""""
+sql_query = sql_query.replace('`', ""'"")
+doctor_with_highest_malay_patients = execute_sql_query(sql_query)
+doctor_name = doctor_with_highest_malay_patients['StaffName'].values[0]
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is {doctor_name}.'}",TRUE,71.24,TRUE,,FALSE,FALSE,TRUE
+Mistral-Large-3-675B,easy,Which clinic has the highest TotalRevenue?,Clinic I,1,"Clinic Clinic I has the highest TotalRevenue of RM3,487,368.95.","SELECT
+    IDOrganisation,
+    Address,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    IDOrganisation,
+    Address,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+clinic_name = df['IDOrganisation'].iloc[0]
+highest_revenue = df['TotalRevenue'].iloc[0]
+result = {'type': 'string', 'value': f'Clinic {clinic_name} has the highest TotalRevenue of RM{highest_revenue:,.2f}.'}",TRUE,6.92,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",1,1220906.6519565217,"SELECT AVG(TotalRevenue) AS AverageTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+SELECT AVG(TotalRevenue) AS AverageTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+df = execute_sql_query(sql_query)
+average_revenue = df['AverageTotalRevenue'].iloc[0]
+result = {'type': 'number', 'value': average_revenue}",TRUE,4.42,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",1,"         District
+0   Bandar Enstek
+1           Bangi
+2     Batang Kali
+3      Batu Caves
+4     Bayan Lepas
+5      Central KL
+6          Cheras
+7     Desa Pandan
+8          Dungun
+9      Georgetown
+10    Hulu Langat
+11           Ipoh
+12         Kajang
+13     Kota Bharu
+14   Kuala Langat
+15   Kuala Lumpur
+16        Kuantan
+17          Kulim
+18         Mantin
+19           Muar
+20      Pasir Mas
+21       Petaling
+22  Petaling Jaya
+23      Presint 8
+24         Rawang
+25       Semenyih
+26         Sepang
+27       Seremban
+28     Setia Alam
+29      Shah Alam
+30         Skudai
+31    Wakaf Bharu","SELECT DISTINCT District
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY District","import pandas as pd
+sql_query = """"""
+SELECT DISTINCT District
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY District
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,9.59,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,Which hour has the highest patient count?,13/10/2025 20:00,1,The hour with the highest patient count is 2025-02-13 18:00:00 with 147 patients.,"SELECT
+    Hour,
+    PatientCount
+FROM
+    table_6c16364831b68d93e7cf9d423cf8f3da
+ORDER BY
+    PatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    Hour,
+    PatientCount
+FROM
+    table_6c16364831b68d93e7cf9d423cf8f3da
+ORDER BY
+    PatientCount DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+highest_hour = df.iloc[0]['Hour']
+highest_count = df.iloc[0]['PatientCount']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {highest_hour} with {int(highest_count)} patients.'}",TRUE,3.73,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,Which state generates the highest total revenue?,Selangor,1,"The state that generates the highest total revenue is Selangor with a total revenue of 22,938,538.19.","SELECT
+    State,
+    SUM(TotalRevenue) as TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY
+    State
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    State,
+    SUM(TotalRevenue) as TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY
+    State
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+highest_revenue_state = df.iloc[0]['State']
+highest_revenue = df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The state that generates the highest total revenue is {highest_revenue_state} with a total revenue of {highest_revenue:,.2f}.'}",TRUE,5.19,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,1,"Doctor Doctor B treats the highest number of patients from Malay ethnicity, with a total of 6749 patients.","WITH malay_patients AS (
+    SELECT
+        t1.StaffName as DoctorName,
+        COUNT(t2.IDOrganisation) as MalayPatientCount
+    FROM
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    WHERE
+        t2.Ethnicities = 'Malay'
+    GROUP BY
+        t1.StaffName
+)
+SELECT
+    DoctorName,
+    MalayPatientCount
+FROM
+    malay_patients
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+WITH malay_patients AS (
+    SELECT
+        t1.StaffName as DoctorName,
+        COUNT(t2.IDOrganisation) as MalayPatientCount
+    FROM
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    WHERE
+        t2.Ethnicities = 'Malay'
+    GROUP BY
+        t1.StaffName
+)
+SELECT
+    DoctorName,
+    MalayPatientCount
+FROM
+    malay_patients
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    doctor_name = result_df.iloc[0]['DoctorName']
+    patient_count = result_df.iloc[0]['MalayPatientCount']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of patients from Malay ethnicity, with a total of {patient_count} patients.'}
+else:
+    result = {'type': 'string', 'value': 'No data found for Malay ethnicity patients.'}",TRUE,25.93,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,1,Doctor Doctor BZ sees the most married patients with a total of 4178 patients.,"SELECT
+    s.StaffName,
+    COUNT(*) as MarriedPatientCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d p
+JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 s
+ON
+    p.IDOrganisation = s.IDOrganisation
+WHERE
+    p.SocialStatus = 'Married'
+GROUP BY
+    s.StaffName
+ORDER BY
+    MarriedPatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    s.StaffName,
+    COUNT(*) as MarriedPatientCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d p
+JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 s
+ON
+    p.IDOrganisation = s.IDOrganisation
+WHERE
+    p.SocialStatus = 'Married'
+GROUP BY
+    s.StaffName
+ORDER BY
+    MarriedPatientCount DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    doctor_name = result_df.iloc[0]['StaffName']
+    patient_count = result_df.iloc[0]['MarriedPatientCount']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} sees the most married patients with a total of {patient_count} patients.'}
+else:
+    result = {'type': 'string', 'value': 'No data found for married patients.'}",TRUE,4.8,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",1,The doctor with the highest number of patients from different countries/geographies is Doctor AW with 31 different countries.,"SELECT
+    t1.StaffName AS Doctor,
+    COUNT(DISTINCT t2.""Countries/Geography"") AS DistinctCountryCount
+FROM
+    table_c83679f393c19ab82f71054c6c3facb6 t1
+JOIN
+    table_3586b23a0be349f88985d8c0d783b36d t2
+ON
+    t1.IDOrganisation = t2.IDOrganisation AND
+    t1.Address = t2.Address
+GROUP BY
+    t1.StaffName
+ORDER BY
+    DistinctCountryCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    t1.StaffName AS Doctor,
+    COUNT(DISTINCT t2.""Countries/Geography"") AS DistinctCountryCount
+FROM
+    table_c83679f393c19ab82f71054c6c3facb6 t1
+JOIN
+    table_3586b23a0be349f88985d8c0d783b36d t2
+ON
+    t1.IDOrganisation = t2.IDOrganisation AND
+    t1.Address = t2.Address
+GROUP BY
+    t1.StaffName
+ORDER BY
+    DistinctCountryCount DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The doctor with the highest number of patients from different countries/geographies is {result_df.iloc[0]['Doctor']} with {int(result_df.iloc[0]['DistinctCountryCount'])} different countries.""}
+if not result_df.empty:
+    result_df_formatted = {'type': 'dataframe', 'value': result_df}
+else:
+    result_df_formatted = {'type': 'string', 'value': 'No patient data found from different countries.'}",TRUE,54.96,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,1,"Clinic Clinic I has the highest revenue of RM3,487,368.95 and has 15 doctors working there.",,"import pandas as pd
+clinic_revenue_query = """"""
+SELECT
+    t1.IDOrganisation,
+    t1.TotalRevenue,
+    COUNT(DISTINCT t2.StaffName) AS NumberOfDoctors
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 t2
+ON
+    t1.IDOrganisation = t2.IDOrganisation
+GROUP BY
+    t1.IDOrganisation, t1.TotalRevenue
+ORDER BY
+    t1.TotalRevenue DESC
+LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(clinic_revenue_query)
+if not highest_revenue_clinic.empty:
+    clinic_name = highest_revenue_clinic.iloc[0]['IDOrganisation']
+    revenue = highest_revenue_clinic.iloc[0]['TotalRevenue']
+    num_doctors = highest_revenue_clinic.iloc[0]['NumberOfDoctors']
+    result = {'type': 'string', 'value': f'Clinic {clinic_name} has the highest revenue of RM{revenue:,.2f} and has {num_doctors} doctors working there.'}
+else:
+    result = {'type': 'string', 'value': 'No clinic data found.'}",TRUE,33.84,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,1,"In the highest revenue clinic 'Clinic I', Doctor Doctor BY treats the highest number of Malay ethnicity patients ",,"import pandas as pd
+highest_revenue_clinic_query = """"""
+SELECT IDOrganisation
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(highest_revenue_clinic_query)
+clinic_id = highest_revenue_clinic.iloc[0]['IDOrganisation']
+doctor_malay_patients_query = f""""""
+SELECT
+    t2.StaffName,
+    COUNT(*) as MalayPatientCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d t1
+JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 t2
+ON
+    t1.IDOrganisation = t2.IDOrganisation
+WHERE
+    t1.IDOrganisation = '{clinic_id}'
+    AND t1.Ethnicities = 'Malay'
+GROUP BY
+    t2.StaffName
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1
+""""""
+top_doctor = execute_sql_query(doctor_malay_patients_query)
+doctor_name = top_doctor.iloc[0]['StaffName']
+patient_count = top_doctor.iloc[0]['MalayPatientCount']
+result = {'type': 'string', 'value': f""In the highest revenue clinic '{clinic_id}', Doctor {doctor_name} treats the highest number of Malay ethnicity patients with a total of {patient_count} patients.""}",TRUE,9.4,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,Which clinic has the highest TotalRevenue?,Clinic I,2,"  IDOrganisation                                            Address  \
+0       Clinic I  45, Jalan 34/154, Taman Delima Cheras 56100 WP...   
+
+          State District       lat         lng  TotalRevenue  
+0  Kuala Lumpur   Cheras  3.057526  101.747039    3487368.95  ","SELECT IDOrganisation, Address, State, District, lat, lng, TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        ORDER BY TotalRevenue DESC
+        LIMIT 1","import pandas as pd
+
+
+def get_highest_total_revenue_clinic():
+    sql_query = """"""
+        SELECT IDOrganisation, Address, State, District, lat, lng, TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        ORDER BY TotalRevenue DESC
+        LIMIT 1
+    """"""
+    df = execute_sql_query(sql_query)
+    return {'type': 'dataframe', 'value': df}
+
+
+result = get_highest_total_revenue_clinic()
+print(result)",TRUE,5.04,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",2,1220906.6519565217,"SELECT AVG(TotalRevenue) as average_total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+    SELECT AVG(TotalRevenue) as average_total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+result_df = execute_sql_query(sql_query)
+average_total_revenue = result_df['average_total_revenue'].iloc[0]
+result = {'type': 'number', 'value': average_total_revenue}",TRUE,2.35,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",2,"         District
+11  Bandar Enstek
+23          Bangi
+5     Batang Kali
+3      Batu Caves
+16    Bayan Lepas
+9      Central KL
+8          Cheras
+25    Desa Pandan
+43         Dungun
+35     Georgetown
+32    Hulu Langat
+28           Ipoh
+17         Kajang
+18     Kota Bharu
+2    Kuala Langat
+29   Kuala Lumpur
+19        Kuantan
+37          Kulim
+34         Mantin
+26           Muar
+13      Pasir Mas
+30       Petaling
+1   Petaling Jaya
+10      Presint 8
+24         Rawang
+44       Semenyih
+20         Sepang
+14       Seremban
+36     Setia Alam
+0       Shah Alam
+33         Skudai
+22    Wakaf Bharu",,"import pandas as pd
+table = execute_sql_query('SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
+result = {'type': 'dataframe', 'value': table[['District']].drop_duplicates().sort_values(by='District')}
+print(result)",TRUE,2.09,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,Which hour has the highest patient count?,13/10/2025 20:00,2,The hour with the highest patient count is 2025-10-06 12:00:00.,,"import pandas as pd
+result = execute_sql_query(""""""
+    SELECT Hour, MAX(PatientCount) as max_patient_count
+    FROM (
+        SELECT IDOrganisation, Hour, PatientCount,
+        ROW_NUMBER() OVER (PARTITION BY IDOrganisation ORDER BY PatientCount DESC) as row_num
+        FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    ) AS subquery
+    WHERE row_num = 1
+    GROUP BY Hour
+"""""")
+if not result.empty:
+    highest_hour = result['Hour'].values[0]
+    result = {'type': 'string', 'value': f'The hour with the highest patient count is {highest_hour}.'}
+else:
+    result = {'type': 'string', 'value': 'No hour has the highest patient count.'}
+print(result)",FALSE,6.83,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,easy,Which state generates the highest total revenue?,Selangor,2,The state with the highest total revenue is Kuala Lumpur.,"SELECT State, MAX(TotalRevenue) as max_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY max_revenue DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT State, MAX(TotalRevenue) as max_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY max_revenue DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+highest_revenue_state = result_df.iloc[0]['State']
+result = {'type': 'string', 'value': f'The state with the highest total revenue is {highest_revenue_state}.'}
+print(result)",FALSE,2.74,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,2,"  StaffName  Total_Patients
+0  Doctor B            6749",,"import pandas as pd
+query = """"""
+    SELECT t1.StaffName, COUNT(t2.Ethnicities) as Total_Patients
+    FROM table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d t2
+    ON t1.IDOrganisation = t2.IDOrganisation
+    WHERE t2.Ethnicities = 'Malay'
+    GROUP BY t1.StaffName
+    ORDER BY Total_Patients DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,4.2,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,2,The doctor who sees the most patients from Married social status group is Doctor BZ.,"SELECT T2.StaffName, COUNT(*) as TotalPatients
+    FROM table_3586b23a0be349f88985d8c0d783b36d AS T1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 AS T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T1.SocialStatus = 'Married'
+    GROUP BY T2.StaffName
+    ORDER BY TotalPatients DESC
+    LIMIT 1","import pandas as pd
+result = {}
+sql_query = """"""
+    SELECT T2.StaffName, COUNT(*) as TotalPatients
+    FROM table_3586b23a0be349f88985d8c0d783b36d AS T1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 AS T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T1.SocialStatus = 'Married'
+    GROUP BY T2.StaffName
+    ORDER BY TotalPatients DESC
+    LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+if not df.empty:
+    highest_patient_doctor = df['StaffName'].iloc[0]
+    result = {'type': 'string', 'value': f'The doctor who sees the most patients from Married social status group is {highest_patient_doctor}.'}
+else:
+    result = {'type': 'string', 'value': 'No data found.'}
+print(result)",TRUE,7.88,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",2,"  IDOrganisation  StaffName distinct_countries
+0      Clinic AH  Doctor GI                  1",,"import pandas as pd
+query = """"""
+    SELECT t2.IDOrganisation, t2.StaffName, COUNT(DISTINCT t1.IDOrganisation) as distinct_countries
+    FROM table_3586b23a0be349f88985d8c0d783b36d t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t2.IDOrganisation, t2.StaffName
+    ORDER BY COUNT(DISTINCT t1.IDOrganisation) DESC
+""""""
+result_df = execute_sql_query(query)
+highest_doctor = result_df.loc[result_df['distinct_countries'].idxmax()]
+result = {'type': 'dataframe', 'value': highest_doctor.to_frame().T}",FALSE,3.04,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,2,"  IDOrganisation                                            Address  \
+0       Clinic I  45, Jalan 34/154, Taman Delima Cheras 56100 WP...   
+
+          State District  TotalRevenue  DoctorCount  
+0  Kuala Lumpur   Cheras   52310534.25           15  ","SELECT 
+        t1.IDOrganisation, 
+        t1.Address, 
+        t1.State, 
+        t1.District, 
+        SUM(t1.TotalRevenue) AS TotalRevenue, 
+        COUNT(t2.StaffName) AS DoctorCount
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, t1.Address, t1.State, t1.District
+    ORDER BY 
+        TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT 
+        t1.IDOrganisation, 
+        t1.Address, 
+        t1.State, 
+        t1.District, 
+        SUM(t1.TotalRevenue) AS TotalRevenue, 
+        COUNT(t2.StaffName) AS DoctorCount
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, t1.Address, t1.State, t1.District
+    ORDER BY 
+        TotalRevenue DESC
+    LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+print(result)",TRUE,4.77,TRUE,,FALSE,TRUE,FALSE
+Llama-3.1-8B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,2,"Unfortunately, I was not able to get your answer. Please try again.",,"import pandas as pd
+highest_revenue_clinic_query = """"""
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation, TotalRevenue
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(highest_revenue_clinic_query)
+highest_revenue_clinic_id = highest_revenue_clinic['IDOrganisation'].iloc[0]
+doctors_query = f""""""
+    SELECT IDOrganisation, StaffName
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    WHERE IDOrganisation = '{highest_revenue_clinic_id}'
+""""""
+doctors = execute_sql_query(doctors_query)
+patients_query = f""""""
+    SELECT IDOrganisation, StaffName, Ethnicities, TotalPatientCount
+    FROM table_3586b23a0be349f88985d8c0d783b36d
+    WHERE IDOrganisation = '{highest_revenue_clinic_id}'
+""""""
+patients = execute_sql_query(patients_query)
+merged_data = pd.merge(doctors, patients, on='IDOrganisation')
+merged_data = merged_data[merged_data['Ethnicities'] == 'Malay']
+doctor_patient_count = merged_data.groupby('StaffName')['TotalPatientCount'].sum().reset_index()
+doctor_patient_count = doctor_patient_count.sort_values(by='TotalPatientCount', ascending=False)
+highest_patient_doctor = doctor_patient_count['StaffName'].iloc[0]
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is {highest_patient_doctor}.'}
+print(result)",FALSE,26.03,TRUE,,FALSE,FALSE,TRUE
+Gemma-2-27B,easy,Which clinic has the highest TotalRevenue?,Clinic I,2,Clinic Clinic I has the highest TotalRevenue.,"SELECT IDOrganisation, TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT IDOrganisation, TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+clinic_with_highest_revenue = df['IDOrganisation'].iloc[0]
+result = {'type': 'string', 'value': f'Clinic {clinic_with_highest_revenue} has the highest TotalRevenue.'}",TRUE,4.76,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",2,1220906.6519565217,SELECT AVG(TotalRevenue) FROM table_bd4f8d5ffa8239c09831e5b997bc2753,"import pandas as pd
+sql_query = 'SELECT AVG(TotalRevenue) FROM table_bd4f8d5ffa8239c09831e5b997bc2753'
+df = execute_sql_query(sql_query)
+average_revenue = df.iloc[0, 0]
+result = {'type': 'number', 'value': average_revenue}",TRUE,3.95,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",2,"         District
+0      Georgetown
+1      Central KL
+2            Ipoh
+3      Setia Alam
+4    Kuala Langat
+5       Presint 8
+6     Bayan Lepas
+7         Kuantan
+8        Semenyih
+9          Kajang
+10         Rawang
+11       Petaling
+12      Shah Alam
+13         Cheras
+14           Muar
+15         Sepang
+16         Dungun
+17         Skudai
+18         Mantin
+19     Kota Bharu
+20  Petaling Jaya
+21          Bangi
+22     Batu Caves
+23       Seremban
+24   Kuala Lumpur
+25    Hulu Langat
+26          Kulim
+27    Wakaf Bharu
+28  Bandar Enstek
+29    Desa Pandan
+30    Batang Kali
+31      Pasir Mas","SELECT DISTINCT District 
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;","import pandas as pd
+sql_query = """"""
+SELECT DISTINCT District 
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753;
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE,3.7,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,Which hour has the highest patient count?,13/10/2025 20:00,2,"                  Hour  TotalPatientCount
+0  2025-10-13 20:00:00              605.0","SELECT Hour, SUM(PatientCount) as TotalPatientCount
+FROM table_6c16364831b68d93e7cf9d423cf8f3da
+GROUP BY Hour
+ORDER BY TotalPatientCount DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+
+SELECT Hour, SUM(PatientCount) as TotalPatientCount
+FROM table_6c16364831b68d93e7cf9d423cf8f3da
+GROUP BY Hour
+ORDER BY TotalPatientCount DESC
+LIMIT 1;
+""""""
+result = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result}",TRUE,4.16,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,Which state generates the highest total revenue?,Selangor,2,The state with highest total revenue is Selangor.,"SELECT State, SUM(TotalRevenue) AS TotalRevenueByState
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY State
+ORDER BY TotalRevenueByState DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT State, SUM(TotalRevenue) AS TotalRevenueByState
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY State
+ORDER BY TotalRevenueByState DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The state with highest total revenue is {df['State'].iloc[0]}.""}",TRUE,4.71,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,2,"Unfortunately, I was not able to get your answer. Please try again.","SELECT t.StaffName, COUNT(*) AS TotalMalayPatients 
+FROM table_3586b23a0be349f88985d8c0d783b36d t
+WHERE t.""Ethnicities"" = 'Malay'
+GROUP BY t.StaffName
+ORDER BY TotalMalayPatients DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT t.StaffName, COUNT(*) AS TotalMalayPatients 
+FROM table_3586b23a0be349f88985d8c0d783b36d t
+WHERE t.""Ethnicities"" = 'Malay'
+GROUP BY t.StaffName
+ORDER BY TotalMalayPatients DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+highest_treating_doctor = df['StaffName'].iloc[0]
+result = {'type': 'string', 'value': f'Doctor {highest_treating_doctor} treats the highest number of Malay patients.'}",TRUE,31.16,TRUE,,FALSE,TRUE,FALSE
+Gemma-2-27B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,2,Doctor Doctor BZ sees the most patients from Married social status group.,"SELECT t2.StaffName, COUNT(*) as TotalPatientCount
+FROM table_3586b23a0be349f88985d8c0d783b36d t1
+JOIN table_c83679f393c19ab82f71054c6c3facb6 t2
+ON t1.IDOrganisation = t2.IDOrganisation
+WHERE t1.SocialStatus = 'Married'
+GROUP BY t2.StaffName
+ORDER BY TotalPatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT t2.StaffName, COUNT(*) as TotalPatientCount
+FROM table_3586b23a0be349f88985d8c0d783b36d t1
+JOIN table_c83679f393c19ab82f71054c6c3facb6 t2
+ON t1.IDOrganisation = t2.IDOrganisation
+WHERE t1.SocialStatus = 'Married'
+GROUP BY t2.StaffName
+ORDER BY TotalPatientCount DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+doctor = df['StaffName'].iloc[0]
+result = {'type': 'string', 'value': f'Doctor {doctor} sees the most patients from Married social status group.'}",TRUE,22.66,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",2,"Unfortunately, I was not able to get your answer. Please try again.",,"import pandas as pd
+
+
+def calculate_patient_geography(table_name: str='table_3586b23a0be349f88985d8c0d783b36d'):
+    sql_query = f""""""
+  SELECT ""IDOrganisation"", ""StaffName"", COUNT(DISTINCT ""Countries/Geography"") as num_countries
+  FROM {table_name}
+  GROUP BY ""IDOrganisation"", ""StaffName""
+  ORDER BY num_countries DESC
+  LIMIT 1
+  """"""
+    df = execute_sql_query(sql_query)
+    return df if not df.empty else None
+
+
+result_df = calculate_patient_geography()
+if result_df is not None:
+    doctor_name = result_df['StaffName'].iloc[0]
+    print(f'The doctor with the highest number of patients from different countries/geography is: {doctor_name}')
+else:
+    print('No data found for the query.')",TRUE,59.06,TRUE,,FALSE,TRUE,FALSE
+Gemma-2-27B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,2,Clinic Clinic K has the highest revenue of 1334546.4 with 19 doctors.,"SELECT IDOrganisation, SUM(TotalRevenue) AS TotalRevenue, COUNT(DISTINCT StaffName) AS DoctorCount
+FROM table_c83679f393c19ab82f71054c6c3facb6
+GROUP BY IDOrganisation
+ORDER BY TotalRevenue DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""SELECT IDOrganisation, SUM(TotalRevenue) AS TotalRevenue, COUNT(DISTINCT StaffName) AS DoctorCount
+FROM table_c83679f393c19ab82f71054c6c3facb6
+GROUP BY IDOrganisation
+ORDER BY TotalRevenue DESC
+LIMIT 1; """"""
+df = execute_sql_query(sql_query)
+clinic_name = df.iloc[0]['IDOrganisation']
+total_revenue = df.iloc[0]['TotalRevenue']
+doctor_count = df.iloc[0]['DoctorCount']
+result = {'type': 'string', 'value': f'Clinic {clinic_name} has the highest revenue of {total_revenue} with {doctor_count} doctors.'}",FALSE,6.24,TRUE,,FALSE,FALSE,TRUE
+Gemma-2-27B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,2,The doctor who treats the highest number of Malay patients in the highest revenue clinic is Doctor B.,,"import pandas as pd
+highest_revenue_clinic_sql = """"""
+SELECT IDOrganisation
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1;
+""""""
+highest_revenue_clinic = execute_sql_query(highest_revenue_clinic_sql).iloc[0, 0]
+doctor_sql = f""""""
+
+    SELECT t2.StaffName
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    JOIN table_3586b23a0be349f88985d8c0d783b36d t3 ON t1.IDOrganisation = t3.IDOrganisation
+    WHERE t1.IDOrganisation = '{highest_revenue_clinic}'
+      AND t3.Ethnicities = 'Malay'
+    GROUP BY t2.StaffName 
+    ORDER BY COUNT(t3.IDOrganisation) DESC
+    LIMIT 1;
+""""""
+doctor = execute_sql_query(doctor_sql).iloc[0, 0]
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of Malay patients in the highest revenue clinic is {doctor}.'}
+print(result)",FALSE,49.64,TRUE,,FALSE,FALSE,TRUE
+Llama3-70B,easy,Which clinic has the highest TotalRevenue?,Clinic I,2,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1","import pandas as pd
+sql_query = 'SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1'
+df = execute_sql_query(sql_query)
+clinic_with_highest_revenue = df.iloc[0]['IDOrganisation']
+highest_revenue = df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {clinic_with_highest_revenue} with a revenue of {highest_revenue}.'}",TRUE,7.93,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",2,1220906.6519565217,SELECT AVG(TotalRevenue) AS AverageTotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,"import pandas as pd
+sql_query = 'SELECT AVG(TotalRevenue) AS AverageTotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753'
+result_df = execute_sql_query(sql_query)
+average_total_revenue = result_df.iloc[0]['AverageTotalRevenue']
+result = {'type': 'number', 'value': average_total_revenue}",TRUE,6.51,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",2,"         District
+0      Georgetown
+1      Central KL
+2            Ipoh
+3      Setia Alam
+4    Kuala Langat
+5       Presint 8
+6     Bayan Lepas
+7         Kuantan
+8        Semenyih
+9          Kajang
+10         Rawang
+11       Petaling
+12      Shah Alam
+13         Cheras
+14           Muar
+15         Sepang
+16         Dungun
+17         Skudai
+18         Mantin
+19     Kota Bharu
+20  Petaling Jaya
+21          Bangi
+22     Batu Caves
+23       Seremban
+24   Kuala Lumpur
+25    Hulu Langat
+26          Kulim
+27    Wakaf Bharu
+28  Bandar Enstek
+29    Desa Pandan
+30    Batang Kali
+31      Pasir Mas",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,"import pandas as pd
+sql_query = 'SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE,5.9,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,Which hour has the highest patient count?,13/10/2025 20:00,2,The hour with the highest patient count is 2025-10-13 20:00:00.,"SELECT Hour, SUM(PatientCount) as TotalPatientCount
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY TotalPatientCount DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT Hour, SUM(PatientCount) as TotalPatientCount
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY TotalPatientCount DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+hour_with_highest_patient_count = result_df.iloc[0]['Hour']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {hour_with_highest_patient_count}.'}",TRUE,8.29,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,Which state generates the highest total revenue?,Selangor,2,The state that generates the highest total revenue is Selangor with a total revenue of 22938538.19.,"SELECT State, SUM(TotalRevenue) as TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 GROUP BY State ORDER BY TotalRevenue DESC LIMIT 1","import pandas as pd
+sql_query = 'SELECT State, SUM(TotalRevenue) as TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 GROUP BY State ORDER BY TotalRevenue DESC LIMIT 1'
+result_df = execute_sql_query(sql_query)
+state = result_df.iloc[0]['State']
+total_revenue = result_df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The state that generates the highest total revenue is {state} with a total revenue of {total_revenue}.'}",TRUE,7.28,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,2,The doctor who treats the highest number of patients from Malay ethnicity is Doctor B with 6749 patients.,"SELECT StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE Ethnicities = 'Malay'
+    GROUP BY StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE Ethnicities = 'Malay'
+    GROUP BY StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+doctor_name = result_df.iloc[0]['StaffName']
+patient_count = result_df.iloc[0]['patient_count']
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity is {doctor_name} with {patient_count} patients.'}",TRUE,12.43,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,2,The doctor who sees the most patients from Married social status group is Doctor BZ with 4178 patients.,"SELECT StaffName, COUNT(*) as PatientCount
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE SocialStatus = 'Married'
+    GROUP BY StaffName
+    ORDER BY PatientCount DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT StaffName, COUNT(*) as PatientCount
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE SocialStatus = 'Married'
+    GROUP BY StaffName
+    ORDER BY PatientCount DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The doctor who sees the most patients from Married social status group is {result_df.iloc[0]['StaffName']} with {result_df.iloc[0]['PatientCount']} patients.""}",TRUE,11.14,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",2,The doctor with the highest number of patients from different country/geography is Doctor AW with 31 countries.,"SELECT t2.StaffName, COUNT(DISTINCT t1.""Countries/Geography"") as num_countries
+    FROM table_3586b23a0be349f88985d8c0d783b36d t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t2.StaffName
+    ORDER BY num_countries DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT t2.StaffName, COUNT(DISTINCT t1.""Countries/Geography"") as num_countries
+    FROM table_3586b23a0be349f88985d8c0d783b36d t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t2.StaffName
+    ORDER BY num_countries DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+doctor_name = result_df.iloc[0]['StaffName']
+num_countries = result_df.iloc[0]['num_countries']
+result = {'type': 'string', 'value': f'The doctor with the highest number of patients from different country/geography is {doctor_name} with {num_countries} countries.'}",FALSE,22.37,TRUE,,FALSE,FALSE,TRUE
+Llama3-70B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,2,The clinic with the highest revenue is Clinic I with a total revenue of 3487368.95 and 15 doctors.,"WITH clinic_revenue AS (
+        SELECT IDOrganisation, SUM(TotalRevenue) AS total_revenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        GROUP BY IDOrganisation
+    ), doctor_count AS (
+        SELECT IDOrganisation, COUNT(DISTINCT StaffName) AS doctor_count
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        GROUP BY IDOrganisation
+    )
+    SELECT cr.IDOrganisation, cr.total_revenue, dc.doctor_count
+    FROM clinic_revenue cr
+    JOIN doctor_count dc ON cr.IDOrganisation = dc.IDOrganisation
+    ORDER BY cr.total_revenue DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    WITH clinic_revenue AS (
+        SELECT IDOrganisation, SUM(TotalRevenue) AS total_revenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        GROUP BY IDOrganisation
+    ), doctor_count AS (
+        SELECT IDOrganisation, COUNT(DISTINCT StaffName) AS doctor_count
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        GROUP BY IDOrganisation
+    )
+    SELECT cr.IDOrganisation, cr.total_revenue, dc.doctor_count
+    FROM clinic_revenue cr
+    JOIN doctor_count dc ON cr.IDOrganisation = dc.IDOrganisation
+    ORDER BY cr.total_revenue DESC
+    LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+clinic_name = df.iloc[0, 0]
+total_revenue = df.iloc[0, 1]
+doctor_count = df.iloc[0, 2]
+result = {'type': 'string', 'value': f'The clinic with the highest revenue is {clinic_name} with a total revenue of {total_revenue:.2f} and {doctor_count} doctors.'}",TRUE,12.58,TRUE,,FALSE,TRUE,FALSE
+Llama3-70B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,2,The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is Doctor BR.,"WITH 
+    -- Get the highest revenue clinic
+    highest_revenue_clinic AS (
+        SELECT IDOrganisation, TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        ORDER BY TotalRevenue DESC
+        LIMIT 1
+    ),
+    -- Get the doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic
+    doctor_with_most_malay_patients AS (
+        SELECT StaffName, COUNT(*) AS num_malay_patients
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        JOIN table_3586b23a0be349f88985d8c0d783b36d ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+        WHERE table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = (SELECT IDOrganisation FROM highest_revenue_clinic)
+        AND table_3586b23a0be349f88985d8c0d783b36d.Ethnicities = 'Malay'
+        GROUP BY StaffName
+        ORDER BY num_malay_patients DESC
+        LIMIT 1
+    )
+    SELECT * FROM doctor_with_most_malay_patients;","import pandas as pd
+sql_query = """"""
+    WITH 
+    -- Get the highest revenue clinic
+    highest_revenue_clinic AS (
+        SELECT IDOrganisation, TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+        ORDER BY TotalRevenue DESC
+        LIMIT 1
+    ),
+    -- Get the doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic
+    doctor_with_most_malay_patients AS (
+        SELECT StaffName, COUNT(*) AS num_malay_patients
+        FROM table_c83679f393c19ab82f71054c6c3facb6
+        JOIN table_3586b23a0be349f88985d8c0d783b36d ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+        WHERE table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = (SELECT IDOrganisation FROM highest_revenue_clinic)
+        AND table_3586b23a0be349f88985d8c0d783b36d.Ethnicities = 'Malay'
+        GROUP BY StaffName
+        ORDER BY num_malay_patients DESC
+        LIMIT 1
+    )
+    SELECT * FROM doctor_with_most_malay_patients;
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is {df.iloc[0]['StaffName']}.""}",FALSE,17.48,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-405B,easy,Which clinic has the highest TotalRevenue?,Clinic I,2,The clinic with the highest TotalRevenue is Clinic I with a TotalRevenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+clinic_name = result_df['IDOrganisation'].values[0]
+total_revenue = result_df['TotalRevenue'].values[0]
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {clinic_name} with a TotalRevenue of {total_revenue}.'}",TRUE,6.28,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",2,1220906.6519565217,"SELECT AVG(TotalRevenue) as average_total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+    SELECT AVG(TotalRevenue) as average_total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+result_df = execute_sql_query(sql_query)
+average_total_revenue = result_df['average_total_revenue'].values[0]
+result = {'type': 'number', 'value': average_total_revenue}",TRUE,6.27,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",2,"         District
+0          Kajang
+1          Rawang
+2        Petaling
+3     Wakaf Bharu
+4   Petaling Jaya
+5           Bangi
+6        Semenyih
+7       Shah Alam
+8          Cheras
+9            Muar
+10     Batu Caves
+11       Seremban
+12   Kuala Lumpur
+13    Hulu Langat
+14          Kulim
+15     Kota Bharu
+16  Bandar Enstek
+17    Desa Pandan
+18    Batang Kali
+19      Pasir Mas
+20     Georgetown
+21     Central KL
+22           Ipoh
+23     Setia Alam
+24   Kuala Langat
+25      Presint 8
+26    Bayan Lepas
+27        Kuantan
+28         Sepang
+29         Dungun
+30         Skudai
+31         Mantin","SELECT DISTINCT District
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+    SELECT DISTINCT District
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,3.9,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,Which hour has the highest patient count?,13/10/2025 20:00,2, 2025-02-13 18:00:00 with 147.0 patients.,"SELECT Hour, MAX(PatientCount) as max_patient_count
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY max_patient_count DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT Hour, MAX(PatientCount) as max_patient_count
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY max_patient_count DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The hour with the highest patient count is {result_df['Hour'].values[0]} with {result_df['max_patient_count'].values[0]} patients.""}",TRUE,4.81,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,Which state generates the highest total revenue?,Selangor,2,The state with the highest total revenue is Kuala Lumpur.,"SELECT State, MAX(TotalRevenue) as max_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY max_revenue DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT State, MAX(TotalRevenue) as max_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY max_revenue DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+state = result_df['State'].iloc[0]
+result = {'type': 'string', 'value': f'The state with the highest total revenue is {state}.'}",TRUE,6.06,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,2,"Dr. Doctor B treats the highest number of patients from Malay ethnicity, with a total of 6749 patients.","SELECT T1.StaffName, COUNT(T2.Ethnicities) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.Address = T2.Address
+    WHERE T2.Ethnicities = 'Malay'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT T1.StaffName, COUNT(T2.Ethnicities) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.Address = T2.Address
+    WHERE T2.Ethnicities = 'Malay'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+doctor_name = result_df.iloc[0]['StaffName']
+patient_count = result_df.iloc[0]['patient_count']
+result = {'type': 'string', 'value': f'Dr. {doctor_name} treats the highest number of patients from Malay ethnicity, with a total of {patient_count} patients.'}",TRUE,7.67,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,2,The doctor who sees the most patients from Married social status group is Doctor BZ.,"SELECT T1.StaffName, COUNT(T2.""SocialStatus"") as count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.""SocialStatus"" = 'Married'
+    GROUP BY T1.StaffName
+    ORDER BY count DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT T1.StaffName, COUNT(T2.""SocialStatus"") as count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.""SocialStatus"" = 'Married'
+    GROUP BY T1.StaffName
+    ORDER BY count DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+doctor_name = result_df.iloc[0]['StaffName']
+result = {'type': 'string', 'value': f'The doctor who sees the most patients from Married social status group is {doctor_name}.'}",TRUE,9.18,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",2,The doctor with the highest number of patients from different countries is Doctor AW with 31 countries.,"SELECT T1.StaffName, COUNT(DISTINCT T2.""Countries/Geography"") as num_countries
+FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+ON T1.IDOrganisation = T2.IDOrganisation
+GROUP BY T1.StaffName
+ORDER BY num_countries DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT T1.StaffName, COUNT(DISTINCT T2.""Countries/Geography"") as num_countries
+FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+ON T1.IDOrganisation = T2.IDOrganisation
+GROUP BY T1.StaffName
+ORDER BY num_countries DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+doctor = df.iloc[0]['StaffName']
+num_countries = df.iloc[0]['num_countries']
+result = {'type': 'string', 'value': f'The doctor with the highest number of patients from different countries is {doctor} with {num_countries} countries.'}",TRUE,17.3,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,2,The clinic with the highest revenue is Clinic I with 15 doctors and a revenue of 3487368.95.,"SELECT 
+        T1.IDOrganisation, 
+        T1.Address, 
+        COUNT(T2.StaffName) as Number_of_Doctors,
+        MAX(T1.TotalRevenue) as Highest_Revenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 T1
+    LEFT JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 T2
+    ON 
+        T1.IDOrganisation = T2.IDOrganisation
+    GROUP BY 
+        T1.IDOrganisation, T1.Address
+    ORDER BY 
+        Highest_Revenue DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT 
+        T1.IDOrganisation, 
+        T1.Address, 
+        COUNT(T2.StaffName) as Number_of_Doctors,
+        MAX(T1.TotalRevenue) as Highest_Revenue
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 T1
+    LEFT JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 T2
+    ON 
+        T1.IDOrganisation = T2.IDOrganisation
+    GROUP BY 
+        T1.IDOrganisation, T1.Address
+    ORDER BY 
+        Highest_Revenue DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+clinic_name = result_df['IDOrganisation'].iloc[0]
+number_of_doctors = result_df['Number_of_Doctors'].iloc[0]
+highest_revenue = result_df['Highest_Revenue'].iloc[0]
+result = {'type': 'string', 'value': f'The clinic with the highest revenue is {clinic_name} with {number_of_doctors} doctors and a revenue of {highest_revenue}.'}",TRUE,9.64,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,2,The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is Doctor BR.,,"import pandas as pd
+clinic_revenue_query = """"""
+    SELECT IDOrganisation, MAX(TotalRevenue) as max_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+    ORDER BY max_revenue DESC
+    LIMIT 1
+""""""
+clinic_revenue_df = execute_sql_query(clinic_revenue_query)
+highest_revenue_clinic = clinic_revenue_df['IDOrganisation'].values[0]
+doctor_query = f""""""
+    SELECT StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation = '{highest_revenue_clinic}'
+    AND table_3586b23a0be349f88985d8c0d783b36d.Ethnicities = 'Malay'
+    GROUP BY StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1
+""""""
+doctor_df = execute_sql_query(doctor_query)
+doctor_name = doctor_df['StaffName'].values[0]
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is {doctor_name}.'}",FALSE,11.85,TRUE,,FALSE,FALSE,TRUE
+Mistral-Large-3-675B,easy,Which clinic has the highest TotalRevenue?,Clinic I,2,"The clinic with the highest TotalRevenue is Clinic I with a revenue of RM3,487,368.95.","SELECT
+    IDOrganisation,
+    Address,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    IDOrganisation,
+    Address,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+highest_revenue_clinic = result_df.iloc[0]['IDOrganisation']
+highest_revenue = result_df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {highest_revenue_clinic} with a revenue of RM{highest_revenue:,.2f}.'}",TRUE,6.98,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",2,1220906.6519565217,"SELECT AVG(""TotalRevenue"") AS AverageTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+SELECT AVG(""TotalRevenue"") AS AverageTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+result_df = execute_sql_query(sql_query)
+average_revenue = result_df.iloc[0]['AverageTotalRevenue']
+result = {'type': 'number', 'value': average_revenue}",TRUE,10.85,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",2,"         District
+0   Bandar Enstek
+1           Bangi
+2     Batang Kali
+3      Batu Caves
+4     Bayan Lepas
+5      Central KL
+6          Cheras
+7     Desa Pandan
+8          Dungun
+9      Georgetown
+10    Hulu Langat
+11           Ipoh
+12         Kajang
+13     Kota Bharu
+14   Kuala Langat
+15   Kuala Lumpur
+16        Kuantan
+17          Kulim
+18         Mantin
+19           Muar
+20      Pasir Mas
+21       Petaling
+22  Petaling Jaya
+23      Presint 8
+24         Rawang
+25       Semenyih
+26         Sepang
+27       Seremban
+28     Setia Alam
+29      Shah Alam
+30         Skudai
+31    Wakaf Bharu","SELECT DISTINCT District
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY District","import pandas as pd
+sql_query = """"""
+SELECT DISTINCT District
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY District
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,9.55,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,Which hour has the highest patient count?,13/10/2025 20:00,2,The hour with the highest patient count is 2025-02-13 18:00:00 with 147 patients.,"SELECT
+    Hour,
+    PatientCount
+FROM
+    table_6c16364831b68d93e7cf9d423cf8f3da
+ORDER BY
+    PatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    Hour,
+    PatientCount
+FROM
+    table_6c16364831b68d93e7cf9d423cf8f3da
+ORDER BY
+    PatientCount DESC
+LIMIT 1
+""""""
+df_result = execute_sql_query(sql_query)
+highest_hour = df_result.iloc[0]['Hour']
+highest_count = df_result.iloc[0]['PatientCount']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {highest_hour} with {int(highest_count)} patients.'}",TRUE,15.72,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,Which state generates the highest total revenue?,Selangor,2,"The state that generates the highest total revenue is Selangor with a total revenue of RM22,938,538.19.","SELECT
+    State,
+    SUM(TotalRevenue) AS TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY
+    State
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    State,
+    SUM(TotalRevenue) AS TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY
+    State
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+highest_revenue_state = result_df.iloc[0]['State']
+highest_revenue_amount = result_df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The state that generates the highest total revenue is {highest_revenue_state} with a total revenue of RM{highest_revenue_amount:,.2f}.'}",TRUE,7.2,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,2,Doctor Doctor B treats the highest number of Malay patients with a total of 6749 patients.,"SELECT
+    t1.StaffName,
+    COUNT(*) AS MalayPatientCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d t2
+JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 t1
+ON
+    t1.IDOrganisation = t2.IDOrganisation
+WHERE
+    t2.Ethnicities = 'Malay'
+GROUP BY
+    t1.StaffName
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    t1.StaffName,
+    COUNT(*) AS MalayPatientCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d t2
+JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 t1
+ON
+    t1.IDOrganisation = t2.IDOrganisation
+WHERE
+    t2.Ethnicities = 'Malay'
+GROUP BY
+    t1.StaffName
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1
+""""""
+df_result = execute_sql_query(sql_query)
+if not df_result.empty:
+    doctor_name = df_result.iloc[0]['StaffName']
+    patient_count = df_result.iloc[0]['MalayPatientCount']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of Malay patients with a total of {patient_count} patients.'}
+else:
+    result = {'type': 'string', 'value': 'No data found for Malay patients.'}",TRUE,23.3,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,2,Doctor Doctor BZ sees the most patients from Married social status group with 4178 patients.,"SELECT t2.StaffName, COUNT(*) as MarriedPatientCount
+FROM table_3586b23a0be349f88985d8c0d783b36d t1
+JOIN table_c83679f393c19ab82f71054c6c3facb6 t2
+ON t1.IDOrganisation = t2.IDOrganisation
+WHERE t1.SocialStatus = 'Married'
+GROUP BY t2.StaffName
+ORDER BY MarriedPatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT t2.StaffName, COUNT(*) as MarriedPatientCount
+FROM table_3586b23a0be349f88985d8c0d783b36d t1
+JOIN table_c83679f393c19ab82f71054c6c3facb6 t2
+ON t1.IDOrganisation = t2.IDOrganisation
+WHERE t1.SocialStatus = 'Married'
+GROUP BY t2.StaffName
+ORDER BY MarriedPatientCount DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    doctor_name = result_df.iloc[0]['StaffName']
+    patient_count = result_df.iloc[0]['MarriedPatientCount']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} sees the most patients from Married social status group with {patient_count} patients.'}
+else:
+    result = {'type': 'string', 'value': 'No data found for Married social status group.'}",TRUE,20.26,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",2,Doctor Doctor AW has the highest number of patients from 31 different countries/geographies.,"WITH doctor_patient_countries AS (
+    SELECT
+        t1.StaffName,
+        COUNT(DISTINCT t2.""Countries/Geography"") AS distinct_countries_count
+    FROM
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY
+        t1.StaffName
+)
+SELECT
+    StaffName,
+    distinct_countries_count AS number_of_different_countries
+FROM
+    doctor_patient_countries
+ORDER BY
+    distinct_countries_count DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+WITH doctor_patient_countries AS (
+    SELECT
+        t1.StaffName,
+        COUNT(DISTINCT t2.""Countries/Geography"") AS distinct_countries_count
+    FROM
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY
+        t1.StaffName
+)
+SELECT
+    StaffName,
+    distinct_countries_count AS number_of_different_countries
+FROM
+    doctor_patient_countries
+ORDER BY
+    distinct_countries_count DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    doctor_name = result_df.loc[0, 'StaffName']
+    country_count = result_df.loc[0, 'number_of_different_countries']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} has the highest number of patients from {country_count} different countries/geographies.'}
+else:
+    result = {'type': 'string', 'value': 'No data found regarding patients from different countries/geographies.'}",TRUE,22.66,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,2,"The clinic with the highest revenue is Clinic I with a revenue of RM3,487,368.95, and it has 15 doctors working there.",,"import pandas as pd
+clinic_revenue_query = """"""
+SELECT
+    IDOrganisation,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(clinic_revenue_query)
+doctor_count_query = """"""
+SELECT
+    COUNT(DISTINCT StaffName) as DoctorCount
+FROM
+    table_c83679f393c19ab82f71054c6c3facb6
+WHERE
+    IDOrganisation = '{}'
+"""""".format(highest_revenue_clinic['IDOrganisation'].iloc[0])
+doctor_count = execute_sql_query(doctor_count_query)
+result = {'type': 'string', 'value': f""The clinic with the highest revenue is {highest_revenue_clinic['IDOrganisation'].iloc[0]} with a revenue of RM{highest_revenue_clinic['TotalRevenue'].iloc[0]:,.2f}, and it has {doctor_count['DoctorCount'].iloc[0]} doctors working there.""}",TRUE,7.7,TRUE,,FALSE,TRUE,FALSE
+Mistral-Large-3-675B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,2,Doctor Doctor B treats the highest number of Malay ethnicity patients (4748) in the highest revenue clinic (Clinic I).,,"import pandas as pd
+highest_revenue_clinic_query = """"""
+SELECT IDOrganisation
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(highest_revenue_clinic_query)
+clinic_id = highest_revenue_clinic.iloc[0]['IDOrganisation']
+query = f""""""
+SELECT
+    t2.StaffName,
+    COUNT(t3.IDOrganisation) as MalayPatientCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d t3
+JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON t3.IDOrganisation = t2.IDOrganisation
+WHERE
+    t3.IDOrganisation = '{clinic_id}'
+    AND t3.Ethnicities = 'Malay'
+GROUP BY
+    t2.StaffName
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(query)
+if not result_df.empty:
+    doctor_name = result_df.iloc[0]['StaffName']
+    patient_count = result_df.iloc[0]['MalayPatientCount']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of Malay ethnicity patients ({patient_count}) in the highest revenue clinic ({clinic_id}).'}
+else:
+    result = {'type': 'string', 'value': 'No data found for Malay ethnicity patients in the highest revenue clinic.'}",FALSE,25.95,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,easy,Which clinic has the highest TotalRevenue?,Clinic I,3,The clinic with the highest TotalRevenue is Clinic I with a TotalRevenue of 3487368.95.,,"import pandas as pd
+table = pd.DataFrame({'IDOrganisation': ['Clinic A', 'Clinic B', 'Clinic C', 'Clinic D', 'Clinic E'], 'Address': ['No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia', 'No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia', 'No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia', '564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia', '12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia'], 'State': ['Selangor', 'Selangor', 'Selangor', 'Selangor', 'Selangor'], 'District': ['Shah Alam', 'Petaling Jaya', 'Kuala Langat', 'Batu Caves', 'Batu Caves'], 'lat': [3.0817023, 3.0732511, 2.875081, 3.2355383, 3.2380872], 'lng': [101.5274006, 101.6482664, 101.5022764, 101.6977572, 101.6997531], 'TotalRevenue': [1824510.3, 1472371.34, 2747409.05, 3294471.8, 1474027.65], 'TotalPaid': [509037.45, 508163.27, 1192063.75, 1379643.95, 593079.95], 'TotalPanel': [1302486.8, 963692.67, 1554307.3, 1913597.05, 875076.75], 'TotalPaidPatientCount': [77.0, 184.0, 239.0, 136.0, 87.0], 'TotalPanelPatientCount': [13728.0, 16831.0, 32668.0, 35911.0, 15516.0], 'PatientCount': [16026.0, 18799.0, 36978.0, 40205.0, 17496.0], 'NewPatientCount': [6614.0, 6551.0, 13492.0, 19575.0, 9022.0], 'ReturnPatientCount': [9412.0, 12248.0, 23486.0, 20630.0, 8474.0], 'TotalCash': [99420.05, 148875.03, 547858.3, 409631.95, 154635.5], 'TotalCheque': [6082.96, 673.0, 500.0, 0.0, 63.0], 'TotalElectronic': [408287.65, 359275.2, 648619.45, 971837.95, 439157.45], 'TotalCashPatientCount': [43.0, 2822.0, 8340.0, 5099.0, 2151.0], 'TotalChequePatientCount': [4796.0, 5221.0, 8680.0, 10464.0, 5024.0]})
+result_df = execute_sql_query('SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1')
+highest_revenue_clinic = result_df.iloc[0]
+result = {'type': 'string', 'value': f""The clinic with the highest TotalRevenue is {highest_revenue_clinic['IDOrganisation']} with a TotalRevenue of {highest_revenue_clinic['TotalRevenue']}.""}
+print(result)",FALSE,6.86,TRUE,,TRUE,FALSE,FALSE
+Llama-3.1-8B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",3,1220906.65,,"import pandas as pd
+data = execute_sql_query('SELECT TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
+average_total_revenue = data['TotalRevenue'].mean()
+result = {'type': 'number', 'value': round(average_total_revenue, 2)}
+print(result)",TRUE,2.03,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",3,"         District
+0     Wakaf Bharu
+1   Bandar Enstek
+2     Desa Pandan
+3        Semenyih
+4      Kota Bharu
+5   Petaling Jaya
+6           Bangi
+7          Sepang
+8          Dungun
+9     Batang Kali
+10      Pasir Mas
+11     Georgetown
+12     Central KL
+13           Ipoh
+14     Setia Alam
+15      Shah Alam
+16         Cheras
+17           Muar
+18   Kuala Langat
+19      Presint 8
+20    Bayan Lepas
+21        Kuantan
+22     Batu Caves
+23       Seremban
+24   Kuala Lumpur
+25    Hulu Langat
+26          Kulim
+27         Skudai
+28         Mantin
+29         Kajang
+30         Rawang
+31       Petaling",,"import pandas as pd
+data = execute_sql_query('SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
+result = {'type': 'dataframe', 'value': data}
+print(result)",TRUE,2.14,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,Which hour has the highest patient count?,13/10/2025 20:00,3,The hour with the highest patient count is 2025-10-13 20:00:00.,,"import pandas as pd
+data = execute_sql_query('SELECT Hour, PatientCount FROM table_6c16364831b68d93e7cf9d423cf8f3da')
+result_df = data.groupby('Hour')['PatientCount'].sum().reset_index()
+result_df = result_df.sort_values(by='PatientCount', ascending=False).reset_index(drop=True)
+highest_patient_hour = result_df.iloc[0]['Hour']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {highest_patient_hour}.'}
+print(result)",TRUE,2.73,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,easy,Which state generates the highest total revenue?,Selangor,3,The state with the highest total revenue is Selangor.,"SELECT State, SUM(TotalRevenue) as total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY total_revenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT State, SUM(TotalRevenue) as total_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY total_revenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+highest_revenue_state = result_df['State'].iloc[0]
+result = {'type': 'string', 'value': f'The state with the highest total revenue is {highest_revenue_state}.'}
+print(result)",TRUE,29.63,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-8B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,3,"Unfortunately, I was not able to get your answer. Please try again.",,"import pandas as pd
+table1 = execute_sql_query('SELECT StaffName, TotalPatientCount FROM table_c83679f393c19ab82f71054c6c3facb6')
+table2 = execute_sql_query(""""""
+    SELECT IDOrganisation, Address, State, District, lat, lng, Date, Countries_Geography, Ethnicities 
+    FROM table_3586b23a0be349f88985d8c0d783b36d
+"""""")
+merged_table = pd.merge(table1, table2, left_on='IDOrganisation', right_on='IDOrganisation')
+malay_data = merged_table[merged_table['Ethnicities'] == 'Malay']
+staff_patient_count = malay_data.groupby('StaffName')['TotalPatientCount'].sum().reset_index()
+staff_patient_count = staff_patient_count.sort_values(by='TotalPatientCount', ascending=False)
+highest_patient_doctor = staff_patient_count.iloc[0]['StaffName']
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity is {highest_patient_doctor}.'}
+print(result)",FALSE,15.44,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,3,The doctor who sees the most patients from Married social status group is Doctor BS with 4163 patients.,"SELECT t1.IDOrganisation, t1.StaffName, COUNT(*) as TotalPatientCount
+    FROM table_3586b23a0be349f88985d8c0d783b36d t2
+    INNER JOIN table_c83679f393c19ab82f71054c6c3facb6 t1
+    ON t2.IDOrganisation = t1.IDOrganisation
+    WHERE t2.SocialStatus = 'Married'
+    GROUP BY t1.IDOrganisation, t1.StaffName
+    ORDER BY TotalPatientCount DESC","import pandas as pd
+sql_query = """"""
+    SELECT t1.IDOrganisation, t1.StaffName, COUNT(*) as TotalPatientCount
+    FROM table_3586b23a0be349f88985d8c0d783b36d t2
+    INNER JOIN table_c83679f393c19ab82f71054c6c3facb6 t1
+    ON t2.IDOrganisation = t1.IDOrganisation
+    WHERE t2.SocialStatus = 'Married'
+    GROUP BY t1.IDOrganisation, t1.StaffName
+    ORDER BY TotalPatientCount DESC
+""""""
+df = execute_sql_query(sql_query)
+top_doctor = df.loc[df['TotalPatientCount'].idxmax()]
+result = {'type': 'string', 'value': f""The doctor who sees the most patients from Married social status group is {top_doctor['StaffName']} with {top_doctor['TotalPatientCount']} patients.""}
+print(result)",FALSE,5.49,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",3,The doctor with the highest number of patients from different country/geography is Doctor AW with a total of 46022 patients.,,"import pandas as pd
+
+
+def get_doctor_with_most_patients_from_different_country():
+    table1 = execute_sql_query('SELECT * FROM table_c83679f393c19ab82f71054c6c3facb6')
+    table2 = execute_sql_query('SELECT * FROM table_3586b23a0be349f88985d8c0d783b36d')
+    merged_table = pd.merge(table1, table2, on=['IDOrganisation', 'Address'])
+    doctor_count = merged_table.groupby(['Countries/Geography', 'StaffName']).size().reset_index(name='patient_count')
+    doctor_count = doctor_count.sort_values(by='patient_count', ascending=False)
+    highest_doctor = doctor_count.iloc[0]
+    result = {'type': 'string', 'value': f""The doctor with the highest number of patients from different country/geography is {highest_doctor['StaffName']} with a total of {highest_doctor['patient_count']} patients.""}
+    return result
+
+
+result = get_doctor_with_most_patients_from_different_country()
+print(result)",FALSE,17.37,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,3,"Unfortunately, I was not able to get your answer. Please try again.",,"import pandas as pd
+
+
+def get_result():
+    query = """"""
+        SELECT t1.IDOrganisation, t1.Address, t1.State, t1.District, SUM(t1.TotalRevenue) as TotalRevenue
+        FROM table_bd4f8d5ffa8239c09831e5b997bc2753 as t1
+        GROUP BY t1.IDOrganisation, t1.Address, t1.State, t1.District
+        ORDER BY TotalRevenue DESC
+        LIMIT 1
+    """"""
+    df = execute_sql_query(query)
+    clinic_id = df['IDOrganisation'].iloc[0]
+    query = """"""
+        SELECT t1.IDOrganisation, COUNT(*) as DoctorCount
+        FROM table_c83679f393c19ab82f71054c6c3facb6 as t1
+        WHERE t1.IDOrganisation = %s
+        GROUP BY t1.IDOrganisation
+    """"""
+    df_doctors = execute_sql_query(query % clinic_id)
+    doctor_count = df_doctors['DoctorCount'].iloc[0]
+    return f""The clinic with the highest revenue is {df['Address'].iloc[0]} with {doctor_count} doctors.""
+
+
+result = {'type': 'string', 'value': get_result()}
+print(result)",FALSE,13.92,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-8B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,3,The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is Doctor B.,"SELECT 
+        t2.StaffName, 
+        COUNT(DISTINCT t3.Date) as total_patients
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    JOIN 
+        table_3586b23a0be349f88985d8c0d783b36d t3 ON t1.IDOrganisation = t3.IDOrganisation
+    WHERE 
+        t1.TotalRevenue = (SELECT MAX(TotalRevenue) FROM table_bd4f8d5ffa8239c09831e5b997bc2753)
+        AND t3.Ethnicities = 'Malay'
+    GROUP BY 
+        t2.StaffName
+    ORDER BY 
+        total_patients DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT 
+        t2.StaffName, 
+        COUNT(DISTINCT t3.Date) as total_patients
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    JOIN 
+        table_3586b23a0be349f88985d8c0d783b36d t3 ON t1.IDOrganisation = t3.IDOrganisation
+    WHERE 
+        t1.TotalRevenue = (SELECT MAX(TotalRevenue) FROM table_bd4f8d5ffa8239c09831e5b997bc2753)
+        AND t3.Ethnicities = 'Malay'
+    GROUP BY 
+        t2.StaffName
+    ORDER BY 
+        total_patients DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+highest_patient_doctor = result_df.iloc[0]['StaffName']
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is {highest_patient_doctor}.'}",FALSE,3.69,TRUE,,FALSE,FALSE,TRUE
+Gemma-2-27B,easy,Which clinic has the highest TotalRevenue?,Clinic I,3,The clinic with the highest TotalRevenue is Clinic I.,"SELECT  IDOrganisation,TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT  IDOrganisation,TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The clinic with the highest TotalRevenue is {df['IDOrganisation'].iloc[0]}.""}",TRUE,4.45,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",3,1220906.6519565217,"SELECT AVG(TotalRevenue) AS AverageTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+SELECT AVG(TotalRevenue) AS AverageTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+result = execute_sql_query(sql_query)
+average_total_revenue = result['AverageTotalRevenue'][0]
+result = {'type': 'number', 'value': average_total_revenue}",TRUE,4.56,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",3,"         District
+0       Shah Alam
+1          Cheras
+2            Muar
+3        Semenyih
+4          Skudai
+5          Mantin
+6          Kajang
+7          Rawang
+8        Petaling
+9      Kota Bharu
+10  Petaling Jaya
+11          Bangi
+12         Sepang
+13         Dungun
+14    Wakaf Bharu
+15  Bandar Enstek
+16    Desa Pandan
+17     Georgetown
+18     Central KL
+19           Ipoh
+20     Setia Alam
+21   Kuala Langat
+22      Presint 8
+23    Bayan Lepas
+24        Kuantan
+25     Batu Caves
+26       Seremban
+27   Kuala Lumpur
+28    Hulu Langat
+29          Kulim
+30    Batang Kali
+31      Pasir Mas","SELECT DISTINCT District
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+SELECT DISTINCT District
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE,3.59,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,Which hour has the highest patient count?,13/10/2025 20:00,3,The hour with the highest patient count is 2025-10-13 20:00:00.,"SELECT Hour, SUM(PatientCount) as TotalPatientCount
+FROM table_6c16364831b68d93e7cf9d423cf8f3da
+GROUP BY Hour
+ORDER BY TotalPatientCount DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT Hour, SUM(PatientCount) as TotalPatientCount
+FROM table_6c16364831b68d93e7cf9d423cf8f3da
+GROUP BY Hour
+ORDER BY TotalPatientCount DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+highest_patient_hour = df['Hour'].iloc[0]
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {highest_patient_hour}.'}",TRUE,5.03,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,easy,Which state generates the highest total revenue?,Selangor,3,The state with the highest total revenue is Selangor.,"SELECT State, SUM(TotalRevenue) as TotalRevenueByState
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY State
+ORDER BY TotalRevenueByState DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT State, SUM(TotalRevenue) as TotalRevenueByState
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY State
+ORDER BY TotalRevenueByState DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+highest_revenue_state = df.iloc[0]['State']
+result = {'type': 'string', 'value': f'The state with the highest total revenue is {highest_revenue_state}.'}",TRUE,10.58,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,3,"Unfortunately, I was not able to get your answer. Please try again.","SELECT t3.StaffName, COUNT(*) as TotalPatientCount
+FROM table_3586b23a0be349f88985d8c0d783b36d t3
+WHERE t3.""Ethnicities"" = 'Malay'
+GROUP BY t3.StaffName
+ORDER BY TotalPatientCount DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT t3.StaffName, COUNT(*) as TotalPatientCount
+FROM table_3586b23a0be349f88985d8c0d783b36d t3
+WHERE t3.""Ethnicities"" = 'Malay'
+GROUP BY t3.StaffName
+ORDER BY TotalPatientCount DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+doctor_name = df['StaffName'].iloc[0]
+result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of Malay patients.'}",FALSE,29.75,TRUE,,FALSE,FALSE,TRUE
+Gemma-2-27B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,3,The doctor who sees the most patients from Married social status group is Doctor AW.,"SELECT
+  StaffName,
+  COUNT(*) AS TotalPatients
+FROM table_c83679f393c19ab82f71054c6c3facb6
+WHERE StaffName IN (SELECT StaffName
+                    FROM table_3586b23a0be349f88985d8c0d783b36d
+                    WHERE SocialStatus = 'Married')
+GROUP BY
+  StaffName
+ORDER BY
+  TotalPatients DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+  StaffName,
+  COUNT(*) AS TotalPatients
+FROM table_c83679f393c19ab82f71054c6c3facb6
+WHERE StaffName IN (SELECT StaffName
+                    FROM table_3586b23a0be349f88985d8c0d783b36d
+                    WHERE SocialStatus = 'Married')
+GROUP BY
+  StaffName
+ORDER BY
+  TotalPatients DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The doctor who sees the most patients from Married social status group is {df['StaffName'].iloc[0]}.""}",FALSE,19.93,TRUE,,FALSE,FALSE,TRUE
+Gemma-2-27B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",3,"Unfortunately, I was not able to get your answer. Please try again.","WITH CountryPatientCount AS (
+    SELECT 
+        ""IDOrganisation"", 
+        ""StaffName"", 
+        ""Countries/Geography"",
+        COUNT(DISTINCT ""IDOrganisation"") as PatientCount
+    FROM table_3586b23a0be349f88985d8c0d783b36d
+    GROUP BY ""IDOrganisation"", ""StaffName"", ""Countries/Geography""
+)
+
+SELECT 
+    StaffName,
+    SUM(PatientCount) as TotalPatientCount
+FROM CountryPatientCount
+GROUP BY StaffName
+ORDER BY TotalPatientCount DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+WITH CountryPatientCount AS (
+    SELECT 
+        ""IDOrganisation"", 
+        ""StaffName"", 
+        ""Countries/Geography"",
+        COUNT(DISTINCT ""IDOrganisation"") as PatientCount
+    FROM table_3586b23a0be349f88985d8c0d783b36d
+    GROUP BY ""IDOrganisation"", ""StaffName"", ""Countries/Geography""
+)
+
+SELECT 
+    StaffName,
+    SUM(PatientCount) as TotalPatientCount
+FROM CountryPatientCount
+GROUP BY StaffName
+ORDER BY TotalPatientCount DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+doctor_with_highest_international_patients = df.iloc[0]['StaffName']
+result = {'type': 'string', 'value': f'The doctor with the highest number of patients from different countries is {doctor_with_highest_international_patients}.'}",FALSE,38.25,TRUE,,FALSE,FALSE,TRUE
+Gemma-2-27B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,3,Clinic Clinic I has the highest revenue and there are 15 doctors working there.,"SELECT 
+    table_bd4f8d5ffa8239c09831e5b997bc2753.IDOrganisation,
+    SUM(table_bd4f8d5ffa8239c09831e5b997bc2753.TotalRevenue) AS TotalRevenue,
+    COUNT(DISTINCT table_c83679f393c19ab82f71054c6c3facb6.StaffName) AS DocCount
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+LEFT JOIN 
+    table_c83679f393c19ab82f71054c6c3facb6 ON table_bd4f8d5ffa8239c09831e5b997bc2753.IDOrganisation = table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation
+GROUP BY table_bd4f8d5ffa8239c09831e5b997bc2753.IDOrganisation
+ORDER BY TotalRevenue DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT 
+    table_bd4f8d5ffa8239c09831e5b997bc2753.IDOrganisation,
+    SUM(table_bd4f8d5ffa8239c09831e5b997bc2753.TotalRevenue) AS TotalRevenue,
+    COUNT(DISTINCT table_c83679f393c19ab82f71054c6c3facb6.StaffName) AS DocCount
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+LEFT JOIN 
+    table_c83679f393c19ab82f71054c6c3facb6 ON table_bd4f8d5ffa8239c09831e5b997bc2753.IDOrganisation = table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation
+GROUP BY table_bd4f8d5ffa8239c09831e5b997bc2753.IDOrganisation
+ORDER BY TotalRevenue DESC
+LIMIT 1;
+
+""""""
+df = execute_sql_query(sql_query)
+highest_revenue_clinic = df['IDOrganisation'].iloc[0]
+doc_count = df['DocCount'].iloc[0]
+result = {'type': 'string', 'value': f'Clinic {highest_revenue_clinic} has the highest revenue and there are {doc_count} doctors working there.'}",TRUE,11.97,TRUE,,TRUE,TRUE,TRUE
+Gemma-2-27B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,3,Doctor Doctor BO treats the highest number of Malay patients in the highest revenue clinic.,"SELECT 
+	IDOrganisation 
+FROM 
+	table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT 
+	IDOrganisation 
+FROM 
+	table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1
+""""""
+df_clinic_id = execute_sql_query(sql_query)
+highest_revenue_clinic_id = df_clinic_id['IDOrganisation'].iloc[0]
+sql_query = f""""""
+SELECT
+	s.StaffName, 
+	COUNT(CASE WHEN d.Ethnicities = 'Malay' THEN 1 END) AS MalayPatientCount
+FROM
+	table_c83679f393c19ab82f71054c6c3facb6 AS s
+JOIN
+	table_3586b23a0be349f88985d8c0d783b36d AS d ON s.IDOrganisation = d.IDOrganisation
+WHERE
+	s.IDOrganisation = '{highest_revenue_clinic_id}'
+GROUP BY
+	s.StaffName
+ORDER BY 
+	MalayPatientCount DESC
+LIMIT 1
+""""""
+df_result = execute_sql_query(sql_query)
+doctor_name = df_result['StaffName'].iloc[0]
+result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of Malay patients in the highest revenue clinic.'}",FALSE,45.76,TRUE,,FALSE,FALSE,TRUE
+Llama3-70B,easy,Which clinic has the highest TotalRevenue?,Clinic I,3,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1","import pandas as pd
+sql_query = 'SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 1'
+result_df = execute_sql_query(sql_query)
+clinic_with_highest_revenue = result_df.iloc[0]['IDOrganisation']
+highest_revenue = result_df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {clinic_with_highest_revenue} with a revenue of {highest_revenue}.'}",TRUE,7.86,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",3,1220906.6519565217,SELECT AVG(TotalRevenue) AS avg_total_revenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753,"import pandas as pd
+sql_query = 'SELECT AVG(TotalRevenue) AS avg_total_revenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753'
+df = execute_sql_query(sql_query)
+avg_total_revenue = df.iloc[0]['avg_total_revenue']
+result = {'type': 'number', 'value': avg_total_revenue}",TRUE,6.94,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",3,"Unique Districts: Kajang, Rawang, Petaling, Central KL, Ipoh, Setia Alam, Kuala Langat, Presint 8, Bayan Lepas, Kuantan, Semenyih, Georgetown, Shah Alam, Cheras, Muar, Sepang, Dungun, Skudai, Mantin, Kota Bharu, Petaling Jaya, Bangi, Batu Caves, Seremban, Kuala Lumpur, Hulu Langat, Kulim, Wakaf Bharu, Bandar Enstek, Desa Pandan, Batang Kali, Pasir Mas",SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753,"import pandas as pd
+sql_query = 'SELECT DISTINCT District FROM table_bd4f8d5ffa8239c09831e5b997bc2753'
+districts_df = execute_sql_query(sql_query)
+unique_districts = districts_df['District'].tolist()
+result = {'type': 'string', 'value': f""Unique Districts: {', '.join(unique_districts)}""}",TRUE,6.93,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,Which hour has the highest patient count?,13/10/2025 20:00,3,The hour with the highest patient count is 2025-10-13 20:00:00.,"SELECT Hour, SUM(PatientCount) as TotalPatients
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY TotalPatients DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT Hour, SUM(PatientCount) as TotalPatients
+    FROM table_6c16364831b68d93e7cf9d423cf8f3da
+    GROUP BY Hour
+    ORDER BY TotalPatients DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+hour_with_highest_patient_count = result_df.iloc[0]['Hour']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {hour_with_highest_patient_count}.'}",TRUE,7.95,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,easy,Which state generates the highest total revenue?,Selangor,3,The state that generates the highest total revenue is Selangor with a total revenue of 22938538.19.,"SELECT State, SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT State, SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+state = df.iloc[0]['State']
+total_revenue = df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The state that generates the highest total revenue is {state} with a total revenue of {total_revenue}.'}",TRUE,8.41,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,3,The doctor who treats the highest number of patients from Malay ethnicity is Doctor B with 6749 patients.,"SELECT t2.StaffName, COUNT(*) as patient_count
+    FROM table_3586b23a0be349f88985d8c0d783b36d t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation AND t1.Address = t2.Address
+    WHERE t1.Ethnicities = 'Malay'
+    GROUP BY t2.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT t2.StaffName, COUNT(*) as patient_count
+    FROM table_3586b23a0be349f88985d8c0d783b36d t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation AND t1.Address = t2.Address
+    WHERE t1.Ethnicities = 'Malay'
+    GROUP BY t2.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+doctor_name = df.iloc[0]['StaffName']
+patient_count = df.iloc[0]['patient_count']
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity is {doctor_name} with {patient_count} patients.'}",TRUE,22.56,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,3,The doctor who sees the most patients from Married social status group is Doctor BZ with 4178 patients.,"SELECT StaffName, COUNT(*) as num_patients
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE SocialStatus = 'Married'
+    GROUP BY StaffName
+    ORDER BY num_patients DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT StaffName, COUNT(*) as num_patients
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d
+    ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE SocialStatus = 'Married'
+    GROUP BY StaffName
+    ORDER BY num_patients DESC
+    LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+doctor_name = df.iloc[0]['StaffName']
+num_patients = df.iloc[0]['num_patients']
+result = {'type': 'string', 'value': f'The doctor who sees the most patients from Married social status group is {doctor_name} with {num_patients} patients.'}",TRUE,11.65,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",3,The doctor with the highest number of patients from different country/geography is Doctor AW with 31 countries.,"SELECT t1.StaffName, COUNT(DISTINCT t2.""Countries/Geography"") AS num_countries
+    FROM table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t1.StaffName
+    ORDER BY num_countries DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT t1.StaffName, COUNT(DISTINCT t2.""Countries/Geography"") AS num_countries
+    FROM table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t1.StaffName
+    ORDER BY num_countries DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f'The doctor with the highest number of patients from different country/geography is {result_df.iloc[0, 0]} with {result_df.iloc[0, 1]} countries.'}",TRUE,41.68,TRUE,,TRUE,TRUE,TRUE
+Llama3-70B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,3,The clinic with the highest revenue is Clinic I with a total revenue of 52310534.250000015 and 15 doctors.,"SELECT t1.IDOrganisation, SUM(t1.TotalRevenue) as TotalRevenue, COUNT(DISTINCT t2.StaffName) as DoctorCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t1.IDOrganisation
+    ORDER BY TotalRevenue DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT t1.IDOrganisation, SUM(t1.TotalRevenue) as TotalRevenue, COUNT(DISTINCT t2.StaffName) as DoctorCount
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY t1.IDOrganisation
+    ORDER BY TotalRevenue DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The clinic with the highest revenue is {result_df.iloc[0]['IDOrganisation']} with a total revenue of {result_df.iloc[0]['TotalRevenue']} and {result_df.iloc[0]['DoctorCount']} doctors.""}",TRUE,23.88,TRUE,,FALSE,TRUE,FALSE
+Llama3-70B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,3,The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is Doctor B.,,"import pandas as pd
+table_bd4f8d5ffa8239c09831e5b997bc2753 = execute_sql_query('SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
+table_c83679f393c19ab82f71054c6c3facb6 = execute_sql_query('SELECT * FROM table_c83679f393c19ab82f71054c6c3facb6')
+table_3586b23a0be349f88985d8c0d783b36d = execute_sql_query('SELECT * FROM table_3586b23a0be349f88985d8c0d783b36d')
+highest_revenue_clinic = execute_sql_query(""""""
+    SELECT IDOrganisation, SUM(TotalRevenue) AS TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+"""""")
+result_query = execute_sql_query(""""""
+    SELECT StaffName, COUNT(*) AS PatientCount
+    FROM table_c83679f393c19ab82f71054c6c3facb6
+    JOIN table_3586b23a0be349f88985d8c0d783b36d ON table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = table_3586b23a0be349f88985d8c0d783b36d.IDOrganisation
+    WHERE table_c83679f393c19ab82f71054c6c3facb6.IDOrganisation = '{}' AND table_3586b23a0be349f88985d8c0d783b36d.Ethnicities = 'Malay'
+    GROUP BY StaffName
+    ORDER BY PatientCount DESC
+    LIMIT 1
+"""""".format(highest_revenue_clinic.iloc[0]['IDOrganisation']))
+result = {'type': 'string', 'value': f""The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is {result_query.iloc[0]['StaffName']}.""}",FALSE,23.62,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-405B,easy,Which clinic has the highest TotalRevenue?,Clinic I,3,The clinic with the highest TotalRevenue is Clinic I with a revenue of 3487368.95.,"SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+clinic_name = result_df.iloc[0]['IDOrganisation']
+highest_revenue = result_df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {clinic_name} with a revenue of {highest_revenue}.'}",TRUE,4.56,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",3,1220906.6519565217,"SELECT AVG(TotalRevenue) as average_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+    SELECT AVG(TotalRevenue) as average_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+result_df = execute_sql_query(sql_query)
+average_revenue = result_df['average_revenue'].iloc[0]
+result = {'type': 'number', 'value': average_revenue}",TRUE,13.71,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",3,"         District
+0      Georgetown
+1       Shah Alam
+2          Cheras
+3            Muar
+4    Kuala Langat
+5       Presint 8
+6     Bayan Lepas
+7         Kuantan
+8        Semenyih
+9     Wakaf Bharu
+10     Batu Caves
+11       Seremban
+12   Kuala Lumpur
+13    Hulu Langat
+14          Kulim
+15         Kajang
+16         Rawang
+17       Petaling
+18     Central KL
+19           Ipoh
+20     Setia Alam
+21  Bandar Enstek
+22    Desa Pandan
+23    Batang Kali
+24      Pasir Mas
+25     Kota Bharu
+26  Petaling Jaya
+27          Bangi
+28         Sepang
+29         Dungun
+30         Skudai
+31         Mantin","SELECT DISTINCT District
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+    SELECT DISTINCT District
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE,3.5,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,easy,Which hour has the highest patient count?,13/10/2025 20:00,3,The hour with the highest patient count is 2025-02-13 18:00:00.,"SELECT Hour, MAX(PatientCount) as max_patient_count
+FROM table_6c16364831b68d93e7cf9d423cf8f3da
+GROUP BY Hour
+ORDER BY max_patient_count DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT Hour, MAX(PatientCount) as max_patient_count
+FROM table_6c16364831b68d93e7cf9d423cf8f3da
+GROUP BY Hour
+ORDER BY max_patient_count DESC
+LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+hour_with_highest_patient_count = result_df.iloc[0]['Hour']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {hour_with_highest_patient_count}.'}",FALSE,6.64,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-405B,easy,Which state generates the highest total revenue?,Selangor,3,The state with the highest total revenue is Selangor with a total revenue of 22938538.19.,"SELECT State, SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY TotalRevenue DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT State, SUM(TotalRevenue) as TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY State
+    ORDER BY TotalRevenue DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+state_with_highest_revenue = result_df.iloc[0]['State']
+highest_revenue = result_df.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The state with the highest total revenue is {state_with_highest_revenue} with a total revenue of {highest_revenue}.'}",TRUE,7.47,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,3,The doctor who treats the highest number of patients from Malay ethnicity is Doctor B.,"SELECT T1.StaffName, COUNT(T2.""Countries/Geography"") as count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    INNER JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation AND T1.Address = T2.Address
+    WHERE T2.Ethnicities = 'Malay'
+    GROUP BY T1.StaffName
+    ORDER BY count DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT T1.StaffName, COUNT(T2.""Countries/Geography"") as count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    INNER JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation AND T1.Address = T2.Address
+    WHERE T2.Ethnicities = 'Malay'
+    GROUP BY T1.StaffName
+    ORDER BY count DESC
+    LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+if not df.empty:
+    result = {'type': 'string', 'value': f""The doctor who treats the highest number of patients from Malay ethnicity is {df.iloc[0]['StaffName']}.""}
+else:
+    result = {'type': 'string', 'value': 'No data found.'}",TRUE,28.48,TRUE,,TRUE,TRUE,TRUE
+Llama-3.1-405B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,3,"Unfortunately, I was not able to get your answer. Please try again.","SELECT T1.StaffName, COUNT(T2.`SocialStatus`) as MarriedPatientCount
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    INNER JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.Address = T2.Address AND T1.State = T2.State AND T1.District = T2.District
+    WHERE T2.`SocialStatus` = 'Married'
+    GROUP BY T1.StaffName
+    ORDER BY MarriedPatientCount DESC
+    LIMIT 1;","import pandas as pd
+
+
+def get_doctor_with_most_married_patients():
+    sql_query = """"""
+    SELECT T1.StaffName, COUNT(T2.`SocialStatus`) as MarriedPatientCount
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    INNER JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.Address = T2.Address AND T1.State = T2.State AND T1.District = T2.District
+    WHERE T2.`SocialStatus` = 'Married'
+    GROUP BY T1.StaffName
+    ORDER BY MarriedPatientCount DESC
+    LIMIT 1;
+    """"""
+    result_df = execute_sql_query(sql_query)
+    doctor_name = result_df.iloc[0]['StaffName']
+    married_patient_count = result_df.iloc[0]['MarriedPatientCount']
+    result = {'type': 'string', 'value': f'The doctor who sees the most patients from the Married social status group is {doctor_name} with {married_patient_count} patients.'}
+    return result
+
+
+result = get_doctor_with_most_married_patients()
+print(result)",TRUE,96.07,TRUE,,FALSE,TRUE,FALSE
+Llama-3.1-405B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",3,The doctor with the highest number of patients from different country/geography is Doctor AW with patients from 31 countries.,"SELECT T1.StaffName, COUNT(DISTINCT T2.""Countries/Geography"") as num_countries
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    GROUP BY T1.StaffName
+    ORDER BY num_countries DESC
+    LIMIT 1;","import pandas as pd
+
+
+def get_doctor_with_most_patients_from_different_countries():
+    sql_query = """"""
+    SELECT T1.StaffName, COUNT(DISTINCT T2.""Countries/Geography"") as num_countries
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    GROUP BY T1.StaffName
+    ORDER BY num_countries DESC
+    LIMIT 1;
+    """"""
+    result_df = execute_sql_query(sql_query)
+    doctor_name = result_df.iloc[0]['StaffName']
+    num_countries = result_df.iloc[0]['num_countries']
+    result = {'type': 'string', 'value': f'The doctor with the highest number of patients from different country/geography is {doctor_name} with patients from {num_countries} countries.'}
+    return result
+
+
+result = get_doctor_with_most_patients_from_different_countries()
+print(result)",FALSE,48.38,TRUE,,FALSE,FALSE,TRUE
+Llama-3.1-405B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,3,The clinic with the highest revenue is Clinic I with a total revenue of 3487368.95. There are 15 doctors working in this clinic.,"SELECT 
+        t1.IDOrganisation, 
+        t1.Address, 
+        t1.TotalRevenue, 
+        COUNT(t2.StaffName) as TotalDoctors
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, 
+        t1.Address, 
+        t1.TotalRevenue
+    ORDER BY 
+        t1.TotalRevenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT 
+        t1.IDOrganisation, 
+        t1.Address, 
+        t1.TotalRevenue, 
+        COUNT(t2.StaffName) as TotalDoctors
+    FROM 
+        table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+    JOIN 
+        table_c83679f393c19ab82f71054c6c3facb6 t2
+    ON 
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY 
+        t1.IDOrganisation, 
+        t1.Address, 
+        t1.TotalRevenue
+    ORDER BY 
+        t1.TotalRevenue DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+clinic_name = result_df['IDOrganisation'].values[0]
+total_doctors = result_df['TotalDoctors'].values[0]
+result = {'type': 'string', 'value': f""The clinic with the highest revenue is {clinic_name} with a total revenue of {result_df['TotalRevenue'].values[0]}. There are {total_doctors} doctors working in this clinic.""}",TRUE,9.63,TRUE,,FALSE,TRUE,FALSE
+Llama-3.1-405B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,3,The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is Doctor BX.,"SELECT IDOrganisation, MAX(TotalRevenue) as max_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+    ORDER BY max_revenue DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT IDOrganisation, MAX(TotalRevenue) as max_revenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    GROUP BY IDOrganisation
+    ORDER BY max_revenue DESC
+    LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(sql_query)
+highest_revenue_clinic_id = highest_revenue_clinic['IDOrganisation'].values[0]
+sql_query = f""""""
+    SELECT T1.StaffName, COUNT(*) as patient_count
+    FROM table_c83679f393c19ab82f71054c6c3facb6 T1
+    JOIN table_3586b23a0be349f88985d8c0d783b36d T2
+    ON T1.IDOrganisation = T2.IDOrganisation
+    WHERE T2.IDOrganisation = '{highest_revenue_clinic_id}'
+    AND T2.Ethnicities = 'Malay'
+    GROUP BY T1.StaffName
+    ORDER BY patient_count DESC
+    LIMIT 1
+""""""
+doctor_with_highest_malay_patients = execute_sql_query(sql_query)
+doctor_name = doctor_with_highest_malay_patients['StaffName'].values[0]
+result = {'type': 'string', 'value': f'The doctor who treats the highest number of patients from Malay ethnicity in the highest revenue clinic is {doctor_name}.'}",FALSE,45.08,TRUE,,FALSE,FALSE,TRUE
+Mistral-Large-3-675B,easy,Which clinic has the highest TotalRevenue?,Clinic I,3,"The clinic with the highest TotalRevenue is Clinic I with a TotalRevenue of 3,487,368.95.","SELECT
+    IDOrganisation,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    IDOrganisation,
+    TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1
+""""""
+df_result = execute_sql_query(sql_query)
+highest_revenue_clinic = df_result.iloc[0]['IDOrganisation']
+highest_revenue_amount = df_result.iloc[0]['TotalRevenue']
+result = {'type': 'string', 'value': f'The clinic with the highest TotalRevenue is {highest_revenue_clinic} with a TotalRevenue of {highest_revenue_amount:,.2f}.'}",TRUE,31.67,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,What is the average TotalRevenue across all clinics?,"1,220,906.65",3,1220906.6519565217,"SELECT AVG(""TotalRevenue"") as AverageTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753","import pandas as pd
+sql_query = """"""
+SELECT AVG(""TotalRevenue"") as AverageTotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+""""""
+df = execute_sql_query(sql_query)
+average_revenue = df.iloc[0]['AverageTotalRevenue']
+result = {'type': 'number', 'value': average_revenue}",TRUE,19.67,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,List all unique Districts present in the dataset.,"Bandar Enstek, Bangi, Batang Kali, Batu Caves, Bayan Lepas, Central KL, Cheras, Desa Pandan, Dungun, Georgetown, Hulu Langat, Ipoh, Kajang, Kota Bharu, Kuala Langat, Kuala Lumpur, Kuantan, Kulim, Mantin, Muar, Pasir Mas, Petaling, Petaling Jaya, Presint 8, Rawang, Semenyih, Sepang, Seremban, Setia Alam, Shah Alam, Skudai, Wakaf Bharu",3,"         District
+0   Bandar Enstek
+1           Bangi
+2     Batang Kali
+3      Batu Caves
+4     Bayan Lepas
+5      Central KL
+6          Cheras
+7     Desa Pandan
+8          Dungun
+9      Georgetown
+10    Hulu Langat
+11           Ipoh
+12         Kajang
+13     Kota Bharu
+14   Kuala Langat
+15   Kuala Lumpur
+16        Kuantan
+17          Kulim
+18         Mantin
+19           Muar
+20      Pasir Mas
+21       Petaling
+22  Petaling Jaya
+23      Presint 8
+24         Rawang
+25       Semenyih
+26         Sepang
+27       Seremban
+28     Setia Alam
+29      Shah Alam
+30         Skudai
+31    Wakaf Bharu","SELECT DISTINCT District
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY District","import pandas as pd
+sql_query = """"""
+SELECT DISTINCT District
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY District
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,7.67,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,Which hour has the highest patient count?,13/10/2025 20:00,3,The hour with the highest patient count is 2025-02-13 18:00:00 with 147 patients.,"SELECT
+    Hour,
+    PatientCount as TotalPatientCount
+FROM
+    table_6c16364831b68d93e7cf9d423cf8f3da
+ORDER BY
+    PatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    Hour,
+    PatientCount as TotalPatientCount
+FROM
+    table_6c16364831b68d93e7cf9d423cf8f3da
+ORDER BY
+    PatientCount DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+highest_hour = df.iloc[0]['Hour']
+highest_count = df.iloc[0]['TotalPatientCount']
+result = {'type': 'string', 'value': f'The hour with the highest patient count is {highest_hour} with {int(highest_count)} patients.'}",TRUE,25.32,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,easy,Which state generates the highest total revenue?,Selangor,3,"The state that generates the highest total revenue is Selangor with a total revenue of 22,938,538.19.","SELECT
+    State,
+    SUM(TotalRevenue) as TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY
+    State
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    State,
+    SUM(TotalRevenue) as TotalRevenue
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753
+GROUP BY
+    State
+ORDER BY
+    TotalRevenue DESC
+LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+highest_revenue_state = df.loc[0, 'State']
+highest_revenue_amount = df.loc[0, 'TotalRevenue']
+result = {'type': 'string', 'value': f'The state that generates the highest total revenue is {highest_revenue_state} with a total revenue of {highest_revenue_amount:,.2f}.'}",TRUE,25.27,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor treats the highest number of patients from Malay ethnicity?,Doctor B,3,Doctor Doctor B treats the highest number of patients from Malay ethnicity with 6749 patients.,"SELECT
+    t1.StaffName,
+    COUNT(t2.Ethnicities) AS MalayPatientCount
+FROM
+    table_c83679f393c19ab82f71054c6c3facb6 t1
+JOIN
+    table_3586b23a0be349f88985d8c0d783b36d t2
+    ON t1.IDOrganisation = t2.IDOrganisation
+    AND t1.Address = t2.Address
+    AND t1.StaffName IS NOT NULL
+WHERE
+    t2.Ethnicities = 'Malay'
+GROUP BY
+    t1.StaffName
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT
+    t1.StaffName,
+    COUNT(t2.Ethnicities) AS MalayPatientCount
+FROM
+    table_c83679f393c19ab82f71054c6c3facb6 t1
+JOIN
+    table_3586b23a0be349f88985d8c0d783b36d t2
+    ON t1.IDOrganisation = t2.IDOrganisation
+    AND t1.Address = t2.Address
+    AND t1.StaffName IS NOT NULL
+WHERE
+    t2.Ethnicities = 'Malay'
+GROUP BY
+    t1.StaffName
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    doctor_name = result_df.iloc[0]['StaffName']
+    patient_count = result_df.iloc[0]['MalayPatientCount']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of patients from Malay ethnicity with {patient_count} patients.'}
+else:
+    result = {'type': 'string', 'value': 'No Malay patients found in the records.'}",TRUE,50.2,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor sees the most patients from Married social status group?,Doctor BZ,3,Doctor Doctor BZ sees the most patients from Married social status group with 4178 patients.,"SELECT t2.StaffName, COUNT(*) AS MarriedPatientCount
+FROM table_3586b23a0be349f88985d8c0d783b36d t1
+JOIN table_c83679f393c19ab82f71054c6c3facb6 t2
+ON t1.IDOrganisation = t2.IDOrganisation
+WHERE t1.SocialStatus = 'Married'
+GROUP BY t2.StaffName
+ORDER BY MarriedPatientCount DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT t2.StaffName, COUNT(*) AS MarriedPatientCount
+FROM table_3586b23a0be349f88985d8c0d783b36d t1
+JOIN table_c83679f393c19ab82f71054c6c3facb6 t2
+ON t1.IDOrganisation = t2.IDOrganisation
+WHERE t1.SocialStatus = 'Married'
+GROUP BY t2.StaffName
+ORDER BY MarriedPatientCount DESC
+LIMIT 1
+""""""
+df_result = execute_sql_query(sql_query)
+if not df_result.empty:
+    doctor_name = df_result.iloc[0]['StaffName']
+    patient_count = df_result.iloc[0]['MarriedPatientCount']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} sees the most patients from Married social status group with {patient_count} patients.'}
+else:
+    result = {'type': 'string', 'value': 'No doctors found with patients from Married social status group.'}",TRUE,59.05,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor has the highest number of patients from different country/geography?,"Doctor AW treats the most patients from Australia, Bangladesh, Canada, Germany, India, Japan, Malaysia, Philippines, and Singapore",3,"Doctor Doctor AW has the highest number of patients from different countries/geographies, with patients from 31 distinct countries.","WITH patient_origins AS (
+    SELECT
+        t1.StaffName,
+        t2.""Countries/Geography"" AS country,
+        COUNT(*) AS patient_count
+    FROM
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY
+        t1.StaffName, t2.""Countries/Geography""
+),
+
+doctor_country_counts AS (
+    SELECT
+        StaffName,
+        COUNT(DISTINCT country) AS distinct_countries,
+        SUM(patient_count) AS total_patients
+    FROM
+        patient_origins
+    GROUP BY
+        StaffName
+)
+
+SELECT
+    StaffName,
+    distinct_countries,
+    total_patients
+FROM
+    doctor_country_counts
+ORDER BY
+    distinct_countries DESC,
+    total_patients DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+WITH patient_origins AS (
+    SELECT
+        t1.StaffName,
+        t2.""Countries/Geography"" AS country,
+        COUNT(*) AS patient_count
+    FROM
+        table_c83679f393c19ab82f71054c6c3facb6 t1
+    JOIN
+        table_3586b23a0be349f88985d8c0d783b36d t2
+    ON
+        t1.IDOrganisation = t2.IDOrganisation
+    GROUP BY
+        t1.StaffName, t2.""Countries/Geography""
+),
+
+doctor_country_counts AS (
+    SELECT
+        StaffName,
+        COUNT(DISTINCT country) AS distinct_countries,
+        SUM(patient_count) AS total_patients
+    FROM
+        patient_origins
+    GROUP BY
+        StaffName
+)
+
+SELECT
+    StaffName,
+    distinct_countries,
+    total_patients
+FROM
+    doctor_country_counts
+ORDER BY
+    distinct_countries DESC,
+    total_patients DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    doctor_name = result_df.iloc[0]['StaffName']
+    country_count = result_df.iloc[0]['distinct_countries']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} has the highest number of patients from different countries/geographies, with patients from {country_count} distinct countries.'}
+else:
+    result = {'type': 'string', 'value': 'No data found regarding patients from different countries/geographies.'}",TRUE,29.38,TRUE,,FALSE,TRUE,FALSE
+Mistral-Large-3-675B,medium,Which clinic has the highest revenue and how many doctors work there?,Clinic I with 15 doctors,3,Clinic Clinic I has the highest revenue with 15 doctors working there.,,"import pandas as pd
+clinic_revenue_query = """"""
+SELECT
+    t1.IDOrganisation,
+    t1.TotalRevenue,
+    COUNT(DISTINCT t2.StaffName) as DoctorCount
+FROM
+    table_bd4f8d5ffa8239c09831e5b997bc2753 t1
+INNER JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 t2
+ON
+    t1.IDOrganisation = t2.IDOrganisation
+GROUP BY
+    t1.IDOrganisation, t1.TotalRevenue
+ORDER BY
+    t1.TotalRevenue DESC
+LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(clinic_revenue_query)
+if not highest_revenue_clinic.empty:
+    clinic_name = highest_revenue_clinic.iloc[0]['IDOrganisation']
+    doctor_count = highest_revenue_clinic.iloc[0]['DoctorCount']
+    result = {'type': 'string', 'value': f'Clinic {clinic_name} has the highest revenue with {int(doctor_count)} doctors working there.'}
+else:
+    result = {'type': 'string', 'value': 'No clinic data found.'}",TRUE,8.09,TRUE,,TRUE,TRUE,TRUE
+Mistral-Large-3-675B,medium,Which doctor treats the highest number of patients from Malay ethnicity in the highest revenue clinic?,Doctor BY in Clinic I,3,Doctor Doctor B treats the highest number of Malay ethnicity patients (4312) in the highest revenue clinic (Clinic I).,,"import pandas as pd
+highest_revenue_clinic_query = """"""
+SELECT IDOrganisation
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 1
+""""""
+highest_revenue_clinic = execute_sql_query(highest_revenue_clinic_query)
+highest_revenue_clinic_id = highest_revenue_clinic.iloc[0]['IDOrganisation']
+doctors_in_highest_revenue_clinic_query = f""""""
+SELECT StaffName, TotalPatientCount
+FROM table_c83679f393c19ab82f71054c6c3facb6
+WHERE IDOrganisation = '{highest_revenue_clinic_id}'
+""""""
+doctors_df = execute_sql_query(doctors_in_highest_revenue_clinic_query)
+malay_patients_query = f""""""
+SELECT
+    t2.StaffName,
+    COUNT(DISTINCT t1.Date) as MalayPatientCount
+FROM
+    table_3586b23a0be349f88985d8c0d783b36d t1
+JOIN
+    table_c83679f393c19ab82f71054c6c3facb6 t2
+ON
+    t1.IDOrganisation = t2.IDOrganisation
+WHERE
+    t1.IDOrganisation = '{highest_revenue_clinic_id}'
+    AND t1.Ethnicities = 'Malay'
+GROUP BY
+    t2.StaffName
+ORDER BY
+    MalayPatientCount DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(malay_patients_query)
+if not result_df.empty:
+    doctor_name = result_df.iloc[0]['StaffName']
+    malay_patient_count = result_df.iloc[0]['MalayPatientCount']
+    result = {'type': 'string', 'value': f'Doctor {doctor_name} treats the highest number of Malay ethnicity patients ({malay_patient_count}) in the highest revenue clinic ({highest_revenue_clinic_id}).'}
+else:
+    result = {'type': 'string', 'value': 'No doctor found treating Malay ethnicity patients in the highest revenue clinic.'}",FALSE,154.88,TRUE,,FALSE,FALSE,TRUE

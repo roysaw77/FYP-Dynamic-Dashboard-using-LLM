@@ -1,4 +1,4 @@
-model,difficulty,question,expected_answer,run_num,response,sql_query,full_code,is_correct,time_seconds,success,error
+model,difficulty,question,expected_answer,run_num,response,sql_query,full_code,is_correct,time_seconds,success,error,verified_correct,is_correct_bool,judge_was_right
 Llama-3.1-8B,hard,Plot Top 3 clinics by total revenue,Bar chart ,1,exports\charts\temp_chart_6ec052a9-333c-4f89-844f-7225f1fa147f.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -29,7 +29,7 @@ query = """"""
 """"""
 top_clinics = execute_sql_query(query)
 plot_top_clinics()
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_6ec052a9-333c-4f89-844f-7225f1fa147f.png'}",TRUE,8.78,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_6ec052a9-333c-4f89-844f-7225f1fa147f.png'}",TRUE,8.78,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-8B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_61f0d3db-b737-4edb-9c33-a21d59b8edc3.png,"SELECT 
     t1.IDOrganisation, 
     SUM(t1.TotalRevenue) as TotalRevenue, 
@@ -67,7 +67,7 @@ plt.scatter(df['TotalRevenue'], df['NumberOfDoctors'])
 plt.xlabel('Total Revenue')
 plt.ylabel('Number of Doctors')
 plt.title('Relationship between Total Revenue and Number of Doctors')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_61f0d3db-b737-4edb-9c33-a21d59b8edc3.png'}",TRUE.,7.3,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_61f0d3db-b737-4edb-9c33-a21d59b8edc3.png'}",TRUE,7.3,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-8B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,1,exports\charts\temp_chart_e5e68305-40cc-4e48-9f10-640b63265e4e.png,"SELECT 
         IDOrganisation,
         Hour,
@@ -108,7 +108,7 @@ plt.xticks(rotation=45)
 buf = BytesIO()
 plt.savefig(buf, format='png')
 buf.seek(0)
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_e5e68305-40cc-4e48-9f10-640b63265e4e.png'}",FALSE,7.39,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_e5e68305-40cc-4e48-9f10-640b63265e4e.png'}",FALSE,7.39,TRUE,,FALSE,FALSE,TRUE
 Llama-3.1-8B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_11278da0-1210-4e17-a041-9ecbc94c72de.png,"SELECT 
         t1.State, 
         t1.District, 
@@ -153,7 +153,7 @@ result_df.groupby('State')['count'].sum().plot(kind='bar', figsize=(10, 6), titl
 plt.xlabel('State')
 plt.ylabel('Count')
 plt.savefig('exports\\charts\\temp_chart_11278da0-1210-4e17-a041-9ecbc94c72de.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_11278da0-1210-4e17-a041-9ecbc94c72de.png'}",FALSE,6.74,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_11278da0-1210-4e17-a041-9ecbc94c72de.png'}",FALSE,6.74,TRUE,,FALSE,FALSE,TRUE
 Llama-3.1-8B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
         a.IDOrganisation,
         a.StaffName,
@@ -207,7 +207,7 @@ df = execute_sql_query(sql_query)
 top_5_doctors = df.nlargest(5, 'TotalRevenue_Clinic')
 top_5_doctors.plot(kind='bar', x='StaffName', y='TotalRevenue_Clinic', title='Top 5 High Revenue Doctors in Clinics I')
 plt.savefig('exports\\charts\\temp_chart_fb3d0511-f802-4323-989f-882a876ee985.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_fb3d0511-f802-4323-989f-882a876ee985.png'}",TRUE,43.72,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_fb3d0511-f802-4323-989f-882a876ee985.png'}",TRUE,43.72,TRUE,,FALSE,TRUE,FALSE
 Gemma-2-27B,hard,Plot Top 3 clinics by total revenue,Bar chart ,1,exports\charts\temp_chart_aea232f7-f502-4702-b2f9-ea6a1a4cbe45.png,"SELECT IDOrganisation, TotalRevenue
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY TotalRevenue DESC
@@ -228,7 +228,7 @@ plt.title('Top 3 Clinics by Total Revenue')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_aea232f7-f502-4702-b2f9-ea6a1a4cbe45.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_aea232f7-f502-4702-b2f9-ea6a1a4cbe45.png'}",TRUE,16.97,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_aea232f7-f502-4702-b2f9-ea6a1a4cbe45.png'}",TRUE,16.97,TRUE,,TRUE,TRUE,TRUE
 Gemma-2-27B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_d85e64fd-8aa5-498d-9370-5153221a9943.png,"SELECT t1.IDOrganisation, t1.TotalRevenue, COUNT(t2.StaffName) AS DoctorCount
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 AS t1
 LEFT JOIN table_c83679f393c19ab82f71054c6c3facb6 AS t2 ON t1.IDOrganisation = t2.IDOrganisation
@@ -247,7 +247,7 @@ plt.xlabel('Number of Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Number of Doctors')
 plt.savefig('exports\\charts\\temp_chart_d85e64fd-8aa5-498d-9370-5153221a9943.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d85e64fd-8aa5-498d-9370-5153221a9943.png'}",TRUE,12.14,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d85e64fd-8aa5-498d-9370-5153221a9943.png'}",TRUE,12.14,TRUE,,TRUE,TRUE,TRUE
 Gemma-2-27B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,1,exports\charts\temp_chart_c005011b-8a36-4be0-9ce5-2feecdc743e4.png,"SELECT Hour, SUM(TotalRevenue) AS TotalRevenue
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
 GROUP BY Hour
@@ -270,7 +270,7 @@ plt.title('Top 3 Hourly Revenue Trends')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_c005011b-8a36-4be0-9ce5-2feecdc743e4.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_c005011b-8a36-4be0-9ce5-2feecdc743e4.png'}",FALSE.,18.81,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_c005011b-8a36-4be0-9ce5-2feecdc743e4.png'}",FALSE,18.81,TRUE,,FALSE,FALSE,TRUE
 Gemma-2-27B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_dd9f4513-76f8-4435-be7b-ddb96c93c16b.png,"WITH ReligionCounts AS (
     SELECT 
         State, 
@@ -329,7 +329,7 @@ plt.title('Top 3 Religious Demographics by State')
 plt.xlabel('State')
 plt.ylabel('Patient Count')
 plt.savefig('exports\\charts\\temp_chart_dd9f4513-76f8-4435-be7b-ddb96c93c16b.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_dd9f4513-76f8-4435-be7b-ddb96c93c16b.png'}",TRUE,19.73,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_dd9f4513-76f8-4435-be7b-ddb96c93c16b.png'}",TRUE,19.73,TRUE,,TRUE,TRUE,TRUE
 Gemma-2-27B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_0dfad73f-4e2d-44b0-99da-f4268bd8fd44.png,"SELECT s.StaffName, SUM(t.TotalRevenue) AS TotalRevenue
  FROM table_c83679f393c19ab82f71054c6c3facb6 s
 JOIN table_bd4f8d5ffa8239c09831e5b997bc2753 t
@@ -358,7 +358,7 @@ plt.title('Top 5 High Revenue Doctors in Clinic I')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_0dfad73f-4e2d-44b0-99da-f4268bd8fd44.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_0dfad73f-4e2d-44b0-99da-f4268bd8fd44.png'}",TRUE,17.46,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_0dfad73f-4e2d-44b0-99da-f4268bd8fd44.png'}",TRUE,17.46,TRUE,,FALSE,TRUE,FALSE
 Llama3-70B,hard,Plot Top 3 clinics by total revenue,Bar chart ,1,exports\charts\temp_chart_284cfde6-9f67-4255-bb5a-f3812386dad3.png,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 3","import pandas as pd
 import matplotlib.pyplot as plt
 sql_query = 'SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 3'
@@ -368,7 +368,7 @@ plt.xlabel('Total Revenue')
 plt.ylabel('Clinic')
 plt.title('Top 3 Clinics by Total Revenue')
 plt.savefig('exports\\charts\\temp_chart_284cfde6-9f67-4255-bb5a-f3812386dad3.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_284cfde6-9f67-4255-bb5a-f3812386dad3.png'}",FALSE,7.56,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_284cfde6-9f67-4255-bb5a-f3812386dad3.png'}",FALSE,7.56,TRUE,,TRUE,FALSE,FALSE
 Llama3-70B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_70fc4bff-b29b-40fb-9133-e2fba0426521.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 table_bd4f8d5ffa8239c09831e5b997bc2753 = execute_sql_query('SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
@@ -385,7 +385,7 @@ plt.xlabel('Number of Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Number of Doctors')
 plt.savefig('exports\\charts\\temp_chart_70fc4bff-b29b-40fb-9133-e2fba0426521.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_70fc4bff-b29b-40fb-9133-e2fba0426521.png'}",TRUE.,14.82,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_70fc4bff-b29b-40fb-9133-e2fba0426521.png'}",TRUE,14.82,TRUE,,TRUE,TRUE,TRUE
 Llama3-70B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,1,exports\charts\temp_chart_db89fcdc-c9d3-4952-985b-4f57074774b4.png,"SELECT Hour, SUM(TotalRevenue) AS HourlyRevenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
@@ -405,7 +405,7 @@ plt.xlabel('Hour')
 plt.ylabel('Hourly Revenue')
 plt.title('Top 3 Hourly Revenue Trends')
 plt.savefig('exports\\charts\\temp_chart_db89fcdc-c9d3-4952-985b-4f57074774b4.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_db89fcdc-c9d3-4952-985b-4f57074774b4.png'}",FALSE.,9.11,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_db89fcdc-c9d3-4952-985b-4f57074774b4.png'}",FALSE,9.11,TRUE,,FALSE,FALSE,TRUE
 Llama3-70B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_96f62ee6-0497-4be6-aa8e-b236f447d4e8.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 table2 = execute_sql_query('SELECT * FROM table_3586b23a0be349f88985d8c0d783b36d')
@@ -426,7 +426,7 @@ plt.ylabel('Count')
 plt.legend(title='Religions')
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_96f62ee6-0497-4be6-aa8e-b236f447d4e8.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_96f62ee6-0497-4be6-aa8e-b236f447d4e8.png'}",FALSE.,11.6,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_96f62ee6-0497-4be6-aa8e-b236f447d4e8.png'}",FALSE,11.6,TRUE,,TRUE,FALSE,FALSE
 Llama3-70B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_389ef90f-6571-4cae-8137-2b61b6795067.png,"SELECT StaffName, SUM(TotalRevenue) as TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     WHERE IDOrganisation IN (SELECT IDOrganisation FROM table_bd4f8d5ffa8239c09831e5b997bc2753 WHERE Address LIKE '%Clinic I%')
@@ -449,7 +449,7 @@ plt.xlabel('Total Revenue')
 plt.ylabel('Doctor Name')
 plt.title('Top 5 High Revenue Doctors in Clinic I')
 plt.savefig('exports\\charts\\temp_chart_389ef90f-6571-4cae-8137-2b61b6795067.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_389ef90f-6571-4cae-8137-2b61b6795067.png'}",TRUE,12.56,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_389ef90f-6571-4cae-8137-2b61b6795067.png'}",TRUE,12.56,TRUE,,FALSE,TRUE,FALSE
 Llama-3.1-405B,hard,Plot Top 3 clinics by total revenue,Bar chart ,1,exports\charts\temp_chart_59bda560-d610-4985-b9fc-bdeda800474f.png,"SELECT IDOrganisation, TotalRevenue
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     ORDER BY TotalRevenue DESC
@@ -470,7 +470,7 @@ plt.title('Top 3 Clinics by Total Revenue')
 plt.xticks(rotation=90)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_59bda560-d610-4985-b9fc-bdeda800474f.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_59bda560-d610-4985-b9fc-bdeda800474f.png'}",TRUE,6.4,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_59bda560-d610-4985-b9fc-bdeda800474f.png'}",TRUE,6.4,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_377134cd-09fa-438b-854c-eeefc4b66ef7.png,"SELECT 
         T1.IDOrganisation, 
         COUNT(DISTINCT T2.StaffName) AS TotalDoctors, 
@@ -505,7 +505,7 @@ plt.xlabel('Total Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Total Doctors')
 plt.savefig('exports\\charts\\temp_chart_377134cd-09fa-438b-854c-eeefc4b66ef7.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_377134cd-09fa-438b-854c-eeefc4b66ef7.png'}",TRUE,9.88,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_377134cd-09fa-438b-854c-eeefc4b66ef7.png'}",TRUE,9.88,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,1,exports\charts\temp_chart_030ef7b8-ccf1-4e2a-80c8-9295b1af3ad9.png,"SELECT Hour, SUM(TotalRevenue) as TotalRevenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
@@ -528,7 +528,7 @@ plt.title('Top 3 Hourly Revenue Trends')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_030ef7b8-ccf1-4e2a-80c8-9295b1af3ad9.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_030ef7b8-ccf1-4e2a-80c8-9295b1af3ad9.png'}",FALSE,6.98,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_030ef7b8-ccf1-4e2a-80c8-9295b1af3ad9.png'}",TRUE,6.98,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_68875ab9-ef00-43ae-b14c-5d0416c2a1cc.png,"SELECT State, Religions, COUNT(*) as count
     FROM table_3586b23a0be349f88985d8c0d783b36d
     GROUP BY State, Religions
@@ -553,7 +553,7 @@ plt.legend(title='Religions')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_68875ab9-ef00-43ae-b14c-5d0416c2a1cc.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_68875ab9-ef00-43ae-b14c-5d0416c2a1cc.png'}",FALSE,24.7,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_68875ab9-ef00-43ae-b14c-5d0416c2a1cc.png'}",TRUE,24.7,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_54e69a6e-2922-4bae-ae64-3e348e711932.png,"SELECT StaffName, TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     ORDER BY TotalRevenue DESC
@@ -574,7 +574,7 @@ plt.ylabel('Revenue')
 plt.xticks(rotation=90)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_54e69a6e-2922-4bae-ae64-3e348e711932.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_54e69a6e-2922-4bae-ae64-3e348e711932.png'}",TRUE,8.22,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_54e69a6e-2922-4bae-ae64-3e348e711932.png'}",TRUE,8.22,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot Top 3 clinics by total revenue,Bar chart ,1,exports\charts\temp_chart_62a957b0-bfcc-4e94-85cc-d80c5c3487bf.png,"SELECT
     IDOrganisation,
     TotalRevenue
@@ -608,7 +608,7 @@ plt.tight_layout()
 plot_filename = 'exports\\charts\\temp_chart_62a957b0-bfcc-4e94-85cc-d80c5c3487bf.png'
 plt.savefig(plot_filename)
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",TRUE,9.76,True,
+result = {'type': 'plot', 'value': plot_filename}",TRUE,9.76,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,1,exports\charts\temp_chart_854857bd-81ff-4f41-b386-ed7b7b629401.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 import os
@@ -640,7 +640,7 @@ plt.grid(True)
 plot_path = 'exports\\charts\\temp_chart_854857bd-81ff-4f41-b386-ed7b7b629401.png'
 plt.savefig(plot_path)
 plt.close()
-result = {'type': 'plot', 'value': plot_path}",TRUE,10.48,True,
+result = {'type': 'plot', 'value': plot_path}",TRUE,10.48,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,1,exports\charts\temp_chart_6cb75d60-92de-421d-ac45-0cf8cec5cb46.png,"SELECT
     Hour,
     TotalRevenue
@@ -678,7 +678,7 @@ plt.tight_layout()
 plot_filename = 'exports\\charts\\temp_chart_6cb75d60-92de-421d-ac45-0cf8cec5cb46.png'
 plt.savefig(plot_filename)
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",FALSE,71.45,True,
+result = {'type': 'plot', 'value': plot_filename}",FALSE,71.45,TRUE,,TRUE,FALSE,FALSE
 Mistral-Large-3-675B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,1,exports\charts\temp_chart_b0302c30-3e12-43e0-8e0b-34f129a34c59.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -710,7 +710,7 @@ plt.xticks(rotation=45)
 plot_filename = 'exports\\charts\\temp_chart_b0302c30-3e12-43e0-8e0b-34f129a34c59.png'
 plt.savefig(plot_filename, dpi=300, bbox_inches='tight')
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",TRUE,14.64,True,
+result = {'type': 'plot', 'value': plot_filename}",TRUE,14.64,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,1,exports\charts\temp_chart_b3b34113-f513-42d7-9a8c-44c68629c4f6.png,"SELECT
     StaffName,
     TotalRevenue
@@ -746,7 +746,7 @@ plt.ylabel('Doctor Name')
 plot_file = 'exports\\charts\\temp_chart_b3b34113-f513-42d7-9a8c-44c68629c4f6.png'
 plt.savefig(plot_file)
 plt.close()
-result = {'type': 'plot', 'value': plot_file}",FALSE,18.07,True,
+result = {'type': 'plot', 'value': plot_file}",TRUE,18.07,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-8B,hard,Plot Top 3 clinics by total revenue,Bar chart ,2,exports\charts\temp_chart_d262967a-3ecb-45fa-a688-dd486604d71d.png,"SELECT IDOrganisation, Address, State, District, TotalRevenue
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     ORDER BY TotalRevenue DESC
@@ -772,7 +772,7 @@ sql_query = """"""
 """"""
 df = execute_sql_query(sql_query)
 plot_bar_chart(df, 'IDOrganisation', 'TotalRevenue', 'Top 3 Clinics by Total Revenue')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d262967a-3ecb-45fa-a688-dd486604d71d.png'}",TRUE,8.14,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d262967a-3ecb-45fa-a688-dd486604d71d.png'}",TRUE,8.14,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-8B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,2,exports\charts\temp_chart_9b99f7e2-abde-4047-b9c7-9d4842bcf40b.png,"SELECT t1.IDOrganisation, SUM(t1.TotalRevenue) as TotalRevenue, COUNT(DISTINCT t2.StaffName) as NumberOfDoctors
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
     JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
@@ -791,7 +791,7 @@ plt.scatter(df['TotalRevenue'], df['NumberOfDoctors'])
 plt.xlabel('Total Revenue')
 plt.ylabel('Number of Doctors')
 plt.title('Relationship between Total Revenue and Number of Doctors')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_9b99f7e2-abde-4047-b9c7-9d4842bcf40b.png'}",TRUE,6.42,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_9b99f7e2-abde-4047-b9c7-9d4842bcf40b.png'}",TRUE,6.42,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-8B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,2,exports\charts\temp_chart_4b8d5428-3225-4c40-b5e6-d73271aee088.png,"SELECT Hour, TotalRevenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour, TotalRevenue
@@ -811,7 +811,7 @@ plt.title('Top 3 Hourly Revenue Trends')
 plt.xlabel('Hour')
 plt.ylabel('Revenue')
 plt.savefig('exports\\charts\\temp_chart_4b8d5428-3225-4c40-b5e6-d73271aee088.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_4b8d5428-3225-4c40-b5e6-d73271aee088.png'}",FALSE,4.62,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_4b8d5428-3225-4c40-b5e6-d73271aee088.png'}",FALSE,4.62,TRUE,,FALSE,FALSE,TRUE
 Llama-3.1-8B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,2,"Unfortunately, I was not able to get your answer. Please try again.",,"import pandas as pd
 import matplotlib.pyplot as plt
 table_bd4f8d5ffa8239c09831e5b997bc2753 = execute_sql_query('SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
@@ -829,7 +829,7 @@ plt.xlabel('Religions')
 plt.ylabel('Patient Count')
 plt.legend(title='Religions')
 plt.savefig('exports\\charts\\temp_chart_191ba82e-3e34-49e7-aa44-8ae38f3fc2f0.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_191ba82e-3e34-49e7-aa44-8ae38f3fc2f0.png'}",FALSE,52.48,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_191ba82e-3e34-49e7-aa44-8ae38f3fc2f0.png'}",FALSE,52.48,TRUE,,TRUE,FALSE,FALSE
 Llama-3.1-8B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,2,exports\charts\temp_chart_276be78d-a1e5-4d6e-ac37-9915c2bf3416.png,"SELECT 
         t2.IDOrganisation,
         t2.Address,
@@ -880,7 +880,7 @@ def get_top_5_doctors():
     return {'type': 'plot', 'value': 'exports\\charts\\temp_chart_276be78d-a1e5-4d6e-ac37-9915c2bf3416.png'}
 
 
-result = get_top_5_doctors()",TRUE.,8.02,True,
+result = get_top_5_doctors()",TRUE,8.02,TRUE,,FALSE,TRUE,FALSE
 Gemma-2-27B,hard,Plot Top 3 clinics by total revenue,Bar chart ,2,exports\charts\temp_chart_22b72608-7fe8-4157-b31c-471aede75795.png,"SELECT IDOrganisation, TotalRevenue 
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753
 ORDER BY TotalRevenue DESC
@@ -895,7 +895,7 @@ LIMIT 3;
 df = execute_sql_query(sql_query)
 df.plot(kind='bar', x='IDOrganisation', y='TotalRevenue', title='Top 3 Clinics by Total Revenue')
 plt.savefig('exports\\charts\\temp_chart_22b72608-7fe8-4157-b31c-471aede75795.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_22b72608-7fe8-4157-b31c-471aede75795.png'}",TRUE,5.91,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_22b72608-7fe8-4157-b31c-471aede75795.png'}",TRUE,5.91,TRUE,,TRUE,TRUE,TRUE
 Gemma-2-27B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,2,exports\charts\temp_chart_da23049a-07d6-49cd-a76c-dd0f812ea548.png,"SELECT t1.IDOrganisation, t1.TotalRevenue, COUNT(t2.StaffName) as DoctorCount
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 t1
 LEFT JOIN table_c83679f393c19ab82f71054c6c3facb6 t2 ON t1.IDOrganisation = t2.IDOrganisation
@@ -915,7 +915,7 @@ plt.xlabel('Number of Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Number of Doctors')
 plt.savefig('exports\\charts\\temp_chart_da23049a-07d6-49cd-a76c-dd0f812ea548.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_da23049a-07d6-49cd-a76c-dd0f812ea548.png'}",TRUE,17.79,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_da23049a-07d6-49cd-a76c-dd0f812ea548.png'}",TRUE,17.79,TRUE,,TRUE,TRUE,TRUE
 Gemma-2-27B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,2,exports\charts\temp_chart_5d7cc766-e349-4561-a245-111849a286b4.png,"WITH HourlyRevenue AS (
     SELECT 
         Hour, 
@@ -944,7 +944,7 @@ plt.ylabel('Total Revenue')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_5d7cc766-e349-4561-a245-111849a286b4.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_5d7cc766-e349-4561-a245-111849a286b4.png'}",FALSE.,7.94,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_5d7cc766-e349-4561-a245-111849a286b4.png'}",FALSE,7.94,TRUE,,TRUE,FALSE,FALSE
 Gemma-2-27B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,2,"Unfortunately, I was not able to get your answer. Please try again.","WITH ReligionCounts AS (
     SELECT 
         t1.State,
@@ -998,7 +998,7 @@ plt.title('Top 3 Religious Demographics by State')
 plt.xlabel('State')
 plt.ylabel('Patient Counts')
 plt.savefig('exports\\charts\\temp_chart_19fb1bba-0ab6-4a51-b939-2cd1eb3a43ad.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_19fb1bba-0ab6-4a51-b939-2cd1eb3a43ad.png'}",FALSE,253.82,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_19fb1bba-0ab6-4a51-b939-2cd1eb3a43ad.png'}",FALSE,253.82,TRUE,,TRUE,FALSE,FALSE
 Gemma-2-27B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,2,exports\charts\temp_chart_e5193ace-8e6b-46b4-b24a-61a19fc464ff.png,"SELECT 
     s.StaffName, SUM(t.TotalRevenue) as TotalRevenue
 FROM table_c83679f393c19ab82f71054c6c3facb6 s
@@ -1027,7 +1027,7 @@ plt.ylabel('Total Revenue')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_e5193ace-8e6b-46b4-b24a-61a19fc464ff.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_e5193ace-8e6b-46b4-b24a-61a19fc464ff.png'}",TRUE,20.66,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_e5193ace-8e6b-46b4-b24a-61a19fc464ff.png'}",TRUE,20.66,TRUE,,FALSE,TRUE,FALSE
 Llama3-70B,hard,Plot Top 3 clinics by total revenue,Bar chart ,2,exports\charts\temp_chart_1465d66d-9a6c-4d26-b65e-98aed423a217.png,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 3","import pandas as pd
 import matplotlib.pyplot as plt
 sql_query = 'SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 3'
@@ -1038,7 +1038,7 @@ plt.xlabel('Total Revenue')
 plt.ylabel('Clinic')
 plt.title('Top 3 Clinics by Total Revenue')
 plt.savefig('exports\\charts\\temp_chart_1465d66d-9a6c-4d26-b65e-98aed423a217.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_1465d66d-9a6c-4d26-b65e-98aed423a217.png'}",FALSE,8.12,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_1465d66d-9a6c-4d26-b65e-98aed423a217.png'}",FALSE,8.12,TRUE,,TRUE,FALSE,FALSE
 Llama3-70B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,2,exports\charts\temp_chart_d870b4d1-c37e-4833-a428-d8aafcbc625e.png,"SELECT 
         t1.IDOrganisation, 
         COUNT(DISTINCT t2.StaffName) AS num_doctors, 
@@ -1076,7 +1076,7 @@ plt.xlabel('Number of Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Number of Doctors')
 plt.savefig('exports\\charts\\temp_chart_d870b4d1-c37e-4833-a428-d8aafcbc625e.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d870b4d1-c37e-4833-a428-d8aafcbc625e.png'}",TRUE,11.8,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d870b4d1-c37e-4833-a428-d8aafcbc625e.png'}",TRUE,11.8,TRUE,,TRUE,TRUE,TRUE
 Llama3-70B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,2,exports\charts\temp_chart_c7f77061-1924-404d-93a2-91274f157e96.png,"SELECT Hour, SUM(TotalRevenue) as HourlyRevenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
@@ -1097,7 +1097,7 @@ plt.xlabel('Hour')
 plt.ylabel('Hourly Revenue')
 plt.title('Top 3 Hourly Revenue Trends')
 plt.savefig('exports\\charts\\temp_chart_c7f77061-1924-404d-93a2-91274f157e96.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_c7f77061-1924-404d-93a2-91274f157e96.png'}",FALSE.,9.41,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_c7f77061-1924-404d-93a2-91274f157e96.png'}",FALSE,9.41,TRUE,,FALSE,FALSE,TRUE
 Llama3-70B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,2,exports\charts\temp_chart_d72405e6-ec0e-43a3-bf7f-602b871826fc.png,"SELECT State, Religions, COUNT(*) as Count
     FROM table_3586b23a0be349f88985d8c0d783b36d
     GROUP BY State, Religions
@@ -1119,7 +1119,7 @@ plt.xlabel('State')
 plt.ylabel('Count')
 plt.legend(title='Religions')
 plt.savefig('exports\\charts\\temp_chart_d72405e6-ec0e-43a3-bf7f-602b871826fc.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d72405e6-ec0e-43a3-bf7f-602b871826fc.png'}",FALSE,9.68,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d72405e6-ec0e-43a3-bf7f-602b871826fc.png'}",FALSE,9.68,TRUE,,TRUE,FALSE,FALSE
 Llama3-70B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,2,exports\charts\temp_chart_6e6ec4ae-b08d-40b8-9a6c-2d15dd1ee98d.png,"SELECT StaffName, SUM(TotalRevenue) as TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     WHERE IDOrganisation IN (
@@ -1149,7 +1149,7 @@ plt.xlabel('Total Revenue')
 plt.ylabel('Staff Name')
 plt.title('Top 5 High Revenue Doctors in Clinic I')
 plt.savefig('exports\\charts\\temp_chart_6e6ec4ae-b08d-40b8-9a6c-2d15dd1ee98d.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_6e6ec4ae-b08d-40b8-9a6c-2d15dd1ee98d.png'}",TRUE,11.2,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_6e6ec4ae-b08d-40b8-9a6c-2d15dd1ee98d.png'}",TRUE,11.2,TRUE,,FALSE,TRUE,FALSE
 Llama-3.1-405B,hard,Plot Top 3 clinics by total revenue,Bar chart ,2,exports\charts\temp_chart_18c6a8c1-94b0-4d06-afff-67b807d9d909.png,"SELECT IDOrganisation, TotalRevenue
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     ORDER BY TotalRevenue DESC
@@ -1170,7 +1170,7 @@ plt.title('Top 3 Clinics by Total Revenue')
 plt.xticks(rotation=90)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_18c6a8c1-94b0-4d06-afff-67b807d9d909.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_18c6a8c1-94b0-4d06-afff-67b807d9d909.png'}",TRUE.,6.88,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_18c6a8c1-94b0-4d06-afff-67b807d9d909.png'}",TRUE,6.88,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,2,exports\charts\temp_chart_d509974c-372b-41c0-ba7f-09c729c14a01.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 import sqlite3
@@ -1199,7 +1199,7 @@ plt.xlabel('Total Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Total Doctors')
 plt.savefig('exports\\charts\\temp_chart_d509974c-372b-41c0-ba7f-09c729c14a01.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d509974c-372b-41c0-ba7f-09c729c14a01.png'}",TRUE.,12.89,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_d509974c-372b-41c0-ba7f-09c729c14a01.png'}",TRUE,12.89,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,2,exports\charts\temp_chart_eec489df-09c6-4973-9072-c71884158ad6.png,"SELECT Hour, SUM(TotalRevenue) as TotalRevenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
@@ -1222,7 +1222,7 @@ plt.title('Top 3 Hourly Revenue Trends')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_eec489df-09c6-4973-9072-c71884158ad6.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_eec489df-09c6-4973-9072-c71884158ad6.png'}",TRUE.,9.21,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_eec489df-09c6-4973-9072-c71884158ad6.png'}",TRUE,9.21,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,2,exports\charts\temp_chart_0cfea530-b789-447d-8b49-62046fc2adc4.png,"SELECT State, Religions, COUNT(*) as count
     FROM table_3586b23a0be349f88985d8c0d783b36d
     GROUP BY State, Religions
@@ -1247,7 +1247,7 @@ plt.xlabel('State')
 plt.ylabel('Count')
 plt.legend(title='Religion')
 plt.savefig('exports\\charts\\temp_chart_0cfea530-b789-447d-8b49-62046fc2adc4.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_0cfea530-b789-447d-8b49-62046fc2adc4.png'}",FALSE,9.81,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_0cfea530-b789-447d-8b49-62046fc2adc4.png'}",FALSE,9.81,TRUE,,TRUE,FALSE,TRUE
 Llama-3.1-405B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,2,exports\charts\temp_chart_4f49ee1f-501f-4659-91d8-81538b46854d.png,"SELECT StaffName, TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     ORDER BY TotalRevenue DESC
@@ -1268,7 +1268,7 @@ plt.title('Top 5 High Revenue Doctors Working in Clinics')
 plt.xticks(rotation=90)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_4f49ee1f-501f-4659-91d8-81538b46854d.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_4f49ee1f-501f-4659-91d8-81538b46854d.png'}",TRUE.,39.06,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_4f49ee1f-501f-4659-91d8-81538b46854d.png'}",TRUE,39.06,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot Top 3 clinics by total revenue,Bar chart ,2,exports\charts\temp_chart_154adce7-0a9f-4460-b74f-2d43aae3f503.png,"SELECT
     IDOrganisation,
     TotalRevenue
@@ -1299,7 +1299,7 @@ plt.tight_layout()
 plot_file = 'exports\\charts\\temp_chart_154adce7-0a9f-4460-b74f-2d43aae3f503.png'
 plt.savefig(plot_file)
 plt.close()
-result = {'type': 'plot', 'value': plot_file}",TRUE.,10.55,True,
+result = {'type': 'plot', 'value': plot_file}",TRUE,10.55,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,2,exports\charts\temp_chart_93f3abcb-b39a-4029-bea8-f8ad97d69893.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 import os
@@ -1332,7 +1332,7 @@ for i, row in clinic_data.iterrows():
 plot_filename = 'exports\\charts\\temp_chart_93f3abcb-b39a-4029-bea8-f8ad97d69893.png'
 plt.savefig(plot_filename)
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",TRUE,52.07,True,
+result = {'type': 'plot', 'value': plot_filename}",TRUE,52.07,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,2,exports\charts\temp_chart_119e7ce9-1529-4692-b943-001a85b7d1c1.png,"SELECT
     Hour,
     SUM(TotalRevenue) as TotalHourlyRevenue
@@ -1375,7 +1375,7 @@ plt.gcf().autofmt_xdate()
 plot_filename = 'exports\\charts\\temp_chart_119e7ce9-1529-4692-b943-001a85b7d1c1.png'
 plt.savefig(plot_filename)
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",FALSE.,10.05,True,
+result = {'type': 'plot', 'value': plot_filename}",FALSE,10.05,TRUE,,TRUE,FALSE,TRUE
 Mistral-Large-3-675B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,2,exports\charts\temp_chart_02e3780e-1a9b-46ce-abbf-724c288c6428.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -1420,7 +1420,7 @@ plt.tight_layout()
 chart_path = 'exports\\charts\\temp_chart_02e3780e-1a9b-46ce-abbf-724c288c6428.png'
 plt.savefig(chart_path, dpi=300, bbox_inches='tight')
 plt.close()
-result = {'type': 'plot', 'value': chart_path}",TRUE,20.01,True,
+result = {'type': 'plot', 'value': chart_path}",TRUE,20.01,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,2,exports\charts\temp_chart_60868fbc-25d7-497f-8794-b643c825b9ab.png,"SELECT
     StaffName,
     TotalRevenue
@@ -1455,7 +1455,7 @@ plt.tight_layout()
 plot_filename = 'exports\\charts\\temp_chart_60868fbc-25d7-497f-8794-b643c825b9ab.png'
 plt.savefig(plot_filename)
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",FALSE,7.26,True,
+result = {'type': 'plot', 'value': plot_filename}",FALSE,7.26,TRUE,,FALSE,FALSE,TRUE
 Llama-3.1-8B,hard,Plot Top 3 clinics by total revenue,Bar chart ,3,exports\charts\temp_chart_038817a9-3015-4e8e-a39f-cbcc65289cd9.png,"SELECT IDOrganisation, Address, State, District, TotalRevenue
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     ORDER BY TotalRevenue DESC
@@ -1477,7 +1477,7 @@ plt.xticks(rotation=90)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_038817a9-3015-4e8e-a39f-cbcc65289cd9.png')
 plt.close()
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_038817a9-3015-4e8e-a39f-cbcc65289cd9.png'}",TRUE,12.48,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_038817a9-3015-4e8e-a39f-cbcc65289cd9.png'}",TRUE,12.48,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-8B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,3,exports\charts\temp_chart_2f621ef4-594e-4855-aa87-bdf8f4d2a6ee.png,"SELECT 
     t1.IDOrganisation, 
     t1.TotalRevenue, 
@@ -1516,7 +1516,7 @@ sns.scatterplot(x='TotalPatientCount', y='TotalRevenue', data=df)
 plt.title('Relationship between Total Revenue and Number of Doctors')
 plt.xlabel('Number of Doctors')
 plt.ylabel('Total Revenue')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_2f621ef4-594e-4855-aa87-bdf8f4d2a6ee.png'}",FALSE,6.59,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_2f621ef4-594e-4855-aa87-bdf8f4d2a6ee.png'}",FALSE,6.59,TRUE,,TRUE,FALSE,FALSE
 Llama-3.1-8B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,3,exports\charts\temp_chart_c852ae5a-e363-4ec3-afbd-7452730fef61.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 data = execute_sql_query(""""""
@@ -1535,7 +1535,7 @@ plt.title('Top 3 Hourly Revenue Trends')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_c852ae5a-e363-4ec3-afbd-7452730fef61.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_c852ae5a-e363-4ec3-afbd-7452730fef61.png'}",TRUE,15.11,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_c852ae5a-e363-4ec3-afbd-7452730fef61.png'}",TRUE,15.11,TRUE,,FALSE,TRUE,FALSE
 Llama-3.1-8B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,3,exports\charts\temp_chart_b9030cc8-791f-46f9-91ba-f862e4e39074.png,"SELECT 
         t1.State, 
         t1.Religions, 
@@ -1572,16 +1572,16 @@ plt.title('Top 5 Patient Religion Counts by State')
 plt.xlabel('State')
 plt.ylabel('Count')
 plt.legend(title='Religions')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_b9030cc8-791f-46f9-91ba-f862e4e39074.png'}",FALSE,5.85,True,
-Llama-3.1-8B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,3,,,,False,,False,"Required keyword: 'this' missing for <class 'sqlglot.expressions.Column'>. Line 15, Col: 5.
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_b9030cc8-791f-46f9-91ba-f862e4e39074.png'}",FALSE,5.85,TRUE,,TRUE,FALSE,FALSE
+Llama-3.1-8B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,3,,,,FALSE,,FALSE,"Required keyword: 'this' missing for <class 'sqlglot.expressions.Column'>. Line 15, Col: 5.
   PanelPatientCount,
         t2.TotalRevenue,
         t2.TotalPaid,
         t2.TotalPanel,
-        t2.[4m%"
-Gemma-2-27B,hard,Plot Top 3 clinics by total revenue,Bar chart ,3,exports\charts\temp_chart_6a5e2845-9967-4dcf-99fa-475904c18fae.png,"SELECT IDOrganisation, TotalRevenue
-FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-ORDER BY TotalRevenue DESC
+        t2.??4m%??,False,False,True
+Gemma-2-27B,hard,Plot Top 3 clinics by total revenue,Bar chart ,3,exports\charts\temp_chart_6a5e2845-9967-4dcf-99fa-475904c18fae.png,SELECT IDOrganisation", TotalRevenue,,
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753,,,,,,,,,,,,,,
+ORDER BY TotalRevenue DESC,,,,,,,,,,,,,,
 LIMIT 3;","import pandas as pd
 import matplotlib.pyplot as plt
 sql_query = """"""
@@ -1599,7 +1599,7 @@ plt.title('Top 3 Clinics by Total Revenue')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_6a5e2845-9967-4dcf-99fa-475904c18fae.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_6a5e2845-9967-4dcf-99fa-475904c18fae.png'}",TRUE.,16.62,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_6a5e2845-9967-4dcf-99fa-475904c18fae.png'}",TRUE,16.62,TRUE,,TRUE,TRUE,TRUE,,,,,,
 Gemma-2-27B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,3,exports\charts\temp_chart_67c8b34d-fa9a-44db-bd86-4a45d86de680.png,"SELECT t1.IDOrganisation, t1.TotalRevenue, COUNT(DISTINCT t2.StaffName) AS NumberOfDoctors
 FROM table_bd4f8d5ffa8239c09831e5b997bc2753 AS t1
 JOIN table_c83679f393c19ab82f71054c6c3facb6 AS t2 ON t1.IDOrganisation = t2.IDOrganisation
@@ -1617,7 +1617,7 @@ plt.xlabel('Number of Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Number of Doctors')
 plt.savefig('exports\\charts\\temp_chart_67c8b34d-fa9a-44db-bd86-4a45d86de680.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_67c8b34d-fa9a-44db-bd86-4a45d86de680.png'}",TRUE,16.36,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_67c8b34d-fa9a-44db-bd86-4a45d86de680.png'}",TRUE,16.36,TRUE,,TRUE,TRUE,TRUE
 Gemma-2-27B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,3,exports\charts\temp_chart_40a742f3-0413-43ef-9560-3571ed3a2192.png,"SELECT Hour, SUM(TotalRevenue) AS TotalRevenue
 FROM table_6c16364831b68d93e7cf9d423cf8f3da
 GROUP BY Hour
@@ -1640,7 +1640,7 @@ plt.title('Top 3 Hourly Revenue Trends')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_40a742f3-0413-43ef-9560-3571ed3a2192.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_40a742f3-0413-43ef-9560-3571ed3a2192.png'}",TRUE.,14.55,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_40a742f3-0413-43ef-9560-3571ed3a2192.png'}",TRUE,14.55,TRUE,,FALSE,TRUE,FALSE
 Gemma-2-27B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,3,exports\charts\temp_chart_71288495-015e-46cb-a77d-14062d54e6a9.png,"WITH PatientReligionCounts AS (
     SELECT 
         State,
@@ -1683,7 +1683,7 @@ plt.xlabel('State')
 plt.ylabel('Patient Count')
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_71288495-015e-46cb-a77d-14062d54e6a9.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_71288495-015e-46cb-a77d-14062d54e6a9.png'}",FALSE,10.11,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_71288495-015e-46cb-a77d-14062d54e6a9.png'}",FALSE,10.11,TRUE,,TRUE,FALSE,FALSE
 Gemma-2-27B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,3,exports\charts\temp_chart_b124d83e-7a25-4e76-aae1-465ea6c0f21a.png,"WITH DoctorRevenue AS (
     SELECT 
         s.StaffName,
@@ -1719,7 +1719,7 @@ plt.title('Top 5 Highest Revenue Doctors in Clinic I')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_b124d83e-7a25-4e76-aae1-465ea6c0f21a.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_b124d83e-7a25-4e76-aae1-465ea6c0f21a.png'}",TRUE,18.39,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_b124d83e-7a25-4e76-aae1-465ea6c0f21a.png'}",TRUE,18.39,TRUE,,FALSE,TRUE,FALSE
 Llama3-70B,hard,Plot Top 3 clinics by total revenue,Bar chart ,3,exports\charts\temp_chart_ba69f274-3584-41eb-ad55-1bc8bbafa639.png,"SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 3","import pandas as pd
 import matplotlib.pyplot as plt
 df = execute_sql_query('SELECT * FROM table_bd4f8d5ffa8239c09831e5b997bc2753')
@@ -1730,7 +1730,7 @@ plt.xlabel('Clinic')
 plt.ylabel('Total Revenue')
 plt.title('Top 3 Clinics by Total Revenue')
 plt.savefig('exports\\charts\\temp_chart_ba69f274-3584-41eb-ad55-1bc8bbafa639.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_ba69f274-3584-41eb-ad55-1bc8bbafa639.png'}",TRUE.,10.01,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_ba69f274-3584-41eb-ad55-1bc8bbafa639.png'}",TRUE,10.01,TRUE,,TRUE,TRUE,TRUE
 Llama3-70B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,3,exports\charts\temp_chart_f6b23565-83ab-4c72-b134-56d44789bb20.png,"SELECT 
         t1.IDOrganisation, 
         COUNT(DISTINCT t2.StaffName) AS num_doctors, 
@@ -1768,7 +1768,7 @@ plt.xlabel('Number of Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Number of Doctors')
 plt.savefig('exports\\charts\\temp_chart_f6b23565-83ab-4c72-b134-56d44789bb20.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_f6b23565-83ab-4c72-b134-56d44789bb20.png'}",TRUE.,11.92,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_f6b23565-83ab-4c72-b134-56d44789bb20.png'}",TRUE,11.92,TRUE,,TRUE,TRUE,TRUE
 Llama3-70B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,3,exports\charts\temp_chart_5f974ea2-4bc9-4b0f-8edc-6c3a566944ec.png,"SELECT Hour, SUM(TotalRevenue) as HourlyRevenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
@@ -1788,7 +1788,7 @@ plt.xlabel('Hour')
 plt.ylabel('Hourly Revenue')
 plt.title('Top 3 Hourly Revenue Trends')
 plt.savefig('exports\\charts\\temp_chart_5f974ea2-4bc9-4b0f-8edc-6c3a566944ec.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_5f974ea2-4bc9-4b0f-8edc-6c3a566944ec.png'}",FALSE,8.68,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_5f974ea2-4bc9-4b0f-8edc-6c3a566944ec.png'}",FALSE,8.68,TRUE,,FALSE,FALSE,TRUE
 Llama3-70B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,3,exports\charts\temp_chart_12ab4086-e970-440b-8f11-a3e4c25cfaf6.png,"SELECT State, Religions, COUNT(*) as Count
     FROM table_3586b23a0be349f88985d8c0d783b36d
     GROUP BY State, Religions
@@ -1812,7 +1812,7 @@ plt.ylabel('Count')
 plt.legend(title='Religions')
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_12ab4086-e970-440b-8f11-a3e4c25cfaf6.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_12ab4086-e970-440b-8f11-a3e4c25cfaf6.png'}",FALSE,10.2,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_12ab4086-e970-440b-8f11-a3e4c25cfaf6.png'}",FALSE,10.2,TRUE,,TRUE,FALSE,FALSE
 Llama3-70B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,3,exports\charts\temp_chart_e04bc584-3220-41de-b5f6-9733f351217e.png,"SELECT StaffName, SUM(TotalRevenue) AS TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     WHERE IDOrganisation IN (
@@ -1841,7 +1841,7 @@ plt.xlabel('Total Revenue')
 plt.ylabel('Doctor Name')
 plt.title('Top 5 High Revenue Doctors in Clinic I')
 plt.savefig('exports\\charts\\temp_chart_e04bc584-3220-41de-b5f6-9733f351217e.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_e04bc584-3220-41de-b5f6-9733f351217e.png'}",TRUE,12.79,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_e04bc584-3220-41de-b5f6-9733f351217e.png'}",TRUE,12.79,TRUE,,FALSE,TRUE,FALSE
 Llama-3.1-405B,hard,Plot Top 3 clinics by total revenue,Bar chart ,3,exports\charts\temp_chart_b91aa7bb-01c0-47c3-be2e-e1ff09207344.png,"SELECT IDOrganisation, TotalRevenue
     FROM table_bd4f8d5ffa8239c09831e5b997bc2753
     ORDER BY TotalRevenue DESC
@@ -1862,7 +1862,7 @@ plt.title('Top 3 Clinics by Total Revenue')
 plt.xticks(rotation=90)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_b91aa7bb-01c0-47c3-be2e-e1ff09207344.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_b91aa7bb-01c0-47c3-be2e-e1ff09207344.png'}",TRUE,8.07,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_b91aa7bb-01c0-47c3-be2e-e1ff09207344.png'}",TRUE,8.07,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,3,exports\charts\temp_chart_a151bc4e-675f-4b94-84e8-40acfd5352b7.png,"SELECT 
         t1.IDOrganisation, 
         COUNT(DISTINCT t2.StaffName) as num_doctors, 
@@ -1899,7 +1899,7 @@ plt.xlabel('Number of Doctors')
 plt.ylabel('Total Revenue')
 plt.title('Relationship between Total Revenue and Number of Doctors')
 plt.savefig('exports\\charts\\temp_chart_a151bc4e-675f-4b94-84e8-40acfd5352b7.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_a151bc4e-675f-4b94-84e8-40acfd5352b7.png'}",TRUE.,9.87,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_a151bc4e-675f-4b94-84e8-40acfd5352b7.png'}",TRUE,9.87,TRUE,,TRUE,TRUE,TRUE
 Llama-3.1-405B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,3,exports\charts\temp_chart_75964276-b86e-45ef-9198-1c45fad85fbc.png,"SELECT Hour, SUM(TotalRevenue) as TotalRevenue
     FROM table_6c16364831b68d93e7cf9d423cf8f3da
     GROUP BY Hour
@@ -1922,7 +1922,7 @@ plt.title('Top 3 Hourly Revenue Trends')
 plt.xticks(rotation=90)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_75964276-b86e-45ef-9198-1c45fad85fbc.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_75964276-b86e-45ef-9198-1c45fad85fbc.png'}",TRUE,7.87,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_75964276-b86e-45ef-9198-1c45fad85fbc.png'}",TRUE,7.87,TRUE,,FALSE,TRUE,FALSE
 Llama-3.1-405B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,3,exports\charts\temp_chart_0531fbd6-28c6-45d1-b77c-5e79448e146a.png,"SELECT State, Religions, COUNT(*) as count
     FROM table_3586b23a0be349f88985d8c0d783b36d
     GROUP BY State, Religions
@@ -1946,7 +1946,7 @@ plt.legend(title='Religions')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_0531fbd6-28c6-45d1-b77c-5e79448e146a.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_0531fbd6-28c6-45d1-b77c-5e79448e146a.png'}",FALSE.,11.49,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_0531fbd6-28c6-45d1-b77c-5e79448e146a.png'}",FALSE,11.49,TRUE,,TRUE,FALSE,FALSE
 Llama-3.1-405B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,3,exports\charts\temp_chart_a18738ba-aca7-4681-9df7-0e2cf52cc9f0.png,"SELECT StaffName, TotalRevenue
     FROM table_c83679f393c19ab82f71054c6c3facb6
     ORDER BY TotalRevenue DESC
@@ -1967,7 +1967,7 @@ plt.title('Top 5 High Revenue Doctors')
 plt.xticks(rotation=90)
 plt.tight_layout()
 plt.savefig('exports\\charts\\temp_chart_a18738ba-aca7-4681-9df7-0e2cf52cc9f0.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_a18738ba-aca7-4681-9df7-0e2cf52cc9f0.png'}",TRUE,7.21,True,
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_a18738ba-aca7-4681-9df7-0e2cf52cc9f0.png'}",TRUE,7.21,TRUE,,FALSE,TRUE,FALSE
 Mistral-Large-3-675B,hard,Plot Top 3 clinics by total revenue,Bar chart ,3,exports\charts\temp_chart_b9bf3c48-bdeb-4b5c-8bcb-a843de89bbd2.png,"SELECT
     IDOrganisation,
     TotalRevenue
@@ -2001,7 +2001,7 @@ plt.tight_layout()
 plot_filename = 'exports\\charts\\temp_chart_b9bf3c48-bdeb-4b5c-8bcb-a843de89bbd2.png'
 plt.savefig(plot_filename)
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",TRUE,15.71,True,
+result = {'type': 'plot', 'value': plot_filename}",TRUE,15.71,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot the relationship between a clinic's total revenue and the number of doctors it employs.,Scatter plot of revenue vs doctor count,3,exports\charts\temp_chart_5c4131a2-2f6d-4c36-8dd7-31b30c04c55b.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 import os
@@ -2025,7 +2025,7 @@ for i, row in clinic_revenue_df.iterrows():
 plot_path = 'exports\\charts\\temp_chart_5c4131a2-2f6d-4c36-8dd7-31b30c04c55b.png'
 plt.savefig(plot_path)
 plt.close()
-result = {'type': 'plot', 'value': plot_path}",TRUE.,124.3,True,
+result = {'type': 'plot', 'value': plot_path}",TRUE,124.3,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot Top 3 hourly revenue trends.,Line chart of hourly revenue trends,3,exports\charts\temp_chart_f7c64f0a-3174-414f-8857-31299c7a487e.png,"SELECT
     IDOrganisation,
     Hour,
@@ -2065,7 +2065,7 @@ plot_filename = 'exports\\charts\\temp_chart_f7c64f0a-3174-414f-8857-31299c7a487
 plt.tight_layout()
 plt.savefig(plot_filename)
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",TRUE,383.87,True,
+result = {'type': 'plot', 'value': plot_filename}",TRUE,383.87,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Create a stacked bar chart of show top 5 patient religion counts by state. Visualize Top 3 religious demographics in regions.,Stacked bar chart of religions by state,3,exports\charts\temp_chart_75748752-93e5-4624-b45b-1a6178c6dbe8.png,,"import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -2112,7 +2112,7 @@ plt.tight_layout()
 chart_filename = 'exports\\charts\\temp_chart_75748752-93e5-4624-b45b-1a6178c6dbe8.png'
 plt.savefig(chart_filename)
 plt.close()
-result = {'type': 'plot', 'value': chart_filename}",TRUE.,7.44,True,
+result = {'type': 'plot', 'value': chart_filename}",TRUE,7.44,TRUE,,TRUE,TRUE,TRUE
 Mistral-Large-3-675B,hard,Plot the  the top 5 high revenue doctors working in clinics I,Combined chart of top clinics and doctors,3,exports\charts\temp_chart_5aa0ed48-66a1-4a3e-b182-60004266d286.png,"SELECT
     StaffName,
     TotalRevenue
@@ -2147,4 +2147,4 @@ plt.tight_layout()
 plot_filename = 'exports\\charts\\temp_chart_5aa0ed48-66a1-4a3e-b182-60004266d286.png'
 plt.savefig(plot_filename)
 plt.close()
-result = {'type': 'plot', 'value': plot_filename}",FALSE,98.68,True,
+result = {'type': 'plot', 'value': plot_filename}",TRUE,98.68,TRUE,,TRUE,TRUE,TRUE
