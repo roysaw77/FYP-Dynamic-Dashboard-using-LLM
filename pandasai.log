@@ -1,8 +1,38 @@
-2026-04-03 12:20:48 [INFO] Question: Plot the  the top 5 high revenue doctors working in clinics I
-2026-04-03 12:20:48 [INFO] Running PandasAI with litellm LLM...
-2026-04-03 12:20:48 [INFO] Prompt ID: 2713bb42-e076-41d6-9415-653952f44a05
-2026-04-03 12:20:48 [INFO] Generating new code...
-2026-04-03 12:20:48 [INFO] Using Prompt: <tables>
+2026-04-09 10:55:41 [INFO] Question: Plot the  the top 5 high revenue doctors working in clinics I
+2026-04-09 10:55:42 [INFO] Running PandasAI with litellm LLM...
+2026-04-09 10:55:42 [INFO] Prompt ID: 0438b900-06e9-49d7-aca2-a162ef13c1fe
+2026-04-09 10:55:42 [INFO] Generating new code...
+2026-04-09 10:55:42 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_c83679f393c19ab82f71054c6c3facb6" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "StaffName", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Locum/Residence", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalPatient", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="231x17">
+IDOrganisation,Address,State,District,lat,lng,StaffName,Locum/Residence,TotalVisitTime(hrs),TotalPatientCount,TotalPaidPatientCount,TotalPanelPatientCount,TotalRevenue,TotalPaid,TotalPanel,%TotalVisitTime(hrs),%TotalPatient
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor A,Residence,251.1377778,2244,984,1260,308717.8,75014.6,233703.2,47.14618563,54.67836257
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor B,Residence,234.81,1664,832,832,169398.0,72480.0,96918.0,44.08096602,40.54580897
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor C,Residence,10.40111111,68,32,36,5500.0,1480.0,4020.0,1.952604342,1.656920078
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor D,Residence,6.364444444,24,8,16,2676.0,440.0,2236.0,1.194799452,0.584795322
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor E,Residence,18.29666667,72,48,24,4752.0,3180.0,1572.0,3.434839835,1.754385965
+</table>
+
+
+<table dialect="duckdb" table_name="table_6c16364831b68d93e7cf9d423cf8f3da" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Hour", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="157419x21">
+IDOrganisation,Address,State,District,lat,lng,Hour,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-10 08:00:00,185.0,185.0,0.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0,185.0,0.0,0.0,1.0
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-10 10:00:00,30.0,30.0,0.0,0.0,1.0,2.0,1.0,1.0,30.0,0.0,0.0,1.0,0.0,0.0
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-10 11:00:00,281.0,55.0,226.0,0.0,2.0,2.0,1.0,1.0,55.0,0.0,0.0,1.0,0.0,0.0
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-10 12:00:00,243.0,243.0,0.0,0.0,3.0,3.0,3.0,0.0,30.0,0.0,213.0,1.0,0.0,2.0
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-10 14:00:00,270.0,118.0,152.0,0.0,2.0,1.0,1.0,0.0,118.0,0.0,0.0,1.0,0.0,0.0
+</table>
+
+
+<table dialect="duckdb" table_name="table_3586b23a0be349f88985d8c0d783b36d" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "Date", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Countries/Geography", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Ethnicities", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Religions", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "SocialStatus", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "ICD-10", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "DiagnosisDescription", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Hour", "type": "string", "description": null, "expression": null, "alias": null}]" dimensions="241159x14">
+IDOrganisation,Address,State,District,lat,lng,Date,Countries/Geography,Ethnicities,Religions,SocialStatus,ICD-10,DiagnosisDescription,Hour
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-11 14:01:49,Malaysia,Malay,Islam,Single person,Z23.1,Need for immunization against influenza,2024-03-11 14:00:00
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-11 14:31:26,Malaysia,Bangladeshi,Islam,Married,S05.0,Injury of conjunctiva and corneal abrasion without foreign body,2024-03-11 14:00:00
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-11 14:39:14,Malaysia,Malay,Islam,Married,J06.9,"Acute upper respiratory infection, unspecified",2024-03-11 14:00:00
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-11 15:46:40,Malaysia,Malay,Islam,Married,J40.X,"Bronchitis, not specified as acute or chronic",2024-03-11 15:00:00
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,2024-03-11 15:34:31,Malaysia,Malay,Islam,Single person,F31.9,"Bipolar disorder, unspecified",2024-03-11 15:00:00
+</table>
+
 
 <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
 IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
@@ -50,58 +80,51 @@ type (possible values "string", "number", "dataframe", "plot"). Examples: { "typ
 Generate python code and return full updated code:
 
 ### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
-2026-04-03 12:21:10 [INFO] Code Generated:
-# Import the required dependencies
+2026-04-09 10:55:53 [INFO] Code Generated:
+# TODO: import the required dependencies
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Write SQL query to get the top 5 high revenue clinics
+# Write code here
 sql_query = """
-    SELECT IDOrganisation, TotalRevenue
-    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    SELECT StaffName, TotalRevenue
+    FROM table_c83679f393c19ab82f71054c6c3facb6
     ORDER BY TotalRevenue DESC
     LIMIT 5;
 """
 
-# Execute the SQL query
 df = execute_sql_query(sql_query)
 
-# Plot the top 5 high revenue clinics
 plt.figure(figsize=(10,6))
-plt.bar(df['IDOrganisation'], df['TotalRevenue'], color='skyblue')
-plt.xlabel('IDOrganisation')
-plt.ylabel('TotalRevenue')
-plt.title('Top 5 High Revenue Clinics')
+plt.bar(df['StaffName'], df['TotalRevenue'], color='skyblue')
+plt.xlabel('Staff Name')
+plt.ylabel('Total Revenue')
+plt.title('Top 5 High Revenue Doctors')
 plt.xticks(rotation=90)
 plt.tight_layout()
-
-# Save the plot as a PNG file
 plt.savefig('temp_chart.png')
 
 # Declare result var
-result = {
-    "type": "plot",
-    "value": "temp_chart.png"
-}
-2026-04-03 12:21:10 [INFO] Validating code requirements...
-2026-04-03 12:21:10 [INFO] Code validation successful.
-2026-04-03 12:21:10 [INFO] Cleaning the generated code...
-2026-04-03 12:21:10 [INFO] Executing code: import pandas as pd
+result = { "type": "plot", "value": "temp_chart.png" }
+2026-04-09 10:55:53 [INFO] Validating code requirements...
+2026-04-09 10:55:53 [INFO] Code validation successful.
+2026-04-09 10:55:53 [INFO] Cleaning the generated code...
+2026-04-09 10:55:54 [INFO] Executing code: import pandas as pd
 import matplotlib.pyplot as plt
 sql_query = """
-    SELECT IDOrganisation, TotalRevenue
-    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    SELECT StaffName, TotalRevenue
+    FROM table_c83679f393c19ab82f71054c6c3facb6
     ORDER BY TotalRevenue DESC
     LIMIT 5;
 """
 df = execute_sql_query(sql_query)
 plt.figure(figsize=(10, 6))
-plt.bar(df['IDOrganisation'], df['TotalRevenue'], color='skyblue')
-plt.xlabel('IDOrganisation')
-plt.ylabel('TotalRevenue')
-plt.title('Top 5 High Revenue Clinics')
+plt.bar(df['StaffName'], df['TotalRevenue'], color='skyblue')
+plt.xlabel('Staff Name')
+plt.ylabel('Total Revenue')
+plt.title('Top 5 High Revenue Doctors')
 plt.xticks(rotation=90)
 plt.tight_layout()
-plt.savefig('exports\\charts\\temp_chart_f50bbecb-a067-4b5e-a6da-b4a48e8601a0.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_f50bbecb-a067-4b5e-a6da-b4a48e8601a0.png'}
-2026-04-03 12:21:11 [INFO] Response generated successfully.
+plt.savefig('exports\\charts\\temp_chart_4cbf57a3-853f-49ac-a721-3386439a6b5d.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_4cbf57a3-853f-49ac-a721-3386439a6b5d.png'}
+2026-04-09 10:55:54 [INFO] Response generated successfully.

@@ -11,10 +11,10 @@ This project is aimed at developing a dynamic dashboard utilizing Large Language
 - **Prompt templates**: Use customizable prompt templates for different use cases.
 
 ## Tech Stack
-- Frontend: [Insert Frontend Tech Here]
-- Backend: [Insert Backend Tech Here]
-- Database: [Insert Database Here]
-- Other: [Insert Other Technologies Here]
+- Frontend: [Streamlit]
+- Framework: [Pandasai]
+- Dataset: [Insert Database Here]
+
 
 ## Project Structure
 ```
@@ -37,7 +37,7 @@ project/
    ```
 2. Install dependencies:
    ```bash
-   [Insert install command here]
+   [streamlit,pandasai,]
    ```
 
 ### Environment Variables
