@@ -44,9 +44,6 @@ project/
 - python version 3.11.9
 
 ## How to Run
-### Development Commands
-- [Insert development command here]
-
 ### Start Commands
 - [Streamlit run main.py]
 
