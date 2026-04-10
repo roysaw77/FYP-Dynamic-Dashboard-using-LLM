@@ -13,16 +13,16 @@ This project is aimed at developing a dynamic dashboard utilizing Large Language
 ## Tech Stack
 - Frontend: [Streamlit]
 - Framework: [Pandasai]
-- Dataset: [Insert Database Here]
+
 
 
 ## Project Structure
 ```
 project/
-├── src/                    # Source files
-├── assets/                 # Static assets
-├── docs/                   # Documentation
-└── tests/                  # Test cases
+├── src/                    # Source files streamlit web page of Dynamic Dashboarding
+├── dataset/                # dataset for experiment
+├── export/                 # Pandasai Dashboard         
+└── tests/                  # experiment test
 ```
 
 ## Setup Instructions
@@ -36,28 +36,28 @@ project/
    cd FYP-Dynamic-Dashboard-using-LLM
    ```
 2. Install dependencies:
-   ```bash
-   [streamlit,pandasai,]
+   ```
+   [streamlit,pandasai,pandasai_litellm,litellm]
    ```
 
 ### Environment Variables
-- [Insert required environment variables here]
+- python version 3.11.9
 
 ## How to Run
 ### Development Commands
 - [Insert development command here]
 
 ### Start Commands
-- [Insert start command here]
+- [Streamlit run main.py]
 
-## Usage
-- [Insert usage instructions here]
 
-## Screenshots
-![Screenshot Placeholder](link_to_screenshot)
+## Function
+- ![Dashboard example](image.png)
 
-## Contribution Guidelines
-- Feel free to fork the repo and submit pull requests for any improvements.
+- ![SQL Code](image-1.png)
 
-## License
-- [Insert license information here]
+- ![Show Correctness and Response Time](image-2.png)
+
+# Experiment test
+![Model_accuracy_vs_latency](exports/accuracy_vs_latency_custom_2.png)
+![Different difficulty Model Accuracy](exports/simple_matrix_heatmap.png)
