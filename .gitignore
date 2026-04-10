@@ -1,2 +1,8 @@
 # Python bytecode cache directories
 __pycache__/
+
+# Virtual environments
+.venv/
+venv/
+
+.conda_venv/

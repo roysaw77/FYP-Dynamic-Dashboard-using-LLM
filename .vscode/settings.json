@@ -1,4 +1,1 @@
-{
-    "git.enabled": true,
-    "python.analysis.autoImportCompletions": true
-}
+{ "python.defaultInterpreterPath": "${workspaceFolder}\\.conda_venv\\python.exe" }

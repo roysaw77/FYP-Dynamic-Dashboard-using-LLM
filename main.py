@@ -13,13 +13,14 @@ from litellm import completion
 
 
 DEFAULT_MODEL = "nvidia_nim/meta/llama-3.1-405b-instruct"
+DEFAULT_API_KEY = "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"
 
 st.set_page_config(page_title="PandasAI CSV", page_icon="💬", layout="wide")
 st.title("PandasAI CSV")
 
 
 def normalize_text(value: str) -> str:
-	return re.sub(r"\s+", " ", str(value).strip().lower())
+	return re.sub(r"\s+", " ", str(value).strip())
 
 
 def extract_Generated_code(log_path: str = "pandasai.log"):
@@ -183,7 +184,7 @@ selected_files = st.multiselect(
     default=uploaded_names,
 )
 
-api_key = st.text_input("API Key", type="password")
+api_key = st.text_input("API Key", type="password", value=DEFAULT_API_KEY)
 model_id = st.text_input("Model", value=DEFAULT_MODEL)
 question = st.text_input("Question")
 
@@ -202,7 +203,7 @@ if st.button("Run", type="primary"):
         try:
             with st.spinner("Running PandasAI and validating result..."):
                 clear_log()
-                response_obj, _ = generate_Response(
+                response_obj, response_time = generate_Response(
                     question, selected_dataframes, model_id.strip(), api_key.strip()
                 )
                 response_text = response_obj.value if hasattr(response_obj, "value") else str(response_obj)
@@ -220,10 +221,15 @@ if st.button("Run", type="primary"):
                 correctness = str(judge).strip().upper()
 
             st.subheader("Response")
-            st.code(response_text)
+            if("export" in response_text):
+                st.image(response_obj.value)
+            else:
+                st.code(response_text)
             st.subheader("SQL Code")
             st.code(sql_code if sql_code else "")
             st.subheader("Correctness")
             st.code(correctness)
+            st.subheader("Response time")
+            st.code(f"{response_time:.2f} seconds")
         except Exception as exc:
             st.error(str(exc))
