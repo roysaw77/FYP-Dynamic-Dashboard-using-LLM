@@ -4,6 +4,10 @@
 
 This project is aimed at developing a dynamic dashboard utilizing Large Language Models (LLMs) to provide tailored data visualizations and interactions.
 
+##Research Paper
+[thesis (1).pdf](https://github.com/user-attachments/files/27086468/thesis.1.pdf)
+
+
 ## Key Features
 - **LLM-driven dashboard generation**: Automatically generate dashboards based on user input and data context.
 - **Data ingestion**: Seamlessly ingest data from various sources for comprehensive analysis.
