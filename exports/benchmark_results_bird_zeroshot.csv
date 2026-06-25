@@ -1,0 +1,2896 @@
+model,question,expected_answer,run_num,response,sql_query,full_code,is_correct,time_seconds,success,error
+Llama-3.1-8B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",1,"  CharacterName
+0         James
+1        Mollie
+2         Rosie
+3        Albert
+4       Grandpa
+5         Mikey
+6          Rona
+7         Mikey
+8         Mikey",,"query = """"""
+    SELECT T3.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T3
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T3.MovieID = T2.MovieID
+    WHERE T2.Title = 'Look Who''s Talking'
+""""""
+result_df = execute_sql_query(query)
+result = {'type': 'dataframe', 'value': result_df}
+print(result)",TRUE.,4.37,True,
+Llama-3.1-8B,Which character has the longest screen time in the movie Batman?,Batman,1,"Empty DataFrame
+Columns: [CharacterName, screentime]
+Index: []",,"import pandas as pd
+batman_movie_id = execute_sql_query(""SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman'"")
+movie_with_highest_grossing = execute_sql_query('SELECT MovieID, Gross FROM table_7094d14dcbfa3921163187bde7597aeb ORDER BY Gross DESC LIMIT 1')
+movie_id = movie_with_highest_grossing['MovieID'].iloc[0]
+character_with_longest_screen_time = execute_sql_query(f'SELECT CharacterName, screentime FROM table_eb46adee8e29808d89c3d571adcd69df WHERE MovieID = {movie_id} ORDER BY screentime DESC LIMIT 1')
+result = {'type': 'dataframe', 'value': character_with_longest_screen_time}",FALSE,3.27,True,
+Llama-3.1-8B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,1,"  CharacterName  MovieID
+0         Joker       14","SELECT T1.CharacterName, T1.MovieID
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    WHERE T2.Title = 'Batman' AND T1.CharacterName = 'Joker'","import pandas as pd
+sql_query = """"""
+    SELECT T1.CharacterName, T1.MovieID
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    WHERE T2.Title = 'Batman' AND T1.CharacterName = 'Joker'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",FALSE.,1.76,True,
+Llama-3.1-8B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",1,"Michael Keaton, Jack Nicholson, Kim Basinger, Robert Wuhl, Pat Hingle, Billy Dee Williams, Michael Gough, Jack Palance, Jerry Hall",,"import pandas as pd
+query = """"""
+    SELECT T1.MovieID
+    FROM table_7094d14dcbfa3921163187bde7597aeb AS T1
+    WHERE T1.Title = 'Batman'
+""""""
+df = execute_sql_query(query)
+movie_id = df['MovieID'].unique()[0]
+query = """"""
+    SELECT T3.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T3 ON T1.ActorID = T3.ActorID
+    WHERE T2.MovieID = {}
+"""""".format(movie_id)
+df = execute_sql_query(query)
+actor_names = df['Name'].unique()
+result_string = ', '.join(actor_names)
+result = {'type': 'string', 'value': result_string}
+print(result)",TRUE,7.98,True,
+Llama-3.1-8B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,1,"Empty DataFrame
+Columns: [Title]
+Index: []",,"import pandas as pd
+query = """"""
+SELECT T2.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T1.MovieID = T2.MovieID
+WHERE T1.CharacterName = 'Dr. Archibald ""Moonlight"" Graham'
+""""""
+result_df = execute_sql_query(query)
+result = {'type': 'string', 'value': result_df.to_string(index=False)}
+print(result)",FALSE.,9.85,True,
+Llama-3.1-8B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",1,"Empty DataFrame
+Columns: [Title]
+Index: []","SELECT T2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T1.MovieID = T2.MovieID
+    WHERE T2.Title LIKE '%Tom Cruise%'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T1.MovieID = T2.MovieID
+    WHERE T2.Title LIKE '%Tom Cruise%'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}
+print(result)",FALSE.,2.15,True,
+Llama-3.1-8B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,1,1,"SELECT COUNT(*) as num_movies
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    JOIN table_7094d14dcbfa3921163187bde7597aeb ON table_eb46adee8e29808d89c3d571adcd69df.MovieID = table_7094d14dcbfa3921163187bde7597aeb.MovieID
+    WHERE table_7094d14dcbfa3921163187bde7597aeb.Title = 'Driving Miss Daisy' AND table_eb46adee8e29808d89c3d571adcd69df.CharacterName = 'Hoke Colburn'","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(*) as num_movies
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    JOIN table_7094d14dcbfa3921163187bde7597aeb ON table_eb46adee8e29808d89c3d571adcd69df.MovieID = table_7094d14dcbfa3921163187bde7597aeb.MovieID
+    WHERE table_7094d14dcbfa3921163187bde7597aeb.Title = 'Driving Miss Daisy' AND table_eb46adee8e29808d89c3d571adcd69df.CharacterName = 'Hoke Colburn'
+""""""
+result_df = execute_sql_query(sql_query)
+num_movies = result_df['num_movies'].iloc[0]
+result = {'type': 'number', 'value': num_movies}",FALSE,2.66,True,
+Llama-3.1-8B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,1,"                                   Title  Rating
+0                       The Last Samurai     7.7
+1                         A Few Good Men     7.7
+2                        Minority Report     7.6
+3   Mission: Impossible - Ghost Protocol     7.4
+4                          Jerry Maguire     7.3
+5             Born on the Fourth of July     7.2
+6                    Mission: Impossible     7.1
+7                Mission: Impossible III     6.9
+8                            Vanilla Sky     6.9
+9                               The Firm     6.8
+10                     War of the Worlds     6.5
+11                Mission: Impossible II     6.1
+12                       Days of Thunder     6.0","SELECT t2.Title, t2.Rating
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS t2 ON t1.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS t3 ON t1.ActorID = t3.ActorID
+    WHERE t3.Name = 'Tom Cruise'
+    GROUP BY t2.Title, t2.Rating
+    ORDER BY t2.Rating DESC","import pandas as pd
+sql_query = """"""
+    SELECT t2.Title, t2.Rating
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS t2 ON t1.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS t3 ON t1.ActorID = t3.ActorID
+    WHERE t3.Name = 'Tom Cruise'
+    GROUP BY t2.Title, t2.Rating
+    ORDER BY t2.Rating DESC
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,2.66,True,
+Llama-3.1-8B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,1,The name of the character played by Tom Cruise in the movie Born on the Fourth of July is Ron Kovic.,,"import pandas as pd
+query = """"""
+SELECT t2.CharacterName 
+FROM table_eb46adee8e29808d89c3d571adcd69df t2 
+JOIN table_7094d14dcbfa3921163187bde7597aeb t1 
+ON t2.MovieID = t1.MovieID 
+WHERE t1.Title = 'Born on the Fourth of July' 
+AND t2.ActorID IN (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')
+""""""
+result_df = execute_sql_query(query)
+character_name = result_df['CharacterName'].iloc[0]
+result = {'type': 'string', 'value': f'The name of the character played by Tom Cruise in the movie Born on the Fourth of July is {character_name}.'}
+print(result)",TRUE,3.06,True,
+Llama-3.1-8B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",1,,,,False,,False,"Invalid output: Expected a Pandas DataFrame or Series, but received an incompatible type."
+Gemma-2-27B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",1,"James, Mollie, Rosie, Albert, Grandpa, Mikey, Rona, Mikey, Mikey","SELECT CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE MovieID = 1","import pandas as pd
+sql_query = """"""
+SELECT CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE MovieID = 1
+""""""
+df = execute_sql_query(sql_query)
+character_names = df['CharacterName'].tolist()
+result = {'type': 'string', 'value': ', '.join(character_names)}",TRUE,4.3,True,
+Gemma-2-27B,Which character has the longest screen time in the movie Batman?,Batman,1,"Unfortunately, I was not able to get your answer. Please try again.","SELECT CharacterName, CAST(screentime AS INTEGER) AS screentime_seconds
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE MovieID IN (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+ORDER BY screentime_seconds DESC
+LIMIT 1;","import pandas as pd
+sql_query = """"""
+SELECT CharacterName, CAST(screentime AS INTEGER) AS screentime_seconds
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE MovieID IN (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+ORDER BY screentime_seconds DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+longest_screen_time_character = df.iloc[0]['CharacterName']
+result = {'type': 'string', 'value': f'The character with the longest screen time in Batman is {longest_screen_time_character}.'}",FALSE,32.56,True,
+Gemma-2-27B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,1,"             Name
+0  Jack Nicholson","SELECT t2.Name
+FROM table_eb46adee8e29808d89c3d571adcd69df t1
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t2 ON t1.ActorID = t2.ActorID
+WHERE t1.CharacterName = 'Joker' AND t1.MovieID IN (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title LIKE '%Batman%')","import pandas as pd
+sql_query = """"""
+SELECT t2.Name
+FROM table_eb46adee8e29808d89c3d571adcd69df t1
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t2 ON t1.ActorID = t2.ActorID
+WHERE t1.CharacterName = 'Joker' AND t1.MovieID IN (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title LIKE '%Batman%')
+
+""""""
+result = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result}",TRUE,8.27,True,
+Gemma-2-27B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",1,,,,False,,False,"No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}"
+Gemma-2-27B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,1,Field of Dreams,"SELECT m.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df as c
+JOIN table_7094d14dcbfa3921163187bde7597aeb as m ON c.MovieID = m.MovieID
+WHERE c.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'","import pandas as pd
+sql_query = """"""
+SELECT m.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df as c
+JOIN table_7094d14dcbfa3921163187bde7597aeb as m ON c.MovieID = m.MovieID
+WHERE c.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': df.iloc[0, 0]}",TRUE.,4.74,True,
+Gemma-2-27B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",1,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol","SELECT t2.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df as t1
+JOIN table_7094d14dcbfa3921163187bde7597aeb as t2 
+ON t1.MovieID = t2.MovieID
+WHERE t1.ActorID = (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')","import pandas as pd
+sql_query = """"""
+SELECT t2.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df as t1
+JOIN table_7094d14dcbfa3921163187bde7597aeb as t2 
+ON t1.MovieID = t2.MovieID
+WHERE t1.ActorID = (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise') 
+
+""""""
+result = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result}",TRUE.,25.32,True,
+Gemma-2-27B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,1,6,"SELECT COUNT(DISTINCT m.MovieID) 
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df c ON m.MovieID = c.MovieID
+WHERE c.ActorID = (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Morgan Freeman')
+AND m.MPAARating IN ('G', 'PG', 'PG-13');","import pandas as pd
+sql_query = """"""
+SELECT COUNT(DISTINCT m.MovieID) 
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df c ON m.MovieID = c.MovieID
+WHERE c.ActorID = (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Morgan Freeman')
+AND m.MPAARating IN ('G', 'PG', 'PG-13');
+
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'number', 'value': df.iloc[0, 0]}",FALSE.,6.11,True,
+Gemma-2-27B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,1,,,,False,,False,litellm.InternalServerError: InternalServerError: Nvidia_nimException - EngineCore encountered an issue. See stack trace (above) for the root cause.
+Gemma-2-27B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,1,,,,False,,False,"litellm.BadRequestError: Nvidia_nimException - Error code: 400 - {'status': 400, 'title': 'Bad Request', 'detail': ""Function id '6369bc8b-727e-4591-b274-908ac3c80c59': DEGRADED function cannot be invo"
+Gemma-2-27B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",1,,,,False,,False,"litellm.BadRequestError: Nvidia_nimException - Error code: 400 - {'status': 400, 'title': 'Bad Request', 'detail': ""Function id '6369bc8b-727e-4591-b274-908ac3c80c59': DEGRADED function cannot be invo"
+Llama3-70B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",1,"James, Mollie, Rosie, Albert, Grandpa, Mikey, Rona, Mikey, Mikey","SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = 1","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = 1
+""""""
+df = execute_sql_query(sql_query)
+character_names = df['CharacterName'].tolist()
+result = {'type': 'string', 'value': ', '.join(character_names)}",TRUE,20.22,True,
+Llama3-70B,Which character has the longest screen time in the movie Batman?,Batman,1,The character with the longest screen time in the movie Batman is Batman.,"SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+    ORDER BY screentime DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+    ORDER BY screentime DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The character with the longest screen time in the movie Batman is {result_df.iloc[0]['CharacterName']}.""}",TRUE,32.07,True,
+Llama3-70B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,1,Jack Nicholson,"SELECT a.Name 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON m.ActorID = a.ActorID 
+    WHERE m.CharacterName = 'Joker' AND m.MovieID IN (
+        SELECT MovieID 
+        FROM table_7094d14dcbfa3921163187bde7597aeb 
+        WHERE Title = 'Batman'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT a.Name 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON m.ActorID = a.ActorID 
+    WHERE m.CharacterName = 'Joker' AND m.MovieID IN (
+        SELECT MovieID 
+        FROM table_7094d14dcbfa3921163187bde7597aeb 
+        WHERE Title = 'Batman'
+    )
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': df.iloc[0, 0]}",TRUE,30.24,True,
+Llama3-70B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",1,"                 Name
+0      Michael Keaton
+1      Jack Nicholson
+2        Kim Basinger
+3         Robert Wuhl
+4          Pat Hingle
+5  Billy Dee Williams
+6       Michael Gough
+7        Jack Palance
+8          Jerry Hall","SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON m.ActorID = a.ActorID
+    WHERE m.MovieID IN (
+        SELECT MovieID
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE Title = 'Batman'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON m.ActorID = a.ActorID
+    WHERE m.MovieID IN (
+        SELECT MovieID
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE Title = 'Batman'
+    )
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE,24.59,True,
+Llama3-70B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,1,,,,False,,False,"Invalid expression / Unexpected token. Line 6, Col: 51.
+  163187bde7597aeb"" AS m 
+    ON ma.MovieID = m.MovieID 
+    WHERE ma.CharacterName = 'Dr. Archibald '[4mMoonlight[0m' Graham'
+"
+Llama3-70B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",1,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol","SELECT t2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t1.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t3 ON t1.ActorID = t3.ActorID
+    WHERE t3.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT t2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t1.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t3 ON t1.ActorID = t3.ActorID
+    WHERE t3.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,21.27,True,
+Llama3-70B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,1,6,"SELECT COUNT(DISTINCT m.Title) AS num_movies
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS ma
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS m ON ma.MovieID = m.MovieID
+    WHERE ma.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Morgan Freeman'
+    ) AND m.MPAARating IN ('PG', 'PG-13')","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(DISTINCT m.Title) AS num_movies
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS ma
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS m ON ma.MovieID = m.MovieID
+    WHERE ma.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Morgan Freeman'
+    ) AND m.MPAARating IN ('PG', 'PG-13')
+""""""
+result_df = execute_sql_query(sql_query)
+num_movies = result_df.iloc[0]['num_movies']
+result = {'type': 'number', 'value': num_movies}",FALSE.,39.42,True,
+Llama3-70B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,1,,,,False,,False,"No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}"
+Llama3-70B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,1,The character played by Tom Cruise in the movie Born on the Fourth of July is Ron Kovic.,"SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    JOIN table_7094d14dcbfa3921163187bde7597aeb ON table_eb46adee8e29808d89c3d571adcd69df.MovieID = table_7094d14dcbfa3921163187bde7597aeb.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf ON table_eb46adee8e29808d89c3d571adcd69df.ActorID = table_5b6fd6c53269f68ff9917438bca1d1cf.ActorID
+    WHERE table_7094d14dcbfa3921163187bde7597aeb.Title = 'Born on the Fourth of July' AND table_5b6fd6c53269f68ff9917438bca1d1cf.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    JOIN table_7094d14dcbfa3921163187bde7597aeb ON table_eb46adee8e29808d89c3d571adcd69df.MovieID = table_7094d14dcbfa3921163187bde7597aeb.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf ON table_eb46adee8e29808d89c3d571adcd69df.ActorID = table_5b6fd6c53269f68ff9917438bca1d1cf.ActorID
+    WHERE table_7094d14dcbfa3921163187bde7597aeb.Title = 'Born on the Fourth of July' AND table_5b6fd6c53269f68ff9917438bca1d1cf.Name = 'Tom Cruise'
+""""""
+df = execute_sql_query(sql_query)
+character_name = df.iloc[0]['CharacterName']
+result = {'type': 'string', 'value': f'The character played by Tom Cruise in the movie Born on the Fourth of July is {character_name}.'}",TRUE,24.36,True,
+Llama3-70B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",1,"   CharacterName
+0          James
+1   Vincent Vega
+2   Chili Palmer
+3  George Malley
+4    Vic Deakins
+5        Michael
+6    Sean Archer
+7   Paul Brenner
+8  Woody Stevens","SELECT CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df 
+    WHERE ActorID = (
+        SELECT ActorID 
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf 
+        WHERE Name = 'John Travolta'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df 
+    WHERE ActorID = (
+        SELECT ActorID 
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf 
+        WHERE Name = 'John Travolta'
+    )
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",FALSE.,36.06,True,
+Llama-3.1-405B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",1,"  CharacterName
+0         James
+1        Mollie
+2         Rosie
+3        Albert
+4       Grandpa
+5         Mikey
+6          Rona
+7         Mikey
+8         Mikey","SELECT T2.CharacterName
+    FROM table_7094d14dcbfa3921163187bde7597aeb T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.Title = 'Look Who''s Talking'","import pandas as pd
+sql_query = """"""
+    SELECT T2.CharacterName
+    FROM table_7094d14dcbfa3921163187bde7597aeb T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.Title = 'Look Who''s Talking'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,29.43,True,
+Llama-3.1-405B,Which character has the longest screen time in the movie Batman?,Batman,1,The character with the longest screen time in the movie Batman is Batman with a screen time of 0:32:30.,"SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+    ORDER BY screentime DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+    ORDER BY screentime DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+character_name = result_df['CharacterName'].values[0]
+screen_time = result_df['screentime'].values[0]
+result = {'type': 'string', 'value': f'The character with the longest screen time in the movie Batman is {character_name} with a screen time of {screen_time}.'}",TRUE.,15.09,True,
+Llama-3.1-405B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,1,The actor who played the role of Joker in the movie Batman is Jack Nicholson.,"SELECT T1.Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1
+JOIN table_eb46adee8e29808d89c3d571adcd69df T2 ON T1.ActorID = T2.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb T3 ON T2.MovieID = T3.MovieID
+WHERE T3.Title = 'Batman' AND T2.CharacterName = 'Joker'","import pandas as pd
+sql_query = """"""
+SELECT T1.Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1
+JOIN table_eb46adee8e29808d89c3d571adcd69df T2 ON T1.ActorID = T2.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb T3 ON T2.MovieID = T3.MovieID
+WHERE T3.Title = 'Batman' AND T2.CharacterName = 'Joker'
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    result = {'type': 'string', 'value': f""The actor who played the role of Joker in the movie Batman is {result_df.iloc[0]['Name']}.""}
+else:
+    result = {'type': 'string', 'value': 'No actor found who played the role of Joker in the movie Batman.'}",TRUE,8.11,True,
+Llama-3.1-405B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",1,"                 Name
+0      Michael Keaton
+1      Jack Nicholson
+2        Kim Basinger
+3         Robert Wuhl
+4          Pat Hingle
+5  Billy Dee Williams
+6       Michael Gough
+7        Jack Palance
+8          Jerry Hall","SELECT T3.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T2.Title = 'Batman'","import pandas as pd
+sql_query = """"""
+    SELECT T3.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T2.Title = 'Batman'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,5.65,True,
+Llama-3.1-405B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,1,The movie is Field of Dreams.,,"import pandas as pd
+query = """"""
+    SELECT T1.Title 
+    FROM table_7094d14dcbfa3921163187bde7597aeb AS T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T2.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'
+""""""
+result_df = execute_sql_query(query)
+result = {'type': 'string', 'value': f'The movie is {result_df.iloc[0, 0]}.'}",TRUE,5.05,True,
+Llama-3.1-405B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",1,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol","SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,21.52,True,
+Llama-3.1-405B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,1,1,"SELECT COUNT(*) as count
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS t1
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS t2 ON t1.ActorID = t2.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS t3 ON t1.MovieID = t3.MovieID
+    WHERE t2.Name = 'Morgan Freeman' AND t3.MPAARating = 'PG'","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(*) as count
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS t1
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS t2 ON t1.ActorID = t2.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS t3 ON t1.MovieID = t3.MovieID
+    WHERE t2.Name = 'Morgan Freeman' AND t3.MPAARating = 'PG'
+""""""
+result_df = execute_sql_query(sql_query)
+count = result_df['count'].iloc[0]
+result = {'type': 'number', 'value': count}",TRUE,8.16,True,
+Llama-3.1-405B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,1,"            Title  Rating
+0  A Few Good Men     7.7",SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise',"import pandas as pd
+
+
+def get_best_tom_cruise_movie():
+    sql_query = ""SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise'""
+    tom_cruise_actor_id = execute_sql_query(sql_query).iloc[0, 0]
+    sql_query = f'SELECT MovieID FROM table_eb46adee8e29808d89c3d571adcd69df WHERE ActorID = {tom_cruise_actor_id}'
+    tom_cruise_movies = execute_sql_query(sql_query)
+    sql_query = f""""""
+        SELECT Title, Rating
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE MovieID IN ({', '.join(map(str, tom_cruise_movies['MovieID']))})
+        ORDER BY Rating DESC
+        LIMIT 1
+    """"""
+    best_movie = execute_sql_query(sql_query)
+    return best_movie
+
+
+best_movie = get_best_tom_cruise_movie()
+result = {'type': 'dataframe', 'value': best_movie}",TRUE,11.87,True,
+Llama-3.1-405B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,1,The character played by Tom Cruise in the movie Born on the Fourth of July is Ron Kovic.,"SELECT T3.CharacterName
+    FROM table_7094d14dcbfa3921163187bde7597aeb T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T3 ON T1.MovieID = T3.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T2 ON T3.ActorID = T2.ActorID
+    WHERE T1.Title = 'Born on the Fourth of July' AND T2.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T3.CharacterName
+    FROM table_7094d14dcbfa3921163187bde7597aeb T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T3 ON T1.MovieID = T3.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T2 ON T3.ActorID = T2.ActorID
+    WHERE T1.Title = 'Born on the Fourth of July' AND T2.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    character_name = result_df['CharacterName'].values[0]
+    result = {'type': 'string', 'value': f'The character played by Tom Cruise in the movie Born on the Fourth of July is {character_name}.'}
+else:
+    result = {'type': 'string', 'value': 'Tom Cruise did not play a character in the movie Born on the Fourth of July.'}",TRUE,13.39,True,
+Llama-3.1-405B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",1,"          Name        CharacterName
+0   Tom Cruise            Ron Kovic
+1   Tom Cruise         Cole Trickle
+2   Tom Cruise    Lt. Daniel Kaffee
+3   Tom Cruise        Mitch McDeere
+4   Tom Cruise        Jerry Maguire
+5   Tom Cruise           Ethan Hunt
+6   Tom Cruise           Ethan Hunt
+7   Tom Cruise          David Aames
+8   Tom Cruise  Chief John Anderton
+9   Tom Cruise        Nathan Algren
+10  Tom Cruise          Ray Ferrier
+11  Tom Cruise           Ethan Hunt
+12  Tom Cruise           Ethan Hunt","SELECT T2.Name, T1.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T2
+    ON T1.ActorID = T2.ActorID
+    WHERE T2.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Name, T1.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T2
+    ON T1.ActorID = T2.ActorID
+    WHERE T2.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,6.12,True,
+Mistral-Large-3-675B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",1,"The characters in Look Who's Talking are: James, Mollie, Rosie, Albert, Grandpa, Mikey, Rona, Mikey, Mikey","SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE m.Title = 'Look Who''s Talking'
+ORDER BY c.creditOrder","import pandas as pd
+sql_query = """"""
+SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE m.Title = 'Look Who''s Talking'
+ORDER BY c.creditOrder
+""""""
+characters_df = execute_sql_query(sql_query)
+character_names = characters_df['CharacterName'].tolist()
+result = {'type': 'string', 'value': f""The characters in Look Who's Talking are: {', '.join(character_names)}""}",TRUE,21.66,True,
+Mistral-Large-3-675B,Which character has the longest screen time in the movie Batman?,Batman,1,The character with the longest screen time in 'Batman' is Batman played by Michael Keaton with 0:00 screen time.,,"import pandas as pd
+batman_movie_query = """"""
+SELECT MovieID, Title
+FROM table_7094d14dcbfa3921163187bde7597aeb
+WHERE Title LIKE '%Batman%'
+""""""
+batman_movie = execute_sql_query(batman_movie_query)
+if not batman_movie.empty:
+    movie_id = batman_movie['MovieID'].iloc[0]
+    query = f""""""
+    SELECT t1.Title, t2.Name as ActorName, t3.CharacterName, t3.screentime
+    FROM table_7094d14dcbfa3921163187bde7597aeb t1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df t3 ON t1.MovieID = t3.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t2 ON t3.ActorID = t2.ActorID
+    WHERE t1.MovieID = {movie_id}
+    AND t3.screentime IS NOT NULL
+    AND t3.screentime != ''
+    """"""
+    result_df = execute_sql_query(query)
+    if not result_df.empty:
+        max_screen_time = -1
+        longest_character = None
+        for _, row in result_df.iterrows():
+            screentime = row['screentime']
+            try:
+                if ':' in screentime:
+                    parts = screentime.split(':')
+                    if len(parts) == 2:
+                        minutes = int(parts[0])
+                        seconds = int(parts[1])
+                        total_seconds = minutes * 60 + seconds
+                    else:
+                        total_seconds = int(parts[0]) * 60
+                else:
+                    total_seconds = int(screentime) * 60
+                if total_seconds > max_screen_time:
+                    max_screen_time = total_seconds
+                    longest_character = row
+            except (ValueError, IndexError):
+                continue
+        if longest_character is not None:
+            display_time = f'{max_screen_time // 60}:{max_screen_time % 60:02d}'
+            result = {'type': 'string', 'value': f""The character with the longest screen time in '{longest_character['Title']}' is {longest_character['CharacterName']} played by {longest_character['ActorName']} with {display_time} screen time.""}
+        else:
+            result = {'type': 'string', 'value': 'No valid screen time data available for Batman characters.'}
+    else:
+        result = {'type': 'string', 'value': 'No screen time data available for Batman characters.'}
+else:
+    result = {'type': 'string', 'value': 'The movie Batman was not found in the database.'}",TRUE,124.36,True,
+Mistral-Large-3-675B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,1,The actor who played Joker in Batman is Jack Nicholson.,,"import pandas as pd
+query = """"""
+WITH batman_movie AS (
+    SELECT MovieID
+    FROM table_7094d14dcbfa3921163187bde7597aeb
+    WHERE Title = 'Batman'
+),
+joker_role AS (
+    SELECT ActorID
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID IN (SELECT MovieID FROM batman_movie)
+    AND CharacterName = 'Joker'
+)
+SELECT Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE ActorID IN (SELECT ActorID FROM joker_role)
+""""""
+result_df = execute_sql_query(query)
+if not result_df.empty:
+    result = {'type': 'string', 'value': f""The actor who played Joker in Batman is {result_df['Name'].iloc[0]}.""}
+else:
+    result = {'type': 'string', 'value': 'No actor found who played Joker in Batman.'}",TRUE,7.73,True,
+Mistral-Large-3-675B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",1,"No 'Batman' movie found in the dataset. Available movies include: Look Who's Talking, Driving Miss Daisy, Turner & Hooch, Born on the Fourth of July, Field of Dreams, Uncle Buck, When Harry Met Sally..., Dead Poets Society, Parenthood, Lethal Weapon 2, The War of the Roses, National Lampoon's Christmas Vacation, Honey, I Shrunk the Kids, Batman, Ghostbusters II, The Little Mermaid, Back to the Future Part II, Indiana Jones and the Last Crusade, Tango & Cash, Steel Magnolias, Three Men and a Little Lady, Teenage Mutant Ninja Turtles, Pretty Woman, Kindergarten Cop, Home Alone, Bird on a Wire, Misery, Edward Scissorhands, Ghost, Presumed Innocent, Dances with Wolves, Flatliners, The Hunt for Red October, Another 48 Hrs., Back to the Future Part III, Dick Tracy, The Godfather: Part III, Days of Thunder, Total Recall, Die Hard 2, Fried Green Tomatoes, The Silence of the Lambs, Sleeping with the Enemy, Father of the Bride, The Naked Gun 2 1/2: The Smell of Fear, Teenage Mutant Ninja Turtles II, Beauty and the Beast, Hot Shots!, City Slickers, Star Trek VI: The Undiscovered Country, The Addams Family, The Prince of Tides, What About Bob?, Cape Fear, JFK, Robin Hood: Prince of Thieves, Hook, Backdraft, Terminator 2: Judgment Day, The Crying Game, The Hand that Rocks the Cradle, Unforgiven, Home Alone 2: Lost in New York, Wayne's World, The Bodyguard, Aladdin, White Men Can't Jump, Sister Act, Scent of a Woman, Lethal Weapon 3, Under Siege, Boomerang, A League of Their Own, The Last of the Mohicans, Bram Stoker's Dracula, A Few Good Men, Patriot Games, Basic Instinct, Batman Returns, Cool Runnings, Groundhog Day, Free Willy, Sleepless in Seattle, Schindler's List, Mrs. Doubtfire, Tombstone, Philadelphia, Dave, Grumpy Old Men, Indecent Proposal, Sister Act 2: Back in the Habit, In the Line of Fire, Rising Sun, The Firm, The Fugitive, The Pelican Brief, Demolition Man, Cliffhanger, Jurassic Park III, Pulp Fiction, Ace Ventura: Pet Detective, Dumb and Dumber, The Santa Clause, The Mask, Speed, Legends of the Fall, Star Trek: Generations, The Lion King, The Client, The Specialist, The Flintstones, Forrest Gump, Stargate, Disclosure, Interview with the Vampire, Clear and Present Danger, Wolf, Maverick, True Lies, While You Were Sleeping, Dangerous Minds, Grumpier Old Men, Father of the Bride Part II, Toy Story, Ace Ventura: When Nature Calls, Get Shorty, Mr. Holland's Opus, Se7en, Casper, Congo, Apollo 13, Crimson Tide, Pocahontas, GoldenEye, Jumanji, Braveheart, Die Hard: With a Vengeance, Batman Forever, Waterworld, Scream, The First Wives Club, The English Patient, The Birdcage, Phenomenon, A Time to Kill, Star Trek: First Contact, Broken Arrow, Jerry Maguire, The Nutty Professor, 101 Dalmatians, The Rock, Independence Day, Mission: Impossible, Ransom, Space Jam, Twister, The Hunchback of Notre Dame, Eraser, Michael, Good Will Hunting, I Know What You Did Last Summer, Scream 2, My Best Friend's Wedding, Liar Liar, As Good as It Gets, George of the Jungle, The Lost World: Jurassic Park, Con Air, Conspiracy Theory, Face/Off, Flubber, Hercules, Air Force One, Men in Black, Contact, Tomorrow Never Dies, Batman and Robin, Titanic, There's Something About Mary, The Waterboy, Shakespeare in Love, The Rugrats Movie, Rush Hour, Stepmom, Patch Adams, The Truman Show, You've Got Mail, Saving Private Ryan, The Prince of Egypt, Doctor Dolittle, Deep Impact, Mulan, Enemy of the State, The Mask of Zorro, A Bug's Life, Godzilla, Armageddon, Lethal Weapon 4, The Blair Witch Project, American Pie, American Beauty, Big Daddy, The Sixth Sense, Notting Hill, The General's Daughter, The Green Mile, The Matrix, Runaway Bride, Double Jeopardy, Analyze This, The Mummy, Toy Story 2, Star Wars: Episode I - The Phantom Menace, Stuart Little, The World Is Not Enough, Tarzan, Wild Wild West, Crouching Tiger, Hidden Dragon, Scary Movie, Big Momma's House, Remember the Titans, Chicken Run, Traffic, Erin Brockovich, Meet the Parents, What Women Want, X-Men, Nutty Professor II: The Klumps, Cast Away, Charlie's Angels, What Lies Beneath, Gladiator, The Patriot, The Perfect Storm, How the Grinch Stole Christmas, Mission: Impossible II, Dinosaur, American Pie 2, Spy Kids, The Princess Diaries, The Fast and the Furious, Shrek, A Beautiful Mind, Vanilla Sky, Dr. Dolittle 2, Ocean's Eleven, Hannibal, Rush Hour 2, Black Hawk Down, Jurassic Park III, The Lord of the Rings: The Fellowship of the Ring, The Mummy Returns, Planet of the Apes, Lara Croft: Tomb Raider, Monsters, Inc., Harry Potter and the Sorcerer's Stone, Pearl Harbor, My Big Fat Greek Wedding, Sweet Home Alabama, The Ring, Mr. Deeds, Ice Age, The Bourne Identity, Austin Powers in Goldmember, The Santa Clause 2, xXx, Signs, The Lord of the Rings: The Two Towers, Lilo & Stitch, Scooby-Doo, Harry Potter and the Chamber of Secrets, Minority Report, Star Wars: Episode II - Attack of the Clones, Spider-Man, Men in Black 2, Die Another Day, Bringing Down the House, Elf, Spy Kids 3-D: Game Over, Cheaper by the Dozen, Anger Management, 2 Fast 2 Furious, Bruce Almighty, S.W.A.T., Something's Gotta Give, Seabiscuit, Finding Nemo, The Lord of the Rings: The Return of the King, X2: X-Men United, Bad Boys II, Hulk, Pirates of the Caribbean: The Curse of the Black Pearl, The Last Samurai, The Matrix Reloaded, The Matrix Revolutions, Terminator 3: Rise of the Machines, Fahrenheit 9/11, DodgeBall: A True Underdog Story, The Passion of the Christ, The Village, 50 First Dates, The Bourne Supremacy, Shark Tale, Meet the Fockers, The Incredibles, National Treasure, Ocean's Twelve, I, Robot, The Day After Tomorrow, Harry Potter and the Prisoner of Azkaban, Lemony Snicket's A Series of Unfortunate Events, Shrek 2, Van Helsing, The Polar Express, Troy, Spider-Man 2, The 40 Year Old Virgin, Walk the Line, Wedding Crashers, Flightplan, The Pacifier, Hitch, Robots, Madagascar, The Longest Yard, Fantastic Four, Fun with Dick and Jane, Mr. & Mrs. Smith, Star Wars: Episode III - Revenge of the Sith, War of the Worlds, Batman Begins, Charlie and the Chocolate Factory, Chicken Little, Harry Potter and the Goblet of Fire, The Chronicles of Narnia: The Lion, the Witch and the Wardrobe, King Kong, Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan, The Devil Wears Prada, Scary Movie 4, The Break-Up, The Pursuit of Happyness, Dreamgirls, Talladega Nights: The Ballad of Ricky Bobby, Ice Age: The Meltdown, Over the Hedge, Click, The Departed, Happy Feet, Night at the Museum, Cars, The Da Vinci Code, Mission: Impossible III, Casino Royale, Pirates of the Caribbean: Dead Man's Chest, X-Men: The Last Stand, Superman Returns, Juno, Knocked Up, Wild Hogs, 300, Alvin and the Chipmunks, The Bourne Ultimatum, The Simpsons Movie, Enchanted, American Gangster, Live Free or Die Hard, Fantastic 4: Rise of the Silver Surfer, National Treasure: Book of Secrets, Rush Hour 3, Ratatouille, Transformers, Harry Potter and the Order of the Phoenix, I Am Legend, Shrek the Third, Spider-Man 3, Pirates of the Caribbean: At World's End, Slumdog Millionaire, Gran Torino, Twilight, Mamma Mia!, Marley and Me, Sex and the City, Wanted, Get Smart, Horton Hears a Who!, Kung Fu Panda, Iron Man, The Incredible Hulk, Hancock, Madagascar: Escape 2 Africa, The Curious Case of Benjamin Button, WALL-E, Indiana Jones and the Kingdom of the Crystal Skull, The Dark Knight, Quantum of Solace, The Chronicles of Narnia: Prince Caspian, Taken, Paul Blart: Mall Cop, The Blind Side, The Hangover, The Proposal, The Twilight Saga: New Moon, Alvin and the Chipmunks: The Squeakquel, Fast and Furious, Ice Age: Dawn of the Dinosaurs, Sherlock Holmes, X-Men Origins: Wolverine, Star Trek, Night at the Museum: Battle of the Smithsonian, Transformers: Revenge of the Fallen, Monsters vs Aliens, Up, G.I. Joe: The Rise of Cobra, 2012, Avatar, Harry Potter and the Half-Blood Prince, The King's Speech, True Grit, The Karate Kid, The Twilight Saga: Eclipse, Despicable Me, Shutter Island, Grown Ups, Little Fockers, Clash of the Titans, Megamind, The Last Airbender, Inception, How to Train Your Dragon, Shrek Forever After, Tron Legacy, Alice in Wonderland, Iron Man 2, Toy Story 3, Harry Potter and the Deathly Hallows: Part 1, Tangled, The Help, Bridesmaids, Alvin and the Chipmunks: Chipwrecked, The Hangover Part II, Rio, Rise of the Planet of the Apes, The Twilight Saga: Breaking Dawn - Part 1, The Smurfs, Fast Five, Harry Potter and the Deathly Hallows: Part 2, Sherlock Holmes: A Game of Shadows, Puss in Boots: The Three Diablos, Captain America: The First Avenger, Mission: Impossible - Ghost Protocol, Thor, Kung Fu Panda 2, Transformers: Dark of the Moon, Cars 2, Pirates of the Caribbean: On Stranger Tides, Taken 2, Ted, Les Miserables, Lincoln, The Lorax, The Hunger Games, Hotel Transylvania, Ice Age: Continental Drift, Django Unchained, The Twilight Saga: Breaking Dawn - Part 2, Madagascar 3: Europe's Most Wanted, Wreck-It Ralph, Snow White and the Huntsman, Brave, Skyfall, The Amazing Spider-Man, The Avengers, Men in Black 3, The Dark Knight Rises, The Hobbit: An Unexpected Journey, The Conjuring, Identity Thief, We're The Millers, American Hustle, The Heat, Despicable Me 2, The Great Gatsby, Gravity, The Hunger Games: Catching Fire, The Croods, Frozen, Fast & Furious 6, Thor: The Dark World, Star Trek Into Darkness, Oz: The Great and Powerful, Iron Man 3, World War Z, Monsters University, Man of Steel, The Hobbit: The Desolation of Smaug, Neighbors, 22 Jump Street, American Sniper, The Lego Movie, Gone Girl, Divergent, Teenage Mutant Ninja Turtles, The Hunger Games: Mockingjay - Part 1, How to Train Your Dragon 2, Godzilla, Big Hero 6, Interstellar, Captain America: The Winter Soldier, Dawn of the Planet of the Apes, Guardians of the Galaxy, Maleficent, The Amazing Spider-Man 2, Transformers: Age of Extinction, X-Men: Days of Future Past, The Hobbit: The Battle of the Five Armies, Straight Outta Compton, Pitch Perfect 2, Fifty Shades of Grey, The SpongeBob Movie: Sponge Out of Water, Minions, Hotel Transylvania 2, Cinderella, The Martian, San Andreas, Ant-Man, Home, The Revenant, Jurassic World, Mission: Impossible - Rogue Nation, The Hunger Games: Mockingjay - Part 2, Inside Out, Furious 7, Spectre, Star Wars: The Force Awakens, Avengers: Age of Ultron, Hidden Figures, La La Land, Deadpool, The Secret Life of Pets, Sing, Jason Bourne, Trolls, Ghostbusters, Zootopia, Moana, Doctor Strange, The Jungle Book, Suicide Squad, X-Men: Apocalypse, Fantastic Beasts and Where to Find Them, Star Trek Beyond, Finding Dory, Rogue One: A Star Wars Story, Batman v Superman: Dawn of Justice, Captain America: Civil War, Get Out, It, The LEGO Batman Movie, Despicable Me 3, The Greatest Showman, Logan, Dunkirk, The Boss Baby, Wonder Woman, Jumanji: Welcome to the Jungle, Beauty and the Beast, Spider-Man: Homecoming, Coco, Thor: Ragnarok, Kong: Skull Island, Guardians of the Galaxy Vol. 2, Pirates of the Caribbean: Dead Men Tell No Tales, The Fate of the Furious, Justice League, Star Wars: The Last Jedi, A Quiet Place, Crazy Rich Asians, A Star is Born, Bohemian Rhapsody, Dr. Seuss' The Grinch, Hotel Transylvania 3: Summer Vacation, Spider-Man: Into the Spider-Verse, Deadpool 2, Venom, Mary Poppins Returns, Aquaman, Jurassic World: Fallen Kingdom, Ralph Breaks the Internet, Mission: Impossible - Fallout, Ant-Man and the Wasp, Black Panther, Incredibles 2, Fantanstic Beasts: The Crimes of Grindelwald, Solo: A Star Wars Story, Avengers: Infinity War, Glass, Us, The Upside, John Wick: Chapter 3 - Parabellum, It: Chapter Two, The Secret Life of Pets 2, Once Upon a Time in Hollywood, The LEGO Movie 2: The Second Part, Shazam!, How to Train Your Dragon: The Hidden World, Pokemon Detective Pikachu, Spider-Man: Far from Home, Dumbo, Captain Marvel, Aladdin, Godzilla: King of the Monsters, Toy Story 4, Fast & Furious Presents: Hobbs & Shaw, The Lion King, Tenet, Hamilton, The Father, A Quiet Place Part 2, Emma, Wonder Woman, Soul, Sonic the Hedgehog, Enola Holmes, Mulan, Greenland, Avengers: Endgame, West Side Story, Free Guy, Spiderman:No Way Home, Encanto, Dune, No Time to Die, tick, tickâ€¦BOOM!, Venon: Let There Be Carnage. You can modify the query to find actors from any of these movies.",,"import pandas as pd
+query = """"""
+SELECT a.Name
+FROM table_eb46adee8e29808d89c3d571adcd69df m_a
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON m_a.ActorID = a.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON m_a.MovieID = m.MovieID
+ORDER BY a.Name
+""""""
+actor_df = execute_sql_query(query)
+movie_query = 'SELECT Title FROM table_7094d14dcbfa3921163187bde7597aeb'
+movie_titles = execute_sql_query(movie_query)
+result = {'type': 'string', 'value': f""No 'Batman' movie found in the dataset. Available movies include: {', '.join(movie_titles['Title'].tolist())}. You can modify the query to find actors from any of these movies.""}",FALSE,10.22,True,
+Mistral-Large-3-675B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,1,The character Dr. Archibald 'Moonlight' Graham is from the movie 'Field of Dreams'.,"SELECT m.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_7094d14dcbfa3921163187bde7597aeb m
+ON c.MovieID = m.MovieID
+WHERE c.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'","import pandas as pd
+sql_query = """"""
+SELECT m.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_7094d14dcbfa3921163187bde7597aeb m
+ON c.MovieID = m.MovieID
+WHERE c.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    movie_title = result_df.iloc[0]['Title']
+    result = {'type': 'string', 'value': f""The character Dr. Archibald 'Moonlight' Graham is from the movie '{movie_title}'.""}
+else:
+    result = {'type': 'string', 'value': ""No movie found with the character Dr. Archibald 'Moonlight' Graham.""}",TRUE,62.37,True,
+Mistral-Large-3-675B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",1,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol",,"import pandas as pd
+actor_query = """"""
+SELECT ActorID
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'Tom Cruise'
+""""""
+actor_df = execute_sql_query(actor_query)
+if not actor_df.empty:
+    tom_cruise_id = actor_df['ActorID'].iloc[0]
+    movie_query = f""""""
+    SELECT m.Title
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df c ON m.MovieID = c.MovieID
+    WHERE c.ActorID = {tom_cruise_id}
+    """"""
+    movie_df = execute_sql_query(movie_query)
+else:
+    movie_df = pd.DataFrame({'Title': ['Tom Cruise not found in database']})
+result = {'type': 'dataframe', 'value': movie_df}",TRUE,64.97,True,
+Mistral-Large-3-675B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,1,1,"SELECT COUNT(DISTINCT m.MovieID) as movie_count
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df mc ON m.MovieID = mc.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON mc.ActorID = a.ActorID
+    WHERE a.Name LIKE '%Morgan Freeman%'
+    AND m.MPAARating IN ('PG', 'PG-13')","import pandas as pd
+sql_check_actor = """"""
+SELECT ActorID, Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name LIKE '%Morgan Freeman%'
+""""""
+actor_check = execute_sql_query(sql_check_actor)
+if actor_check.empty:
+    result = {'type': 'string', 'value': 'Morgan Freeman not found in the dataset.'}
+else:
+    sql_query = """"""
+    SELECT COUNT(DISTINCT m.MovieID) as movie_count
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df mc ON m.MovieID = mc.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON mc.ActorID = a.ActorID
+    WHERE a.Name LIKE '%Morgan Freeman%'
+    AND m.MPAARating IN ('PG', 'PG-13')
+    """"""
+    result_df = execute_sql_query(sql_query)
+    if result_df.empty or result_df.iloc[0]['movie_count'] == 0:
+        result = {'type': 'string', 'value': 'No PG or PG-13 rated movies starring Morgan Freeman found in the dataset.'}
+    else:
+        count = result_df.iloc[0]['movie_count']
+        result = {'type': 'number', 'value': count}",TRUE,149.22,True,
+Mistral-Large-3-675B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,1,The highest quality movie starring John Travolta is 'Pulp Fiction' with a rating of 8.9.,,"import pandas as pd
+actor_query = """"""
+SELECT ActorID, Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'John Travolta'
+""""""
+actor_df = execute_sql_query(actor_query)
+if not actor_df.empty:
+    actor_id = actor_df['ActorID'].iloc[0]
+    movie_query = f""""""
+    SELECT m.Title, m.Rating, m.ReleaseDate, m.Genre
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df c ON m.MovieID = c.MovieID
+    WHERE c.ActorID = {actor_id}
+    ORDER BY m.Rating DESC
+    LIMIT 1
+    """"""
+    movie_df = execute_sql_query(movie_query)
+    if not movie_df.empty:
+        best_movie = movie_df.iloc[0]
+        result = {'type': 'string', 'value': f""The highest quality movie starring John Travolta is '{best_movie['Title']}' with a rating of {best_movie['Rating']}.""}
+    else:
+        result = {'type': 'string', 'value': 'No movies found for John Travolta in the database.'}
+else:
+    result = {'type': 'string', 'value': 'Actor John Travolta not found in the database.'}",FALSE.,103.27,True,
+Mistral-Large-3-675B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,1,The character played by Tom Cruise in 'Born on the Fourth of July' is Ron Kovic.,"SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE a.Name = 'Tom Cruise' AND m.Title = 'Born on the Fourth of July'","import pandas as pd
+sql_query = """"""
+SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE a.Name = 'Tom Cruise' AND m.Title = 'Born on the Fourth of July'
+""""""
+df = execute_sql_query(sql_query)
+if len(df) > 0:
+    character_name = df.iloc[0]['CharacterName']
+    result = {'type': 'string', 'value': f""The character played by Tom Cruise in 'Born on the Fourth of July' is {character_name}.""}
+else:
+    result = {'type': 'string', 'value': ""Tom Cruise did not appear in the movie 'Born on the Fourth of July' or the information is not available in the database.""}",TRUE,58.07,True,
+Mistral-Large-3-675B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",1,"          CharacterName
+0             Ron Kovic
+1          Cole Trickle
+2     Lt. Daniel Kaffee
+3         Mitch McDeere
+4         Jerry Maguire
+5            Ethan Hunt
+6            Ethan Hunt
+7           David Aames
+8   Chief John Anderton
+9         Nathan Algren
+10          Ray Ferrier
+11           Ethan Hunt
+12           Ethan Hunt",,"import pandas as pd
+actor_query = """"""
+SELECT ActorID
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'Tom Cruise'
+""""""
+tom_cruise_id_df = execute_sql_query(actor_query)
+if not tom_cruise_id_df.empty:
+    tom_cruise_id = tom_cruise_id_df.iloc[0]['ActorID']
+    characters_query = f""""""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE ActorID = {tom_cruise_id}
+    """"""
+    characters_df = execute_sql_query(characters_query)
+    if not characters_df.empty:
+        result = {'type': 'dataframe', 'value': characters_df}
+    else:
+        result = {'type': 'string', 'value': 'No characters found for Tom Cruise.'}
+else:
+    result = {'type': 'string', 'value': 'Tom Cruise not found in the database.'}",TRUE.,23.31,True,
+Llama-3.1-8B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",2,"The characters in the movie Look Who's Talking are: James, Mollie, Rosie, Albert, Grandpa, Mikey, Rona",,"import pandas as pd
+query = """"""
+    SELECT T3.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df T3 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T3.MovieID = T2.MovieID 
+    WHERE T2.Title = 'Look Who''s Talking'
+""""""
+df = execute_sql_query(query)
+character_names = df['CharacterName'].unique()
+character_names_str = ', '.join(character_names)
+result = {'type': 'string', 'value': f""The characters in the movie Look Who's Talking are: {character_names_str}""}
+print(result)",TRUE,6.49,True,
+Llama-3.1-8B,Which character has the longest screen time in the movie Batman?,Batman,2,"Unfortunately, I was not able to get your answer. Please try again.","SELECT m.CharacterName, SUM(CAST(convert_screentime_to_seconds(m.screentime) AS DECIMAL)) as total_screen_time
+    FROM table_eb46adee8e29808d89c3d571adcd69df m
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m2 ON m.MovieID = m2.MovieID
+    WHERE m2.Title = 'Batman'
+    GROUP BY m.CharacterName
+    ORDER BY total_screen_time DESC
+    LIMIT 1","import pandas as pd
+
+
+def convert_screentime_to_seconds(screentime):
+    hours, minutes, seconds = map(int, screentime.split(':'))
+    return hours * 3600 + minutes * 60 + seconds
+
+
+sql_query = """"""
+    SELECT m.CharacterName, SUM(CAST(convert_screentime_to_seconds(m.screentime) AS DECIMAL)) as total_screen_time
+    FROM table_eb46adee8e29808d89c3d571adcd69df m
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m2 ON m.MovieID = m2.MovieID
+    WHERE m2.Title = 'Batman'
+    GROUP BY m.CharacterName
+    ORDER BY total_screen_time DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+longest_screen_time_character = result_df['CharacterName'].iloc[0]
+result = {'type': 'string', 'value': f'The character with the longest screen time in the movie Batman is {longest_screen_time_character}.'}
+print(result)",FALSE.,14.16,True,
+Llama-3.1-8B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,2,"             Title            Name
+0           Batman  Jack Nicholson
+1  The Dark Knight    Heath Ledger","SELECT m.Title, a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df e
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON e.ActorID = a.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON e.MovieID = m.MovieID
+    WHERE e.CharacterName = 'Joker'","import pandas as pd
+sql_query = """"""
+    SELECT m.Title, a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df e
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON e.ActorID = a.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON e.MovieID = m.MovieID
+    WHERE e.CharacterName = 'Joker'
+""""""
+result_df = execute_sql_query(sql_query)
+if result_df.empty:
+    result = {'type': 'string', 'value': 'No actor found with the role of Joker in Batman.'}
+else:
+    result = {'type': 'dataframe', 'value': result_df}
+print(result)",TRUE.,2.33,True,
+Llama-3.1-8B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",2,"         CharacterName
+0               Batman
+1                Joker
+2           Vicki Vale
+3       Alexander Knox
+4  Commissioner Gordon
+5          Harvey Dent
+6               Alfred
+7              Grissom
+8               Alicia",,"import pandas as pd
+query = """"""
+    SELECT T3.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df T3
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T3.MovieID = T2.MovieID
+    WHERE T2.Title = 'Batman'
+""""""
+result_df = execute_sql_query(query)
+result = {'type': 'dataframe', 'value': result_df}
+print(result)",FALSE.,2.42,True,
+Llama-3.1-8B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,2,Field of Dreams,,"import pandas as pd
+query = """"""
+    SELECT T2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'
+""""""
+result_df = execute_sql_query(query)
+result = {'type': 'string', 'value': result_df.iloc[0, 0]}
+print(result)",TRUE,3.03,True,
+Llama-3.1-8B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",2,"Empty DataFrame
+Columns: [Title]
+Index: []","SELECT m.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df e 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON e.MovieID = m.MovieID 
+    WHERE e.CharacterName = 'Tom Hanks'","import pandas as pd
+sql_query = """"""
+    SELECT m.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df e 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON e.MovieID = m.MovieID 
+    WHERE e.CharacterName = 'Tom Hanks' 
+""""""
+movies = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': movies}
+print(result)",FALSE.,3.09,True,
+Llama-3.1-8B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,2,1,"SELECT COUNT(*) 
+    FROM table_7094d14dcbfa3921163187bde7597aeb 
+    JOIN table_eb46adee8e29808d89c3d571adcd69df ON table_7094d14dcbfa3921163187bde7597aeb.MovieID = table_eb46adee8e29808d89c3d571adcd69df.MovieID 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf ON table_eb46adee8e29808d89c3d571adcd69df.ActorID = table_5b6fd6c53269f68ff9917438bca1d1cf.ActorID 
+    WHERE table_5b6fd6c53269f68ff9917438bca1d1cf.Name = 'Morgan Freeman' AND table_7094d14dcbfa3921163187bde7597aeb.MPAARating = 'PG'","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(*) 
+    FROM table_7094d14dcbfa3921163187bde7597aeb 
+    JOIN table_eb46adee8e29808d89c3d571adcd69df ON table_7094d14dcbfa3921163187bde7597aeb.MovieID = table_eb46adee8e29808d89c3d571adcd69df.MovieID 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf ON table_eb46adee8e29808d89c3d571adcd69df.ActorID = table_5b6fd6c53269f68ff9917438bca1d1cf.ActorID 
+    WHERE table_5b6fd6c53269f68ff9917438bca1d1cf.Name = 'Morgan Freeman' AND table_7094d14dcbfa3921163187bde7597aeb.MPAARating = 'PG'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'number', 'value': result_df.iloc[0, 0]}
+print(result)",TRUE,2.93,True,
+Llama-3.1-8B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,2,"Genre        Thriller
+Gross     694713380.0
+Rating            7.4
+Name: 6, dtype: object",,"import pandas as pd
+table = execute_sql_query(""""""
+    SELECT T2.Title, T2.Genre, T2.Gross, T2.Rating 
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 
+    ON T1.MovieID = T2.MovieID 
+    WHERE T1.ActorID IN (
+        SELECT T1.ActorID 
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1 
+        JOIN table_eb46adee8e29808d89c3d571adcd69df T2 
+        ON T1.ActorID = T2.ActorID 
+        WHERE T1.Name = 'Tom Cruise'
+    )
+"""""")
+average_gross_and_rating = table.groupby('Genre')[['Gross', 'Rating']].mean().reset_index()
+average_gross_and_rating = average_gross_and_rating.sort_values(by='Gross', ascending=False)
+best_quality_movie = average_gross_and_rating.iloc[0]
+result = {'type': 'dataframe', 'value': best_quality_movie}
+print(result)",FALSE,7.86,True,
+Llama-3.1-8B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,2,The character name played by Tom Cruise in the movie Born on the Fourth of July is Ron Kovic.,"SELECT T1.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 
+    ON T1.MovieID = T2.MovieID 
+    WHERE T2.Title = 'Born on the Fourth of July' AND T1.ActorID IN (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')","import pandas as pd
+
+
+def get_character_name():
+    sql_query = """"""
+    SELECT T1.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 
+    ON T1.MovieID = T2.MovieID 
+    WHERE T2.Title = 'Born on the Fourth of July' AND T1.ActorID IN (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')
+    """"""
+    result_df = execute_sql_query(sql_query)
+    character_name = result_df['CharacterName'].iloc[0]
+    return f'The character name played by Tom Cruise in the movie Born on the Fourth of July is {character_name}.'
+
+
+result = {'type': 'string', 'value': get_character_name()}
+print(result)",TRUE.,9.33,True,
+Llama-3.1-8B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",2,"The names of all characters played by Tom Cruise are: Ron Kovic, Lt. Daniel Kaffee, Nathan Algren, Jerry Maguire, Cole Trickle, Ethan Hunt, Mitch McDeere, David Aames, Chief John Anderton, Ray Ferrier.","SELECT DISTINCT T1.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1 
+    INNER JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T2 
+    ON T1.ActorID = T2.ActorID 
+    WHERE T2.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT DISTINCT T1.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1 
+    INNER JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T2 
+    ON T1.ActorID = T2.ActorID 
+    WHERE T2.Name = 'Tom Cruise'
+""""""
+df = execute_sql_query(sql_query)
+character_names = df['CharacterName'].tolist()
+result = {'type': 'string', 'value': f""The names of all characters played by Tom Cruise are: {', '.join(character_names)}.""}
+print(result)",TRUE,10.58,True,
+Gemma-2-27B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",2,"The characters in Look Who's Talking are: James, Mollie, Rosie, Albert, Grandpa, Mikey, Rona, Mikey, Mikey.","SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c 
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE m.Title = 'Look Who''s Talking';","import pandas as pd
+sql_query = """"""
+SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c 
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE m.Title = 'Look Who''s Talking';
+""""""
+character_names = execute_sql_query(sql_query)
+character_list = character_names['CharacterName'].tolist()
+character_names_string = ', '.join(character_list)
+result = {'type': 'string', 'value': f""The characters in Look Who's Talking are: {character_names_string}.""}",TRUE,14.25,True,
+Gemma-2-27B,Which character has the longest screen time in the movie Batman?,Batman,2,"Unfortunately, I was not able to get your answer. Please try again.",,"sql = """"""
+WITH MovieDetails AS (
+    SELECT Title, MovieID
+    FROM table_7094d14dcbfa3921163187bde7597aeb
+    WHERE Title = 'Batman'
+),
+CastScreenTime AS (
+   SELECT 
+        t.MovieID,
+        t.ActorID,
+        Actor.Name,
+        t.screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df t
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf Actor ON t.ActorID = Actor.ActorID
+    WHERE t.MovieID IN (SELECT MovieID FROM MovieDetails) 
+)
+
+SELECT 
+    Name,
+    screentime 
+FROM CastScreenTime
+ORDER BY CASE
+    WHEN screentime LIKE '%:%:%' THEN STRTOINT(SUBSTR(screentime, 1, 2)) * 3600 + STRTOINT(SUBSTR(screentime, 4, 2)) * 60 + STRTOINT(SUBSTR(screentime, 7, 2)) 
+    WHEN screentime LIKE '%:%' THEN STRTOINT(SUBSTR(screentime, 1, 2)) * 60 + STRTOINT(SUBSTR(screentime, 4, 2))  
+     ELSE STRTOINT(screentime)
+    END DESC
+LIMIT 1;
+""""""
+df = execute_sql_query(sql)
+print(df.to_string(index=False))",FALSE.,77.27,True,
+Gemma-2-27B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,2,The actor who played Joker in Batman is Jack Nicholson.,"SELECT
+    t1.Name
+FROM
+    table_5b6fd6c53269f68ff9917438bca1d1cf t1
+JOIN
+    table_eb46adee8e29808d89c3d571adcd69df t2 ON t1.ActorID = t2.ActorID
+WHERE
+    t2.CharacterName = 'Joker' AND
+     t2.MovieID = ( SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman');","import pandas as pd
+sql_query = """"""
+SELECT
+    t1.Name
+FROM
+    table_5b6fd6c53269f68ff9917438bca1d1cf t1
+JOIN
+    table_eb46adee8e29808d89c3d571adcd69df t2 ON t1.ActorID = t2.ActorID
+WHERE
+    t2.CharacterName = 'Joker' AND
+     t2.MovieID = ( SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman');
+
+""""""
+df = execute_sql_query(sql_query)
+actor_name = df.iloc[0, 0]
+result = {'type': 'string', 'value': f'The actor who played Joker in Batman is {actor_name}.'}",TRUE,7.98,True,
+Gemma-2-27B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",2,"                 Name
+0      Michael Keaton
+1      Jack Nicholson
+2        Kim Basinger
+3         Robert Wuhl
+4          Pat Hingle
+5  Billy Dee Williams
+6       Michael Gough
+7        Jack Palance
+8          Jerry Hall","SELECT t1.Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf AS t1
+JOIN table_eb46adee8e29808d89c3d571adcd69df AS t2 ON t1.ActorID = t2.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb AS t3 ON t2.MovieID = t3.MovieID
+WHERE t3.Title = 'Batman'","import pandas as pd
+sql_query = """"""
+SELECT t1.Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf AS t1
+JOIN table_eb46adee8e29808d89c3d571adcd69df AS t2 ON t1.ActorID = t2.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb AS t3 ON t2.MovieID = t3.MovieID
+WHERE t3.Title = 'Batman' 
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",TRUE.,6.35,True,
+Gemma-2-27B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,2,,,,False,,False,"No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}"
+Gemma-2-27B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",2,"Unfortunately, I was not able to get your answer. Please try again.","SELECT 
+    t2.Title
+FROM 
+    table_eb46adee8e29808d89c3d571adcd69df t1
+JOIN 
+    table_5b6fd6c53269f68ff9917438bca1d1cf t2 ON t1.ActorID = t2.ActorID
+WHERE 
+    t2.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+SELECT 
+    t2.Title
+FROM 
+    table_eb46adee8e29808d89c3d571adcd69df t1
+JOIN 
+    table_5b6fd6c53269f68ff9917438bca1d1cf t2 ON t1.ActorID = t2.ActorID
+WHERE 
+    t2.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",FALSE.,27.14,True,
+Gemma-2-27B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,2,6,"SELECT COUNT(DISTINCT m.MovieID) 
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df a ON m.MovieID = a.MovieID
+WHERE a.ActorID = (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Morgan Freeman')
+AND m.MPAARating IN ('G', 'PG', 'PG-13');","import pandas as pd
+sql_query = """"""
+SELECT COUNT(DISTINCT m.MovieID) 
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df a ON m.MovieID = a.MovieID
+WHERE a.ActorID = (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Morgan Freeman')
+AND m.MPAARating IN ('G', 'PG', 'PG-13');
+
+""""""
+result = execute_sql_query(sql_query)
+result = {'type': 'number', 'value': result.iloc[0][0]}",FALSE.,8.77,True,
+Gemma-2-27B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,2,A Few Good Men,,"import pandas as pd
+query = """"""
+SELECT m.Title
+FROM table_7094d14dcbfa3921163187bde7597aeb AS m
+JOIN table_eb46adee8e29808d89c3d571adcd69df AS c ON m.MovieID = c.MovieID
+WHERE c.ActorID = (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')
+ORDER BY m.Rating DESC
+LIMIT 1;
+""""""
+result = execute_sql_query(query)
+result = {'type': 'string', 'value': result.iloc[0]['Title']}",TRUE,19.6,True,
+Gemma-2-27B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,2,Ron Kovic,"SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE a.Name = 'Tom Cruise' AND m.Title = 'Born on the Fourth of July'","import pandas as pd
+sql_query = """"""
+SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE a.Name = 'Tom Cruise' AND m.Title = 'Born on the Fourth of July'
+
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': df['CharacterName'].iloc[0]}",TRUE,6.37,True,
+Gemma-2-27B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",2,"         CharacterName
+0          Ray Ferrier
+1           Ethan Hunt
+2          David Aames
+3  Chief John Anderton
+4        Mitch McDeere
+5         Cole Trickle
+6            Ron Kovic
+7    Lt. Daniel Kaffee
+8        Nathan Algren
+9        Jerry Maguire",,"import pandas as pd
+query = """"""
+SELECT DISTINCT t4.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df as t4
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf as t5 ON t4.ActorID = t5.ActorID
+WHERE t5.Name = 'Tom Cruise'
+""""""
+result = execute_sql_query(query)
+result_list = result['CharacterName'].tolist()
+result = {'type': 'dataframe', 'value': pd.DataFrame({'CharacterName': result_list})}",FALSE.,5.16,True,
+Llama3-70B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",2,"James, Mollie, Rosie, Albert, Grandpa, Mikey, Rona, Mikey, Mikey","SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = 1","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = 1
+""""""
+df = execute_sql_query(sql_query)
+character_names = df['CharacterName'].tolist()
+result = {'type': 'string', 'value': ', '.join(character_names)}",TRUE,9.61,True,
+Llama3-70B,Which character has the longest screen time in the movie Batman?,Batman,2,The character with the longest screen time in the movie Batman is Batman.,"SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID IN (
+        SELECT MovieID
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE Title = 'Batman'
+    )
+    ORDER BY screentime DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID IN (
+        SELECT MovieID
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE Title = 'Batman'
+    )
+    ORDER BY screentime DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': f""The character with the longest screen time in the movie Batman is {result_df.iloc[0]['CharacterName']}.""}",TRUE,15.45,True,
+Llama3-70B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,2,Jack Nicholson,"SELECT a.Name 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a 
+    ON m.ActorID = a.ActorID 
+    WHERE m.CharacterName = 'Joker' AND m.MovieID IN (
+        SELECT MovieID 
+        FROM table_7094d14dcbfa3921163187bde7597aeb 
+        WHERE Title = 'Batman'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT a.Name 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a 
+    ON m.ActorID = a.ActorID 
+    WHERE m.CharacterName = 'Joker' AND m.MovieID IN (
+        SELECT MovieID 
+        FROM table_7094d14dcbfa3921163187bde7597aeb 
+        WHERE Title = 'Batman'
+    )
+""""""
+result_df = execute_sql_query(sql_query)
+result_str = result_df.iloc[0, 0] if not result_df.empty else 'No actor found'
+result = {'type': 'string', 'value': result_str}",TRUE,26.09,True,
+Llama3-70B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",2,"             Name
+0  Michael Keaton
+1      Val Kilmer
+2     Will Arnett
+3  Michael Keaton","SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON m.ActorID = a.ActorID
+    WHERE m.CharacterName LIKE '%Batman%'","import pandas as pd
+sql_query = """"""
+    SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON m.ActorID = a.ActorID
+    WHERE m.CharacterName LIKE '%Batman%'
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",FALSE.,8.98,True,
+Llama3-70B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,2,Field of Dreams,"SELECT m.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS mc
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS m ON mc.MovieID = m.MovieID
+    WHERE mc.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'","import pandas as pd
+sql_query = """"""
+    SELECT m.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS mc
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS m ON mc.MovieID = m.MovieID
+    WHERE mc.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': result_df.iloc[0, 0] if not result_df.empty else 'Not found'}",TRUE,73.32,True,
+Llama3-70B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",2,"Born on the Fourth of July, Days of Thunder, A Few Good Men, The Firm, Jerry Maguire, Mission: Impossible, Mission: Impossible II, Vanilla Sky, Minority Report, The Last Samurai, War of the Worlds, Mission: Impossible III, Mission: Impossible - Ghost Protocol","SELECT t2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t1.MovieID = t2.MovieID
+    WHERE t1.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT t2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t1.MovieID = t2.MovieID
+    WHERE t1.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+""""""
+result_df = execute_sql_query(sql_query)
+result_str = ', '.join(result_df['Title'].tolist())
+result = {'type': 'string', 'value': result_str}",TRUE,18.21,True,
+Llama3-70B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,2,6,"SELECT COUNT(DISTINCT m.MovieID) AS num_movies
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS ma
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS m ON ma.MovieID = m.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON ma.ActorID = a.ActorID
+    WHERE a.Name = 'Morgan Freeman' AND m.MPAARating IN ('PG', 'PG-13')","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(DISTINCT m.MovieID) AS num_movies
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS ma
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS m ON ma.MovieID = m.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON ma.ActorID = a.ActorID
+    WHERE a.Name = 'Morgan Freeman' AND m.MPAARating IN ('PG', 'PG-13')
+""""""
+df = execute_sql_query(sql_query)
+num_movies = df.iloc[0]['num_movies']
+result = {'type': 'number', 'value': num_movies}",FALSE,21.08,True,
+Llama3-70B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,2,The best Tom Cruise movie is A Few Good Men with a rating of 7.7.,"SELECT m.Title, m.Rating
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df a ON m.MovieID = a.MovieID
+    WHERE a.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+    ORDER BY m.Rating DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT m.Title, m.Rating
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df a ON m.MovieID = a.MovieID
+    WHERE a.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+    ORDER BY m.Rating DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+best_movie_title = result_df.iloc[0]['Title']
+best_movie_rating = result_df.iloc[0]['Rating']
+result = {'type': 'string', 'value': f'The best Tom Cruise movie is {best_movie_title} with a rating of {best_movie_rating}.'}",TRUE.,27.24,True,
+Llama3-70B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,2,Ron Kovic,"SELECT t3.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df t3
+JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t3.MovieID = t2.MovieID
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t1 ON t3.ActorID = t1.ActorID
+WHERE t2.Title = 'Born on the Fourth of July' AND t1.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+SELECT t3.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df t3
+JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t3.MovieID = t2.MovieID
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t1 ON t3.ActorID = t1.ActorID
+WHERE t2.Title = 'Born on the Fourth of July' AND t1.Name = 'Tom Cruise'
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': df.iloc[0, 0]}",TRUE,21.05,True,
+Llama3-70B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",2,"Ron Kovic, Cole Trickle, Lt. Daniel Kaffee, Mitch McDeere, Jerry Maguire, Ethan Hunt, Ethan Hunt, David Aames, Chief John Anderton, Nathan Algren, Ray Ferrier, Ethan Hunt, Ethan Hunt","SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE ActorID = (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE ActorID = (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+""""""
+df = execute_sql_query(sql_query)
+character_names = df['CharacterName'].tolist()
+result = {'type': 'string', 'value': ', '.join(character_names)}",TRUE.,18.08,True,
+Llama-3.1-405B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",2,"  CharacterName
+0         James
+1        Mollie
+2         Rosie
+3        Albert
+4       Grandpa
+5         Mikey
+6          Rona
+7         Mikey
+8         Mikey","SELECT T2.CharacterName 
+    FROM table_7094d14dcbfa3921163187bde7597aeb AS T1
+    INNER JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.Title = 'Look Who''s Talking'","import pandas as pd
+sql_query = """"""
+    SELECT T2.CharacterName 
+    FROM table_7094d14dcbfa3921163187bde7597aeb AS T1
+    INNER JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.Title = 'Look Who''s Talking'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,62.1,True,
+Llama-3.1-405B,Which character has the longest screen time in the movie Batman?,Batman,2,The character with the longest screen time in the movie Batman is Batman.,,"import pandas as pd
+movie_name = 'Batman'
+sql_query = f""""""
+    SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    JOIN table_7094d14dcbfa3921163187bde7597aeb
+    ON table_eb46adee8e29808d89c3d571adcd69df.MovieID = table_7094d14dcbfa3921163187bde7597aeb.MovieID
+    WHERE Title = '{movie_name}'
+    ORDER BY screentime DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    longest_screen_time_character = result_df['CharacterName'].values[0]
+    result = {'type': 'string', 'value': f'The character with the longest screen time in the movie {movie_name} is {longest_screen_time_character}.'}
+else:
+    result = {'type': 'string', 'value': f'No characters found in the movie {movie_name}.'}",TRUE,18.09,True,
+Llama-3.1-405B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,2,The actor who played the role of Joker in the movie Batman is Jack Nicholson.,"SELECT T1.Name
+    FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T2
+    ON T1.ActorID = T2.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T3
+    ON T2.MovieID = T3.MovieID
+    WHERE T3.Title = 'Batman' AND T2.CharacterName = 'Joker'","import pandas as pd
+sql_query = """"""
+    SELECT T1.Name
+    FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T2
+    ON T1.ActorID = T2.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T3
+    ON T2.MovieID = T3.MovieID
+    WHERE T3.Title = 'Batman' AND T2.CharacterName = 'Joker'
+""""""
+result_df = execute_sql_query(sql_query)
+if result_df.empty:
+    result = {'type': 'string', 'value': 'No actor found.'}
+else:
+    result = {'type': 'string', 'value': f'The actor who played the role of Joker in the movie Batman is {result_df.iloc[0, 0]}.'}
+print(result)",TRUE,44.82,True,
+Llama-3.1-405B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",2,"                 Name
+0      Michael Keaton
+1      Jack Nicholson
+2        Kim Basinger
+3         Robert Wuhl
+4          Pat Hingle
+5  Billy Dee Williams
+6       Michael Gough
+7        Jack Palance
+8          Jerry Hall","SELECT T1.Name 
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf AS T1
+        JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2
+        ON T1.ActorID = T2.ActorID
+        JOIN table_7094d14dcbfa3921163187bde7597aeb AS T3
+        ON T2.MovieID = T3.MovieID
+        WHERE T3.Title = 'Batman'","import pandas as pd
+
+
+def get_actor_names():
+    sql_query = """"""
+        SELECT T1.Name 
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf AS T1
+        JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2
+        ON T1.ActorID = T2.ActorID
+        JOIN table_7094d14dcbfa3921163187bde7597aeb AS T3
+        ON T2.MovieID = T3.MovieID
+        WHERE T3.Title = 'Batman'
+    """"""
+    actor_names = execute_sql_query(sql_query)
+    return actor_names
+
+
+actor_names = get_actor_names()
+result = {'type': 'dataframe', 'value': actor_names}",TRUE.,28.41,True,
+Llama-3.1-405B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,2,The character Dr. Archibald 'Moonlight' Graham is from the movie Field of Dreams.,"SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 
+    ON T1.MovieID = T2.MovieID 
+    WHERE T1.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 
+    ON T1.MovieID = T2.MovieID 
+    WHERE T1.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'
+""""""
+result_df = execute_sql_query(sql_query)
+movie_title = result_df['Title'].iloc[0]
+result = {'type': 'string', 'value': f""The character Dr. Archibald 'Moonlight' Graham is from the movie {movie_title}.""}",TRUE,49.32,True,
+Llama-3.1-405B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",2,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol","SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2
+    ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T3
+    ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2
+    ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T3
+    ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,23.78,True,
+Llama-3.1-405B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,2,1,"SELECT COUNT(*) 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS t2 ON t1.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS t3 ON t1.ActorID = t3.ActorID
+    WHERE t3.Name = 'Morgan Freeman' AND t2.MPAARating = 'PG'","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(*) 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS t2 ON t1.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS t3 ON t1.ActorID = t3.ActorID
+    WHERE t3.Name = 'Morgan Freeman' AND t2.MPAARating = 'PG'
+""""""
+result_df = execute_sql_query(sql_query)
+count = result_df.iloc[0, 0]
+result = {'type': 'number', 'value': count}",TRUE,31.73,True,
+Llama-3.1-405B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,2,The best movie starring Tom Cruise is A Few Good Men with a rating of 7.7.,"SELECT T2.Title, T2.Rating
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'
+    ORDER BY T2.Rating DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title, T2.Rating
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'
+    ORDER BY T2.Rating DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+movie_title = result_df.iloc[0]['Title']
+movie_rating = result_df.iloc[0]['Rating']
+result = {'type': 'string', 'value': f'The best movie starring Tom Cruise is {movie_title} with a rating of {movie_rating}.'}",TRUE.,6.64,True,
+Llama-3.1-405B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,2,The character played by Tom Cruise in the movie Born on the Fourth of July is Ron Kovic.,"SELECT T3.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T3
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T3.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T1 ON T3.ActorID = T1.ActorID
+    WHERE T1.Name = 'Tom Cruise' AND T2.Title = 'Born on the Fourth of July'","import pandas as pd
+sql_query = """"""
+    SELECT T3.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T3
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T3.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T1 ON T3.ActorID = T1.ActorID
+    WHERE T1.Name = 'Tom Cruise' AND T2.Title = 'Born on the Fourth of July'
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    character_name = result_df['CharacterName'].iloc[0]
+    result = {'type': 'string', 'value': f'The character played by Tom Cruise in the movie Born on the Fourth of July is {character_name}.'}
+else:
+    result = {'type': 'string', 'value': 'Tom Cruise did not play a character in the movie Born on the Fourth of July.'}",TRUE,32.98,True,
+Llama-3.1-405B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",2,"          Name        CharacterName
+0   Tom Cruise            Ron Kovic
+1   Tom Cruise         Cole Trickle
+2   Tom Cruise    Lt. Daniel Kaffee
+3   Tom Cruise        Mitch McDeere
+4   Tom Cruise        Jerry Maguire
+5   Tom Cruise           Ethan Hunt
+6   Tom Cruise           Ethan Hunt
+7   Tom Cruise          David Aames
+8   Tom Cruise  Chief John Anderton
+9   Tom Cruise        Nathan Algren
+10  Tom Cruise          Ray Ferrier
+11  Tom Cruise           Ethan Hunt
+12  Tom Cruise           Ethan Hunt","SELECT T2.Name, T1.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T2
+    ON T1.ActorID = T2.ActorID
+    WHERE T2.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Name, T1.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T2
+    ON T1.ActorID = T2.ActorID
+    WHERE T2.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,31.84,True,
+Mistral-Large-3-675B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",2,"The characters in Look Who's Talking are: James, Mollie, Rosie, Albert, Grandpa, Mikey, Rona, Mikey, Mikey.",,"import pandas as pd
+movie_query = """"""
+SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb
+WHERE Title = 'Look Who''s Talking'
+""""""
+movie_df = execute_sql_query(movie_query)
+movie_id = movie_df.iloc[0]['MovieID']
+character_query = f""""""
+SELECT CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE MovieID = {movie_id}
+ORDER BY creditOrder
+""""""
+characters_df = execute_sql_query(character_query)
+character_names = characters_df['CharacterName'].tolist()
+result_string = ', '.join(character_names)
+result = {'type': 'string', 'value': f""The characters in Look Who's Talking are: {result_string}.""}",TRUE.,52.12,True,
+Mistral-Large-3-675B,Which character has the longest screen time in the movie Batman?,Batman,2,The character with the longest screen time is 'Batman' played by Michael Keaton in the movie 'Batman' with 0:32:30 of screen time.,,"import pandas as pd
+query = """"""
+SELECT m.Title, a.Name AS ActorName, c.CharacterName, c.screentime
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE m.Title LIKE '%Batman%'
+AND c.screentime IS NOT NULL
+AND c.screentime != ''
+""""""
+result_df = execute_sql_query(query)
+if not result_df.empty:
+    title = result_df.iloc[0]['Title']
+    actor_name = result_df.iloc[0]['ActorName']
+    character_name = result_df.iloc[0]['CharacterName']
+    screentime = result_df.iloc[0]['screentime']
+    try:
+        if ':' in str(screentime):
+            minutes, seconds = screentime.split(':')
+            total_minutes = int(minutes) + round(int(seconds) / 60)
+            screentime_display = f'{screentime} ({total_minutes} minutes total)'
+        else:
+            screentime_display = f'{screentime} minutes'
+    except:
+        screentime_display = screentime
+    result = {'type': 'string', 'value': f""The character with the longest screen time is '{character_name}' played by {actor_name} in the movie '{title}' with {screentime_display} of screen time.""}
+else:
+    batman_check_query = """"""
+    SELECT Title FROM table_7094d14dcbfa3921163187bde7597aeb
+    WHERE Title LIKE '%Batman%'
+    """"""
+    batman_check_df = execute_sql_query(batman_check_query)
+    if not batman_check_df.empty:
+        result = {'type': 'string', 'value': 'No screen time data available for any Batman movies in the database.'}
+    else:
+        result = {'type': 'string', 'value': 'There is no movie titled Batman in the database.'}
+result",TRUE,620.44,True,
+Mistral-Large-3-675B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,2,The actor who played Joker in Batman is Jack Nicholson.,,"import pandas as pd
+batman_query = """"""
+SELECT MovieID, Title
+FROM table_7094d14dcbfa3921163187bde7597aeb
+WHERE Title LIKE '%Batman%'
+""""""
+batman_df = execute_sql_query(batman_query)
+if not batman_df.empty:
+    batman_movie_id = batman_df['MovieID'].iloc[0]
+    joker_query = f""""""
+    SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df r
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON r.ActorID = a.ActorID
+    WHERE r.MovieID = {batman_movie_id}
+    AND r.CharacterName = 'Joker'
+    """"""
+    joker_df = execute_sql_query(joker_query)
+    if not joker_df.empty:
+        actor_name = joker_df['Name'].iloc[0]
+        result = {'type': 'string', 'value': f'The actor who played Joker in Batman is {actor_name}.'}
+    else:
+        result = {'type': 'string', 'value': 'The Joker role in Batman was not found in the database.'}
+else:
+    result = {'type': 'string', 'value': 'Batman movie was not found in the database.'}",TRUE,95.75,True,
+Mistral-Large-3-675B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",2,"                  Name
+0    Andrew Bryniarski
+1   Billy Dee Williams
+2      Chris O'Donnell
+3       Christian Bale
+4   Christopher Walken
+5       Cillian Murphy
+6       Cristi Conaway
+7         Danny DeVito
+8           Debi Mazar
+9       Drew Barrymore
+10         Gary Oldman
+11      Jack Nicholson
+12        Jack Palance
+13          Jerry Hall
+14          Jim Carrey
+15        Katie Holmes
+16        Ken Watanabe
+17        Kim Basinger
+18         Liam Neeson
+19       Michael Caine
+20       Michael Gough
+21      Michael Keaton
+22      Michael Murphy
+23   Michelle Pfeiffer
+24       Nicole Kidman
+25          Pat Hingle
+26         Robert Wuhl
+27        Rutger Hauer
+28       Tom Wilkinson
+29     Tommy Lee Jones
+30          Val Kilmer",,"import pandas as pd
+batman_check_query = """"""
+SELECT MovieID, Title
+FROM table_7094d14dcbfa3921163187bde7597aeb
+WHERE Title LIKE '%Batman%'
+""""""
+batman_movies = execute_sql_query(batman_check_query)
+if not batman_movies.empty:
+    query = """"""
+    SELECT DISTINCT a.Name
+    FROM table_5b6fd6c53269f68ff9917438bca1d1cf a
+    JOIN table_eb46adee8e29808d89c3d571adcd69df c ON a.ActorID = c.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+    WHERE m.Title LIKE '%Batman%'
+    ORDER BY a.Name
+    """"""
+    result_df = execute_sql_query(query)
+    result = {'type': 'dataframe', 'value': result_df}
+else:
+    result = {'type': 'string', 'value': 'No Batman movie found in the database.'}
+result",TRUE,145.59,True,
+Mistral-Large-3-675B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,2,The character Dr. Archibald 'Moonlight' Graham is from the movie 'Field of Dreams'.,,"import pandas as pd
+character_query = """"""
+SELECT MovieID, CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE CharacterName LIKE '%Moonlight%';
+""""""
+character_df = execute_sql_query(character_query)
+if not character_df.empty:
+    movie_id = character_df.iloc[0]['MovieID']
+    movie_query = f""""""
+    SELECT Title
+    FROM table_7094d14dcbfa3921163187bde7597aeb
+    WHERE MovieID = {movie_id};
+    """"""
+    movie_df = execute_sql_query(movie_query)
+    if not movie_df.empty:
+        movie_title = movie_df.iloc[0]['Title']
+        result = {'type': 'string', 'value': f""The character Dr. Archibald 'Moonlight' Graham is from the movie '{movie_title}'.""}
+    else:
+        result = {'type': 'string', 'value': ""No movie found for the character Dr. Archibald 'Moonlight' Graham.""}
+else:
+    result = {'type': 'string', 'value': ""The character Dr. Archibald 'Moonlight' Graham was not found in any movie.""}",TRUE,114.14,True,
+Mistral-Large-3-675B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",2,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol",,"import pandas as pd
+actor_query = """"""
+SELECT ActorID
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'Tom Cruise'
+""""""
+actor_df = execute_sql_query(actor_query)
+if not actor_df.empty:
+    tom_cruise_id = actor_df.iloc[0]['ActorID']
+    movie_query = f""""""
+    SELECT m.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df c
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+    WHERE c.ActorID = {tom_cruise_id}
+    """"""
+    movies_df = execute_sql_query(movie_query)
+    if not movies_df.empty:
+        result = {'type': 'dataframe', 'value': movies_df}
+    else:
+        result = {'type': 'string', 'value': 'Tom Cruise has no movies listed in the database.'}
+else:
+    result = {'type': 'string', 'value': 'Tom Cruise not found in the actor database.'}",TRUE,717.16,True,
+Mistral-Large-3-675B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,2,There are 333 movies with parental guidance (PG or PG-13) ratings starring actors in the database.,"SELECT COUNT(DISTINCT m.MovieID) as movie_count
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df ma ON m.MovieID = ma.MovieID
+WHERE m.MPAARating IN ('PG', 'PG-13')","import pandas as pd
+sql_query = """"""
+SELECT COUNT(DISTINCT m.MovieID) as movie_count
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df ma ON m.MovieID = ma.MovieID
+WHERE m.MPAARating IN ('PG', 'PG-13')
+""""""
+result_df = execute_sql_query(sql_query)
+movie_count = result_df.iloc[0]['movie_count']
+result = {'type': 'string', 'value': f'There are {movie_count} movies with parental guidance (PG or PG-13) ratings starring actors in the database.'}",FALSE.,106.26,True,
+Mistral-Large-3-675B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,2,The highest quality movie starring Tom Cruise is 'The Last Samurai' with a rating of 7.7 (376039.0 ratings). It's a War movie released on 2003-12-05.,,"import pandas as pd
+actor_query = """"""
+SELECT ActorID
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'Tom Cruise'
+""""""
+actor_df = execute_sql_query(actor_query)
+if actor_df.empty:
+    result = {'type': 'string', 'value': 'Tom Cruise not found in the database.'}
+else:
+    actor_id = actor_df['ActorID'].iloc[0]
+    movie_query = f""""""
+    SELECT m.MovieID, m.Title, m.Rating, m.RatingCount, m.Genre, m.ReleaseDate
+    FROM table_eb46adee8e29808d89c3d571adcd69df c
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m
+    ON c.MovieID = m.MovieID
+    WHERE c.ActorID = {actor_id}
+    ORDER BY m.Rating DESC, m.RatingCount DESC
+    LIMIT 1
+    """"""
+    movie_df = execute_sql_query(movie_query)
+    if movie_df.empty:
+        result = {'type': 'string', 'value': 'No movies found starring Tom Cruise.'}
+    else:
+        best_movie = movie_df.iloc[0]
+        result = {'type': 'string', 'value': f""The highest quality movie starring Tom Cruise is '{best_movie['Title']}' with a rating of {best_movie['Rating']} ({best_movie['RatingCount']} ratings). It's a {best_movie['Genre']} movie released on {best_movie['ReleaseDate']}.""}",FALSE,119.39,True,
+Mistral-Large-3-675B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,2,The character played by Tom Cruise in 'Born on the Fourth of July' is Ron Kovic.,,"import pandas as pd
+actor_query = """"""
+SELECT ActorID
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'Tom Cruise'
+""""""
+actor_df = execute_sql_query(actor_query)
+tom_cruise_id = actor_df['ActorID'].iloc[0]
+movie_query = """"""
+SELECT MovieID
+FROM table_7094d14dcbfa3921163187bde7597aeb
+WHERE Title = 'Born on the Fourth of July'
+""""""
+movie_df = execute_sql_query(movie_query)
+movie_id = movie_df['MovieID'].iloc[0]
+character_query = f""""""
+SELECT CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE MovieID = {movie_id} AND ActorID = {tom_cruise_id}
+""""""
+character_df = execute_sql_query(character_query)
+character_name = character_df['CharacterName'].iloc[0] if not character_df.empty else 'Character not found'
+result = {'type': 'string', 'value': f""The character played by Tom Cruise in 'Born on the Fourth of July' is {character_name}.""}",TRUE,631.28,True,
+Mistral-Large-3-675B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",2,"          CharacterName
+0             Ron Kovic
+1          Cole Trickle
+2     Lt. Daniel Kaffee
+3         Mitch McDeere
+4         Jerry Maguire
+5            Ethan Hunt
+6            Ethan Hunt
+7           David Aames
+8   Chief John Anderton
+9         Nathan Algren
+10          Ray Ferrier
+11           Ethan Hunt
+12           Ethan Hunt",,"import pandas as pd
+actor_query = """"""
+SELECT ActorID
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'Tom Cruise'
+""""""
+actor_df = execute_sql_query(actor_query)
+if not actor_df.empty:
+    tom_cruise_id = actor_df['ActorID'].iloc[0]
+    characters_query = f""""""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE ActorID = {tom_cruise_id}
+    """"""
+    characters_df = execute_sql_query(characters_query)
+    if not characters_df.empty:
+        result = {'type': 'dataframe', 'value': characters_df}
+    else:
+        result = {'type': 'string', 'value': 'Tom Cruise has no recorded characters in the database.'}
+else:
+    result = {'type': 'string', 'value': 'Tom Cruise is not found in the actors database.'}",TRUE,37.26,True,
+Llama-3.1-8B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",3,"  CharacterName
+0         James
+1        Mollie
+2         Rosie
+3        Albert
+4       Grandpa
+5         Mikey
+6          Rona
+7         Mikey
+8         Mikey","SELECT T2.CharacterName
+    FROM table_7094d14dcbfa3921163187bde7597aeb AS T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2 ON T1.MovieID = T2.MovieID
+    WHERE T1.Title = 'Look Who''s Talking'","sql_query = """"""
+    SELECT T2.CharacterName
+    FROM table_7094d14dcbfa3921163187bde7597aeb AS T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2 ON T1.MovieID = T2.MovieID
+    WHERE T1.Title = 'Look Who''s Talking'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}
+print(result)",TRUE,15.35,True,
+Llama-3.1-8B,Which character has the longest screen time in the movie Batman?,Batman,3,"  Character Screen Time
+0    Batman     0:32:30","SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+    ORDER BY screentime DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+    ORDER BY screentime DESC
+    LIMIT 1
+""""""
+df = execute_sql_query(sql_query)
+character_with_longest_screen_time = df.iloc[0]
+result = {'type': 'dataframe', 'value': pd.DataFrame({'Character': [character_with_longest_screen_time['CharacterName']], 'Screen Time': [character_with_longest_screen_time['screentime']]})}
+print(result)",TRUE.,2.63,True,
+Llama-3.1-8B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,3,"             Name
+0  Jack Nicholson","SELECT T1.Name
+    FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T2 ON T1.ActorID = T2.ActorID
+    WHERE T2.MovieID IN (
+        SELECT MovieID
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE Title = 'Batman'
+    ) AND T2.CharacterName = 'Joker'","import pandas as pd
+sql_query = """"""
+    SELECT T1.Name
+    FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T2 ON T1.ActorID = T2.ActorID
+    WHERE T2.MovieID IN (
+        SELECT MovieID
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE Title = 'Batman'
+    ) AND T2.CharacterName = 'Joker'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,13.21,True,
+Llama-3.1-8B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",3,"         CharacterName
+0               Batman
+1                Joker
+2           Vicki Vale
+3       Alexander Knox
+4  Commissioner Gordon
+5          Harvey Dent
+6               Alfred
+7              Grissom
+8               Alicia","SELECT T1.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T1.MovieID = T2.MovieID 
+    WHERE T2.Title = 'Batman'","sql_query = """"""
+    SELECT T1.CharacterName 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T1.MovieID = T2.MovieID 
+    WHERE T2.Title = 'Batman'
+""""""
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}",FALSE.,20.22,True,
+Llama-3.1-8B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,3,"Empty DataFrame
+Columns: [Title]
+Index: []","SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 
+    ON T1.MovieID = T2.MovieID 
+    WHERE T1.CharacterName = 'Dr. Archibald ""Moonlight"" Graham'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 
+    ON T1.MovieID = T2.MovieID 
+    WHERE T1.CharacterName = 'Dr. Archibald ""Moonlight"" Graham'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}
+print(result)",FALSE,5.22,True,
+Llama-3.1-8B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",3,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol","SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T1.MovieID = T2.MovieID 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T3 ON T1.ActorID = T3.ActorID 
+    WHERE T3.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1 
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2 ON T1.MovieID = T2.MovieID 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T3 ON T1.ActorID = T3.ActorID 
+    WHERE T3.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}
+print(result)",TRUE.,4.2,True,
+Llama-3.1-8B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,3,0,"SELECT COUNT(*) as movie_count
+    FROM table_7094d14dcbfa3921163187bde7597aeb
+    WHERE Title LIKE '%Morgan Freeman%' AND MPAARating = 'PG'","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(*) as movie_count
+    FROM table_7094d14dcbfa3921163187bde7597aeb
+    WHERE Title LIKE '%Morgan Freeman%' AND MPAARating = 'PG'
+""""""
+result_df = execute_sql_query(sql_query)
+movie_count = result_df['movie_count'].iloc[0]
+result = {'type': 'number', 'value': movie_count}
+print(result)",FALSE.,1.71,True,
+Llama-3.1-8B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,3,"Title     Back to the Future Part II
+Rating                           7.8
+Name: 0, dtype: object",,"import pandas as pd
+movies_starring_tom_cruise = execute_sql_query(""""""
+    SELECT m.Title, m.Rating
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df c ON m.MovieID = c.MovieID
+    WHERE c.CharacterName = 'Marty McFly'
+"""""")
+best_movie = movies_starring_tom_cruise.loc[movies_starring_tom_cruise['Rating'].idxmax()]
+result = {'type': 'dataframe', 'value': best_movie}
+print(result)",FALSE.,2.73,True,
+Llama-3.1-8B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,3,Ron Kovic,"SELECT c.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df c
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+    WHERE m.Title = 'Born on the Fourth of July' AND c.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT c.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df c
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+    WHERE m.Title = 'Born on the Fourth of July' AND c.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': result_df.iloc[0, 0] if not result_df.empty else 'Character not found'}
+print(result)",TRUE,2.98,True,
+Llama-3.1-8B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",3,"Empty DataFrame
+Columns: [CharacterName]
+Index: []",,"import pandas as pd
+
+
+def get_characters_played_by_tom_cruise():
+    query = """"""
+        SELECT DISTINCT T1.CharacterName
+        FROM table_eb46adee8e29808d89c3d571adcd69df T1
+        JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+        WHERE T2.Title IN ('Top Gun', 'Rain Man', 'Born on the Fourth of July') AND T1.ActorID = 1
+    """"""
+    df = execute_sql_query(query)
+    return df
+
+
+characters = get_characters_played_by_tom_cruise()
+result = {'type': 'dataframe', 'value': characters}
+print(result)",FALSE,11.5,True,
+Gemma-2-27B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",3,"['James', 'Mollie', 'Rosie', 'Albert', 'Grandpa', 'Mikey', 'Rona', 'Mikey', 'Mikey']","SELECT CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE MovieID = 1","import pandas as pd
+sql_query = """"""
+SELECT CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df
+WHERE MovieID = 1
+""""""
+result = execute_sql_query(sql_query)
+char_names = [row[0] for row in result.values.tolist()]
+result = {'type': 'string', 'value': f'{char_names}'}",TRUE.,6.61,True,
+Gemma-2-27B,Which character has the longest screen time in the movie Batman?,Batman,3,,,,False,,False,"No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}"
+Gemma-2-27B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,3,,,,False,,False,"No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}"
+Gemma-2-27B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",3,"Michael Keaton, Jack Nicholson, Kim Basinger, Robert Wuhl, Pat Hingle, Billy Dee Williams, Michael Gough, Jack Palance, Jerry Hall","SELECT t1.Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf t1
+INNER JOIN table_eb46adee8e29808d89c3d571adcd69df t2 ON t1.ActorID = t2.ActorID
+WHERE t2.MovieID IN (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')","import pandas as pd
+sql_query = """"""
+SELECT t1.Name
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf t1
+INNER JOIN table_eb46adee8e29808d89c3d571adcd69df t2 ON t1.ActorID = t2.ActorID
+WHERE t2.MovieID IN (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+""""""
+df = execute_sql_query(sql_query)
+actor_names = df['Name'].tolist()
+result = {'type': 'string', 'value': ', '.join(actor_names)}",TRUE,7.35,True,
+Gemma-2-27B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,3,,,,False,,False,"No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}"
+Gemma-2-27B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",3,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol","SELECT t2.Title 
+FROM table_7094d14dcbfa3921163187bde7597aeb as t2
+JOIN table_eb46adee8e29808d89c3d571adcd69df as t1 ON t1.MovieID = t2.MovieID
+WHERE t1.ActorID IN (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')","import pandas as pd
+sql_query = """"""
+SELECT t2.Title 
+FROM table_7094d14dcbfa3921163187bde7597aeb as t2
+JOIN table_eb46adee8e29808d89c3d571adcd69df as t1 ON t1.MovieID = t2.MovieID
+WHERE t1.ActorID IN (SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')
+
+""""""
+result = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result}",TRUE.,6.04,True,
+Gemma-2-27B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,3,,,,False,,False,"No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}"
+Gemma-2-27B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,3,The best rated movie starring Tom Cruise is A Few Good Men. ,"SELECT 
+    m.Title
+FROM table_7094d14dcbfa3921163187bde7597aeb AS m
+JOIN table_eb46adee8e29808d89c3d571adcd69df AS c ON m.MovieID = c.MovieID
+WHERE c.ActorID = 
+(SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')
+ORDER BY m.Rating DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT 
+    m.Title
+FROM table_7094d14dcbfa3921163187bde7597aeb AS m
+JOIN table_eb46adee8e29808d89c3d571adcd69df AS c ON m.MovieID = c.MovieID
+WHERE c.ActorID = 
+(SELECT ActorID FROM table_5b6fd6c53269f68ff9917438bca1d1cf WHERE Name = 'Tom Cruise')
+ORDER BY m.Rating DESC
+LIMIT 1 
+
+""""""
+result = {'type': 'string', 'value': f""The best rated movie starring Tom Cruise is {execute_sql_query(sql_query)['Title'].iloc[0]}. ""}",TRUE,24.3,True,
+Gemma-2-27B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,3,,,,False,,False,"No result was returned from the code execution. Please return the result in dictionary format, for example: result = {'type': ..., 'value': ...}"
+Gemma-2-27B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",3,"         CharacterName
+0          Ray Ferrier
+1         Cole Trickle
+2        Mitch McDeere
+3        Jerry Maguire
+4          David Aames
+5  Chief John Anderton
+6            Ron Kovic
+7    Lt. Daniel Kaffee
+8        Nathan Algren
+9           Ethan Hunt","SELECT DISTINCT c.CharacterName
+FROM
+    table_eb46adee8e29808d89c3d571adcd69df AS c
+JOIN
+    table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON c.ActorID = a.ActorID
+WHERE
+    a.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+SELECT DISTINCT c.CharacterName
+FROM
+    table_eb46adee8e29808d89c3d571adcd69df AS c
+JOIN
+    table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON c.ActorID = a.ActorID
+WHERE
+    a.Name = 'Tom Cruise'
+""""""
+result = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result}",TRUE,7.21,True,
+Llama3-70B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",3,"  CharacterName
+0         James
+1        Mollie
+2         Rosie
+3        Albert
+4       Grandpa
+5         Mikey
+6          Rona
+7         Mikey
+8         Mikey","SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = 1","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = 1
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,7.92,True,
+Llama3-70B,Which character has the longest screen time in the movie Batman?,Batman,3,The character with the longest screen time in the movie Batman is Batman with a screentime of 0:32:30.,"SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+    ORDER BY screentime DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName, screentime
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE MovieID = (SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman')
+    ORDER BY screentime DESC
+    LIMIT 1;
+""""""
+df = execute_sql_query(sql_query)
+character_name = df.iloc[0]['CharacterName']
+screentime = df.iloc[0]['screentime']
+result = {'type': 'string', 'value': f'The character with the longest screen time in the movie Batman is {character_name} with a screentime of {screentime}.'}",TRUE,13.36,True,
+Llama3-70B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,3,Jack Nicholson,"SELECT a.Name 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a 
+    ON m.ActorID = a.ActorID 
+    WHERE m.CharacterName = 'Joker' AND m.MovieID IN (
+        SELECT MovieID 
+        FROM table_7094d14dcbfa3921163187bde7597aeb 
+        WHERE Title = 'Batman'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT a.Name 
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m 
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a 
+    ON m.ActorID = a.ActorID 
+    WHERE m.CharacterName = 'Joker' AND m.MovieID IN (
+        SELECT MovieID 
+        FROM table_7094d14dcbfa3921163187bde7597aeb 
+        WHERE Title = 'Batman'
+    )
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'string', 'value': result_df.iloc[0, 0] if not result_df.empty else 'No actor found'}",TRUE,34.17,True,
+Llama3-70B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",3,"                 Name
+0      Michael Keaton
+1      Jack Nicholson
+2        Kim Basinger
+3         Robert Wuhl
+4          Pat Hingle
+5  Billy Dee Williams
+6       Michael Gough
+7        Jack Palance
+8          Jerry Hall","SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON m.ActorID = a.ActorID
+    WHERE m.MovieID IN (
+        SELECT MovieID
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE Title = 'Batman'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS m
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON m.ActorID = a.ActorID
+    WHERE m.MovieID IN (
+        SELECT MovieID
+        FROM table_7094d14dcbfa3921163187bde7597aeb
+        WHERE Title = 'Batman'
+    )
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,28.18,True,
+Llama3-70B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,3,,,,False,,False,"Invalid expression / Unexpected token. Line 5, Col: 51.
+  bfa3921163187bde7597aeb AS m ON ma.MovieID = m.MovieID
+    WHERE ma.CharacterName = 'Dr. Archibald '[4mMoonlight[0m' Graham'
+"
+Llama3-70B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",3,"Born on the Fourth of July, Days of Thunder, A Few Good Men, The Firm, Jerry Maguire, Mission: Impossible, Mission: Impossible II, Vanilla Sky, Minority Report, The Last Samurai, War of the Worlds, Mission: Impossible III, Mission: Impossible - Ghost Protocol","SELECT t2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t1.MovieID = t2.MovieID
+    WHERE t1.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT t2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t1.MovieID = t2.MovieID
+    WHERE t1.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+""""""
+result_df = execute_sql_query(sql_query)
+movie_titles = result_df['Title'].tolist()
+result = {'type': 'string', 'value': ', '.join(movie_titles)}",TRUE,25.35,True,
+Llama3-70B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,3,1,"SELECT COUNT(DISTINCT m.MovieID) as count_of_movies
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS ma
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS m ON ma.MovieID = m.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON ma.ActorID = a.ActorID
+    WHERE a.Name = 'Morgan Freeman' AND m.MPAARating IN ('G', 'PG')","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(DISTINCT m.MovieID) as count_of_movies
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS ma
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS m ON ma.MovieID = m.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS a ON ma.ActorID = a.ActorID
+    WHERE a.Name = 'Morgan Freeman' AND m.MPAARating IN ('G', 'PG')
+""""""
+result = {'type': 'number', 'value': execute_sql_query(sql_query)['count_of_movies'][0]}",TRUE,37.23,True,
+Llama3-70B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,3,The best Tom Cruise movie is A Few Good Men with a rating of 7.7.,"SELECT m.Title, m.Rating
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df a ON m.MovieID = a.MovieID
+    WHERE a.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+    ORDER BY m.Rating DESC
+    LIMIT 1","import pandas as pd
+sql_query = """"""
+    SELECT m.Title, m.Rating
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    JOIN table_eb46adee8e29808d89c3d571adcd69df a ON m.MovieID = a.MovieID
+    WHERE a.ActorID IN (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+    ORDER BY m.Rating DESC
+    LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+best_movie_title = result_df.iloc[0]['Title']
+best_movie_rating = result_df.iloc[0]['Rating']
+result = {'type': 'string', 'value': f'The best Tom Cruise movie is {best_movie_title} with a rating of {best_movie_rating}.'}",TRUE,38.98,True,
+Llama3-70B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,3,Ron Kovic,"SELECT t3.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df t3
+    JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t3.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t1 ON t3.ActorID = t1.ActorID
+    WHERE t2.Title = 'Born on the Fourth of July' AND t1.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT t3.CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df t3
+    JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t3.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf t1 ON t3.ActorID = t1.ActorID
+    WHERE t2.Title = 'Born on the Fourth of July' AND t1.Name = 'Tom Cruise'
+""""""
+df = execute_sql_query(sql_query)
+character_name = df.iloc[0, 0]
+result = {'type': 'string', 'value': character_name}",TRUE,15.65,True,
+Llama3-70B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",3,"          CharacterName
+0             Ron Kovic
+1          Cole Trickle
+2     Lt. Daniel Kaffee
+3         Mitch McDeere
+4         Jerry Maguire
+5            Ethan Hunt
+6            Ethan Hunt
+7           David Aames
+8   Chief John Anderton
+9         Nathan Algren
+10          Ray Ferrier
+11           Ethan Hunt
+12           Ethan Hunt","SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE ActorID = (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )","import pandas as pd
+sql_query = """"""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE ActorID = (
+        SELECT ActorID
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+        WHERE Name = 'Tom Cruise'
+    )
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,30.12,True,
+Llama-3.1-405B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",3,"  CharacterName
+0         James
+1        Mollie
+2         Rosie
+3        Albert
+4       Grandpa
+5         Mikey
+6          Rona
+7         Mikey
+8         Mikey","SELECT T2.CharacterName 
+    FROM table_7094d14dcbfa3921163187bde7597aeb AS T1
+    INNER JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.Title = 'Look Who''s Talking'","import pandas as pd
+sql_query = """"""
+    SELECT T2.CharacterName 
+    FROM table_7094d14dcbfa3921163187bde7597aeb AS T1
+    INNER JOIN table_eb46adee8e29808d89c3d571adcd69df AS T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.Title = 'Look Who''s Talking'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,6.55,True,
+Llama-3.1-405B,Which character has the longest screen time in the movie Batman?,Batman,3,The character with the longest screen time in the movie Batman is Batman.,,"import pandas as pd
+
+
+def get_longest_screen_time():
+    batman_movie_id = execute_sql_query(""SELECT MovieID FROM table_7094d14dcbfa3921163187bde7597aeb WHERE Title = 'Batman'"")['MovieID'].values[0]
+    longest_screen_time_character = execute_sql_query(f""""""
+        SELECT CharacterName 
+        FROM table_eb46adee8e29808d89c3d571adcd69df 
+        WHERE MovieID = {batman_movie_id} 
+        ORDER BY screentime DESC 
+        LIMIT 1
+    """""")['CharacterName'].values[0]
+    return longest_screen_time_character
+
+
+longest_screen_time_character = get_longest_screen_time()
+result = {'type': 'string', 'value': f'The character with the longest screen time in the movie Batman is {longest_screen_time_character}.'}",TRUE,9.49,True,
+Llama-3.1-405B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,3,The actor who played the role of Joker in the movie Batman is Jack Nicholson.,"SELECT T1.Name
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1
+        JOIN table_eb46adee8e29808d89c3d571adcd69df T2 ON T1.ActorID = T2.ActorID
+        JOIN table_7094d14dcbfa3921163187bde7597aeb T3 ON T2.MovieID = T3.MovieID
+        WHERE T3.Title = 'Batman' AND T2.CharacterName = 'Joker'","import pandas as pd
+
+
+def get_actor_name():
+    sql_query = """"""
+        SELECT T1.Name
+        FROM table_5b6fd6c53269f68ff9917438bca1d1cf T1
+        JOIN table_eb46adee8e29808d89c3d571adcd69df T2 ON T1.ActorID = T2.ActorID
+        JOIN table_7094d14dcbfa3921163187bde7597aeb T3 ON T2.MovieID = T3.MovieID
+        WHERE T3.Title = 'Batman' AND T2.CharacterName = 'Joker'
+    """"""
+    result_df = execute_sql_query(sql_query)
+    if not result_df.empty:
+        actor_name = result_df['Name'].iloc[0]
+        return actor_name
+    else:
+        return None
+
+
+actor_name = get_actor_name()
+if actor_name is not None:
+    result = {'type': 'string', 'value': f'The actor who played the role of Joker in the movie Batman is {actor_name}.'}
+else:
+    result = {'type': 'string', 'value': 'No actor found who played the role of Joker in the movie Batman.'}",TRUE,40.02,True,
+Llama-3.1-405B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",3,"                 Name
+0      Michael Keaton
+1      Jack Nicholson
+2        Kim Basinger
+3         Robert Wuhl
+4          Pat Hingle
+5  Billy Dee Williams
+6       Michael Gough
+7        Jack Palance
+8          Jerry Hall","SELECT T2.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T2 ON T1.ActorID = T2.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T3 ON T1.MovieID = T3.MovieID
+    WHERE T3.Title = 'Batman'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS T2 ON T1.ActorID = T2.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T3 ON T1.MovieID = T3.MovieID
+    WHERE T3.Title = 'Batman'
+""""""
+actors_in_batman = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': actors_in_batman}",TRUE,6.77,True,
+Llama-3.1-405B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,3,The character Dr. Archibald 'Moonlight' Graham is from the movie Field of Dreams.,"SELECT T2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS T2
+    ON T1.MovieID = T2.MovieID
+    WHERE T1.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'
+""""""
+result_df = execute_sql_query(sql_query)
+movie_title = result_df['Title'].values[0]
+result = {'type': 'string', 'value': f""The character Dr. Archibald 'Moonlight' Graham is from the movie {movie_title}.""}",TRUE.,23.92,True,
+Llama-3.1-405B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",3,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol","SELECT T2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE.,19.23,True,
+Llama-3.1-405B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,3,1,"SELECT COUNT(*) as count
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS t2 ON t1.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS t3 ON t1.ActorID = t3.ActorID
+    WHERE t3.Name = 'Morgan Freeman' AND t2.MPAARating = 'PG'","import pandas as pd
+sql_query = """"""
+    SELECT COUNT(*) as count
+    FROM table_eb46adee8e29808d89c3d571adcd69df AS t1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb AS t2 ON t1.MovieID = t2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf AS t3 ON t1.ActorID = t3.ActorID
+    WHERE t3.Name = 'Morgan Freeman' AND t2.MPAARating = 'PG'
+""""""
+result_df = execute_sql_query(sql_query)
+count = result_df['count'].values[0]
+result = {'type': 'number', 'value': count}",TRUE.,15.05,True,
+Llama-3.1-405B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,3,The best movie starring Tom Cruise is A Few Good Men with a rating of 7.7.,"SELECT T2.Title, T2.Rating
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'
+    ORDER BY T2.Rating DESC
+    LIMIT 1;","import pandas as pd
+sql_query = """"""
+    SELECT T2.Title, T2.Rating
+    FROM table_eb46adee8e29808d89c3d571adcd69df T1
+    JOIN table_7094d14dcbfa3921163187bde7597aeb T2 ON T1.MovieID = T2.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T3 ON T1.ActorID = T3.ActorID
+    WHERE T3.Name = 'Tom Cruise'
+    ORDER BY T2.Rating DESC
+    LIMIT 1;
+""""""
+result_df = execute_sql_query(sql_query)
+best_movie_title = result_df['Title'].values[0]
+best_movie_rating = result_df['Rating'].values[0]
+result = {'type': 'string', 'value': f'The best movie starring Tom Cruise is {best_movie_title} with a rating of {best_movie_rating}.'}",TRUE.,41.91,True,
+Llama-3.1-405B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,3,The character played by Tom Cruise in the movie Born on the Fourth of July is Ron Kovic.,"SELECT T3.CharacterName
+    FROM table_7094d14dcbfa3921163187bde7597aeb T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T3 ON T1.MovieID = T3.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T2 ON T3.ActorID = T2.ActorID
+    WHERE T1.Title = 'Born on the Fourth of July' AND T2.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T3.CharacterName
+    FROM table_7094d14dcbfa3921163187bde7597aeb T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df T3 ON T1.MovieID = T3.MovieID
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf T2 ON T3.ActorID = T2.ActorID
+    WHERE T1.Title = 'Born on the Fourth of July' AND T2.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+if result_df.empty:
+    result = {'type': 'string', 'value': 'Tom Cruise did not play a character in the movie Born on the Fourth of July.'}
+else:
+    character_name = result_df['CharacterName'].iloc[0]
+    result = {'type': 'string', 'value': f'The character played by Tom Cruise in the movie Born on the Fourth of July is {character_name}.'}",TRUE,77.56,True,
+Llama-3.1-405B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",3,"          CharacterName
+0             Ron Kovic
+1          Cole Trickle
+2     Lt. Daniel Kaffee
+3         Mitch McDeere
+4         Jerry Maguire
+5            Ethan Hunt
+6            Ethan Hunt
+7           David Aames
+8   Chief John Anderton
+9         Nathan Algren
+10          Ray Ferrier
+11           Ethan Hunt
+12           Ethan Hunt","SELECT T3.CharacterName
+    FROM table_5b6fd6c53269f68ff9917438bca1d1cf AS T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df AS T3
+    ON T1.ActorID = T3.ActorID
+    WHERE T1.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+    SELECT T3.CharacterName
+    FROM table_5b6fd6c53269f68ff9917438bca1d1cf AS T1
+    JOIN table_eb46adee8e29808d89c3d571adcd69df AS T3
+    ON T1.ActorID = T3.ActorID
+    WHERE T1.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': result_df}",TRUE,5.3,True,
+Mistral-Large-3-675B,Please list the names of the characters in the movie Look Who's Talking.,"[{'Character Name': 'Albert'}, {'Character Name': 'Grandpa'}, {'Character Name': 'James'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mikey'}, {'Character Name': 'Mollie'}, {'Character Name': 'Rona'}, {'Character Name': 'Rosie'}]",3,"The characters in Look Who's Talking are: James, Mollie, Rosie, Albert, Grandpa, Mikey, Rona, Mikey, Mikey.","SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_7094d14dcbfa3921163187bde7597aeb m
+ON c.MovieID = m.MovieID
+WHERE m.Title = 'Look Who''s Talking'
+ORDER BY c.creditOrder","import pandas as pd
+sql_query = """"""
+SELECT c.CharacterName
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_7094d14dcbfa3921163187bde7597aeb m
+ON c.MovieID = m.MovieID
+WHERE m.Title = 'Look Who''s Talking'
+ORDER BY c.creditOrder
+""""""
+character_df = execute_sql_query(sql_query)
+characters_list = character_df['CharacterName'].tolist()
+result_string = ', '.join(characters_list)
+result = {'type': 'string', 'value': f""The characters in Look Who's Talking are: {result_string}.""}",TRUE,7.84,True,
+Mistral-Large-3-675B,Which character has the longest screen time in the movie Batman?,Batman,3,The character with the longest screen time is 'Batman' in the movie 'Batman'.,"SELECT t3.CharacterName, t2.Title, t3.screentime
+FROM table_eb46adee8e29808d89c3d571adcd69df t3
+JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t3.MovieID = t2.MovieID
+WHERE t3.screentime IS NOT NULL AND t3.screentime != ''
+ORDER BY
+    CASE
+        WHEN t3.screentime LIKE '%minutes%' THEN CAST(TRIM(SUBSTRING(t3.screentime, 1, POSITION(' ' IN t3.screentime)-1)) AS INTEGER)
+        WHEN t3.screentime LIKE '%hours%' THEN CAST(TRIM(SUBSTRING(t3.screentime, 1, POSITION(' ' IN t3.screentime)-1)) AS INTEGER) * 60
+        ELSE 0
+    END DESC
+LIMIT 1","import pandas as pd
+sql_query = """"""
+SELECT t3.CharacterName, t2.Title, t3.screentime
+FROM table_eb46adee8e29808d89c3d571adcd69df t3
+JOIN table_7094d14dcbfa3921163187bde7597aeb t2 ON t3.MovieID = t2.MovieID
+WHERE t3.screentime IS NOT NULL AND t3.screentime != ''
+ORDER BY
+    CASE
+        WHEN t3.screentime LIKE '%minutes%' THEN CAST(TRIM(SUBSTRING(t3.screentime, 1, POSITION(' ' IN t3.screentime)-1)) AS INTEGER)
+        WHEN t3.screentime LIKE '%hours%' THEN CAST(TRIM(SUBSTRING(t3.screentime, 1, POSITION(' ' IN t3.screentime)-1)) AS INTEGER) * 60
+        ELSE 0
+    END DESC
+LIMIT 1
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    character = result_df.iloc[0]['CharacterName']
+    movie_title = result_df.iloc[0]['Title']
+    result = {'type': 'string', 'value': f""The character with the longest screen time is '{character}' in the movie '{movie_title}'.""}
+else:
+    result = {'type': 'string', 'value': 'No screen time information available in the dataset.'}",TRUE,15.03,True,
+Mistral-Large-3-675B,Which actor played the role of Joker in the movie Batman?,Jack Nicholson,3,The actor who played Joker in Batman is Jack Nicholson.,,"import pandas as pd
+batman_query = """"""
+SELECT MovieID
+FROM table_7094d14dcbfa3921163187bde7597aeb
+WHERE Title = 'Batman'
+""""""
+batman_df = execute_sql_query(batman_query)
+if not batman_df.empty:
+    batman_id = batman_df.iloc[0]['MovieID']
+    joker_query = f""""""
+    SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df j
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a
+    ON j.ActorID = a.ActorID
+    WHERE j.MovieID = {batman_id}
+    AND j.CharacterName = 'Joker'
+    """"""
+    result_df = execute_sql_query(joker_query)
+    if not result_df.empty:
+        result = {'type': 'string', 'value': f""The actor who played Joker in Batman is {result_df.iloc[0]['Name']}.""}
+    else:
+        result = {'type': 'string', 'value': 'No actor found playing the role of Joker in Batman.'}
+else:
+    result = {'type': 'string', 'value': 'The movie Batman was not found in the database.'}",TRUE,13.6,True,
+Mistral-Large-3-675B,Please list the names of the actors who played a role in the movie Batman.,"[{'Name': 'Michael Keaton'}, {'Name': 'Jack Nicholson'}, {'Name': 'Kim Basinger'}, {'Name': 'Robert Wuhl'}, {'Name': 'Pat Hingle'}, {'Name': 'Billy Dee Williams'}, {'Name': 'Michael Gough'}, {'Name': 'Jack Palance'}, {'Name': 'Jerry Hall'}]",3,"                  Name
+0         Danny DeVito
+1       Michael Keaton
+2       Jack Nicholson
+3         Kim Basinger
+4          Robert Wuhl
+5           Pat Hingle
+6   Billy Dee Williams
+7        Michael Gough
+8         Jack Palance
+9           Jerry Hall
+10       Nicole Kidman
+11     Chris O'Donnell
+12         Gary Oldman
+13   Michelle Pfeiffer
+14  Christopher Walken
+15      Michael Murphy
+16      Cristi Conaway
+17   Andrew Bryniarski
+18         Liam Neeson
+19          Val Kilmer
+20     Tommy Lee Jones
+21          Jim Carrey
+22      Christian Bale
+23      Drew Barrymore
+24          Debi Mazar
+25       Tom Wilkinson
+26       Michael Caine
+27        Ken Watanabe
+28        Katie Holmes
+29      Cillian Murphy
+30        Rutger Hauer
+31      Michael Keaton
+32          Pat Hingle
+33       Michael Gough
+34          Pat Hingle
+35       Michael Gough",,"import pandas as pd
+batman_check_query = """"""
+SELECT m.Title
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+WHERE m.Title LIKE '%Batman%'
+""""""
+batman_movies = execute_sql_query(batman_check_query)
+if not batman_movies.empty:
+    batman_actors_query = """"""
+    SELECT a.Name
+    FROM table_eb46adee8e29808d89c3d571adcd69df c
+    JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+    JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+    WHERE m.Title LIKE '%Batman%'
+    """"""
+    result = {'type': 'dataframe', 'value': execute_sql_query(batman_actors_query)}
+else:
+    popular_movie_query = """"""
+    SELECT m.MovieID, m.Title, m.RatingCount
+    FROM table_7094d14dcbfa3921163187bde7597aeb m
+    ORDER BY m.RatingCount DESC
+    LIMIT 1
+    """"""
+    popular_movie = execute_sql_query(popular_movie_query)
+    if not popular_movie.empty:
+        actors_in_popular_movie_query = """"""
+        SELECT a.Name
+        FROM table_eb46adee8e29808d89c3d571adcd69df c
+        JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+        WHERE c.MovieID = """""" + str(popular_movie.iloc[0]['MovieID'])
+        result = {'type': 'string', 'value': f""""""No Batman movie found in dataset. Here are actors from the most popular movie '{popular_movie.iloc[0]['Title']}':
+"""""" + execute_sql_query(actors_in_popular_movie_query)['Name'].tolist()}
+    else:
+        result = {'type': 'string', 'value': 'No Batman movie or other movies found in the dataset.'}",FALSE,15.03,True,
+Mistral-Large-3-675B,Which movie is the character Dr. Archibald 'Moonlight' Graham from?,Field of Dreams,3,The character Dr. Archibald 'Moonlight' Graham is from the movie 'Field of Dreams'.,"SELECT m.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_7094d14dcbfa3921163187bde7597aeb m
+ON c.MovieID = m.MovieID
+WHERE c.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'","import pandas as pd
+sql_query = """"""
+SELECT m.Title
+FROM table_eb46adee8e29808d89c3d571adcd69df c
+JOIN table_7094d14dcbfa3921163187bde7597aeb m
+ON c.MovieID = m.MovieID
+WHERE c.CharacterName = 'Dr. Archibald ''Moonlight'' Graham'
+""""""
+result_df = execute_sql_query(sql_query)
+if not result_df.empty:
+    movie_title = result_df.iloc[0]['Title']
+    result = {'type': 'string', 'value': f""The character Dr. Archibald 'Moonlight' Graham is from the movie '{movie_title}'.""}
+else:
+    result = {'type': 'string', 'value': ""The character Dr. Archibald 'Moonlight' Graham was not found in any movie.""}",TRUE.,33.65,True,
+Mistral-Large-3-675B,Please list the names of the movies starring Tom Cruise.,"[{'Title': 'Born on the Fourth of July'}, {'Title': 'Days of Thunder'}, {'Title': 'A Few Good Men'}, {'Title': 'The Firm'}, {'Title': 'Jerry Maguire'}, {'Title': 'Mission: Impossible'}, {'Title': 'Mission: Impossible II'}, {'Title': 'Vanilla Sky'}, {'Title': 'Minority Report'}, {'Title': 'The Last Samurai'}, {'Title': 'War of the Worlds'}, {'Title': 'Mission: Impossible III'}, {'Title': 'Mission: Impossible - Ghost Protocol'}]",3,"                                   Title
+0             Born on the Fourth of July
+1                        Days of Thunder
+2                         A Few Good Men
+3                               The Firm
+4                          Jerry Maguire
+5                    Mission: Impossible
+6                 Mission: Impossible II
+7                            Vanilla Sky
+8                        Minority Report
+9                       The Last Samurai
+10                     War of the Worlds
+11               Mission: Impossible III
+12  Mission: Impossible - Ghost Protocol","SELECT m.Title
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df c ON m.MovieID = c.MovieID
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+WHERE a.Name = 'Tom Cruise'","import pandas as pd
+sql_query = """"""
+SELECT m.Title
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df c ON m.MovieID = c.MovieID
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON c.ActorID = a.ActorID
+WHERE a.Name = 'Tom Cruise'
+""""""
+result_df = execute_sql_query(sql_query)
+if result_df.empty:
+    result = {'type': 'string', 'value': 'Tom Cruise has not starred in any movies in this database.'}
+else:
+    result = {'type': 'dataframe', 'value': result_df}",TRUE,52.8,True,
+Mistral-Large-3-675B,How many movies starring Morgan Freeman are suggested by parental guidance?,1,3,"                                       Title MPAARating  ActorCount
+0                      A League of Their Own         PG           9
+1                        Alice in Wonderland         PG           9
+2                    Alvin and the Chipmunks         PG           9
+3    Alvin and the Chipmunks: The Squeakquel         PG           9
+4                                  Apollo 13         PG           9
+..                                       ...        ...         ...
+327                                    X-Men      PG-13           9
+328                 X-Men Origins: Wolverine      PG-13           9
+329                    X-Men: The Last Stand      PG-13           9
+330                         X2: X-Men United      PG-13           9
+331                                      xXx      PG-13           9
+
+[332 rows x 3 columns]",,"import pandas as pd
+query = """"""
+SELECT m.Title, m.MPAARating, COUNT(DISTINCT a.ActorID) as ActorCount
+FROM table_7094d14dcbfa3921163187bde7597aeb m
+JOIN table_eb46adee8e29808d89c3d571adcd69df mc ON m.MovieID = mc.MovieID
+JOIN table_5b6fd6c53269f68ff9917438bca1d1cf a ON mc.ActorID = a.ActorID
+WHERE m.MPAARating IN ('PG', 'PG-13')
+GROUP BY m.Title, m.MPAARating
+ORDER BY m.MPAARating, m.Title
+""""""
+result_df = execute_sql_query(query)
+result = {'type': 'dataframe', 'value': result_df}
+if len(result_df) > 0:
+    parental_guidance_movies = len(result_df)
+    result_str = {'type': 'string', 'value': f'There are {parental_guidance_movies} movies with parental guidance suggested ratings (PG/PG-13).'}
+else:
+    result_str = {'type': 'string', 'value': 'No movies with parental guidance suggested ratings (PG/PG-13) were found.'}",FALSE.,205.56,True,
+Mistral-Large-3-675B,"Among the movies starring Tom Cruise, which one of them has the best quality?",A Few Good Men,3,The highest quality movie starring John Travolta is 'Pulp Fiction' with a rating of 8.9.,,"import pandas as pd
+actor_query = """"""
+SELECT ActorID
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'John Travolta'
+""""""
+actor_df = execute_sql_query(actor_query)
+actor_id = actor_df['ActorID'].values[0]
+movie_query = f""""""
+SELECT m.Title, m.Rating, m.RatingCount
+FROM table_eb46adee8e29808d89c3d571adcd69df a
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON a.MovieID = m.MovieID
+WHERE a.ActorID = {actor_id}
+ORDER BY m.Rating DESC
+LIMIT 1
+""""""
+movie_df = execute_sql_query(movie_query)
+if not movie_df.empty:
+    best_movie = movie_df.iloc[0]['Title']
+    result = {'type': 'string', 'value': f""The highest quality movie starring John Travolta is '{best_movie}' with a rating of {movie_df.iloc[0]['Rating']}.""}
+else:
+    result = {'type': 'string', 'value': 'No movies found starring John Travolta in the database.'}",FALSE,15.92,True,
+Mistral-Large-3-675B,What is the name of the character played by Tom Cruise in the movie Born on the Fourth of July?,Ron Kovic,3,The character played by Tom Cruise in 'Born on the Fourth of July' is Ron Kovic.,,"import pandas as pd
+actor_name = 'Tom Cruise'
+query = f""""""
+SELECT a.Name as ActorName, c.CharacterName
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf a
+JOIN table_eb46adee8e29808d89c3d571adcd69df c ON a.ActorID = c.ActorID
+JOIN table_7094d14dcbfa3921163187bde7597aeb m ON c.MovieID = m.MovieID
+WHERE a.Name = '{actor_name}'
+AND m.Title = 'Born on the Fourth of July'
+""""""
+character_df = execute_sql_query(query)
+if not character_df.empty:
+    character_name = character_df.iloc[0]['CharacterName']
+    result = {'type': 'string', 'value': f""The character played by Tom Cruise in 'Born on the Fourth of July' is {character_name}.""}
+else:
+    result = {'type': 'string', 'value': f""Tom Cruise's character name in 'Born on the Fourth of July' could not be found.""}",TRUE.,12.91,True,
+Mistral-Large-3-675B,Please list the names of all the characters played by Tom Cruise.,"[{'Character Name': 'Chief John Anderton'}, {'Character Name': 'Cole Trickle'}, {'Character Name': 'David Aames'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Ethan Hunt'}, {'Character Name': 'Jerry Maguire'}, {'Character Name': 'Lt. Daniel Kaffee'}, {'Character Name': 'Mitch McDeere'}, {'Character Name': 'Nathan Algren'}, {'Character Name': 'Ray Ferrier'}, {'Character Name': 'Ron Kovic'}]",3,"Tom Cruise has played the following characters: Ron Kovic, Cole Trickle, Lt. Daniel Kaffee, Mitch McDeere, Jerry Maguire, Ethan Hunt, Ethan Hunt, David Aames, Chief John Anderton, Nathan Algren, Ray Ferrier, Ethan Hunt, Ethan Hunt",,"import pandas as pd
+actor_query = """"""
+SELECT ActorID
+FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+WHERE Name = 'Tom Cruise'
+""""""
+actor_df = execute_sql_query(actor_query)
+if not actor_df.empty:
+    tom_cruise_id = actor_df.iloc[0]['ActorID']
+    character_query = f""""""
+    SELECT CharacterName
+    FROM table_eb46adee8e29808d89c3d571adcd69df
+    WHERE ActorID = {tom_cruise_id}
+    """"""
+    characters_df = execute_sql_query(character_query)
+    if not characters_df.empty:
+        character_list = characters_df['CharacterName'].tolist()
+        result_value = ', '.join(character_list)
+        result = {'type': 'string', 'value': f'Tom Cruise has played the following characters: {result_value}'}
+    else:
+        result = {'type': 'string', 'value': 'Tom Cruise has not played any characters in the provided dataset.'}
+else:
+    result = {'type': 'string', 'value': 'Tom Cruise not found in the actors table.'}
+if 'tom_cruise_id' not in locals():
+    similar_actors_query = """"""
+    SELECT Name
+    FROM table_5b6fd6c53269f68ff9917438bca1d1cf
+    WHERE Name LIKE '%Cruise%'
+    """"""
+    similar_actors_df = execute_sql_query(similar_actors_query)
+    if not similar_actors_df.empty:
+        similar_names = similar_actors_df['Name'].tolist()
+        result = {'type': 'string', 'value': f""Tom Cruise not found. Did you mean one of these actors: {', '.join(similar_names)}?""}
+    else:
+        result = {'type': 'string', 'value': 'Tom Cruise not found in the dataset.'}",TRUE,183.6,True,

@@ -12,7 +12,7 @@ from litellm import completion
 
 
 
-DEFAULT_MODEL = "nvidia_nim/meta/llama-3.1-405b-instruct"
+DEFAULT_MODEL = "nvidia_nim/meta/llama-3.1-70b-instruct"
 DEFAULT_API_KEY = "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"
 
 st.set_page_config(page_title="PandasAI CSV", page_icon="💬", layout="wide")
@@ -112,7 +112,7 @@ def validation_Response(query: str, question: str, response=None, answer=None, a
     
     try:
         validation = completion(
-            model="nvidia_nim/meta/llama-3.1-405b-instruct",
+            model="nvidia_nim/meta/llama-3.1-70b-instruct",
             messages = [{
                         "role": "user",
                         "content": f"""
@@ -184,8 +184,18 @@ selected_files = st.multiselect(
     default=uploaded_names,
 )
 
+MODELS = {
+    "nvidia_nim/meta/llama-3.1-8b-instruct": "Llama-3.1-8B",
+    "nvidia_nim/google/gemma-2-27b-it": "Gemma-2-27B",
+    "nvidia_nim/meta/llama-3.1-70b-instruct": "Llama3-70B",
+    "nvidia_nim/meta/llama-3.1-405b-instruct": "Llama-3.1-405B",
+    "nvidia_nim/mistralai/mistral-large-3-675b-instruct-2512": "Mistral-Large-3-675B"
+}
+model_keys = list(MODELS.keys())
+default_idx = model_keys.index(DEFAULT_MODEL) if DEFAULT_MODEL in model_keys else 0
+
 api_key = st.text_input("API Key", type="password", value=DEFAULT_API_KEY)
-model_id = st.text_input("Model", value=DEFAULT_MODEL)
+model_id = st.selectbox("Model", options=model_keys, format_func=lambda x: MODELS[x], index=default_idx)
 question = st.text_input("Question")
 
 
@@ -225,8 +235,8 @@ if st.button("Run", type="primary"):
                 st.image(response_obj.value)
             else:
                 st.code(response_text)
-            st.subheader("SQL Code")
-            st.code(sql_code if sql_code else "")
+            st.subheader("Generated Code")
+            st.code(full_code := generated.get("full_code", "No code generated."))
             st.subheader("Correctness")
             st.code(correctness)
             st.subheader("Response time")

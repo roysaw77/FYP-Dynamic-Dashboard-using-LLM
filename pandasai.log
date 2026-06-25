@@ -1,0 +1,104 @@
+2026-06-25 16:38:53 [INFO] Question: Plot top 3 revenue of clinic
+2026-06-25 16:38:53 [INFO] Running PandasAI with litellm LLM...
+2026-06-25 16:38:53 [INFO] Prompt ID: d1673cba-99b2-4db6-ad0f-62b68e670b73
+2026-06-25 16:38:53 [INFO] Generating new code...
+2026-06-25 16:38:53 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot top 3 revenue of clinic
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-25 16:39:36 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write SQL query to get top 3 revenue of clinics
+sql_query = """
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 3
+"""
+
+# Execute the SQL query
+df = execute_sql_query(sql_query)
+
+# Plot the top 3 revenue of clinics
+plt.figure(figsize=(10,6))
+plt.bar(df['IDOrganisation'], df['TotalRevenue'], color ='maroon')
+plt.xlabel("Clinic")
+plt.ylabel("Total Revenue")
+plt.title("Top 3 Revenue of Clinics")
+plt.xticks(rotation=90)
+plt.tight_layout()
+plt.savefig('top_3_revenue.png')
+
+# Declare result variable
+result = {
+    "type": "plot",
+    "value": "top_3_revenue.png"
+}
+2026-06-25 16:39:36 [INFO] Validating code requirements...
+2026-06-25 16:39:36 [INFO] Code validation successful.
+2026-06-25 16:39:36 [INFO] Cleaning the generated code...
+2026-06-25 16:39:36 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = """
+    SELECT IDOrganisation, TotalRevenue
+    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+    ORDER BY TotalRevenue DESC
+    LIMIT 3
+"""
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['IDOrganisation'], df['TotalRevenue'], color='maroon')
+plt.xlabel('Clinic')
+plt.ylabel('Total Revenue')
+plt.title('Top 3 Revenue of Clinics')
+plt.xticks(rotation=90)
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_852e6f01-34f8-48ae-95b5-be362968d45b.png')
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_852e6f01-34f8-48ae-95b5-be362968d45b.png'}
+2026-06-25 16:39:36 [INFO] Response generated successfully.

@@ -1,0 +1,1151 @@
+2026-06-08 15:27:02 [INFO] Question: Plot the relationship between a clinic's total revenue and the number of doctors it employs.
+2026-06-08 15:27:02 [INFO] Running PandasAI with litellm LLM...
+2026-06-08 15:27:02 [INFO] Prompt ID: 18a48594-96d8-4eb1-9f57-02379308550a
+2026-06-08 15:27:02 [INFO] Generating new code...
+2026-06-08 15:27:02 [INFO] Using Prompt: <tables>
+
+<table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+
+
+<table dialect="duckdb" table_name="table_c83679f393c19ab82f71054c6c3facb6" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "StaffName", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Locum/Residence", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalPatient", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="231x17">
+IDOrganisation,Address,State,District,lat,lng,StaffName,Locum/Residence,TotalVisitTime(hrs),TotalPatientCount,TotalPaidPatientCount,TotalPanelPatientCount,TotalRevenue,TotalPaid,TotalPanel,%TotalVisitTime(hrs),%TotalPatient
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor A,Residence,251.1377778,2244,984,1260,308717.8,75014.6,233703.2,47.14618563,54.67836257
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor B,Residence,234.81,1664,832,832,169398.0,72480.0,96918.0,44.08096602,40.54580897
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor C,Residence,10.40111111,68,32,36,5500.0,1480.0,4020.0,1.952604342,1.656920078
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor D,Residence,6.364444444,24,8,16,2676.0,440.0,2236.0,1.194799452,0.584795322
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor E,Residence,18.29666667,72,48,24,4752.0,3180.0,1572.0,3.434839835,1.754385965
+</table>
+
+
+</tables>
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Plot the relationship between a clinic's total revenue and the number of doctors it employs.
+
+At the end, declare "result" variable as a dictionary of type and value in the following format:
+
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2026-06-08 15:27:03 [INFO] An error occurred during code generation: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+2026-06-08 15:27:03 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:03 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 176, in generate_code_with_retries
+    return self.generate_code(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 119, in generate_code
+    code = self._code_generator.generate_code(prompt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 52, in generate_code
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:03 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+<table dialect="duckdb" table_name="table_c83679f393c19ab82f71054c6c3facb6" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "StaffName", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Locum/Residence", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalPatient", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="231x17">
+IDOrganisation,Address,State,District,lat,lng,StaffName,Locum/Residence,TotalVisitTime(hrs),TotalPatientCount,TotalPaidPatientCount,TotalPanelPatientCount,TotalRevenue,TotalPaid,TotalPanel,%TotalVisitTime(hrs),%TotalPatient
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor A,Residence,251.1377778,2244,984,1260,308717.8,75014.6,233703.2,47.14618563,54.67836257
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor B,Residence,234.81,1664,832,832,169398.0,72480.0,96918.0,44.08096602,40.54580897
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor C,Residence,10.40111111,68,32,36,5500.0,1480.0,4020.0,1.952604342,1.656920078
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor D,Residence,6.364444444,24,8,16,2676.0,440.0,2236.0,1.194799452,0.584795322
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor E,Residence,18.29666667,72,48,24,4752.0,3180.0,1572.0,3.434839835,1.754385965
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Plot the relationship between a clinic's total revenue and the number of doctors it employs.
+
+You generated the following Python code:
+None
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 176, in generate_code_with_retries
+    return self.generate_code(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 119, in generate_code
+    code = self._code_generator.generate_code(prompt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 52, in generate_code
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2026-06-08 15:27:03 [INFO] An error occurred during code generation: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+2026-06-08 15:27:03 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:03 [INFO] Retrying Code Generation (1/3)...
+2026-06-08 15:27:03 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 176, in generate_code_with_retries
+    return self.generate_code(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 119, in generate_code
+    code = self._code_generator.generate_code(prompt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 52, in generate_code
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:03 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+<table dialect="duckdb" table_name="table_c83679f393c19ab82f71054c6c3facb6" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "StaffName", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Locum/Residence", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalPatient", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="231x17">
+IDOrganisation,Address,State,District,lat,lng,StaffName,Locum/Residence,TotalVisitTime(hrs),TotalPatientCount,TotalPaidPatientCount,TotalPanelPatientCount,TotalRevenue,TotalPaid,TotalPanel,%TotalVisitTime(hrs),%TotalPatient
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor A,Residence,251.1377778,2244,984,1260,308717.8,75014.6,233703.2,47.14618563,54.67836257
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor B,Residence,234.81,1664,832,832,169398.0,72480.0,96918.0,44.08096602,40.54580897
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor C,Residence,10.40111111,68,32,36,5500.0,1480.0,4020.0,1.952604342,1.656920078
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor D,Residence,6.364444444,24,8,16,2676.0,440.0,2236.0,1.194799452,0.584795322
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor E,Residence,18.29666667,72,48,24,4752.0,3180.0,1572.0,3.434839835,1.754385965
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Plot the relationship between a clinic's total revenue and the number of doctors it employs.
+
+You generated the following Python code:
+None
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 176, in generate_code_with_retries
+    return self.generate_code(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 119, in generate_code
+    code = self._code_generator.generate_code(prompt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 52, in generate_code
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2026-06-08 15:27:03 [INFO] An error occurred during code generation: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+2026-06-08 15:27:03 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:03 [INFO] Retrying Code Generation (2/3)...
+2026-06-08 15:27:03 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 176, in generate_code_with_retries
+    return self.generate_code(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 119, in generate_code
+    code = self._code_generator.generate_code(prompt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 52, in generate_code
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:03 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+<table dialect="duckdb" table_name="table_c83679f393c19ab82f71054c6c3facb6" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "StaffName", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Locum/Residence", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalPatient", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="231x17">
+IDOrganisation,Address,State,District,lat,lng,StaffName,Locum/Residence,TotalVisitTime(hrs),TotalPatientCount,TotalPaidPatientCount,TotalPanelPatientCount,TotalRevenue,TotalPaid,TotalPanel,%TotalVisitTime(hrs),%TotalPatient
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor A,Residence,251.1377778,2244,984,1260,308717.8,75014.6,233703.2,47.14618563,54.67836257
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor B,Residence,234.81,1664,832,832,169398.0,72480.0,96918.0,44.08096602,40.54580897
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor C,Residence,10.40111111,68,32,36,5500.0,1480.0,4020.0,1.952604342,1.656920078
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor D,Residence,6.364444444,24,8,16,2676.0,440.0,2236.0,1.194799452,0.584795322
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor E,Residence,18.29666667,72,48,24,4752.0,3180.0,1572.0,3.434839835,1.754385965
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Plot the relationship between a clinic's total revenue and the number of doctors it employs.
+
+You generated the following Python code:
+None
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 176, in generate_code_with_retries
+    return self.generate_code(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 119, in generate_code
+    code = self._code_generator.generate_code(prompt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 52, in generate_code
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2026-06-08 15:27:03 [INFO] An error occurred during code generation: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+2026-06-08 15:27:03 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:03 [INFO] Retrying Code Generation (3/3)...
+2026-06-08 15:27:03 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 176, in generate_code_with_retries
+    return self.generate_code(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 119, in generate_code
+    code = self._code_generator.generate_code(prompt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 52, in generate_code
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:03 [INFO] Using Prompt: <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
+IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
+Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
+Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
+Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
+Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
+</table>
+<table dialect="duckdb" table_name="table_c83679f393c19ab82f71054c6c3facb6" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "StaffName", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Locum/Residence", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "integer", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalVisitTime(hrs)", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "%TotalPatient", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="231x17">
+IDOrganisation,Address,State,District,lat,lng,StaffName,Locum/Residence,TotalVisitTime(hrs),TotalPatientCount,TotalPaidPatientCount,TotalPanelPatientCount,TotalRevenue,TotalPaid,TotalPanel,%TotalVisitTime(hrs),%TotalPatient
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor A,Residence,251.1377778,2244,984,1260,308717.8,75014.6,233703.2,47.14618563,54.67836257
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor B,Residence,234.81,1664,832,832,169398.0,72480.0,96918.0,44.08096602,40.54580897
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor C,Residence,10.40111111,68,32,36,5500.0,1480.0,4020.0,1.952604342,1.656920078
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor D,Residence,6.364444444,24,8,16,2676.0,440.0,2236.0,1.194799452,0.584795322
+Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,Doctor E,Residence,18.29666667,72,48,24,4752.0,3180.0,1572.0,3.434839835,1.754385965
+</table>
+
+
+The following functions have already been provided. Please use them as needed and do not redefine them.
+<function>
+def execute_sql_query(sql_query: str) -> pd.DataFrame
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+The user asked the following question:
+### QUERY
+ Plot the relationship between a clinic's total revenue and the number of doctors it employs.
+
+You generated the following Python code:
+None
+
+However, it resulted in the following error:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 176, in generate_code_with_retries
+    return self.generate_code(query)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\agent\base.py", line 119, in generate_code
+    code = self._code_generator.generate_code(prompt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 52, in generate_code
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2026-06-08 15:27:04 [INFO] An error occurred during code generation: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+2026-06-08 15:27:04 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 852, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 780, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 503, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 478, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1204, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2707, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2679, in completion
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 863, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: 404 page not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1772, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1593, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 4420, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 552, in exception_type
+    raise NotFoundError(
+litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
+
+2026-06-08 15:27:04 [INFO] Maximum retry attempts exceeded. Last error: litellm.NotFoundError: NotFoundError: Nvidia_nimException - 404 page not found
