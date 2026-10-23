@@ -17,6 +17,7 @@ This project is aimed at developing a dynamic dashboard utilizing Large Language
 ## Tech Stack
 - Frontend: [Streamlit]
 - Framework: [Pandasai]
+<img width="818" height="420" alt="image" src="https://github.com/user-attachments/assets/2ff4dc74-45d6-4be5-ad2a-b03845c5255b" />
 
 
 
