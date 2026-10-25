@@ -9,11 +9,14 @@ import streamlit as st
 import pandasai as pai
 from pandasai_litellm.litellm import LiteLLM
 from litellm import completion
+import os
+from dotenv import load_dotenv
 
+# Load environment variables from project root .env
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
-
-DEFAULT_MODEL = "nvidia_nim/meta/llama-3.1-70b-instruct"
-DEFAULT_API_KEY = "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"
+DEFAULT_MODEL = "nvidia_nim/nvidia/nemotron-3.5-lightning-30b-a3b"
+DEFAULT_API_KEY = os.getenv("NVIDIA_API_KEY", "")
 
 st.set_page_config(page_title="PandasAI CSV", page_icon="💬", layout="wide")
 st.title("PandasAI CSV")
@@ -88,13 +91,10 @@ def generate_Response(question: str, dataframes: list, model_id: str = None, api
     Returns:
         tuple: (response, elapsed_time)
     """
-    default_api_key = "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"
-    default_model = "nvidia_nim/meta/llama-3.1-8b-instruct"
-    
     # Configure the LLM
     llm = LiteLLM(
-        model=model_id or default_model,
-        api_key=api_key or default_api_key,
+        model=model_id or DEFAULT_MODEL,
+        api_key=api_key or DEFAULT_API_KEY,
         stream=False,
     )
     pai.config.set({"llm": llm, "save_charts": False,"verbose": False})
@@ -106,13 +106,13 @@ def generate_Response(question: str, dataframes: list, model_id: str = None, api
     return response, elapsed_time
 
 
-def validation_Response(query: str, question: str, response=None, answer=None, api_key: str = None) -> bool:
+def validation_Response(query: str, question: str, response=None, answer=None, model_id: str = None, api_key: str = None) -> bool:
     if not query:
         return False
     
     try:
         validation = completion(
-            model="nvidia_nim/meta/llama-3.1-70b-instruct",
+            model=model_id or DEFAULT_MODEL,
             messages = [{
                         "role": "user",
                         "content": f"""
@@ -145,7 +145,7 @@ def validation_Response(query: str, question: str, response=None, answer=None, a
 						Respond with ONLY one word: TRUE or FALSE.
                             """
                         }],
-            api_key=api_key or "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"
+            api_key=api_key or DEFAULT_API_KEY
             
         )
         return validation.choices[0].message.content.strip()
@@ -187,17 +187,16 @@ selected_files = st.multiselect(
 MODELS = {
     "nvidia_nim/meta/llama-3.1-8b-instruct": "Llama-3.1-8B",
     "nvidia_nim/google/gemma-2-27b-it": "Gemma-2-27B",
-    "nvidia_nim/meta/llama-3.1-70b-instruct": "Llama3-70B",
+    "nvidia_nim/nvidia/nemotron-3.5-lightning-30b-a3b": "Nemotron-3.5-lightning-30B",
     "nvidia_nim/meta/llama-3.1-405b-instruct": "Llama-3.1-405B",
     "nvidia_nim/mistralai/mistral-large-3-675b-instruct-2512": "Mistral-Large-3-675B"
 }
 model_keys = list(MODELS.keys())
 default_idx = model_keys.index(DEFAULT_MODEL) if DEFAULT_MODEL in model_keys else 0
 
-api_key = st.text_input("API Key", type="password", value=DEFAULT_API_KEY)
 model_id = st.selectbox("Model", options=model_keys, format_func=lambda x: MODELS[x], index=default_idx)
 question = st.text_input("Question")
-
+api_key = os.getenv("NVIDIA_API_KEY")
 
 if st.button("Run", type="primary"):
     if not st.session_state.dataframes:
@@ -206,8 +205,6 @@ if st.button("Run", type="primary"):
         st.error("Select at least one dataset.")
     elif not question.strip():
         st.error("Enter a question.")
-    elif not api_key.strip():
-        st.error("Enter API key.")
     else:
         selected_dataframes = [st.session_state.dataframes[name] for name in selected_files]
         try:
@@ -225,8 +222,8 @@ if st.button("Run", type="primary"):
                     code_to_validate,
                     question,
                     response=response_text,
-                    
-                    api_key=api_key.strip(),
+                    model_id=model_id.strip() if model_id else None,
+                    api_key=api_key.strip() if api_key else None,
                 )
                 correctness = str(judge).strip().upper()
 

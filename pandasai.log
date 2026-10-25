@@ -1,8 +1,8 @@
-2026-06-25 16:38:53 [INFO] Question: Plot top 3 revenue of clinic
-2026-06-25 16:38:53 [INFO] Running PandasAI with litellm LLM...
-2026-06-25 16:38:53 [INFO] Prompt ID: d1673cba-99b2-4db6-ad0f-62b68e670b73
-2026-06-25 16:38:53 [INFO] Generating new code...
-2026-06-25 16:38:53 [INFO] Using Prompt: <tables>
+2026-10-25 15:08:46 [INFO] Question: Plot top 3 Highest clinic revenue
+2026-10-25 15:08:46 [INFO] Running PandasAI with litellm LLM...
+2026-10-25 15:08:46 [INFO] Prompt ID: 13449135-2b3a-4726-b3dd-6add274c2dff
+2026-10-25 15:08:46 [INFO] Generating new code...
+2026-10-25 15:08:46 [INFO] Using Prompt: <tables>
 
 <table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
 IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
@@ -39,7 +39,7 @@ type (possible values "string", "number", "dataframe", "plot"). Examples: { "typ
 
 
 ### QUERY
- Plot top 3 revenue of clinic
+ Plot top 3 Highest clinic revenue
 
 At the end, declare "result" variable as a dictionary of type and value in the following format:
 
@@ -50,55 +50,94 @@ type (possible values "string", "number", "dataframe", "plot"). Examples: { "typ
 Generate python code and return full updated code:
 
 ### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
-2026-06-25 16:39:36 [INFO] Code Generated:
+2026-10-25 15:08:58 [INFO] Code Generated:
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Write SQL query to get top 3 revenue of clinics
+# Write code here
 sql_query = """
-    SELECT IDOrganisation, TotalRevenue
-    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-    ORDER BY TotalRevenue DESC
-    LIMIT 3
+SELECT IDOrganisation, TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 3
 """
-
-# Execute the SQL query
 df = execute_sql_query(sql_query)
 
-# Plot the top 3 revenue of clinics
-plt.figure(figsize=(10,6))
-plt.bar(df['IDOrganisation'], df['TotalRevenue'], color ='maroon')
-plt.xlabel("Clinic")
-plt.ylabel("Total Revenue")
-plt.title("Top 3 Revenue of Clinics")
-plt.xticks(rotation=90)
+# Plot top 3 highest clinic revenue
+plt.figure(figsize=(10, 6))
+plt.barh(df['IDOrganisation'], df['TotalRevenue'], color='teal')
+plt.xlabel('Total Revenue')
+plt.ylabel('Clinic')
+plt.title('Top 3 Highest Clinic Revenue')
+plt.gca().invert_yaxis()
 plt.tight_layout()
-plt.savefig('top_3_revenue.png')
+plt.savefig('temp_chart.png')
+plt.close()
 
-# Declare result variable
-result = {
-    "type": "plot",
-    "value": "top_3_revenue.png"
-}
-2026-06-25 16:39:36 [INFO] Validating code requirements...
-2026-06-25 16:39:36 [INFO] Code validation successful.
-2026-06-25 16:39:36 [INFO] Cleaning the generated code...
-2026-06-25 16:39:36 [INFO] Executing code: import pandas as pd
+# Declare result var: 
+result = {"type": "plot", "value": "temp_chart.png"}
+2026-10-25 15:08:58 [INFO] Validating code requirements...
+2026-10-25 15:08:58 [INFO] Code validation successful.
+2026-10-25 15:08:59 [INFO] Cleaning the generated code...
+2026-10-25 15:08:59 [INFO] Executing code: import pandas as pd
 import matplotlib.pyplot as plt
 sql_query = """
-    SELECT IDOrganisation, TotalRevenue
-    FROM table_bd4f8d5ffa8239c09831e5b997bc2753
-    ORDER BY TotalRevenue DESC
-    LIMIT 3
+SELECT IDOrganisation, TotalRevenue
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+ORDER BY TotalRevenue DESC
+LIMIT 3
 """
 df = execute_sql_query(sql_query)
 plt.figure(figsize=(10, 6))
-plt.bar(df['IDOrganisation'], df['TotalRevenue'], color='maroon')
-plt.xlabel('Clinic')
-plt.ylabel('Total Revenue')
-plt.title('Top 3 Revenue of Clinics')
-plt.xticks(rotation=90)
+plt.barh(df['IDOrganisation'], df['TotalRevenue'], color='teal')
+plt.xlabel('Total Revenue')
+plt.ylabel('Clinic')
+plt.title('Top 3 Highest Clinic Revenue')
+plt.gca().invert_yaxis()
 plt.tight_layout()
-plt.savefig('exports\\charts\\temp_chart_852e6f01-34f8-48ae-95b5-be362968d45b.png')
-result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_852e6f01-34f8-48ae-95b5-be362968d45b.png'}
-2026-06-25 16:39:36 [INFO] Response generated successfully.
+plt.savefig('exports\\charts\\temp_chart_7fcf1ffe-23f5-4dc8-9fe5-804910db7c99.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_7fcf1ffe-23f5-4dc8-9fe5-804910db7c99.png'}
+2026-10-25 15:08:59 [INFO] Response generated successfully.
+2026-10-25 15:09:08 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+# Execute SQL query to retrieve the top 3 highest clinic revenues
+sql_query = "SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 3"
+df_top_3 = execute_sql_query(sql_query)
+
+# Create a bar plot for the top 3 highest clinic revenue
+plt.figure(figsize=(10, 6))
+plt.bar(df_top_3['IDOrganisation'], df_top_3['TotalRevenue'], color='darkblue')
+plt.title('Top 3 Highest Clinic Revenue')
+plt.xlabel('Clinic Organisation ID')
+plt.ylabel('Total Revenue')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+
+# Save the plot to a file
+plt.savefig('temp_chart.png')
+plt.close()
+
+# Declare result var: 
+result = { "type": "plot", "value": "temp_chart.png" }
+2026-10-25 15:09:08 [INFO] Validating code requirements...
+2026-10-25 15:09:08 [INFO] Code validation successful.
+2026-10-25 15:09:08 [INFO] Cleaning the generated code...
+2026-10-25 15:09:08 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT IDOrganisation, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY TotalRevenue DESC LIMIT 3'
+df_top_3 = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df_top_3['IDOrganisation'], df_top_3['TotalRevenue'], color='darkblue')
+plt.title('Top 3 Highest Clinic Revenue')
+plt.xlabel('Clinic Organisation ID')
+plt.ylabel('Total Revenue')
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.savefig('exports\\charts\\temp_chart_2e5e6b66-3927-4cbb-b5f8-75d002a70552.png')
+plt.close()
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_2e5e6b66-3927-4cbb-b5f8-75d002a70552.png'}
+2026-10-25 15:09:08 [INFO] Response generated successfully.

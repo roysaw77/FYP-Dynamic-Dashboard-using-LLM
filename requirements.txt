@@ -3,3 +3,4 @@ streamlit
 pandasai
 pandasai-litellm
 litellm
+python-dotenv
