@@ -141,3 +141,85 @@ plt.savefig('exports\\charts\\temp_chart_2e5e6b66-3927-4cbb-b5f8-75d002a70552.pn
 plt.close()
 result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_2e5e6b66-3927-4cbb-b5f8-75d002a70552.png'}
 2026-10-25 15:09:08 [INFO] Response generated successfully.
+2026-10-25 15:12:37 [INFO] Retrying request to /chat/completions in 0.803585 seconds
+2026-10-25 15:17:39 [INFO] An error occurred during code generation: litellm.Timeout: Timeout Error: Nvidia_nimException - Error code: 504
+2026-10-25 15:17:40 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 909, in completion
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 845, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\logging_utils.py", line 391, in sync_wrapper
+    result: Final = func(*args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 581, in make_sync_openai_chat_completion_request
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 556, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(**data, timeout=timeout)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_legacy_response.py", line 369, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_utils\_utils.py", line 298, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\resources\chat\completions\completions.py", line 1296, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1375, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\openai\_base_client.py", line 1148, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 504
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 6000, in completion
+    response = _complete_custom_openai(_dispatch_ctx)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2746, in _complete_custom_openai
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 2718, in _complete_custom_openai
+    response = openai_chat_completions.completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\llms\openai\openai.py", line 920, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: Error code: 504
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\core\code_generation\base.py", line 33, in generate_code
+    code = self._context.config.llm.generate_code(prompt, self._context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai\llm\base.py", line 173, in generate_code
+    response = self.call(instruction, context)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\pandasai_litellm\litellm.py", line 68, in call
+    completion(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\chat_completions\dispatch.py", line 91, in completion
+    return _DISPATCH.run(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\rust_bridge\dispatch.py", line 81, in run
+    return python(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1983, in wrapper
+    raise e
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\utils.py", line 1834, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\main.py", line 6122, in completion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2745, in exception_type
+    raise e  # it's already mapped
+    ^^^^^^^
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 2492, in exception_type
+    _map_openai_exception(
+  File "C:\Users\roysaw77\Desktop\FYP-Dynamic Dashboarding\FYP-Dynamic-Dashboard-using-LLM\venv\Lib\site-packages\litellm\litellm_core_utils\exception_mapping_utils.py", line 500, in _map_openai_exception
+    raise Timeout(
+litellm.exceptions.Timeout: litellm.Timeout: Timeout Error: Nvidia_nimException - Error code: 504
+
