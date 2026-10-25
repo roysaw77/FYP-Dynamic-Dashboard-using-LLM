@@ -13,10 +13,22 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables from project root .env
-load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=True)
+
+
+def get_api_key() -> str:
+    key = os.getenv("NVIDIA_API_KEY")
+    if not key:
+        try:
+            if hasattr(st, "secrets") and "NVIDIA_API_KEY" in st.secrets:
+                key = st.secrets["NVIDIA_API_KEY"]
+        except Exception:
+            pass
+    return (key or "").strip()
+
 
 DEFAULT_MODEL = "nvidia_nim/nvidia/nemotron-3.5-lightning-30b-a3b"
-DEFAULT_API_KEY = os.getenv("NVIDIA_API_KEY", "")
+DEFAULT_API_KEY = get_api_key()
 
 st.set_page_config(page_title="PandasAI CSV", page_icon="💬", layout="wide")
 st.title("PandasAI CSV")
@@ -196,7 +208,7 @@ default_idx = model_keys.index(DEFAULT_MODEL) if DEFAULT_MODEL in model_keys els
 
 model_id = st.selectbox("Model", options=model_keys, format_func=lambda x: MODELS[x], index=default_idx)
 question = st.text_input("Question")
-api_key = os.getenv("NVIDIA_API_KEY")
+api_key = get_api_key()
 
 if st.button("Run", type="primary"):
     if not st.session_state.dataframes:
@@ -205,13 +217,15 @@ if st.button("Run", type="primary"):
         st.error("Select at least one dataset.")
     elif not question.strip():
         st.error("Enter a question.")
+    elif not api_key:
+        st.error("NVIDIA API Key not found. Please set NVIDIA_API_KEY in .env (locally) or Streamlit Secrets (on Cloud).")
     else:
         selected_dataframes = [st.session_state.dataframes[name] for name in selected_files]
         try:
             with st.spinner("Running PandasAI and validating result..."):
                 clear_log()
                 response_obj, response_time = generate_Response(
-                    question, selected_dataframes, model_id.strip(), api_key.strip()
+                    question, selected_dataframes, model_id.strip() if model_id else None, api_key
                 )
                 response_text = response_obj.value if hasattr(response_obj, "value") else str(response_obj)
                 generated = extract_Generated_code()
@@ -223,7 +237,7 @@ if st.button("Run", type="primary"):
                     question,
                     response=response_text,
                     model_id=model_id.strip() if model_id else None,
-                    api_key=api_key.strip() if api_key else None,
+                    api_key=api_key,
                 )
                 correctness = str(judge).strip().upper()
 
