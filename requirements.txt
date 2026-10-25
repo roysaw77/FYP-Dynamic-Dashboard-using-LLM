@@ -1,6 +1,8 @@
+# Python version: 3.11 (Requires >=3.10, <3.12 for pandasai-litellm)
 pandas
 streamlit
 pandasai
 pandasai-litellm
 litellm
 python-dotenv
+
