@@ -9,7 +9,10 @@ A Final Year Project (FYP) dynamic dashboard built around **Text-to-SQL over upl
 ---
 
 ## Demo Video
-<video controls src="docs/assets/Dynamic Dashboard Demo.mp4" width="100%"></video>
+
+https://github.com/user-attachments/assets/669048f9-6b04-48d3-ad20-7755b33b3314
+
+
 
 ---
 
