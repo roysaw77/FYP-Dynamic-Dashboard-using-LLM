@@ -50,7 +50,9 @@ project/
 
 ## How to Run
 ### Start Commands
-- [Streamlit run main.py]
+- Run from the repository root: `streamlit run src/main.py`
+- The sidebar has two pages: **📊 Dashboard** (PandasAI generation) and **🔎 Analysis Insight** (AutoGen chart discussion)
+- The Analysis Insight page can still be opened on its own: `streamlit run src/analysis.py`
 
 
 ## Function
