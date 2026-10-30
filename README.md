@@ -112,22 +112,3 @@ The sidebar navigation allows switching between:
 *(The Analysis Insight page can also be run independently: `streamlit run src/analysis.py`)*
 
 ---
-
-## UI Screenshots
-### Dashboard Generation & Querying
-![Dashboard Overview](docs/assets/image.png)
-
-### Generated SQL Code
-![Generated SQL Code](docs/assets/image-1.png)
-
-### Model Correctness & Latency Evaluation
-![Model Correctness & Latency](docs/assets/image-2.png)
-
----
-
-## Benchmark & Experiment Results
-### Model Accuracy vs. Latency
-![Model Accuracy vs Latency](docs/assets/accuracy_vs_latency_custom_2.png)
-
-### Accuracy Across Difficulty Levels
-![Model Accuracy Heatmap](docs/assets/simple_matrix_heatmap.png)
