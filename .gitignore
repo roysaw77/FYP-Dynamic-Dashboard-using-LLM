@@ -1,13 +1,28 @@
 # Python bytecode cache directories
 __pycache__/
+*.py[cod]
+*$py.class
 
 # Virtual environments
 .venv/
 venv/
-
 .conda_venv/
 
-# Environment variables
+# Environment variables & secrets
 .env
+.env.*
+.secrets.toml
+
+# Data and benchmark folders (kept locally, ignored in repository)
+dataset/
+exports/
+test_model/
+
+# Runtime logs
+*.log
+pandasai.log
+src/pandasai.log
+
+# Agent metadata
 .agents
 skills-lock.json

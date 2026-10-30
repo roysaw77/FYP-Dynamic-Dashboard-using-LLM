@@ -1,49 +1,60 @@
 # Dynamic Dashboard using LLM
 
 ## Overview
+A Final Year Project (FYP) dynamic dashboard built around **Text-to-SQL over uploaded CSV files** with multi-agent interpretation.
 
-This project is aimed at developing a dynamic dashboard utilizing Large Language Models (LLMs) to provide tailored data visualizations and interactions.
+- **Live Web App**: [https://fyp-dynamic-dashboard-using-llm.streamlit.app/](https://fyp-dynamic-dashboard-using-llm.streamlit.app/)
+- **Research Paper**: [thesis (1).pdf](https://github.com/user-attachments/files/27086468/thesis.1.pdf)
 
-## Research Paper
-[thesis (1).pdf](https://github.com/user-attachments/files/27086468/thesis.1.pdf)
+---
 
 ## Demo Video
-<video controls src="Dynamic Dashboard Demo.mp4" title="Title"></video>
+<video controls src="docs/assets/Dynamic Dashboard Demo.mp4" width="100%"></video>
+
+---
 
 ## Key Features
-- **LLM-driven dashboard generation**: Automatically generate dashboards based on user input and data context.
-- **Data ingestion**: Seamlessly ingest data from various sources for comprehensive analysis.
-- **Visualization**: Create rich and interactive visual representations of data.
-- **Prompt templates**: Use customizable prompt templates for different use cases.
+- **LLM-driven dashboard generation**: Automatically generate SQL queries and data visualizations based on natural language input.
+- **Automated Validation**: Real-time evaluation of generated SQL and chart responses using secondary LLM judgment.
+- **Multi-Agent Insight Analysis**: Collaborative discussion among specialized agents (ChartAnalyst, DataInterpreter, Critic, Summarizer) powered by AutoGen.
+- **Customizable LLM Backend**: Powered by NVIDIA NIM with models including Nemotron-3.5-30B, Llama-3.1-405B, Llama-3.1-8B, and Mistral-Large.
 
-## Tech Stack 
-- Frontend: [Streamlit]
-- Framework: Generate Dashboard [Pandasai, LLM]
-             Analysis Insight [Autogen, VLM]
-- Generate Dashboard Framework
-<img width="818" height="420" alt="image" src="https://github.com/user-attachments/assets/2ff4dc74-45d6-4be5-ad2a-b03845c5255b" />
+---
 
-- Multi-Agent Analysis Framework
-![alt text](<Multi-Agent Analysis Framework.png>)
+## System Architecture & Framework
+- **Frontend**: Streamlit
+- **Text-to-SQL Engine**: PandasAI 3.0 + LiteLLM + NVIDIA NIM
+- **Multi-Agent Analysis**: Microsoft AutoGen 0.2.x + Vision LLM
 
+### Dynamic Dashboard Generation Pipeline
+<img width="818" height="420" alt="Dashboard Generation Pipeline" src="https://github.com/user-attachments/assets/2ff4dc74-45d6-4be5-ad2a-b03845c5255b" />
 
+### Multi-Agent Analysis Framework
+![Multi-Agent Analysis Framework](docs/assets/Multi-Agent%20Analysis%20Framework.png)
+
+---
 
 ## Project Structure
 ```
-project/
-├── src/                    # Source files streamlit web page of Dynamic Dashboarding
-├── dataset/                # dataset for experiment
-├── exports/                # Generated charts and benchmark evaluations
-└── tests/                  # experiment test
+FYP-Dynamic-Dashboard-using-LLM/
+├── src/                    # Streamlit application source files
+│   ├── main.py             # Main entry point and sidebar router
+│   ├── dashboard.py        # PandasAI generation, log scraping, validation
+│   └── analysis.py         # AutoGen multi-agent chart analysis panel
+├── docs/                   # Documentation and media assets
+│   └── assets/             # Demo videos, diagrams, and UI screenshots
+├── requirements.txt        # Pinned Python dependencies
+└── README.md
 ```
 
-## Webpage
-- https://fyp-dynamic-dashboard-using-llm.streamlit.app/
+> **Note**: Benchmark data (`dataset/`, `exports/`, and `test_model/`) are archived in the `backup-full` branch and ignored on `main` to maintain a lightweight, clean repository.
+
+---
 
 ## Setup Instructions
 
 ### Prerequisites
-- **Python 3.11** (Required: `>=3.10, <3.12` due to `pandasai-litellm`; Python 3.11.9 recommended).
+- **Python 3.11** (Required: `>=3.10, <3.12` for `pandasai-litellm`; Python 3.11.9 recommended).
 - **NVIDIA NIM API Key**: Required for LLM/VLM generation and AutoGen multi-agent analysis. Obtain an API key at [build.nvidia.com](https://build.nvidia.com).
 
 ### Installation
@@ -77,9 +88,11 @@ NVIDIA_API_KEY=nvapi-your_api_key_here
 ```
 *(On Streamlit Community Cloud, set `NVIDIA_API_KEY = "nvapi-..."` in **App Settings > Secrets**).*
 
+---
+
 ## How to Run in Streamlit
 
-> **Important**: Always launch commands from the **repository root** (`FYP-Dynamic-Dashboard-using-LLM`) so that relative paths, chart exports, and log files resolve correctly.
+> **Important**: Always launch commands from the **repository root** (`FYP-Dynamic-Dashboard-using-LLM`) so that relative paths and chart exports resolve correctly.
 
 ### 1. Launch the Main Application
 Start Streamlit from the project root:
@@ -98,4 +111,23 @@ The sidebar navigation allows switching between:
 
 *(The Analysis Insight page can also be run independently: `streamlit run src/analysis.py`)*
 
-#
+---
+
+## UI Screenshots
+### Dashboard Generation & Querying
+![Dashboard Overview](docs/assets/image.png)
+
+### Generated SQL Code
+![Generated SQL Code](docs/assets/image-1.png)
+
+### Model Correctness & Latency Evaluation
+![Model Correctness & Latency](docs/assets/image-2.png)
+
+---
+
+## Benchmark & Experiment Results
+### Model Accuracy vs. Latency
+![Model Accuracy vs Latency](docs/assets/accuracy_vs_latency_custom_2.png)
+
+### Accuracy Across Difficulty Levels
+![Model Accuracy Heatmap](docs/assets/simple_matrix_heatmap.png)
