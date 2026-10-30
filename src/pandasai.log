@@ -1,150 +1,164 @@
-2026-10-29 17:26:39 [INFO] Question: Plot PatientCount against TotalRevenue with a trend line, and highlight the clinics that earn much more or much less than the trend predicts.
-2026-10-29 17:26:39 [INFO] Running PandasAI with litellm LLM...
-2026-10-29 17:26:39 [INFO] Prompt ID: 683c4d53-e381-44b2-9426-c1b8035e39db
-2026-10-29 17:26:39 [INFO] Generating new code...
-2026-10-29 17:26:39 [INFO] Using Prompt: <tables>
-
-<table dialect="duckdb" table_name="table_bd4f8d5ffa8239c09831e5b997bc2753" columns="[{"name": "IDOrganisation", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "Address", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "State", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "District", "type": "string", "description": null, "expression": null, "alias": null}, {"name": "lat", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "lng", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalRevenue", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaid", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanel", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPaidPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalPanelPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "PatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "NewPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "ReturnPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCash", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCheque", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronic", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalCashPatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalChequePatientCount", "type": "float", "description": null, "expression": null, "alias": null}, {"name": "TotalElectronicPatientCount", "type": "float", "description": null, "expression": null, "alias": null}]" dimensions="46x20">
-IDOrganisation,Address,State,District,lat,lng,TotalRevenue,TotalPaid,TotalPanel,TotalPaidPatientCount,TotalPanelPatientCount,PatientCount,NewPatientCount,ReturnPatientCount,TotalCash,TotalCheque,TotalElectronic,TotalCashPatientCount,TotalChequePatientCount,TotalElectronicPatientCount
-Clinic A,"No 13, Jalan Tengku Ampuan Zabedah B 9/B, Seksyen 9, 40100 Shah Alam, Selangor, Malaysia",Selangor,Shah Alam,3.0817023,101.5274006,1824510.3,509037.45,1302486.8,77.0,13728.0,16026.0,6614.0,9412.0,99420.05,6082.96,408287.65,1488.0,43.0,4796.0
-Clinic B,"No 19 GF, Jalan PJS 3/48, Sri Manja Square One, 46510 Petaling Jaya, Selangor, Malaysia",Selangor,Petaling Jaya,3.0732511,101.6482664,1472371.34,508163.27,963692.67,184.0,16831.0,18799.0,6551.0,12248.0,148875.03,673.0,359275.2,2822.0,5.0,5221.0
-Clinic C,"No 33G & 33 (1st Floor), Jalan 2/1, Taman Seri Jaromas, Jenjarom, 42600, Selangor Darul Ehsan, Malaysia",Selangor,Kuala Langat,2.875081,101.5022764,2747409.05,1192063.75,1554307.3,239.0,32668.0,36978.0,13492.0,23486.0,547858.3,500.0,648619.45,8340.0,5.0,8680.0
-Clinic D,"564 & 565, Ground Floor, Jalan Samudra Utara 1, Taman Samudra, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2355383,101.6977572,3294471.8,1379643.95,1913597.05,136.0,35911.0,40205.0,19575.0,20630.0,409631.95,0.0,971837.95,5099.0,0.0,10464.0
-Clinic E,"12-G, Jalan Prima SG 1, Prima Seri Gombak, 68100 Batu Caves, Selangor, Malaysia",Selangor,Batu Caves,3.2380872,101.6997531,1474027.65,593079.95,875076.75,87.0,15516.0,17496.0,9022.0,8474.0,154635.5,63.0,439157.45,2151.0,1.0,5024.0
-</table>
-
-
-</tables>
-
-The following functions have already been provided. Please use them as needed and do not redefine them.
-<function>
-def execute_sql_query(sql_query: str) -> pd.DataFrame
-    """This method connects to the database, executes the sql query and returns the dataframe"""
-</function>
-
-
-
-Update this initial code:
-```python
-# TODO: import the required dependencies
-import pandas as pd
-
-# Write code here
-
-# Declare result var: 
-type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
-
-```
-
-
-
-### QUERY
- Plot PatientCount against TotalRevenue with a trend line, and highlight the clinics that earn much more or much less than the trend predicts.
-
-At the end, declare "result" variable as a dictionary of type and value in the following format:
-
-type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
-
-
-
-Generate python code and return full updated code:
-
-### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
-2026-10-29 17:27:51 [INFO] Code Generated:
-# TODO: import the required dependencies
+2026-10-30 16:42:15 [INFO] Running PandasAI with litellm LLM...
+2026-10-30 16:42:15 [INFO] Prompt ID: 7eacdab0-123c-439d-8372-8a52583978dd
+2026-10-30 16:42:15 [INFO] Generating new code...
+2026-10-30 16:45:08 [INFO] Code Generated:
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Write code here
-# Execute SQL query to fetch the relevant columns, sorted by PatientCount for consistent plotting
-sql_query = "SELECT IDOrganisation, PatientCount, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY PatientCount"
+# Query the relevant table from the database
+sql_query = """
+SELECT IDOrganisation, Address, State, District, lat, lng, TotalRevenue, TotalPaid, TotalPanel, 
+   TotalPaidPatientCount, TotalPanelPatientCount, PatientCount, NewPatientCount, ReturnPatientCount, 
+   TotalCash, TotalCheque, TotalElectronic, TotalCashPatientCount, TotalChequePatientCount, 
+   TotalElectronicPatientCount
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
 df = execute_sql_query(sql_query)
 
-# --- Compute linear regression trend line ---
+# Ensure numeric types for analysis columns
+df['TotalRevenue'] = pd.to_numeric(df['TotalRevenue'], errors='coerce')
+df['PatientCount'] = pd.to_numeric(df['PatientCount'], errors='coerce')
+
+# Linear regression: TotalRevenue = slope * PatientCount + intercept
+# This models how revenue changes with patient count
 x = df['PatientCount'].values
 y = df['TotalRevenue'].values
-slope, intercept = np.polyfit(x, y, 1)          # y = slope*x + intercept
-y_pred = slope * x + intercept
-residuals = y - y_pred                           # actual - predicted
+mask = ~(pd.isna(x) | pd.isna(y))
+x_clean = x[mask]
+y_clean = y[mask]
 
-# --- Identify clinics that earn much more or much less than the trend predicts ---
-# Threshold: absolute residual > 10% of the total revenue range
-rev_range = y.max() - y.min()
-threshold = 0.10 * rev_range
-highlight_mask = np.abs(residuals) > threshold
+if len(x_clean) > 1:
+    coeffs = np.polyfit(x_clean, y_clean, 1)
+    slope = coeffs[0]
+    intercept = coeffs[1]
+    predicted_y = slope * x_clean + intercept
+    residuals = y_clean - predicted_y  # positive = earn more than trend predicts
+else:
+    slope = 0
+    intercept = 0
+    predicted_y = np.array([])
+    residuals = np.array([])
 
-# --- Plot PatientCount vs TotalRevenue with trend line ---
+# Map regression results back to the full dataframe
+df['predicted_TotalRevenue'] = np.nan
+df['residual'] = np.nan
+valid_mask = ~pd.isna(df['PatientCount']) & ~pd.isna(df['TotalRevenue'])
+df.loc[valid_mask, 'predicted_TotalRevenue'] = predicted_y
+df.loc[valid_mask, 'residual'] = residuals
+
+# Identify clinics with the most extreme residuals (much more or much less than trend)
+if not df['residual'].dropna().empty:
+    min_res_idx = df['residual'].idxmin()
+    max_res_idx = df['residual'].idxmax()
+else:
+    min_res_idx = max_res_idx = None
+
+# Plot PatientCount against TotalRevenue with a trend line and highlight outliers
 plt.figure(figsize=(10, 6))
-plt.scatter(x, y, color='steelblue', s=80, edgecolor='white', label='Clinics')
-plt.plot(x, y_pred, color='darkred', linewidth=2, linestyle='-', label='Trend line')
+plt.scatter(df['TotalRevenue'], df['PatientCount'], s=100, color='steelblue', 
+            edgecolor='black', zorder=5, label='Clinics')
 
-# Highlight outlier clinics
-if highlight_mask.any():
-    for i in np.where(highlight_mask)[0]:
-        row = df.iloc[i]
-        res = residuals[i]
-        # Annotate clinic name with color-coded direction
-        color = 'darkgreen' if res > 0 else 'orange'
-        plt.annotate(row['IDOrganisation'],
-                     (row['PatientCount'], row['TotalRevenue']),
-                     textcoords="offset points", xytext=(0, 12), ha='center',
-                     fontsize=9, fontweight='bold', color=color)
-        # Plot highlighted point slightly larger
-        plt.scatter(row['PatientCount'], row['TotalRevenue'], 
-                    color=color, s=130, zorder=5, edgecolor='black')
+# Trend line expressed in the plot orientation (PatientCount vs TotalRevenue)
+# From TotalRevenue = slope * PatientCount + intercept  =>  PatientCount = (TotalRevenue - intercept) / slope
+if not np.isnan(slope) and slope != 0:
+    x_trend = np.array([df['TotalRevenue'].min(), df['TotalRevenue'].max()])
+    y_trend = (x_trend - intercept) / slope
+    plt.plot(x_trend, y_trend, color='red', linewidth=2, linestyle='--', 
+             label='Trend line (TotalRevenue ~ PatientCount)', zorder=3)
 
-plt.title('PatientCount vs TotalRevenue with Trend Line', fontsize=14)
-plt.xlabel('PatientCount', fontsize=12)
-plt.ylabel('TotalRevenue', fontsize=12)
-plt.legend(fontsize=10)
+# Highlight clinics earning much more or much less than the trend predicts
+for idx in df.index:
+    if not pd.isna(df.loc[idx, 'residual']):
+        org = df.loc[idx, 'IDOrganisation']
+        res = df.loc[idx, 'residual']
+        is_extreme = (idx == min_res_idx) or (idx == max_res_idx)
+        if is_extreme:
+            plt.annotate(f"{org}\n(residual: {res:.0f})",
+                         (df.loc[idx, 'TotalRevenue'], df.loc[idx, 'PatientCount']),
+                         color='darkred', fontsize=8, fontweight='bold',
+                         xytext=(0, 12), textcoords='offset points',
+                         bbox=dict(boxstyle='round,pad=0.3', facecolor='white', 
+                                   edgecolor='darkred', alpha=0.8))
+        else:
+            plt.text(df.loc[idx, 'TotalRevenue'], df.loc[idx, 'PatientCount'], org,
+                     fontsize=7, ha='center', va='bottom', color='navy')
+
+plt.xlabel('Total Revenue')
+plt.ylabel('Patient Count')
+plt.title('Patient Count vs Total Revenue with Trend Line')
+plt.legend()
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-
-# --- Save plot to a temporary file ---
-plot_path = '/tmp/patient_revenue_trend.png'
-plt.savefig(plot_path, dpi=100, bbox_inches='tight')
+plt.savefig('temp_chart.png')
 plt.close()
 
-# --- Declare result variable ---
-result = {
-    "type": "plot",
-    "value": plot_path
-}
-2026-10-29 17:27:51 [INFO] Validating code requirements...
-2026-10-29 17:27:51 [INFO] Code validation successful.
-2026-10-29 17:27:51 [INFO] Cleaning the generated code...
-2026-10-29 17:27:51 [INFO] Executing code: import pandas as pd
+# Declare result variable as specified
+result = { "type": "plot", "value": "temp_chart.png" }
+2026-10-30 16:45:08 [INFO] Validating code requirements...
+2026-10-30 16:45:08 [INFO] Code validation successful.
+2026-10-30 16:45:08 [INFO] Cleaning the generated code...
+2026-10-30 16:45:08 [INFO] Executing code: import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-sql_query = 'SELECT IDOrganisation, PatientCount, TotalRevenue FROM table_bd4f8d5ffa8239c09831e5b997bc2753 ORDER BY PatientCount'
+sql_query = """
+SELECT IDOrganisation, Address, State, District, lat, lng, TotalRevenue, TotalPaid, TotalPanel, 
+   TotalPaidPatientCount, TotalPanelPatientCount, PatientCount, NewPatientCount, ReturnPatientCount, 
+   TotalCash, TotalCheque, TotalElectronic, TotalCashPatientCount, TotalChequePatientCount, 
+   TotalElectronicPatientCount
+FROM table_bd4f8d5ffa8239c09831e5b997bc2753
+"""
 df = execute_sql_query(sql_query)
+df['TotalRevenue'] = pd.to_numeric(df['TotalRevenue'], errors='coerce')
+df['PatientCount'] = pd.to_numeric(df['PatientCount'], errors='coerce')
 x = df['PatientCount'].values
 y = df['TotalRevenue'].values
-slope, intercept = np.polyfit(x, y, 1)
-y_pred = slope * x + intercept
-residuals = y - y_pred
-rev_range = y.max() - y.min()
-threshold = 0.1 * rev_range
-highlight_mask = np.abs(residuals) > threshold
+mask = ~(pd.isna(x) | pd.isna(y))
+x_clean = x[mask]
+y_clean = y[mask]
+if len(x_clean) > 1:
+    coeffs = np.polyfit(x_clean, y_clean, 1)
+    slope = coeffs[0]
+    intercept = coeffs[1]
+    predicted_y = slope * x_clean + intercept
+    residuals = y_clean - predicted_y
+else:
+    slope = 0
+    intercept = 0
+    predicted_y = np.array([])
+    residuals = np.array([])
+df['predicted_TotalRevenue'] = np.nan
+df['residual'] = np.nan
+valid_mask = ~pd.isna(df['PatientCount']) & ~pd.isna(df['TotalRevenue'])
+df.loc[valid_mask, 'predicted_TotalRevenue'] = predicted_y
+df.loc[valid_mask, 'residual'] = residuals
+if not df['residual'].dropna().empty:
+    min_res_idx = df['residual'].idxmin()
+    max_res_idx = df['residual'].idxmax()
+else:
+    min_res_idx = max_res_idx = None
 plt.figure(figsize=(10, 6))
-plt.scatter(x, y, color='steelblue', s=80, edgecolor='white', label='Clinics')
-plt.plot(x, y_pred, color='darkred', linewidth=2, linestyle='-', label='Trend line')
-if highlight_mask.any():
-    for i in np.where(highlight_mask)[0]:
-        row = df.iloc[i]
-        res = residuals[i]
-        color = 'darkgreen' if res > 0 else 'orange'
-        plt.annotate(row['IDOrganisation'], (row['PatientCount'], row['TotalRevenue']), textcoords='offset points', xytext=(0, 12), ha='center', fontsize=9, fontweight='bold', color=color)
-        plt.scatter(row['PatientCount'], row['TotalRevenue'], color=color, s=130, zorder=5, edgecolor='black')
-plt.title('PatientCount vs TotalRevenue with Trend Line', fontsize=14)
-plt.xlabel('PatientCount', fontsize=12)
-plt.ylabel('TotalRevenue', fontsize=12)
-plt.legend(fontsize=10)
+plt.scatter(df['TotalRevenue'], df['PatientCount'], s=100, color='steelblue', edgecolor='black', zorder=5, label='Clinics')
+if not np.isnan(slope) and slope != 0:
+    x_trend = np.array([df['TotalRevenue'].min(), df['TotalRevenue'].max()])
+    y_trend = (x_trend - intercept) / slope
+    plt.plot(x_trend, y_trend, color='red', linewidth=2, linestyle='--', label='Trend line (TotalRevenue ~ PatientCount)', zorder=3)
+for idx in df.index:
+    if not pd.isna(df.loc[idx, 'residual']):
+        org = df.loc[idx, 'IDOrganisation']
+        res = df.loc[idx, 'residual']
+        is_extreme = idx == min_res_idx or idx == max_res_idx
+        if is_extreme:
+            plt.annotate(f'{org}\n(residual: {res:.0f})', (df.loc[idx, 'TotalRevenue'], df.loc[idx, 'PatientCount']), color='darkred', fontsize=8, fontweight='bold', xytext=(0, 12), textcoords='offset points', bbox=dict(boxstyle='round,pad=0.3', facecolor='white', edgecolor='darkred', alpha=0.8))
+        else:
+            plt.text(df.loc[idx, 'TotalRevenue'], df.loc[idx, 'PatientCount'], org, fontsize=7, ha='center', va='bottom', color='navy')
+plt.xlabel('Total Revenue')
+plt.ylabel('Patient Count')
+plt.title('Patient Count vs Total Revenue with Trend Line')
+plt.legend()
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plot_path = 'exports\\charts\\temp_chart_da302cd7-d196-431b-8713-e08e642d9beb.png'
-plt.savefig(plot_path, dpi=100, bbox_inches='tight')
+plt.savefig('exports\\charts\\temp_chart_6795f15b-a52c-4ad3-8db7-5e200ce7ba43.png')
 plt.close()
-result = {'type': 'plot', 'value': plot_path}
-2026-10-29 17:27:52 [INFO] Response generated successfully.
+result = {'type': 'plot', 'value': 'exports\\charts\\temp_chart_6795f15b-a52c-4ad3-8db7-5e200ce7ba43.png'}
+2026-10-30 16:45:09 [INFO] Response generated successfully.

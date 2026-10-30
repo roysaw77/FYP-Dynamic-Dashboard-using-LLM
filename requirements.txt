@@ -1,8 +1,11 @@
 # Python version: 3.11 (Requires >=3.10, <3.12 for pandasai-litellm)
-pandas
-streamlit
-pandasai
-pandasai-litellm
-litellm
-python-dotenv
-
+pandas==2.3.3
+streamlit==1.66.1
+pandasai==3.0.0
+pandasai-litellm==0.0.1
+litellm==1.106.3
+python-dotenv==1.2.4
+pyautogen==0.2.35
+matplotlib==3.7.5
+duckdb==1.5.6
+numpy==1.26.4
